@@ -1,0 +1,146 @@
+/* Custom Colors */
+:root {
+  --primary-color: var(--p-ok), var(--p-fall);
+  --p-ok: oklch(42.4% 0.122 251.64);
+  --p-fall: #054f8e;
+  --secondary-color: var(--s-ok), var(--s-fall);
+  --s-ok: oklch(45.86% 0.181 27.48);
+  --s-fall: #a50d12;
+  --foreground-color: var(--f-ok), var(--f-fall);
+  --f-ok: oklch(58.29% 0.118 237.54);
+  --f-fall: #2084b8;
+  --background-color: var(--b-ok), var(--b-fall);
+  --b-ok: oklch(60.3% 0.235 26.99);
+  --b-fall: #ed1c24;
+  --tertiary-color: var(--t-ok), var(--t-fall);
+  --t-ok: oklch(91.51% 0.19 106.71);
+  --t-fall: #f3ea21;
+  --tertiary-color-d: var(--td-ok), var(--td-fall);
+  --td-ok: oklch(80.55% 0.162 80.37);
+  --td-fall: #f5b21a;
+  --light-blue-fall: rgba(155, 217, 235, 0.9);
+  --light-blue-ok: oklch(85% 0.068 217 / 90%);
+  --black: #000000;
+  --global-p1: 1rem;
+  --global-p2: 2rem;
+  --global-p3: 3rem;
+  --global-p4: 4rem;
+}
+
+h1,h2 {
+  
+    font-size: 1em;
+    font-weight: 700;
+    margin: var(--global-p1) 0;
+    padding: 0;
+    font-family: var(--pf-primary-font);
+    color: var(--primary-color);
+}
+
+/* Table Styles */
+.td-custom {
+  height: 2em;
+  align-content: center;
+}
+.table-check {
+  text-align: center;
+  background-color: #d9e8f2;
+  padding-top: 7px;
+  color: var(--primary-color);
+}
+.table-dash {
+  text-align: center;
+  border: solid 1px #f4f4f4;
+  color: #888888;
+  padding-top: 7px;
+}
+.table-stroker {
+  border-bottom: solid 1px #f4f4f4;
+}
+
+.center {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.panel {
+  border-radius: var(--global-p2);
+  width: 100%;
+  margin: var(--global-p1) var(--global-p2);
+}
+
+.panel-heading {
+  border-radius: var(--global-p2) var(--global-p2) 0 0;
+}
+
+/** Start - Clean Up**/
+/* Pricing Tables Styles */
+.pVT8G19Opv_2pu-q8 {
+  color: #000000 !important;
+}
+/* Smart Tabs Styles */
+.smart-tabs-navigation-li {
+  background-color: #faf6d6 !important;
+}
+.smart-tabs-navigation-li-active {
+  background-color: #ffffff !important;
+}
+/* List Price Compare at Price */
+span.compare-at-price {
+  color: #888888!important;
+  color: black!important;
+}
+/* Buy it Now buttons? */
+.purchase-details
+  .purchase-details__spb--true
+  .shopify-payment-button
+  .shopify-payment-button__button--unbranded,
+.purchase-details
+  .purchase-details__spb--true
+  .shopify-payment-button
+  .shopify-payment-button__button--unbranded:link,
+.purchase-details
+  .purchase-details__spb--true
+  .shopify-payment-button
+  .shopify-payment-button__button--unbranded:visited {
+  background-color: #29ab5c !important;
+  font-weight: bold !important;
+  font-size: 16px !important;
+}
+/** End - Clean Up**/
+
+/* Custom Section Blue Blend */
+.ericsectioncust1 {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0), #ffffff);
+  background-color: #d9e8f2;
+}
+/* Page Top Rechargeable - Page Details */
+.pagetop-recharge {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0), #ffffff);
+  background-color: #d9e8f2;
+}
+.HeadTopEric {
+  font-size: 1.3em;
+  color: var(--primary-color);
+  font-family: "Open Sans", sans serif;
+  font-weight: 400 !important;
+}
+span.compare-at-price::after {
+  content: "List Price";
+}
+/* Help FAQ Page Hide Heading */
+.heading-wrapper--faq.heading-wrapper.heading-wrapper--short.one-whole.column.is-flex.is-flex-column.is-align-left.text-align-left {
+  display: none;
+}
+/* Section Padding */
+.has-padding-bottom {
+  padding-bottom: 10px !important;
+}
+.has-padding-top {
+  padding-top: 10px !important;
+}
