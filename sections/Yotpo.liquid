@@ -1,0 +1,29 @@
+{% style %}
+  #reviews{
+    padding: var(--global-p2) var(--global-p1);
+  }
+  .yotpo-label.yotpo-small-box {
+      display: none;
+      }
+{% endstyle %}
+
+{% if settings.show_yotpo_widget %}
+  <section id="reviews" class="section">
+    <h2>{{ settings.section_title }}</h2>
+
+    <div
+      class="yotpo yotpo-main-widget"
+      data-product-id="{{ product.id }}"
+      data-name="{{ product.title | escape }}"
+      data-url="{{ shop.url }}{{ product.url }}"
+      data-image-url="{{ product.featured_image | product_img_url: "large" | replace: "?", "%3F" | replace: "&","%26"}}"
+      data-desc
+    ></div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Yotpo Widget"
+}
+{% endschema %}
