@@ -12,9 +12,6 @@
 {% assign css_class = section.settings.css_class %}
 {% assign custom_css = section.settings.custom_css %}
 
-{% comment %} Product Description MetaFields {% endcomment %}
-{% assign Product_Description = product.metafields.proddesc.description %}
-
 {% comment %} Section specific CSS {% endcomment %}
 {% style %}
   .section__wrapper {
@@ -88,10 +85,6 @@
     %}
   </div>
 </section>
-
-{% if product.metafields.proddesc.description %}
-  <span class="product-description-{{ product.id }}"> | </span>
-{% endif %}
 
 {% comment %} JavaScript {% endcomment %}
 <script
@@ -226,13 +219,6 @@
     {{ product.metafields.spr.reviews }}
   </div>
 </div>
-
-{% comment %} YotPo Stars {% endcomment %}
-
-{% comment %} Product Description Tabs {% endcomment %}
-{% if product.metafields.proddesc %}
-  {% section 'product__description_tabs' %}
-{% endif %}
 
 {% schema %}
 {

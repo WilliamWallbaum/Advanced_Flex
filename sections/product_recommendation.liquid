@@ -1,0 +1,151 @@
+{% assign main_collection = product.collections.first %}
+
+{% style %}
+  #product-recommendations {
+    padding: var(--global-p2);
+  }
+
+  .product-grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-top: var(--global-p2);
+  }
+
+  .product-card {
+    background-color: #FFFFFF;
+    padding-bottom: var(--global-p2);
+    border-radius: var(--global-radius);
+    box-shadow: var(--global-shadow);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    flex: 1;
+  }
+
+  .product-card:hover {
+    box-shadow: var(--global-shadow);
+    transform: translateY(-5px);
+  }
+
+  .product-image {
+    margin-bottom: var(--global-p1);
+  }
+
+  .product-image img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: var(--global-radius) var(--global-radius) 0 0;
+  }
+
+  .product-card h4 {
+    padding: 0  var(--global-p2);
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 767px) {
+    .product-grid {
+      flex-direction: column;
+    }
+  }
+{% endstyle %}
+
+<!-- Product Recommendations -->
+{% if section.settings.show_section %}
+  <section id="product-recommendations" class="section">
+    <h2>{{ section.settings['recommendation-title'] }}</h2>
+    {% if section.settings['similar-products'] %}
+      <div id="similar-products">
+        <h3>{{ section.settings['similar-products-title'] }}</h3>
+
+        <div class="product-grid">
+          {% for product in main_collection.products limit: section.settings['product-limit'] %}
+            <a href="{{ product.url }}">
+              <div class="product-card">
+                {% if section.settings['show-product-image'] %}
+                  <figure class="product-image">
+                    <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+                  </figure>
+                {% endif %}
+                {% if section.settings.show_title %}
+                  <h4>{{ product.title }}</h4>
+                {% endif %}
+                {% if section.settings.show_price %}
+                  <p>{{ product.price | money }}</p>
+                {% endif %}
+                {% if section.settings.show_description %}
+                  <p>{{ product.description }}</p>
+                {% endif %}
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product Recommendation",
+  "class": "product-recommendation",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show Recommended Products Section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "recommendation-title",
+      "label": "Product Recommendations Title",
+      "default": "Product Recommendations"
+    },
+    {
+      "type": "checkbox",
+      "id": "similar-products",
+      "label": "Show Similar Products",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "similar-products-title",
+      "label": "Similar Products Title",
+      "default": "Similar Products"
+    },
+    {
+      "type": "checkbox",
+      "id": "show-product-image",
+      "label": "Show Product Image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Product Title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Show Product Price",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show Product Description",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "product-limit",
+      "label": "Product Limit",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    }
+  ]
+}
+{% endschema %}

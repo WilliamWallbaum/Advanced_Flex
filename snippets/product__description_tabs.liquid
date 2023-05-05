@@ -8,92 +8,125 @@
 {% assign tech_info = product.metafields.proddesc.tech_info %}
 {% assign box_image = product.metafields.proddesc.box_image %}
 {% assign product_accessories = product.metafields.proddesc.box_list.value %}
+{% assign youtube = product.metafields.proddesc.product_video %}
 
 {% comment %} Section Specific CSS {% endcomment %}
 {% style %}
-    .tab-header {
-      flex: 1 1 0%;
-      color: #fdfdfd;
-      font-family: var(--pf-primary-font);
-      display: flex;
-      flex-direction: row;
-    }
-
-    .button-item {
-      background-color: var(--f-fall);
-      background-color: var(--f-ok);
-      border-style: none;
-      border-top-right-radius: 15px;
-      display: flex;
-      flex-direction: row;
-      flex: 1 1 0%;
-      margin: 0 0.05rem;
-    }
-
-    .button-item a {
-      color: #fdfdfd;
-      font-family: var(--pf-primary-font);
-      font-weight: 700;
-      font-size: 18px;
-      padding: 16px;
-      border-style: none;
-      text-decoration: none;
-    }
-
-    .button-item:hover,
-    .button-item.active {
-      background-color: var(--p-fall);
-      background-color: var(--p-ok);
-      color: #fff;
-    }
-
-    .button-item:not(:last-of-type) a {
-      border-right: 0;
-    }
-
-    [id^="section-"] {
-      display: none;
-      padding: 2rem;
-      flex-direction: column;
-    }
-
-    .active {
-      display: flex;
-    }
-
-    div#comparison-products {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
+  .tab-header {
+    flex: 1 1 0%;
+    color: #fdfdfd;
+    font-family: var(--pf-primary-font);
+    display: flex;
+    flex-direction: row;
   }
 
-    table {
-        border-radius: var(--global-p2);
-    }
+  .button-item {
+    background-color: var(--f-fall);
+    background-color: var(--f-ok);
+    border-style: none;
+    border-top-right-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 0%;
+    margin: 0 0.05rem;
+  }
 
-    td,
-    th {
-      padding-left: var(--global-p1);
-      padding-right: var(--global-p1);
-      text-align: left;
-    }
+  .button-item a {
+    color: #fdfdfd;
+    font-family: var(--pf-primary-font);
+    font-weight: 700;
+    font-size: 18px;
+    padding: 16px;
+    border-style: none;
+    text-decoration: none;
+  }
 
-    table tr:nth-child(even) {
-      background-color: var(--light-blue-fall);
-      background-color: var(--light-blue-ok);
-    }
+  .button-item:hover,
+  .button-item.active {
+    background-color: var(--p-fall);
+    background-color: var(--p-ok);
+    color: #fff;
+  }
 
-    table tr:last-child td:first-child {
-      border-radius: 0 0 0 var(--global-p2);
-    }
+  .button-item:not(:last-of-type) a {
+    border-right: 0;
+  }
 
-    table tr:last-child td:last-child {
-      border-radius: 0 0 var(--global-p2) 0;
-    }
+  [id^="section-"] {
+    display: none;
+    padding: var(--global-p2);
+    flex-direction: column;
+  }
 
-    table tbody tr {
-      border: none;
-    }
+   #tabs h2, #tabs h3, #tabs h4 {
+    padding: var(--global-p1) 0;
+    font-weight: 700;
+  }
+
+  .active {
+    display: flex;
+  }
+
+  #comparison-products {
+    display: flex;
+    padding: var(--global-p1) 0;
+  }
+
+  .similar-product {
+    display: flex;
+    flex: 1;
+    margin: var(--global-p1);
+  }
+
+  .similar-product a {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .similar-product h4 {
+    font-size: x-large;
+    padding-top: var(--global-p1);
+  }
+
+  .similar-product h5 {
+    font-size: larger;
+    font-weight: 500;
+    padding-bottom: var(--global-p1);
+  }
+
+  table {
+    border-radius: var(--global-p2);
+  }
+
+  td,
+  th {
+    padding-left: var(--global-p1);
+    padding-right: var(--global-p1);
+    text-align: left;
+  }
+
+  table tr:nth-child(even) {
+    background-color: var(--light-blue-fall);
+    background-color: var(--light-blue-ok);
+  }
+
+  table tr:last-child td:first-child {
+    border-radius: 0 0 0 var(--global-p2);
+  }
+
+  table tr:last-child td:last-child {
+    border-radius: 0 0 var(--global-p2) 0;
+  }
+
+  table tbody tr {
+    border: none;
+  }
+
+  .video-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
 {% endstyle %}
 
 {% comment %} HTML markup {% endcomment %}
@@ -113,7 +146,7 @@
   </div>
 
   <div id="section-2" class="tab-content">
-    <h3>{{ product.title }} 6-Month Limited Warranty</h3>
+    <h2>{{ product.title }} 6-Month Limited Warranty</h2>
     <p>
       Your {{ product.title }} hearing aid comes with a 6-month limited warranty and your order will include a storage
       case, USB Charging Cable, and a care kit: an $85 value, absolutely free to you!
@@ -142,21 +175,31 @@
   </div>
 
   <div id="section-3" class="tab-content">
-    <h3>Compare Our Top Rechargeable Hearing Aids</h3>
+    <h2>Compare Our Top Rechargeable Hearing Aids</h2>
     <div id="comparison-products" style="flex-direction:row;">
       {% for product in collections.all.products limit: 3 %}
         <div class="similar-product">
           <a href="{{ product.url }}">
-            <img src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.title }}">
+            <img src="{{ product.featured_image.src | product_img_url: 'Large' }}" alt="{{ product.title }}">
             <h4>{{ product.title }}</h4>
-            <p>{{ product.price | money }}</p>
-            {% if product.metafields.proddesc.technical_information %}
+            <h5>{{ product.price | money }}</h5>
+            {% if product.metafields.proddesc.technical_information.value %}
               <table>
                 <tbody>
-                  {% for key in product.metafields.proddesc.technical_information %}
+                  {% for key_value in product.metafields.proddesc.technical_information.value %}
+                    {% assign kv_pair = key_value | split: ',' %}
+                    {% assign key = kv_pair[0] | split: ':' | last | remove: '"' | remove: '[' | remove: ']' | strip %}
+                    {% assign value = kv_pair[1]
+                      | split: ':'
+                      | last
+                      | remove: '"'
+                      | remove: '['
+                      | remove: ']'
+                      | strip
+                    %}
                     <tr>
                       <td>{{ key }}:</td>
-                      <td>{{ product.metafields.proddesc.technical_information[key] }}</td>
+                      <td>{{ value }}</td>
                     </tr>
                   {% endfor %}
                 </tbody>
@@ -169,7 +212,7 @@
   </div>
 
   <div id="section-4" class="tab-content">
-    <h3>Size Comparison & Technical Information</h3>
+    <h2>Size Comparison & Technical Information</h2>
 
     <div style="display: flex; flex-direction: row;">
       <figure style="flex: 3;">
@@ -197,7 +240,7 @@
   </div>
 
   <div id="section-5" class="tab-content">
-    <h3>What's in the Box</h3>
+    <h2>What's in the Box</h2>
 
     <div style="display: flex; flex-direction: row;">
       <figure style="flex: 3;">
@@ -215,14 +258,18 @@
             <li>Storage case</li>
           {% endif %}
           {% if product_accessories.manual.available %}
-            <li>
-              {% if product_accessories.manual.link %}
-                <a href="{{ product_accessories.manual.link }}">Manual</a>
-              {% else %}
-                Manual
+            {% if product_accessories.manual.link %}
+              {% if product_accessories.manual.link.User %}
+                <li><a href="{{ product_accessories.manual.link.User }}">User Manual</a></li>
               {% endif %}
-            </li>
+              {% if product_accessories.manual.link.App %}
+                <li><a href="{{ product_accessories.manual.link.App }}">App Manual</a></li>
+              {% endif %}
+            {% else %}
+              <li>Manual</li>
+            {% endif %}
           {% endif %}
+
           {% if product_accessories.alcohol_wipe %}
             <li>Alcohol wipe</li>
           {% endif %}
@@ -262,6 +309,26 @@
   </div>
 </div>
 
+{% comment %} Youtube Video {% endcomment %}
+
+{% if product.metafields.proddesc.product_video %}
+  {% assign youtube = product.metafields.proddesc.product_video %}
+  {% if youtube != '' %}
+    {% assign youtube_embed_url = youtube | replace: 'watch?v=', 'embed/' %}
+    <div class="video-wrapper">
+      <iframe
+        width="560"
+        height="315"
+        src="{{ youtube_embed_url }}?controls=0"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+  {% endif %}
+{% endif %}
+
 {% comment %} Section Specific JavaScript {% endcomment %}
 <script>
   const tabHeaders = document.querySelectorAll(".button-item");
@@ -279,5 +346,10 @@
       tabHeader.classList.add("active");
       targetContent.classList.add("active");
     });
+  });
+
+  const sectionLink = document.querySelector('.button-item');
+  sectionLink.addEventListener('click', function(event) {
+    event.preventDefault();
   });
 </script>
