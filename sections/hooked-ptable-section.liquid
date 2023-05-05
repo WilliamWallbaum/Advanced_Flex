@@ -1,0 +1,32 @@
+{% if content_for_header contains "ptable.hooked.design" %}
+{% if section.settings.tableId == "pVT8G19Opv" %}
+{% render "hooked-ptable-pVT8G19Opv" %}
+{% endif %}
+{% if section.settings.tableId == "zSF9qo1U5d" %}
+{% render "hooked-ptable-zSF9qo1U5d" %}
+{% endif %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Pricing Table",
+  "settings": [
+    {
+      "type": "select",
+      "id": "tableId",
+      "label": "Table Name",
+      "options": [
+        {"value": "pVT8G19Opv", "label": "Rechargable-Hearing-Aids"},
+        {"value": "zSF9qo1U5d", "label": "Battery-HA"}
+      ],
+      "info": "Select your pricing table."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pricing Table",
+      "category": "Hooked"
+    }
+  ]
+}
+{% endschema %}
