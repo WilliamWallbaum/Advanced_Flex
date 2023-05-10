@@ -12,23 +12,15 @@
 
 {% comment %} Section Specific CSS {% endcomment %}
 {% style %}
-  .tab-header {
-    flex: 1 1 0%;
-    color: #fdfdfd;
-    font-family: var(--pf-primary-font);
-    display: flex;
-    flex-direction: row;
-  }
-
   .button-item {
+    padding: var(--global-p1);
     background-color: var(--f-fall);
     background-color: var(--f-ok);
-    border-style: none;
-    border-top-right-radius: 15px;
     display: flex;
     flex-direction: row;
-    flex: 1 1 0%;
-    margin: 0 0.05rem;
+    justify-content: center;
+    border-style: none;
+    margin: 0.07rem;
   }
 
   .button-item a {
@@ -42,29 +34,27 @@
   }
 
   .button-item:hover,
-  .button-item.active {
+  .active.button-item {
     background-color: var(--p-fall);
     background-color: var(--p-ok);
     color: #fff;
   }
 
-  .button-item:not(:last-of-type) a {
-    border-right: 0;
-  }
-
-  [id^="section-"] {
+  [id^="section-content-"] {
     display: none;
     padding: var(--global-p2);
     flex-direction: column;
   }
 
-   #tabs h2, #tabs h3, #tabs h4 {
-    padding: var(--global-p1) 0;
-    font-weight: 700;
-  }
-
   .active {
     display: flex;
+  }
+
+  #tabs h2,
+  #tabs h3,
+  #tabs h4 {
+    padding: var(--global-p1) 0;
+    font-weight: 700;
   }
 
   #comparison-products {
@@ -95,9 +85,25 @@
   }
 
   .title-box {
-    height: 10rem;
     border-bottom: 1px solid;
     margin-bottom: var(--global-p1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .img-tbl {
+    display: flex;
+  }
+
+  .flex-fig {
+    margin: 1em 0;
+  }
+
+  .flex-fig img {
+    width: 100%;
+    margin:0;
+    padding:0;
   }
 
   table {
@@ -132,24 +138,94 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin: var(--global-p1);
   }
 
-  @media (max-width: 767px) {
+  @keyframes slide-fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media (min-width: 768px) {
     .tab-header {
-      flex-direction: column;
-      margin: 1rem 0 0;
+      flex: 1 1 0%;
+      color: #fdfdfd;
+      font-family: var(--pf-primary-font);
+      display: flex;
+      flex-direction: row;
+    }
+    .button-item.mobile-button,
+    .button-item.mobile-button.active {
+      display: none;
     }
 
     .button-item {
-      margin: 0.1rem 0;
-      border-top-right-radius: 0;
+      border-top-right-radius: 15px;
+      flex: 1 1 0%;
+    }
+
+    .button-item:not(:last-of-type) a {
+      border-right: 0;
+    }
+
+    .img-tbl {
+      flex-direction: row;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .tab-header {
+      display: none;
+    }
+    .mobile-button {
+      display: flex;
+    }
+    .button-item {
+      width: 100%;
+    }
+    .active {
+      display: flex;
+    }
+    /* set transition properties for the element */
+    [id^="section-content-"] {
+      height: 0;
+      padding: 0;
+      opacity: 0;
+      transition: height 0.3s ease-in-out, padding 0.3s ease-in-out,
+        opacity 0.3s ease-in-out;
+    }
+
+    /* update styles for the active class */
+    [id^="section-content-"].active {
+      height: auto;
+      padding: var(--global-p2);
+      opacity: 1;
+    }
+
+    .img-tbl {
+      flex-direction: column;
     }
   }
 {% endstyle %}
 
 {% comment %} HTML markup {% endcomment %}
 {% if settings.show_product_description_tabs %}
-  <div id="tabs" class="tab-content section">
+  <section id="tabs" class="tab-content section">
     <div class="tab-header">
       <button class="button-item">
         <a href="#section-1">{{ settings.tab_1 }}</a>
@@ -168,188 +244,219 @@
       </button>
     </div>
 
-    <div id="section-1" class="tab-content active">
-      <h2>{{ description_title }}</h2>
-      <p>{{ product_description }}</p>
+    <div id="section-1" class="tab-content">
+      <button class="button-item mobile-button active">
+        <a href="#section-1">{{ settings.tab_1 }}</a>
+      </button>
+
+      <div id="section-content-1" class="content active">
+        <h2>{{ description_title }}</h2>
+        <p>{{ product_description }}</p>
+      </div>
     </div>
 
     <div id="section-2" class="tab-content">
-      <h2>{{ product.title }} 6-Month Limited Warranty</h2>
-      <p>
-        Your {{ product.title }} hearing aid comes with a 6-month limited warranty and your order will include a storage
-        case, USB Charging Cable, and a care kit: an $85 value, absolutely free to you!
-      </p>
-      <p>
-        If you want an inexpensive hearing aid that’s effective and easy to use, the {{ product.title }} is a perfect
-        choice.
-      </p>
-      <p>Warranty Included: 6 Month Limited Warranty and 30 Day Money Back Guarantee – Risk-Free!</p>
-      <figure
-        title="Warranty Included:6 Month Limited Warranty and30 Day Money Back"
-        data-pf-type="Image"
-        style="display: flex; padding: 1em; align-content: center; flex-direction: column; flex-wrap: wrap;"
-      >
-        <img
-          src="https://cdn.shopify.com/s/files/1/0586/6841/7209/t/18/assets/pf-7892f57e--puppywarranty5_1200x.jpg?v=1629305307"
-          srcset="https://cdn.shopify.com/s/files/1/0586/6841/7209/t/18/assets/pf-7892f57e--puppywarranty5.jpg?v=1629305307 1536w"
-          width="815"
-          height="160"
-          sizes="(min-width: 1536px) 1536px, (min-width: 1024px) 1280px, (min-width: 640px) 768px, 320px"
-          loading="lazy"
-          alt="Warranty Included:6 Month Limited Warranty and30 Day Money Back"
+      <button class="button-item mobile-button">
+        <a href="#section-2">{{ settings.tab_2 }}</a>
+      </button>
+
+      <div id="section-content-2" class="content">
+        <h2>{{ product.title }} 6-Month Limited Warranty</h2>
+        <p>
+          Your {{ product.title }} hearing aid comes with a 6-month limited warranty and your order will include a
+          storage case, USB Charging Cable, and a care kit: an $85 value, absolutely free to you!
+        </p>
+        <p>
+          If you want an inexpensive hearing aid that’s effective and easy to use, the {{ product.title }} is a perfect
+          choice.
+        </p>
+        <p>Warranty Included: 6 Month Limited Warranty and 30 Day Money Back Guarantee – Risk-Free!</p>
+        <figure
           title="Warranty Included:6 Month Limited Warranty and30 Day Money Back"
+          data-pf-type="Image"
+          style="display: flex; padding: 1em; align-content: center; flex-direction: column; flex-wrap: wrap;"
         >
-      </figure>
+          <img
+            src="https://cdn.shopify.com/s/files/1/0586/6841/7209/t/18/assets/pf-7892f57e--puppywarranty5_1200x.jpg?v=1629305307"
+            srcset="https://cdn.shopify.com/s/files/1/0586/6841/7209/t/18/assets/pf-7892f57e--puppywarranty5.jpg?v=1629305307 1536w"
+            width="815"
+            height="160"
+            sizes="(min-width: 1536px) 1536px, (min-width: 1024px) 1280px, (min-width: 640px) 768px, 320px"
+            loading="lazy"
+            alt="Warranty Included:6 Month Limited Warranty and30 Day Money Back"
+            title="Warranty Included:6 Month Limited Warranty and30 Day Money Back"
+          >
+        </figure>
+      </div>
     </div>
 
     <div id="section-3" class="tab-content">
-      <h2>Compare Our Top Rechargeable Hearing Aids</h2>
-      <div id="comparison-products" style="flex-direction:row;">
-        {% assign main_collection = product.collections.first %}
-        {% for product in collections[main_collection.handle].products limit: 3 %}
-          {% if product.handle != current_variant.product.handle %}
-            <div class="similar-product">
-              <a href="{{ product.url }}">
-                <img src="{{ product.featured_image.src | product_img_url: 'Large' }}" alt="{{ product.title }}">
-                <div class="title-box">
-                  <h4>{{ product.title }}</h4>
-                  <h5>{{ product.price | money }}</h5>
-                </div>
+      <button class="button-item mobile-button">
+        <a href="#section-3">{{ settings.tab_3 }}</a>
+      </button>
 
-                {% if product.metafields.proddesc.technical_information.value %}
-                  <table>
-                    <tbody>
-                      {% for key_value in product.metafields.proddesc.technical_information.value %}
-                        {% assign kv_pair = key_value | split: ',' %}
-                        {% assign key = kv_pair[0]
-                          | split: ':'
-                          | last
-                          | remove: '"'
-                          | remove: '['
-                          | remove: ']'
-                          | strip
-                        %}
-                        {% assign value = kv_pair[1]
-                          | split: ':'
-                          | last
-                          | remove: '"'
-                          | remove: '['
-                          | remove: ']'
-                          | strip
-                        %}
-                        <tr>
-                          <td>{{ key }}:</td>
-                          <td>{{ value }}</td>
-                        </tr>
-                      {% endfor %}
-                    </tbody>
-                  </table>
-                {% endif %}
-              </a>
-            </div>
-          {% endif %}
-        {% endfor %}
+      <div id="section-content-3" class="content">
+        <h2>Compare Our Top Rechargeable Hearing Aids</h2>
+        <div id="comparison-products" style="flex-direction:row;">
+          {% assign main_collection = product.collections.first %}
+          {% for product in collections[main_collection.handle].products limit: 3 %}
+            {% if product.handle != current_variant.product.handle %}
+              <div class="similar-product">
+                <a href="{{ product.url }}">
+                  <img src="{{ product.featured_image.src | product_img_url: 'Large' }}" alt="{{ product.title }}">
+                  <div class="title-box">
+                    <h4>{{ product.title }}</h4>
+                    <h5>{{ product.price | money }}</h5>
+                  </div>
+
+                  {% if product.metafields.proddesc.technical_information.value %}
+                    <table>
+                      <tbody>
+                        {% for key_value in product.metafields.proddesc.technical_information.value %}
+                          {% assign kv_pair = key_value | split: ',' %}
+                          {% assign key = kv_pair[0]
+                            | split: ':'
+                            | last
+                            | remove: '"'
+                            | remove: '['
+                            | remove: ']'
+                            | strip
+                          %}
+                          {% assign value = kv_pair[1]
+                            | split: ':'
+                            | last
+                            | remove: '"'
+                            | remove: '['
+                            | remove: ']'
+                            | strip
+                          %}
+                          <tr>
+                            <td>{{ key }}:</td>
+                            <td>{{ value }}</td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  {% endif %}
+                </a>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
       </div>
     </div>
 
     <div id="section-4" class="tab-content">
-      <h2>Size Comparison & Technical Information</h2>
+      <button class="button-item mobile-button">
+        <a href="#section-4">{{ settings.tab_4 }}</a>
+      </button>
 
-      <div style="display: flex; flex-direction: row;">
-        <figure style="flex: 3;">
-          {% if size_comparison %}
-            <img src="{{ size_comparison | img_url: 'Large' }}" alt="Size Comparison">
+      <div id="section-content-4" class="content">
+        <h2>Size Comparison & Technical Information</h2>
+
+        <div class="img-tbl">
+          <figure id="size-comparison" class="flex-fig">
+            {% if size_comparison %}
+              <img src="{{ size_comparison | img_url: 'Large' }}" alt="Size Comparison">
+            {% endif %}
+          </figure>
+
+          {% if technical_information %}
+            <table>
+              <tbody>
+                {% for key_value in technical_information %}
+                  {% assign kv_pair = key_value | split: ',' %}
+                  {% assign key = kv_pair[0] | split: ':' | last | remove: '"' | remove: '[' | remove: ']' | strip %}
+                  {% assign value = kv_pair[1] | split: ':' | last | remove: '"' | remove: '[' | remove: ']' | strip %}
+                  <tr>
+                    <td>{{ key }}:</td>
+                    <td>{{ value }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
           {% endif %}
-        </figure>
-
-        {% if technical_information %}
-          <table>
-            <tbody>
-              {% for key_value in technical_information %}
-                {% assign kv_pair = key_value | split: ',' %}
-                {% assign key = kv_pair[0] | split: ':' | last | remove: '"' | remove: '[' | remove: ']' | strip %}
-                {% assign value = kv_pair[1] | split: ':' | last | remove: '"' | remove: '[' | remove: ']' | strip %}
-                <tr>
-                  <td>{{ key }}:</td>
-                  <td>{{ value }}</td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        {% endif %}
+        </div>
       </div>
     </div>
 
     <div id="section-5" class="tab-content">
-      <h2>What's in the Box</h2>
+      <button class="button-item mobile-button">
+        <a href="#section-5">{{ settings.tab_5 }}</a>
+      </button>
 
-      <div style="display: flex; flex-direction: row;">
-        <figure style="flex: 3;">
-          {% if box_image %}
-            <img src="{{ box_image | img_url: 'Large' }}" alt="Here's what comes with your {{ product.title }}">
-          {% endif %}
-        </figure>
+      <div id="section-content-5" class="content">
+        <h2>What's in the Box</h2>
 
-        {% if product_accessories %}
-          <ul>
-            {% if product_accessories.hearing_aid %}
-              <li>{{ product_accessories.hearing_aid }}</li>
+        <div class="img-tbl">
+          <figure class="flex-fig">
+            {% if box_image %}
+              <img src="{{ box_image | img_url: 'Large' }}" alt="Here's what comes with your {{ product.title }}">
             {% endif %}
-            {% if product_accessories.storage_case %}
-              <li>Storage case</li>
-            {% endif %}
-            {% if product_accessories.manual.available %}
-              {% if product_accessories.manual.link %}
-                {% if product_accessories.manual.link.User %}
-                  <li><a href="{{ product_accessories.manual.link.User }}">User Manual</a></li>
-                {% endif %}
-                {% if product_accessories.manual.link.App %}
-                  <li><a href="{{ product_accessories.manual.link.App }}">App Manual</a></li>
-                {% endif %}
-              {% else %}
-                <li>Manual</li>
+          </figure>
+
+          {% if product_accessories %}
+            <ul>
+              {% if product_accessories.hearing_aid %}
+                <li>{{ product_accessories.hearing_aid }}</li>
               {% endif %}
-            {% endif %}
+              {% if product_accessories.storage_case %}
+                <li>Storage case</li>
+              {% endif %}
+              {% if product_accessories.manual.available %}
+                {% if product_accessories.manual.link %}
+                  {% if product_accessories.manual.link.User %}
+                    <li><a href="{{ product_accessories.manual.link.User }}">User Manual</a></li>
+                  {% endif %}
+                  {% if product_accessories.manual.link.App %}
+                    <li><a href="{{ product_accessories.manual.link.App }}">App Manual</a></li>
+                  {% endif %}
+                {% else %}
+                  <li>Manual</li>
+                {% endif %}
+              {% endif %}
 
-            {% if product_accessories.alcohol_wipe %}
-              <li>Alcohol wipe</li>
-            {% endif %}
-            {% if product_accessories.different_sized_domes %}
-              <li>Different sized domes</li>
-            {% endif %}
-            {% if product_accessories.tube %}
-              <li>
-                {% if product_accessories.tube.link %}
-                  <a href="{{ product_accessories.tube.link }}">{{ product_accessories.tube.type }}</a>
-                {% else %}
-                  {{ product_accessories.tube.type }}
-                {% endif %}
-              </li>
-            {% endif %}
-            {% if product_accessories.tool.available %}
-              <li>
-                {% if product_accessories.tool.type %}
-                  {{ product_accessories.tool.type }}
-                {% else %}
-                  Tool
-                {% endif %}
-              </li>
-            {% endif %}
-            {% if product_accessories.battery.available %}
-              <li>
-                {% if product_accessories.battery.type == 'single_use' %}
-                  Single-use battery ({{ product_accessories.battery.size }})
-                {% else %}
-                  {{ product_accessories.battery.type }} battery ({{ product_accessories.battery.size }})
-                {% endif %}
-              </li>
-            {% endif %}
-          </ul>
-        {% endif %}
+              {% if product_accessories.alcohol_wipe %}
+                <li>Alcohol wipe</li>
+              {% endif %}
+              {% if product_accessories.different_sized_domes %}
+                <li>Different sized domes</li>
+              {% endif %}
+              {% if product_accessories.tube %}
+                <li>
+                  {% if product_accessories.tube.link %}
+                    <a href="{{ product_accessories.tube.link }}">{{ product_accessories.tube.type }}</a>
+                  {% else %}
+                    {{ product_accessories.tube.type }}
+                  {% endif %}
+                </li>
+              {% endif %}
+              {% if product_accessories.tool.available %}
+                <li>
+                  {% if product_accessories.tool.type %}
+                    {{ product_accessories.tool.type }}
+                  {% else %}
+                    Tool
+                  {% endif %}
+                </li>
+              {% endif %}
+              {% if product_accessories.battery.available %}
+                <li>
+                  {% if product_accessories.battery.type == 'single_use' %}
+                    Single-use battery ({{ product_accessories.battery.size }})
+                  {% else %}
+                    {{ product_accessories.battery.type }} battery ({{ product_accessories.battery.size }})
+                  {% endif %}
+                </li>
+              {% endif %}
+            </ul>
+          {% endif %}
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 {% endif %}
+
 {% comment %} Youtube Video {% endcomment %}
 
 {% if product.metafields.proddesc.product_video %}
@@ -372,27 +479,68 @@
 
 {% comment %} Section Specific JavaScript {% endcomment %}
 {% javascript %}
-  const tabHeaders = document.querySelectorAll(".button-item");
-  const tabContents = document.querySelectorAll(".tab-content");
+  
+  
+  
+  
+  
+const buttons = document.querySelectorAll(".button-item");
 
-  tabHeaders.forEach((tabHeader) => {
-    tabHeader.addEventListener("click", () => {
-      const targetContent = document.querySelector(
-        tabHeader.querySelector("a").getAttribute("href")
-      );
+buttons.forEach((button) => {
+  button.addEventListener("click", function () {
+    // Get the href of the button's link
+    const href = this.querySelector("a").getAttribute("href");
+    // change href link to correct content element
+    const sectionId = href.replace("#section-", "#section-content-");
+    // Get the content section corresponding to the href
+    const section = document.querySelector(sectionId);
 
-      tabHeaders.forEach((header) => header.classList.remove("active"));
-      tabContents.forEach((content) => content.classList.remove("active"));
+    // Get all the button-items and content sections
+    const allButtons = document.querySelectorAll(".button-item");
+    const allSections = document.querySelectorAll(".content");
 
-      tabHeader.classList.add("active");
-      targetContent.classList.add("active");
+    // Remove active class from all button-items and content sections
+    allButtons.forEach((button) => button.classList.remove("active"));
+    allSections.forEach((section) => section.classList.remove("active"));
+
+    // Add active class to the clicked button and its corresponding section
+    this.classList.add("active");
+    section.classList.add("active");
+  });
+});
+
+function forceHeight(targetContainer, selectorClass) {
+  const container = document.querySelector(targetContainer);
+  const selections = container.querySelectorAll(selectorClass);
+  let targetHeight = "";
+
+  selections.forEach((selection) => {
+    selection.style.height = "auto";
+    targetHeight = Math.max(targetHeight, selection.offsetHeight);
+  });
+
+  if (targetHeight > 0) {
+    selections.forEach((selection) => {
+      selection.style.height = `${targetHeight}px`;
     });
-  });
+  }
+}
+// Call forceHeight on page load and on window resize
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.querySelector("#tabs")) {
+    forceHeight("#tabs", ".title-box");
+  }
+});
+document.addEventListener("DOMContentLoaded", () =>
+  forceHeight("#tabs", ".title-box")
+);
+window.addEventListener("resize", () => forceHeight("#tabs", ".title-box"));
 
-  const sectionLink = document.querySelector('.button-item');
-  sectionLink.addEventListener('click', function(event) {
-    event.preventDefault();
-  });
+
+
+
+
+
 {% endjavascript %}
 
 {% schema %}
