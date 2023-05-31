@@ -1,0 +1,332 @@
+{% assign bg_image = section.settings.background_image | img_url: 'master' %}
+<script src="{{ 'addPair.js' | asset_url }}" defer></script>
+
+{% style %}
+    main {
+      margin-bottom: var(--global-p4);
+    }
+    [id^="shopify-section-template-"] section {
+      width: {{ settings.desktop_section_width }}%;
+      padding: var(--global-p1);
+      margin: 0 auto;
+    }
+    h2 {
+      font-size: calc(var(--text-basic) * 1.5);
+      font-weight: 800;
+    }
+    #landing-mast {
+      width: 100%;
+      background-image: url('{{ bg_image }}');
+      background-repeat: no-repeat;
+    }
+
+    #mast-container {
+      width: 80%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: .25fr 2.75fr 1fr;
+      gap: {{ settings.gap_spacing }}rem;
+      grid-template-areas:
+        "empty intro product";
+      padding-bottom: var(--global-p4);
+    }
+
+    #empty {
+      grid-area: empty;
+    }
+
+    #page-title h1 {
+      color: var(--color-bg);
+    }
+
+    #page-title h1 {
+      font-size: 2rem;
+      font-weight: 900;
+    }
+
+    #qualifier {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--color-bg);
+    }
+
+    #intro {
+      grid-area: intro;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    #intro-copy {
+      margin-top: var(--global-p1);
+      margin-right: var(--global-p4);
+    }
+
+    #product {
+      grid-area: product;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #product-image { width: 100%; }
+
+    #price-box {
+      width: 100%;
+      padding: var(--global-p1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      left: 0;
+      top: calc(var(--global-p3) * -1);
+      z-index: 1;
+      background: rgba(190,224,191,1);
+      border-style: solid;
+      border-width: 3px;
+      border-color: #1f5438;
+      border-radius: 25px;
+    }
+
+    #price-box-inner {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: calc(var(--global-p1) - 50%);
+      margin: .5rem 0 0;
+      background-color: #ffffffbd;
+      border-style: solid;
+      border-width: 1.5px;
+      border-color: #1f5438;
+    }
+
+    #price-box-title {
+      font-size: calc(var(--text-basic) + 50%);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    #price-box-compare {
+      margin-bottom: 0;
+      font-size: calc(var(--text-basic) + 30%);
+      font-weight: 500;
+      text-decoration: line-through;
+      text-decoration-thickness: auto;
+      text-decoration-color: red;
+      text-decoration-thickness: 0.2rem;
+    }
+
+    #price-box-price {
+      margin-bottom: 0;
+      font-size: calc(var(--text-basic) + 50%);
+      font-weight: 600;
+    }
+
+  @media only screen and (max-width: 767px) {
+    /* Small devices */
+    [id^="shopify-section-template-"] section {
+      width: {{ settings.mobile_section_width }}%;
+    }
+    #landing-mast {
+      background-position: center top;
+    }
+    #mast-container {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "intro"
+        "product"
+        "empty";
+      width: 100%;
+    }
+    #empty {
+      grid-area: empty;
+      display: none;
+    }
+    #intro {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: var(--global-p1);
+    }
+    #intro-copy {
+      margin-top: var(--global-p1);
+      margin-right: 0;
+    }
+    #product {
+      grid-area: product;
+      padding: var(--global-p1);
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    /* Medium devices */
+    [id^="shopify-section-template-"] section {
+      width: {{ settings.tablet_section_width }}%;
+    }
+    #landing-mast {
+      background-position: center bottom;
+    }
+    #mast-container {
+      grid-template-columns: 2fr 2fr;
+      grid-template-areas: "intro product";
+      padding-bottom: 0;
+    }
+    #empty {
+      display: none;
+    }
+    div#price-box {
+      top: calc(var(--global-p3) * -.5);
+    }
+  }
+
+  @media only screen and (min-width: 1024px) and (max-width: 1439px) {
+    /* Large devices */
+    #landing-mast {
+      background-position: right bottom;
+    }
+    #mast-container {
+      grid-template-columns: 2fr 1fr;
+      grid-template-areas: "intro product";
+      gap: calc({{ settings.gap_spacing }}rem * 2);
+    }
+    #empty {
+      display: none;
+    }
+    #intro {
+      padding-top: var(--global-p1);
+    }
+    #price-box {
+      top: calc(var(--global-p3) * -.5);
+    }
+  }
+
+  @media only screen and (min-width: 1440px) {
+    /* Extra large devices */
+    #landing-mast {
+      background-position: right bottom;
+    }
+    #mast-container {
+      grid-template-columns: 2fr 1fr;
+      grid-template-areas: "intro product";
+      gap: calc({{ settings.gap_spacing }}rem * 4);
+    }
+    #empty {
+        display: none;
+    }
+    #price-box {
+      margin-bottom: 0;
+    }
+    #intro {
+      padding-top: var(--global-p2);
+    }
+  }
+{% endstyle %}
+
+{% if section.settings.show_section %}
+  <section id="landing-mast">
+    <div id="mast-container">
+      <span id="empty"></span>
+      <div id="intro">
+        <div id="page-title">
+          <h1>{{ section.settings.title }}</h1>
+          {% if section.settings.qualifier %}
+            <p id="qualifier">{{ section.settings.qualifier }}</p>
+          {% endif %}
+        </div>
+
+        <div id="intro-copy">
+          {{ section.settings.description }}
+        </div>
+      </div>
+
+      {% if section.settings.show_product %}
+        <div id="product">
+          {% capture product %}{{ section.settings.product }}{% endcapture %}
+          {% assign product = section.settings.product %}
+          {% capture productData %} {{ product | json }} {% endcapture %}
+          <figure id="product-image">
+            {% if section.settings.product_image %}
+              <img src="{{ section.settings.product_image | img_url: 'master' }}" alt="{{ product.title }}">
+            {% else %}
+              <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}">
+            {% endif %}
+          </figure>
+
+          <div id="price-box">
+            <p id="price-box-title">{{ section.settings.price_box_title }}</p>
+            <span id="price-box-inner">
+              <h3 id="price-box-compare">{{ product.compare_at_price | money }}</h3>
+              <h2 id="price-box-price">{{ product.price | money }}</h2>
+            </span>
+          </div>
+        </div>
+      {% else %}
+        <figure id="featured-image">
+          <img src="{{ section.settings.product_image | img_url: 'master' }}" alt="{{ product.title }}">
+        </figure>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Landing Page Mast",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show Section",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "qualifier",
+      "label": "Qualifier"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product",
+      "label": "Show Product",
+      "default": true
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product Image"
+    },
+    {
+      "type": "text",
+      "id": "price_box_title",
+      "label": "Price Box Title",
+      "default": "Now on Sale"
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "Featured Image"
+    }
+  ]
+}
+{% endschema %}
