@@ -1,0 +1,168 @@
+{% if section.settings.show_section %}
+  <section id="promo-section">
+    <div id="description">
+      <h2 id="description-title">{{ section.settings['description-title'] }}</h2>
+      <p id="description-copy">{{ section.settings['description-copy'] }}</p>
+    </div>
+
+    <div id="promo">
+      {% if section.settings['show_top-bun'] %}
+        <p>{{ section.settings['top-bun'] }}</p>
+      {% endif %}
+      {% if section.settings.show_promo %}
+        <h1>{{ section.settings.promo }}</h1>
+      {% endif %}
+      {% if section.settings['show_bottom-bun'] %}
+        <p>{{ section.settings['bottom-bun'] }}</p>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
+
+{% style %}
+  #promo-section {
+    display: grid;
+    grid-template-columns: 2.75fr 1fr;
+    grid-template-areas:
+      "description promo";
+    gap: {{ settings.gap_settings }};
+    margin-top: -4rem;
+  }
+
+  #description {
+    grid-area: description;
+  }
+
+  #content {
+    grid-area: content;
+  }
+
+  #empty {
+    grid-area: empty;
+  }
+
+  #promo {
+    grid-area: promo;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  #promo p {
+    font-weight: 600;
+  }
+
+  #promo h1 {
+    font-size: 3em;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.25;
+    color: var(--s-fall);
+  }
+
+  @media only screen and (max-width: 767px) {
+    #promo-section{
+      grid-template-areas: "description" "promo";
+      grid-template-columns: 1fr;
+      gap: calc({{ settings.gap_spacing }}rem * 3);
+    }
+    #promo {
+      font-size: calc(var(--text-basic) * 1.5);
+    }
+    #description {
+      display: grid;
+      gap: {{ settings.gap_spacing }}rem;
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    #promo-section{
+      grid-template-columns: 1fr;
+      grid-template-areas: "description" "promo";
+      padding: var(--global-p1);
+      gap: calc({{ settings.gap_spacing }}rem * 3);
+      margin-top: 0;
+    }
+    #promo {
+      font-size: calc(var(--text-basic) * 1.5);
+    }
+    #description {
+      display: grid;
+      gap: {{ settings.gap_spacing }}rem;
+    }
+    #description-title {
+      font-size: calc(var(--text-basic) * 1.5);
+    }
+  }
+
+  @media only screen and (min-width: 1024px) and (max-width: 1439px) {
+    #promo-section {
+      grid-template-columns: 2fr 1fr;
+      grid-template-areas: "description promo";
+    }
+    #promo {
+      text-align: center;
+      justify-content: center;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Promo",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_section",
+      "label": "Show Promo Section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "description-title",
+      "label": "Description Title"
+    },
+    {
+      "type": "textarea",
+      "id": "description-copy",
+      "label": "Description Copy"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top-bun",
+      "label": "Show Top Bun Title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "top-bun",
+      "label": "Top Bun Title",
+      "default": "Use Promo Code"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_promo",
+      "label": "Show Promo",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "promo",
+      "label": "Promo Code"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bottom-bun",
+      "label": "Show Bottom Bun Title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "bottom-bun",
+      "label": "Bottom Bun Title",
+      "default": "At Checkout to Recieve Your Discount"
+    }
+  ]
+}
+{% endschema %}
