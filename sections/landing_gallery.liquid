@@ -1,0 +1,156 @@
+{% if section.settings.show_gallery %}
+  <section id="gallery-container" class="section">
+    <div id="gallery-copy">
+      <h2>{{ section.settings.gallery_title }}</h2>
+      <p>{{ section.settings.gallery_copy }}</p>
+    </div>
+
+    <div id="gallery-images">
+      <figure id="gallery-image-1" class="card">
+        <img
+          src="{{ section.settings.gallery_image_1 | img_url: 'master' }}"
+          alt="{{ section.settings.gallery_image_1.alt | escape }}"
+          width="{{ section.settings.gallery_image_1.width }}"
+          height="{{ section.settings.gallery_image_1.height }}"
+        >
+      </figure>
+
+      <figure id="gallery-image-2" class="card">
+        <img
+          src="{{ section.settings.gallery_image_2 | img_url: 'master' }}"
+          alt="{{ section.settings.gallery_image_2.alt | escape }}"
+          width="{{ section.settings.gallery_image_2.width }}"
+          height="{{ section.settings.gallery_image_2.height }}"
+        >
+      </figure>
+
+      <figure id="gallery-image-3" class="card">
+        <img
+          src="{{ section.settings.gallery_image_3 | img_url: 'master' }}"
+          alt="{{ section.settings.gallery_image_3.alt | escape }}"
+          width="{{ section.settings.gallery_image_3.width }}"
+          height="{{ section.settings.gallery_image_3.height }}"
+        >
+      </figure>
+    </div>
+
+    <div id="gallery-featured-image">
+      <figure id="featured-image" class="card">
+        <img
+          src="{{ section.settings.feature_image | img_url: 'master' }}"
+          alt="{{ section.settings.feature_image.alt }}"
+          width="{{ section.settings.feature_image.width }}"
+          height="{{ section.settings.feature_image.height }}"
+        >
+      </figure>
+    </div>
+  </section>
+{% endif %}
+
+{% style %}
+  #gallery-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: {{ settings.gap_settings }};
+    grid-auto-flow: row;
+    grid-template-areas:
+    "gallery-copy gallery-featured-image"
+    "gallery-images gallery-featured-image";
+    padding: var(--global-p1);
+  }
+
+  #gallery-copy {
+    grid-area: gallery-copy;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: {{ settings.gap_settings }};
+  }
+
+  #gallery-featured-image {
+    grid-area: gallery-featured-image;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--global-p1);
+  }
+
+  #gallery-images {
+    grid-area: gallery-images;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--global-p1);
+    grid-auto-flow: row;
+    grid-template-areas:
+      "gallery-image-1 gallery-image-2 gallery-image-3";
+    padding: var(--global-p1);
+  }
+
+  #gallery-image-1 { grid-area: gallery-image-1; }
+
+  #gallery-image-2 { grid-area: gallery-image-2; }
+
+  #gallery-image-3 { grid-area: gallery-image-3; }
+
+  .card {
+    height: fit-content;
+  }
+
+  @media only screen and (max-width: 767px) {
+    /* Small devices */
+    #gallery-container {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "gallery-copy"
+        "gallery-images";
+    }
+    #gallery-featured-image {
+      display: none;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Image Gallery",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_gallery",
+      "label": "Show Gallery Section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "gallery_title",
+      "label": "Gallery Title",
+      "default": "Image Gallery"
+    },
+    {
+      "type": "textarea",
+      "id": "gallery_copy",
+      "label": "Gallery Copy",
+      "default": "Check out our amazing image gallery!"
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_image",
+      "label": "Featured Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "gallery_image_1",
+      "label": "Gallery Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "gallery_image_2",
+      "label": "Gallery Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "gallery_image_3",
+      "label": "Gallery Image 3"
+    }
+  ]
+}
+{% endschema %}
