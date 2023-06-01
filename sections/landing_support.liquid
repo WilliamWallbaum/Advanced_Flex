@@ -1,0 +1,99 @@
+{% if section.settings.show_support %}
+  <section id="remote-support">
+    <figure id="image-1" class="">
+      <img
+        src="{{ section.settings.image_1 | img_url: 'master' }}"
+        alt="{{ section.settings.image_1.alt | escape }}"
+        width="{{ section.settings.image_1.width }}"
+        height="{{ section.settings.image_1.height }}"
+      >
+    </figure>
+    <div id="section-copy" class="">
+      <h2>{{ section.settings.section_title }}</h2>
+      <div id="support-copy" class="">{{ section.settings.section_copy }}</div>
+    </div>
+    <figure id="image-2" class="">
+      <img
+        src="{{ section.settings.image_2 | img_url: 'master' }}"
+        alt="{{ section.settings.image_2.alt | escape }}"
+        width="{{ section.settings.image_2.width }}"
+        height="{{ section.settings.image_2.height }}"
+      >
+    </figure>
+  </section>
+{% endif %}
+
+{% style %}
+  #remote-support {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: "image-1 section-copy image-2";
+    gap: {{ settings.gap_spacing }}rem;
+  }
+  #image-1 {
+    grid-area: image-1;
+    align-self: end;
+  }
+  #section-copy {
+    grid-area: section-copy;
+  }
+  #image-2 {
+    grid-area: image-2;
+    align-self: end;
+  }
+  @media only screen and (max-width: 767px) {
+    /* small screens */
+    #remote-support {
+      grid-template-columns: 1fr 1.25fr;
+      grid-template-areas: "section-copy section-copy" "image-1 image-2";
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1023px) { /* medium screens */ }
+
+  @media only screen and (min-width: 1024px) and (max-width: 1439px) { /* large screens */ }
+
+  @media only screen and (min-width: 1440px) {
+    /* extra large screens */
+    #remote-support {
+      grid-template-columns: 1fr 2fr 1.2fr;
+      grid-template-areas: "image-1 section-copy image-2";
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Remote Support Section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_support",
+      "label": "Remote Support Section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Request professional assistance from within the app to make adjustments to your hearing aids."
+    },
+    {
+      "type": "textarea",
+      "id": "section_copy",
+      "label": "Section Copy",
+      "default": "Get professional assistance for your hearing aids with ease. Simply tap the button to connect with our expert support staff from anywhere in the world. They will provide remote support and send you a new program to use, which you can choose to adopt or revert back to your previous settings. Don't hesitate to seek the help you need for optimal hearing aid performance."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,114 @@
+{% if section.settings.show_features %}
+  <section id="features">
+    <figure id="features-image">
+      <img
+        src="{{ section.settings.features_image | img_url: 'master' }}"
+        alt="{{section.settings.features_image.alt}}"
+        width="{{ section.settings.features_image.width }}"
+        height="{{ section.settings.features_image.height }}"
+      >
+    </figure>
+
+    <div id="features-content">
+      <h2>{{ section.settings.features_title }}</h2>
+      {{ section.settings.features_content }}
+      {% if section.settings.show_button %}
+        <a href="{{ section.settings.button_link }}" class="button">{{ section.settings.button_text }}</a>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
+
+{% style %}
+    #features {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      grid-template-areas: "features-image features-content";
+      gap: {{ settings.gap_settings }};
+      padding: var(--global-p1);
+    }
+
+    #features-image {
+      grid-area: features-image;
+    }
+
+    #features-content {
+      grid-area: features-content;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: {{ settings.gap_settings }};
+    }
+
+    #features-content ul {
+      list-style-type: initial;
+      margin: var(--global-p1);
+      margin-left: var(--global-p2);
+  }
+
+  @media only screen and (max-width: 767px) {
+    /* Small devices */
+    #features {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+          "features-image"
+          "features-content";
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    /* Medium devices */
+    #features-image {
+      width: 150%;
+      display: flex;
+      align-items: center;
+      left: -30%;
+      position: relative;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Features",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_features",
+      "label": "Show Features Section",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "features_image",
+      "label": "Features Image"
+    },
+    {
+      "type": "text",
+      "id": "features_title",
+      "label": "Features Title"
+    },
+    {
+      "type": "richtext",
+      "id": "features_content",
+      "label": "Features Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ]
+}
+{% endschema %}

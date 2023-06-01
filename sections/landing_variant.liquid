@@ -1,0 +1,181 @@
+{% assign product = section.settings.product %}
+
+{% if section.settings.show_variants %}
+  <section id="variant">
+    <h2>{{ section.settings.section_title }}</h2>
+    <p>{{ section.settings.instructions }}</p>
+    <div id="variant-container" class="card-container">
+      {% assign leftVariant = null %}
+      {% assign pairVariant = null %}
+      {% assign rightVariant = null %}
+
+      {% for variant in product.variants %}
+        {% assign variantTitle = variant.title | downcase %}
+        {% if variantTitle contains 'left' %}
+          {% assign leftVariant = variant %}
+        {% elsif variantTitle contains 'pair' %}
+          {% assign pairVariant = variant %}
+        {% elsif variantTitle contains 'right' %}
+          {% assign rightVariant = variant %}
+        {% endif %}
+      {% endfor %}
+
+      {% if leftVariant %}
+        <div class="card">
+          <img
+            src="{{ leftVariant.featured_image.src | img_url: 'original' }}"
+            alt="{{ leftVariant.featured_image.alt }}"
+            width="{{ leftVariant.featured_image.width }}"
+            height="{{ leftVariant.featured_image.height }}"
+          >
+          <form action="/cart/add" method="post" id="product-form-{{ leftVariant.id }}">
+            <input type="hidden" name="id" value="{{ leftVariant.id }}">
+            <button
+              type="submit"
+              name="add"
+              class="button button--add-to-cart action_button--secondary"
+              data-label="Add to cart"
+            >
+              Add {{ leftVariant.title }} to Cart
+            </button>
+          </form>
+        </div>
+      {% endif %}
+
+      {% if pairVariant %}
+        <div class="card">
+          <img
+            src="{{ pairVariant.featured_image.src | img_url: 'original' }}"
+            alt="{{ pairVariant.featured_image.alt }}"
+            width="{{ pairVariant.featured_image.width }}"
+            height="{{ pairVariant.featured_image.height }}"
+          >
+          <button
+            id="add-pair"
+            class="button button--add-to-cart action_button--secondary add-pair-button"
+            data-left-variant="{{ leftVariant.id }}"
+            data-right-variant="{{ rightVariant.id }}"
+            data-label="Add to cart"
+          >
+            Add Pair to Cart
+          </button>
+        </div>
+      {% endif %}
+
+      {% if rightVariant %}
+        <div class="card">
+          <img
+            src="{{ rightVariant.featured_image.src | img_url: 'original' }}"
+            alt="{{ rightVariant.featured_image.alt }}"
+            width="{{ rightVariant.featured_image.width }}"
+            height="{{ rightVariant.featured_image.height }}"
+          >
+          <form action="/cart/add" method="post" id="product-form-{{ rightVariant.id }}">
+            <input type="hidden" name="id" value="{{ rightVariant.id }}">
+            <button
+              type="submit"
+              name="add"
+              class="button button--add-to-cart action_button--secondary"
+              data-label="Add to cart"
+            >
+              Add {{ rightVariant.title }} to Cart
+            </button>
+          </form>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
+
+{% style %}
+  #variant-container {
+    margin: var(--global-p2) 0;
+  }
+
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: {{ settings.gap_spacing }}rem;
+    padding: var(--global-p1);
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+  form[id^="product-form-"] {
+    display: flex;
+    width: 100%;
+  }
+  [data-label="Add to cart"] {
+    bottom: calc(var(--global-p1) * -1);
+    margin-top: var(--global-p1);
+    padding: var(--global-p1);
+  }
+
+  @media only screen and (max-width: 767px) {
+    #variant-container {
+      grid-template-columns: 1fr;
+      gap: calc({{ settings.gap_spacing }}rem * 4);
+      padding:0;
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .card-container {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    [data-label="Add to cart"] {
+      font-size: calc(var(--text-basic) - 25%);
+    }
+  }
+
+  @media only screen and (min-width: 1024px) and (max-width: 1439px) {
+    #variant {}
+    .card-container {
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+    }
+    [data-label="Add to cart"] {
+      font-size: calc(var(--text-basic) - 5%);
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Variants",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_variants",
+      "label": "Show Variants Section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Flexible Purchase Options"
+    },
+    {
+      "type": "textarea",
+      "id": "instructions",
+      "label": "Instructions",
+      "default": "Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    }
+  ]
+}
+{% endschema %}

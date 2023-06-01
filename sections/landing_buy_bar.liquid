@@ -1,0 +1,240 @@
+{% assign product = section.settings.product -%}
+{% if section.settings.show_buy_bar %}
+  <section id="buy-bar">
+    <div id="buy-bar-container" class="product-container">
+      {% assign leftVariant = null %}
+      {% assign pairVariant = null %}
+      {% assign rightVariant = null %}
+
+      {% for variant in product.variants %}
+        {% assign variantTitle = variant.title | downcase %}
+        {% if variantTitle contains 'left' %}
+          {% assign leftVariant = variant %}
+        {% elsif variantTitle contains 'pair' %}
+          {% assign pairVariant = variant %}
+        {% elsif variantTitle contains 'right' %}
+          {% assign rightVariant = variant %}
+        {% endif %}
+      {% endfor %}
+
+      {% if leftVariant %}
+        <a href="/cart/add?id={{ leftVariant.id }}" id="add-left" class="buy-product">
+          <figure class="buy-image">
+            <img
+              src="{{ leftVariant.featured_image.src | img_url: 'original' }}"
+              alt="{{ leftVariant.featured_image.alt }}"
+              width="{{ leftVariant.featured_image.width }}"
+              height="{{ leftVariant.featured_image.height }}"
+            >
+          </figure>
+
+          <div class="buy-product-copy">
+            <h3>{{ leftVariant.title }}</h3>
+            Add {{ leftVariant.title }} to Cart
+          </div>
+        </a>
+      {% endif %}
+
+      {% if pairVariant %}
+        <a
+          id="add-pair"
+          class="buy-product add-pair-button"
+          data-left-variant="{{ leftVariant.id }}"
+          data-right-variant="{{ rightVariant.id }}"
+        >
+          <figure class="buy-image">
+            <img
+              src="{{ pairVariant.featured_image.src | img_url: 'original' }}"
+              alt="{{ pairVariant.featured_image.alt }}"
+              width="{{ pairVariant.featured_image.width }}"
+              height="{{ pairVariant.featured_image.height }}"
+            >
+          </figure>
+
+          <div class="buy-product-copy">
+            <h3>{{ pairVariant.title }}</h3>
+            Add Pair to Cart
+          </div>
+        </a>
+      {% endif %}
+
+      {% if rightVariant %}
+        <a href="/cart/add?id={{ rightVariant.id }}" id="add-right" class="buy-product">
+          <figure class="buy-image">
+            <img
+              src="{{ rightVariant.featured_image.src | img_url: 'original' }}"
+              alt="{{ rightVariant.featured_image.alt }}"
+              width="{{ rightVariant.featured_image.width }}"
+              height="{{ rightVariant.featured_image.height }}"
+            >
+          </figure>
+
+          <div class="buy-product-copy">
+            <h3>{{ rightVariant.title }}</h3>
+            Add {{ rightVariant.title }} to Cart
+          </div>
+        </a>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
+
+{% javascript %}
+{% endjavascript %}
+
+{% style %}
+  [aria-disabled] {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  [id$="_buy_bar"] {
+    margin: var(--global-p3) 0;
+    background-color: {{ section.settings.background }};
+  }
+  #buy-bar {
+      padding: 0;
+  }
+  .product-container {
+    height: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: {{ settings.gap_settings }};
+    align-content: center;
+  }
+  .buy-product {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "buy-image buy-product-copy";
+    color: white;
+    margin: 0;
+    padding: 0;
+    gap: {{ settings.gap_settings }};
+  }
+  .buy-product form {
+    align-items: center;
+    justify-content: center;
+    gap: {{ settings.gap_settings }};
+  }
+  .buy-image {
+    grid-area: buy-image;
+  }
+  .buy-image img {
+    width: 150%;
+    max-width: unset;
+  }
+  .buy-product-copy {
+      grid-area: buy-product-copy;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+  .buy-product-copy h3 {
+    color: inherit;
+  }
+
+  @media only screen and (max-width: 767px) {
+    /* extra small devices */
+    .product-container {
+      grid-template-columns: 0.75fr;
+      height: auto;
+      display: grid;
+      justify-content: center;
+    }
+    .buy-product-copy{
+      padding-left: var(--global-p3);
+    }
+    .buy-image img{
+      position: relative;
+      right: -40%;
+    }
+    .buy-product:nth-child(2) {
+      grid-template-areas: "buy-product-copy buy-image";
+      grid-template-columns: 2fr 1fr;
+    }
+    .buy-product:nth-child(2) .buy-product-copy{
+      padding-left: var(--global-p1);
+    }
+    .buy-product:nth-child(2) .buy-image img{
+      position: relative;
+      right: 40%;
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 833px) {
+    /* small devices */
+    .product-container {
+      grid-template-columns: 0.75fr;
+      height: auto;
+      display: grid;
+      justify-content: center;
+    }
+    .buy-product {
+      gap: calc({{ settings.gap_spacing }}rem * 4);
+    }
+    .buy-product:nth-child(2) {
+      grid-template-areas: "buy-product-copy buy-image";
+      grid-template-columns: 2fr 1fr;
+    }
+    .buy-product:nth-child(2) .buy-product-copy{
+      padding-left: calc(var(--global-p4) * 2);
+    }
+    .buy-image img {
+      position: relative;
+      left: -30%;
+    }
+  }
+
+
+  @media only screen and (min-width: 834px) and (max-width: 1023px) {
+    /* medium devices */
+    #buy-bar {
+      padding-left: var(--global-p3);
+    }
+    .buy-image img {
+      position: relative;
+      left: -40%;
+    }
+  }
+
+  @media only screen and (min-width: 1024px) and (max-width: 1439px) {
+    /* large devices */
+    .buy-product {
+      gap: calc({{ settings.gap_spacing }}rem * 3);
+    }
+    .buy-image img {
+      width: 150%;
+    }
+  }
+
+  @media only screen and (min-width: 1440px) {
+    /* extra large devices */
+    .buy-product {
+      gap: calc({{ settings.gap_spacing }}rem * 4);
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Buy Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_buy_bar",
+      "label": "Show Buy Bar",
+      "default": true
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background Color",
+      "default": "#054f8e"
+    }
+  ]
+}
+{% endschema %}

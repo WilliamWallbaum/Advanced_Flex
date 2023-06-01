@@ -1,0 +1,41 @@
+{
+  "sections": {
+    "header": {
+      "type": "landing_header",
+      "settings": {}
+    },
+    "promo": {
+      "type": "landing_promo",
+      "settings": {}
+    },
+    "variant": {
+      "type": "landing_variant",
+      "settings": {}
+    },
+    "gallery": {
+      "type": "landing_gallery",
+      "settings": {}
+    },
+    "features": {
+      "type": "landing_features",
+      "settings": {}
+    },
+    "buy_bar": {
+      "type": "landing_buy_bar",
+      "settings": {}
+    },
+    "support": {
+      "type": "landing_support",
+      "settings": {}
+    }
+  },
+  "order": [
+    "header",
+    "promo",
+    "variant",
+    "gallery",
+    "features",
+    "buy_bar",
+    "support"
+  ]
+}

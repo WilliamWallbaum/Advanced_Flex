@@ -1,0 +1,42 @@
+{% comment %}
+  To edit the contents of this file, look inside the `sections` folder for the file name that comes directly after `section`. Eg. {% section 'product__main' %} or {% section 'page__banner' %}
+{% endcomment %}
+{{ 'addPair.js' | asset_url | script_tag }}
+
+{% style %}
+  main {
+    margin-bottom: var(--global-p4);
+  }
+  [id^="shopify-section-landing"] section {
+    width: 80%;
+    padding: var(--global-p1);
+    margin: 0 auto;
+  }
+  h2 {
+    font-size: calc(var(--text-basic) * 1.5);
+    font-weight: 800;
+  }
+
+  @media only screen and (max-width: 767px) {
+    /* Small devices */
+    [id^="shopify-section-landing"] section {
+      width: 100%;
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    /* Medium devices */
+    [id^="shopify-section-landing"] section {
+      width: 90%;
+    }
+  }
+{% endstyle %}
+
+<main id="template-{{ template | replace: '.', '-' | handle }}" class="shopify-section">
+  {% section 'landing_header' %}
+  {% section 'landing_promo' %}
+  {% section 'landing_variant' %}
+  {% section 'landing_gallery' %}
+  {% section 'landing_features' %}
+  {% section 'landing_buy_bar' %}
+</main>
