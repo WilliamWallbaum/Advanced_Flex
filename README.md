@@ -22,6 +22,8 @@ The promo section is made to accept universal messaging including:
 - Intro text
 - Promo advertisment
 
+It uses javascript to search the url for `-promoCode` removes the `-` and applies it as the promo code on the page. So if the landing page is `https://sale.advancedhearing.com/pages/hcra-23fbc`, `23fbc` is extracted and applied to the promo code in the section. If there is no promo code `23fba` is used.
+
 #### Landing Variant
 This is the first section that with the ability to buy hearing aids. Product will set left, pair, and right. The pair button displays pair variant, but adds right and left variants in the cart.
 - User set product
