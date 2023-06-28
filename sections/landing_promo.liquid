@@ -10,7 +10,7 @@
         <p>{{ section.settings['top-bun'] }}</p>
       {% endif %}
       {% if section.settings.show_promo %}
-        <h1>{{ section.settings.promo }}</h1>
+        <h1 id="promo-code">{{ section.settings.promo }}</h1>
       {% endif %}
       {% if section.settings['show_bottom-bun'] %}
         <p>{{ section.settings['bottom-bun'] }}</p>
@@ -107,6 +107,21 @@
     }
   }
 {% endstyle %}
+
+{% javascript %}
+  document.addEventListener("DOMContentLoaded", function() {
+    const url = window.location.pathname; // Get the path of the current URL
+
+    const lastDashIndex = url.lastIndexOf('-'); // Find the last occurrence of the dash
+    const promoCode = url.substr(lastDashIndex + 1); // Extract the substring after the last dash
+
+      if (promoCode === '') {
+        promoCode = '23fba'; // Assign default promo code if no promo code is found
+      }
+
+    document.getElementById("promo-code").textContent = promoCode; // Display the promo code in the h1 element
+  });
+{% endjavascript %}
 
 {% schema %}
 {
