@@ -1,6 +1,59 @@
 {% assign bg_image = section.settings.background_image | img_url: 'master' %}
 <script src="{{ 'addPair.js' | asset_url }}" defer></script>
 
+{% if section.settings.show_section %}
+  <section id="landing-mast">
+    <div id="mast-container">
+      <span id="empty"></span>
+
+      <div id="intro">
+        <div id="page-title">
+          <h1>{{ section.settings.title }}</h1>
+          {% if section.settings.qualifier %}
+            <p id="qualifier">{{ section.settings.qualifier }}</p>
+          {% endif %}
+        </div>
+        
+        <div id="intro-copy">
+          {{ section.settings.description }}
+        </div>
+        {% if section.settings.promotional_video != blank %}
+          <video src="{{ section.settings.promotional_video }}" controls id="promo-video"></video>
+        {% endif %}
+      </div>
+
+      {% if section.settings.show_product %}
+        <div id="product">
+          {% capture product %}{{ section.settings.product }}{% endcapture %}
+          {% assign product = section.settings.product %}
+          {% capture productData %} {{ product | json }} {% endcapture %}
+          <figure id="product-image">
+            {% if section.settings.product_image %}
+              <img src="{{ section.settings.product_image | img_url: 'master' }}" alt="{{ product.title }}">
+            {% else %}
+              <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}">
+            {% endif %}
+          </figure>
+
+          <div id="price-box">
+            <p id="price-box-title">{{ section.settings.price_box_title }}</p>
+
+            <span id="price-box-inner">
+              <h3 id="price-box-compare">{{ product.compare_at_price | money }}</h3>
+              {% assign discountPrice = product.price | minus: section.settings.discount_amount %}
+              <h2 id="price-box-price">{{ discountPrice | money }}</h2>
+            </span>
+          </div>
+        </div>
+      {% else %}
+        <figure id="featured-image">
+          <img src="{{ section.settings.product_image | img_url: 'master' }}" alt="{{ product.title }}">
+        </figure>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
+
 {% style %}
     main {
       margin-bottom: var(--global-p4);
@@ -54,6 +107,7 @@
       grid-area: intro;
       font-size: 1.25rem;
       font-weight: 600;
+      display: grid;
     }
 
     #intro-copy {
@@ -120,6 +174,11 @@
       margin-bottom: 0;
       font-size: calc(var(--text-basic) + 50%);
       font-weight: 600;
+    }
+
+    #promo-video {
+      width: 80%;
+      margin: var(--global-p1) auto;
     }
 
   @media only screen and (max-width: 767px) {
@@ -223,53 +282,6 @@
   }
 {% endstyle %}
 
-{% if section.settings.show_section %}
-  <section id="landing-mast">
-    <div id="mast-container">
-      <span id="empty"></span>
-      <div id="intro">
-        <div id="page-title">
-          <h1>{{ section.settings.title }}</h1>
-          {% if section.settings.qualifier %}
-            <p id="qualifier">{{ section.settings.qualifier }}</p>
-          {% endif %}
-        </div>
-
-        <div id="intro-copy">
-          {{ section.settings.description }}
-        </div>
-      </div>
-
-      {% if section.settings.show_product %}
-        <div id="product">
-          {% capture product %}{{ section.settings.product }}{% endcapture %}
-          {% assign product = section.settings.product %}
-          {% capture productData %} {{ product | json }} {% endcapture %}
-          <figure id="product-image">
-            {% if section.settings.product_image %}
-              <img src="{{ section.settings.product_image | img_url: 'master' }}" alt="{{ product.title }}">
-            {% else %}
-              <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}">
-            {% endif %}
-          </figure>
-
-          <div id="price-box">
-            <p id="price-box-title">{{ section.settings.price_box_title }}</p>
-            <span id="price-box-inner">
-              <h3 id="price-box-compare">{{ product.compare_at_price | money }}</h3>
-              <h2 id="price-box-price">{{ product.price | money }}</h2>
-            </span>
-          </div>
-        </div>
-      {% else %}
-        <figure id="featured-image">
-          <img src="{{ section.settings.product_image | img_url: 'master' }}" alt="{{ product.title }}">
-        </figure>
-      {% endif %}
-    </div>
-  </section>
-{% endif %}
-
 {% schema %}
 {
   "name": "Landing Page Mast",
@@ -279,6 +291,11 @@
       "id": "show_section",
       "label": "Show Section",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section Settings",
+      "info": "general section settings"
     },
     {
       "type": "image_picker",
@@ -301,6 +318,11 @@
       "label": "Description"
     },
     {
+      "type": "header",
+      "content": "Product",
+      "info": "Promotional Product"
+    },
+    {
       "type": "checkbox",
       "id": "show_product",
       "label": "Show Product",
@@ -314,18 +336,44 @@
     {
       "type": "image_picker",
       "id": "product_image",
-      "label": "Product Image"
+      "label": "Product Image",
+      "info": "Optional product image."
+    },
+    {
+      "type": "header",
+      "content": "Price Box",
+      "info": "Information in the green price box"
     },
     {
       "type": "text",
       "id": "price_box_title",
       "label": "Price Box Title",
-      "default": "Now on Sale"
+      "default": "Now on Sale",
+      "info": "Title in the green box"
     },
     {
-      "type": "image_picker",
-      "id": "featured_image",
-      "label": "Featured Image"
+      "type": "text",
+      "label": "Discount Amount",
+      "id": "discount_amount",
+      "default": "50",
+      "info": "Enter the discount amount in dollars."
+    },
+    {
+      "type": "header",
+      "content": "Video",
+      "info": "optional video"
+    },
+    {
+      "type": "checkbox",
+      "id": "promotional_video",
+      "label": "Show Video",
+      "default": true
+    },
+    {
+      "type": "video",
+      "label": "Promotional Video",
+      "id": "video",
+      "info": "Upload or provide a URL for a promotional video."
     }
   ]
 }
