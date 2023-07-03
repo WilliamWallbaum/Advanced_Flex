@@ -115,11 +115,11 @@
     const lastDashIndex = url.lastIndexOf('-'); // Find the last occurrence of the dash
     const promoCode = url.substr(lastDashIndex + 1); // Extract the substring after the last dash
 
-      if (promoCode === '') {
+      if (promoCode === "/pages/hcra") {
         promoCode = '23fba'; // Assign default promo code if no promo code is found
+      } else {
+        document.getElementById("promo-code").textContent = promoCode; // Display the promo code in the h1 element
       }
-
-    document.getElementById("promo-code").textContent = promoCode; // Display the promo code in the h1 element
   });
 {% endjavascript %}
 
