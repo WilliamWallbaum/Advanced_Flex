@@ -5,7 +5,6 @@
   <section id="landing-mast">
     <div id="mast-container">
       <span id="empty"></span>
-
       <div id="intro">
         <div id="page-title">
           <h1>{{ section.settings.title }}</h1>
@@ -13,13 +12,40 @@
             <p id="qualifier">{{ section.settings.qualifier }}</p>
           {% endif %}
         </div>
-        
-        <div id="intro-copy">
-          {{ section.settings.description }}
-        </div>
-        {% if section.settings.promotional_video != blank %}
-          <video src="{{ section.settings.promotional_video }}" controls id="promo-video"></video>
+
+        {% if section.settings.description != blank %}
+          <div id="intro-copy">
+            {{ section.settings.description }}
+          </div>
         {% endif %}
+
+        <div class="video-section">
+          <h2>{{ section.settings.heading }}</h2>
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'video-stored' %}
+                <div class="stored-video" {{ block.shopify_attributes }}>
+                  {% if block.settings.video %}
+                    {{ block.settings.video | video_tag:
+                    autoplay: block.settings.autoplay,
+                    controls: block.settings.controls,
+                    muted: block.settings.mute,
+                    loop: block.settings.loop,
+                    download: block.settings.download
+                    }}
+
+                  {% endif %}
+                </div>
+              {% when 'external-video' %}
+                <div class="external-video" {{ block.shopify_attributes }}>
+                  {% if block.settings.video_url.type == 'youtube' %}
+                    <div class="responsive-video">
+                    </div>
+                  {% endif %}
+                </div>
+            {% endcase %}
+          {% endfor %}
+        </div>
       </div>
 
       {% if section.settings.show_product %}
@@ -43,6 +69,7 @@
               {% assign discountPrice = product.price | minus: section.settings.discount_amount %}
               <h2 id="price-box-price">{{ discountPrice | money }}</h2>
             </span>
+            <p>{{ section.settings.qualifier }}</p>
           </div>
         </div>
       {% else %}
@@ -54,26 +81,81 @@
   </section>
 {% endif %}
 
+{% javascript %}
+{% if section.blocks contains 'video-stored' %}
+  function onYouTubeIframeAPIReady() {
+    {% for block in section.blocks %}
+      {% if block.type == 'video-stored' and block.settings.video %}
+        var player{{ block.id }};
+
+        function onYouTubePlayerAPIReady() {
+          player{{ block.id }} = new YT.Player('youtube-player-{{ block.id }}', {
+            videoId: '{{ block.settings.video }}',
+            playerVars: {
+              autoplay: {% if block.settings.autoplay %}1{% else %}0{% endif %},
+              controls: {% if block.settings.controls %}1{% else %}0{% endif %},
+              loop: {% if block.settings.loop %}1{% else %}0{% endif %},
+              mute: {% if block.settings.autoplay and not block.settings.mute %}1{% else %}0{% endif %},
+              download: {% if block.settings.download %}1{% else %}0{% endif %},
+              events: {
+                'onReady': onPlayerReady
+              }
+            }
+          });
+        }
+
+        function onPlayerReady(event) {
+          {% if block.settings.autoplay %}
+            event.target.playVideo();
+          {% endif %}
+        }
+
+        // Load the YouTube API asynchronously
+        var tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      {% endif %}
+    {% endfor %}
+  }
+{% endif %}
+
+// Create Vimeo players
+{% if section.blocks contains 'external-video' %}
+  {% for block in section.blocks %}
+    {% if block.type == 'external-video' and block.settings.video_url.type == 'vimeo' %}
+      new Vimeo.Player('vimeo-player-{{ block.id }}', {
+        id: '{{ block.settings.video_url.id }}',
+        autoplay: {% if block.settings.autoplay %}true{% else %}false{% endif %},
+        controls: false,
+        muted: {% if block.settings.autoplay and not block.settings.mute %}true{% else %}false{% endif %},
+        loop: false
+      });
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% endjavascript %}
+  
 {% style %}
-    main {
+  main {
       margin-bottom: var(--global-p4);
     }
-    [id^="shopify-section-template-"] section {
+  [id^="shopify-section-template-"] section {
       width: {{ settings.desktop_section_width }}%;
       padding: var(--global-p1);
       margin: 0 auto;
     }
-    h2 {
+  h2 {
       font-size: calc(var(--text-basic) * 1.5);
       font-weight: 800;
     }
-    #landing-mast {
+  #landing-mast {
       width: 100%;
       background-image: url('{{ bg_image }}');
       background-repeat: no-repeat;
     }
-
-    #mast-container {
+  #mast-container {
       width: 80%;
       margin: 0 auto;
       display: grid;
@@ -83,48 +165,38 @@
         "empty intro product";
       padding-bottom: var(--global-p4);
     }
-
-    #empty {
+  #empty {
       grid-area: empty;
     }
-
-    #page-title h1 {
+  #page-title h1 {
       color: var(--color-bg);
     }
-
-    #page-title h1 {
+  #page-title h1 {
       font-size: 2rem;
       font-weight: 900;
     }
-
-    #qualifier {
+  #qualifier {
       font-size: 1rem;
       font-weight: 400;
       color: var(--color-bg);
     }
-
-    #intro {
+  #intro {
       grid-area: intro;
       font-size: 1.25rem;
-      font-weight: 600;
-      display: grid;
+      font-weight: 600;-
     }
-
-    #intro-copy {
+  #intro-copy {
       margin-top: var(--global-p1);
       margin-right: var(--global-p4);
     }
-
-    #product {
+  #product {
       grid-area: product;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-
-    #product-image { width: 100%; }
-
-    #price-box {
+  #product-image { width: 100%; }
+  #price-box {
       width: 100%;
       padding: var(--global-p1);
       display: flex;
@@ -140,8 +212,7 @@
       border-color: #1f5438;
       border-radius: 25px;
     }
-
-    #price-box-inner {
+  #price-box-inner {
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -153,14 +224,12 @@
       border-width: 1.5px;
       border-color: #1f5438;
     }
-
-    #price-box-title {
+  #price-box-title {
       font-size: calc(var(--text-basic) + 50%);
       font-weight: 800;
       line-height: 1;
     }
-
-    #price-box-compare {
+  #price-box-compare {
       margin-bottom: 0;
       font-size: calc(var(--text-basic) + 30%);
       font-weight: 500;
@@ -169,18 +238,22 @@
       text-decoration-color: red;
       text-decoration-thickness: 0.2rem;
     }
-
-    #price-box-price {
+  #price-box-price {
       margin-bottom: 0;
       font-size: calc(var(--text-basic) + 50%);
       font-weight: 600;
     }
-
-    #promo-video {
-      width: 80%;
-      margin: var(--global-p1) auto;
-    }
-
+  .video-section {
+    position: relative;
+    height: auto;
+  }
+  .video-section video {
+    margin: var(--global-p2) 0;
+  }
+  
+  .video-section iframe{
+    
+  }
   @media only screen and (max-width: 767px) {
     /* Small devices */
     [id^="shopify-section-template-"] section {
@@ -285,6 +358,9 @@
 {% schema %}
 {
   "name": "Landing Page Mast",
+  "tag": "section",
+  "limit": 1,
+  "max_blocks": 1,
   "settings": [
     {
       "type": "checkbox",
@@ -357,23 +433,131 @@
       "id": "discount_amount",
       "default": "50",
       "info": "Enter the discount amount in dollars."
+    }
+    ],
+"blocks": [
+    {
+      "name": "Shopify Hosted Video",
+      "type": "video-stored",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "A Shopify-hosted video"
+        },
+        {
+          "type": "checkbox",
+          "id": "controls",
+          "label": "Show controls",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "autoplay",
+          "label": "Autoplay",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "mute",
+          "label": "Mute",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "download",
+          "label": "Allow download",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "loop",
+          "label": "Loop",
+          "default": true
+        }
+      ]
     },
     {
-      "type": "header",
-      "content": "Video",
-      "info": "optional video"
-    },
+      "name": "External Video",
+      "type": "external-video",
+      "settings": [
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "accept": [
+            "youtube",
+            "vimeo"
+          ],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+          "label": "URL",
+          "info": "Video plays in the page."
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Video alt text",
+          "info": "Describe the video for customers using screen readers."
+        },
+        {
+          "type": "checkbox",
+          "id": "controls",
+          "label": "Show controls",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "autoplay",
+          "label": "Autoplay",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "mute",
+          "label": "Mute",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "encrypted",
+          "label": "Protect Privacy",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "fullscreen",
+          "label": "Allow Fullscreen",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "pnp",
+          "label": "Allow Picture-in-Picture",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "gyroscope",
+          "label": "Allow Gyroscope",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "accelerometer",
+          "label": "Allow Accelerometer",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "copy",
+          "label": "Allow Users to Copy to Clipboard",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
     {
-      "type": "checkbox",
-      "id": "promotional_video",
-      "label": "Show Video",
-      "default": true
-    },
-    {
-      "type": "video",
-      "label": "Promotional Video",
-      "id": "video",
-      "info": "Upload or provide a URL for a promotional video."
+      "name": "Videos"
     }
   ]
 }
