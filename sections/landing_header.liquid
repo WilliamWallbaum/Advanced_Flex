@@ -19,33 +19,8 @@
           </div>
         {% endif %}
 
-        <div class="video-section">
-          <h2>{{ section.settings.heading }}</h2>
-          {% for block in section.blocks %}
-            {% case block.type %}
-              {% when 'video-stored' %}
-                <div class="stored-video" {{ block.shopify_attributes }}>
-                  {% if block.settings.video %}
-                    {{ block.settings.video | video_tag:
-                    autoplay: block.settings.autoplay,
-                    controls: block.settings.controls,
-                    muted: block.settings.mute,
-                    loop: block.settings.loop,
-                    download: block.settings.download
-                    }}
+        {% include 'video' %}
 
-                  {% endif %}
-                </div>
-              {% when 'external-video' %}
-                <div class="external-video" {{ block.shopify_attributes }}>
-                  {% if block.settings.video_url.type == 'youtube' %}
-                    <div class="responsive-video">
-                    </div>
-                  {% endif %}
-                </div>
-            {% endcase %}
-          {% endfor %}
-        </div>
       </div>
 
       {% if section.settings.show_product %}
@@ -81,61 +56,7 @@
   </section>
 {% endif %}
 
-{% javascript %}
-{% if section.blocks contains 'video-stored' %}
-  function onYouTubeIframeAPIReady() {
-    {% for block in section.blocks %}
-      {% if block.type == 'video-stored' and block.settings.video %}
-        var player{{ block.id }};
 
-        function onYouTubePlayerAPIReady() {
-          player{{ block.id }} = new YT.Player('youtube-player-{{ block.id }}', {
-            videoId: '{{ block.settings.video }}',
-            playerVars: {
-              autoplay: {% if block.settings.autoplay %}1{% else %}0{% endif %},
-              controls: {% if block.settings.controls %}1{% else %}0{% endif %},
-              loop: {% if block.settings.loop %}1{% else %}0{% endif %},
-              mute: {% if block.settings.autoplay and not block.settings.mute %}1{% else %}0{% endif %},
-              download: {% if block.settings.download %}1{% else %}0{% endif %},
-              events: {
-                'onReady': onPlayerReady
-              }
-            }
-          });
-        }
-
-        function onPlayerReady(event) {
-          {% if block.settings.autoplay %}
-            event.target.playVideo();
-          {% endif %}
-        }
-
-        // Load the YouTube API asynchronously
-        var tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      {% endif %}
-    {% endfor %}
-  }
-{% endif %}
-
-// Create Vimeo players
-{% if section.blocks contains 'external-video' %}
-  {% for block in section.blocks %}
-    {% if block.type == 'external-video' and block.settings.video_url.type == 'vimeo' %}
-      new Vimeo.Player('vimeo-player-{{ block.id }}', {
-        id: '{{ block.settings.video_url.id }}',
-        autoplay: {% if block.settings.autoplay %}true{% else %}false{% endif %},
-        controls: false,
-        muted: {% if block.settings.autoplay and not block.settings.mute %}true{% else %}false{% endif %},
-        loop: false
-      });
-    {% endif %}
-  {% endfor %}
-{% endif %}
-
-{% endjavascript %}
   
 {% style %}
   main {
@@ -243,17 +164,6 @@
       font-size: calc(var(--text-basic) + 50%);
       font-weight: 600;
     }
-  .video-section {
-    position: relative;
-    height: auto;
-  }
-  .video-section video {
-    margin: var(--global-p2) 0;
-  }
-  
-  .video-section iframe{
-    
-  }
   @media only screen and (max-width: 767px) {
     /* Small devices */
     [id^="shopify-section-template-"] section {
