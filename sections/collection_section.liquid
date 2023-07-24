@@ -1,0 +1,198 @@
+{{ 'collection_section.css' | asset_url | stylesheet_tag }}
+
+{% assign show_collection = section.settings.show_collection %}
+{% assign show_banner = section.settings.show_banner %}
+{% assign selected_collection = section.settings.selected_collection %}
+{% assign section_name = section.settings.section_name %}
+{% assign product_count = section.settings.product_count %}
+{% assign card_width = section.settings.card_width %}
+
+{% if show_collection %}
+  {% if show_banner %}
+    <header id="collection-banner-{{ section.id }}" class="is-width-{{ section.settings.width }} collection-header">
+      <div class="header-content">
+        <h1>{{ section_name }}</h1>
+        {{ section.settings.banner_text }}
+      </div>
+      {% if section.settings.banner_image %}
+        {%
+          include 'image-element' with image: section.settings.banner_image,
+          alt: section.settings.banner_image.alt,
+          loading: 'lazy',
+          width: section.settings.banner_image.width,
+          height: section.settings.banner_image.height,
+          figure_classes:'collection-image'
+        %}
+      {% else %}
+        {%
+          include 'image-element' with image: selected_collection.featured_image,
+          alt: selected_collection.featured_image.alt,
+          loading: 'lazy',
+          width: selected_collection.featured_image.width,
+          height: selected_collection.featured_image.height,
+          figure_classes:'collection-image'
+        %}
+      {% endif %}
+      <hr>
+    </header>
+  {% endif %}
+
+  <div id="collection-display-{{ section.id }}" class="is-width-{{ section.settings.width }} product-grid">
+    {% for product in collections[selected_collection].products limit: product_count %}
+      {% case section.settings.button_style %}
+        {% when 'primary' %}
+          {% assign bttn_style = 'button--primary' %}
+        {% when 'secondary' %}
+          {% assign bttn_style = 'button--secondary' %}
+        {% else %}
+          {% assign bttn_style = '' %}
+      {% endcase %}
+
+      {% include 'product-card',
+        product: product,
+        show_product_description: section.settings.show_product_description,
+        button_label: section.settings.button_label,
+        button_class: section.settings.button_class,
+        button_style: bttn_style,
+        card_width: card_width
+      %}
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% javascript %}
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Collection Section",
+  "tag": "section",
+  "class": "section collection-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_collection",
+      "label": "Show collection section",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Collection Settings"
+    },
+    {
+      "type": "text",
+      "id": "section_name",
+      "label": "Collection Name",
+      "default": "Collection"
+    },
+    {
+      "type": "collection",
+      "id": "selected_collection",
+      "label": "Select Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wide",
+      "options": [
+        {
+          "value": "half",
+          "label": "Half"
+        },
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "product_count",
+      "label": "Number of Products",
+      "min": 1,
+      "max": 10,
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Product Card Settings"
+    },
+    {
+      "type": "text",
+      "id": "card_width",
+      "label": "Card Width in Pixels (number only)",
+      "default": "250"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_description",
+      "label": "Show Product Description",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Text",
+      "default": "View Product"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button Style",
+      "default": "primary",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "primary", "label": "Primary" },
+        { "value": "secondary", "label": "Secondary" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "button_class",
+      "label": "Button Class (optional)"
+    },
+    {
+      "type": "header",
+      "content": "Sidebar Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sidebar",
+      "label": "Show sidebar",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Banner Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_banner",
+      "label": "Show banner",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "banner_text",
+      "label": "Banner Text",
+      "default": "<p>Describe what could be found in this section</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Section",
+      "category": "template"
+    }
+  ]
+}
+{% endschema %}
