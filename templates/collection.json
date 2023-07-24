@@ -1,0 +1,63 @@
+{
+  "sections": {
+    "collection": {
+      "type": "collection_section",
+      "settings": {
+        "show_collection": true,
+        "section_name": "{{ section.settings.selected_collection.title }}",
+        "selected_collection": "digital-rechargeable-hearing-aids",
+        "width": "standard",
+        "product_count": 4,
+        "card_width": "250",
+        "show_product_description": false,
+        "button_label": "Learn More",
+        "button_style": "primary",
+        "button_class": "",
+        "show_sidebar": true,
+        "show_banner": true,
+        "banner_text": "<p>Experience better hearing that can keep you going without the added expense of disposable batteries.</p>"
+      }
+    },
+    "f00c4e3a-107e-4064-8afb-fd6b5e57714d": {
+      "type": "collection_section",
+      "settings": {
+        "show_collection": true,
+        "section_name": "{{ section.settings.selected_collection.title }}",
+        "selected_collection": "battery-operated-hearing-aids",
+        "width": "standard",
+        "product_count": 4,
+        "card_width": "250",
+        "show_product_description": false,
+        "button_label": "Learn More",
+        "button_style": "primary",
+        "button_class": "",
+        "show_sidebar": false,
+        "show_banner": true,
+        "banner_text": "<p>Get the power you need with easy-to-use features from our battery-operated line of HearClear™ hearing aids.</p>"
+      }
+    },
+    "73168873-dcba-431f-9600-51b5b561147b": {
+      "type": "trust_badges",
+      "settings": {
+        "show_cols": true,
+        "show_header": true,
+        "section_name": "Zero Risk with Unbeatable Value",
+        "header_text": "<p>By offering digital hearing aids directly to you, we can dramatically discount our prices compared to other companies. You can save thousands of dollars when you purchase your hearing aids at our affordable low prices. You also get a <em><strong>Risk Free 30-Day Trial, </strong></em>a <strong>Money</strong><em><strong> Back Guarantee, </strong></em>and <em><strong>Outstanding Customer Service.</strong></em></p>",
+        "width": "standard",
+        "show_col_1": true,
+        "image_1": "shopify://shop_images/Advanced-Affordable-Hearing_Money-Back-Guarentee.png",
+        "text_1": "<h3>100% Money Back Guarantee</h3><p>Try your hearing aids Risk Free for 30 days and if you are not satisfied with your purchase, you may return them for a FULL refund. (Shipping charges are not refundable.)</p>",
+        "show_col_2": true,
+        "image_2": "shopify://shop_images/Advanced-Affordable-Hearing_American-Badge.png",
+        "text_2": "<h3>American Owned & Operated</h3><p>Discover the Convenience of Local Support and Quick Shipping for Your Hearing Aids in the United States</p>",
+        "show_footer": true,
+        "footer_text": "<p>Now you see why Advanced Affordable Hearing is the right choice for your hearing aid purchase.</p>"
+      }
+    }
+  },
+  "order": [
+    "collection",
+    "f00c4e3a-107e-4064-8afb-fd6b5e57714d",
+    "73168873-dcba-431f-9600-51b5b561147b"
+  ]
+}
