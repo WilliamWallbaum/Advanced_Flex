@@ -1,0 +1,63 @@
+{% comment %}
+  Required values
+  show_show_product_description: <boolean>
+  ______________
+  Optional values
+  button_label: <string>
+  button_class: <string>
+  button_style: <string>
+  card_width: <number>
+{% endcomment %}
+
+<a href="{{ product.url }}" class="product">
+  <div class="product-card" style="max-width: {{ card_width }}px">
+    <figure class="product-image">
+      {% capture image_alt %}
+        {{ product.featured_image.alt }}
+      {% endcapture %}
+
+      {% include 'image-element' with image: product.featured_image, alt: image_alt, loading: 'lazy', width: product.featured_image.width, height: product.featured_image.height %}
+    </figure>
+
+    <div class="product-card-body">
+      {% if show_product_description %}
+        {{ product.description }}
+      {% endif %}
+
+      <h3>{{ product.title }}</h3>
+      <p class="price">{{ product.price | money_with_currency }}</p>
+    </div>
+
+    <div class="product-card-footer">
+      {%- include 'button', label: button_label, class: button_class, style: button_style, href: product.url -%}
+    </div>
+  </div>
+</a>
+
+{% style %}
+  .product-grid {
+    display: grid;
+    padding: var(--global-p1) var(--global-p2);
+    grid-gap: var(--global-p2);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-items: center;
+  }
+  .product {
+    box-shadow: var(--global-shadow);
+    border-radius: var(--global-radius);
+    padding: var(--global-p1);
+  }
+  .product:hover {
+    transform: scale(1.05); /* increases the size slightly on hover */
+    box-shadow: var(--global-shadow-hover); /* adds a subtle shadow on hover */
+  }
+  .product-card {
+    display: grid;
+    grid-gap: var(--global-p1);
+    text-align: center;
+  }
+
+  .product-card-body .price {
+    font-size: calc(var(--text-basic)*1.5);
+  }
+{% endstyle %}
