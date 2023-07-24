@@ -1,0 +1,30 @@
+{% assign id = section.id %}
+
+<aside id="collection-sidebar-{{ id }}" class="collection-sidebar">
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'collection-list' %}
+        {% render 'sidebar__collection-list', block: block %}
+      {% when 'featured-promo' %}
+        {% render 'sidebar__featured-promo', block: block, id: block.id %}
+      {% when 'menu' %}
+        {% render 'sidebar__menu', menu: block.settings.menu %}
+      {% when 'newsletter' %}
+        {% render 'sidebar__newsletter', block: block %}
+      {% when 'page' %}
+        {% render 'sidebar__page', page: block.settings.page %}
+      {% when 'search' %}
+        {% render 'sidebar__search', block: block, context: 'sidebar' %}
+      {% when 'tag-filter' %}
+        {% render 'sidebar__tag-filter', block: block %}
+      {% when 'tag-list' %}
+        {% render 'sidebar__tag-list', block: block %}
+      {% when 'text' %}
+        {% render 'sidebar__text', block: block %}
+      {% when 'type-list' %}
+        {% render 'sidebar__type-list', block: block %}
+      {% when 'vendor-list' %}
+        {% render 'sidebar__vendor-list', block: block %}
+    {% endcase %}
+  {% endfor %}
+</aside>
