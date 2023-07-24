@@ -1,0 +1,184 @@
+{{ 'multi_column_section.css' | asset_url | stylesheet_tag }}
+
+{% assign section = section.settings %}
+
+{% if section.show_cols %}
+  <section
+    id="{{ section.section_name }}"
+    class="section is-width-{{ section.width }} multi-col {% case section.cols %}{% when '2' %}two-col{% when '3' %}three-col{% when '4' %}four-col{% endcase %}"
+  >
+    {% if section.show_header %}
+      <header id="{{ section.section_name }}-header" class="multi-col-header">
+        <h2>{{ section.section_name }}</h2>
+        <div>{{ section.header_text }}</div>
+      </header>
+    {% endif %}
+
+    <!-- columns -->
+    <div id="{{ section.section_name }}-body" class="multi-col-body">
+      <!-- column 1 -->
+      {% if section.show_col_1 %}
+        <div id="{{ section.section_name }}-col-1" class="col col-1">
+          <figure>
+            <!-- Use the image-element snippet here for column 1 -->
+            {% capture image_alt %}
+            {{ section.image_1.alt }}
+          {% endcapture %}
+            {% capture image_additional_classes %}
+            col-image
+          {% endcapture %}
+            {% include 'image-element' with image: section.image_1, alt: image_alt, additional_classes: image_additional_classes, loading: 'lazy', width: section.image_1.width, height: section.image_1.height %}
+            <!-- End of image-element snippet -->
+          </figure>
+          <div>{{ section.text_1 }}</div>
+        </div>
+      {% endif %}
+
+      <!-- column 2 -->
+      {% if section.show_col_2 %}
+        <div id="{{ section.section_name }}-col-2" class="col col-2">
+          <figure>
+            <!-- Use the image-element snippet here for column 2 -->
+            {% capture image_alt %}
+            {{ section.image_2.alt }}
+          {% endcapture %}
+            {% capture image_additional_classes %}
+            col-image
+          {% endcapture %}
+            {% include 'image-element' with image: section.image_2, alt: image_alt, additional_classes: image_additional_classes, loading: 'lazy', width: section.image_2.width, height: section.image_2.height %}
+            <!-- End of image-element snippet -->
+          </figure>
+          <div>{{ section.text_2 }}</div>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if section.show_footer %}
+      <footer id="{{ section.section_name }}-footer" class="multi-col-footer">{{ section.footer_text }}</footer>
+    {% endif %}
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Trust Badges Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Configuration"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cols",
+      "label": "Show Trust Badges",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_header",
+      "label": "Show Section Header",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "section_name",
+      "label": "Section Name",
+      "default": "Why are we so well trusted?"
+    },
+    {
+      "type": "richtext",
+      "id": "header_text",
+      "label": "Header Text",
+      "default": "<p>Because we offer a risk-free experience with back our high-quality hearing aids.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Section Body"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wide",
+      "options": [
+        {
+          "value": "half",
+          "label": "Half"
+        },
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Column 1 Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_col_1",
+      "label": "Column 1 Content",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Pick an image for column 1"
+    },
+    {
+      "type": "richtext",
+      "id": "text_1",
+      "label": "Content copy",
+      "default": "<p>Use this area for descriptive copy in column 1</p>"
+    },
+    {
+      "type": "header",
+      "content": "Column 2 Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_col_2",
+      "label": "Column 2 Content",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Pick an image for column 2"
+    },
+    {
+      "type": "richtext",
+      "id": "text_2",
+      "label": "Content copy",
+      "default": "<p>Use this area for descriptive copy in column 2</p>"
+    },
+    {
+      "type": "header",
+      "content": "Section Footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_footer",
+      "label": "Show Section Footer",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "<p>Your peace of mind.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Badges Section",
+      "category": "template"
+    }
+  ]
+}
+{% endschema %}
