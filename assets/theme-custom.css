@@ -1,6 +1,6 @@
 /* Custom Colors */
 :root {
-  --primary-color: var(--p-ok), var(--p-fall);
+  --primary-color: #054f8e;
   --p-ok: oklch(42.4% 0.122 251.64);
   --p-fall: #054f8e;
   --secondary-color: var(--s-ok), var(--s-fall);
@@ -25,18 +25,20 @@
   --global-p2: 2rem;
   --global-p3: 3rem;
   --global-p4: 4rem;
-  --global-shadow:0px 0px 10px rgba(0,0,0,0.2);
-  --global-radius: .5rem;
+  --global-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  --global-shadow-hover: 0 0 20px rgba(0, 0, 0, 0.3);
+  --global-radius: 0.5rem;
+  --text-basic: 1rem;
 }
 
-h1,h2 {
-  
-    font-size: 1em;
-    font-weight: 700;
-    margin: var(--global-p1) 0;
-    padding: 0;
-    font-family: var(--pf-primary-font);
-    color: var(--primary-color);
+h1,
+h2 {
+  font-size: calc(var(--text-basic) * 1.5);
+  font-weight: 700;
+  margin: var(--global-p1) 0;
+  padding: 0;
+  font-family: var(--pf-primary-font);
+  color: var(--primary-color);
 }
 
 /* Table Styles */

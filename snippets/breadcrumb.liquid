@@ -8,10 +8,14 @@
   {% assign breadcrumb_separator = 'slash' %}
 {% endif %}
 
-<nav class="breadcrumb
-            is-{{ settings.breadcrumb_size }}
-            is-{{ settings.breadcrumb_capitalization }}"
-            aria-label="breadcrumbs">
+<nav
+  class="
+    breadcrumb
+    is-{{ settings.breadcrumb_size }}
+    is-{{ settings.breadcrumb_capitalization }}
+  "
+  aria-label="breadcrumbs"
+>
   <ul>
     <li>
       <a href="{{ shop.url }}" title="{{ shop.name | escape }}">
@@ -23,7 +27,10 @@
         <span class="breadcrumb-separator">
           {% render 'icon', name: breadcrumb_separator %}
         </span>
-        <a href="{{ routes.collections_url }}/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}" title="{{ collection.title | escape }}">
+        <a
+          href="{{ routes.collections_url }}/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}"
+          title="{{ collection.title | escape }}"
+        >
           {% unless collection.title %} All {% else %} {{ collection.title }} {% endunless %}
         </a>
       </li>
@@ -33,7 +40,10 @@
             <span class="breadcrumb-separator">
               {% render 'icon', name: breadcrumb_separator %}
             </span>
-            <a href="{{ routes.collections_url }}/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %} {{ tag | handleize }}" title="{{ tag | escape }}">
+            <a
+              href="{{ routes.collections_url }}/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %} {{ tag | handleize }}"
+              title="{{ tag | escape }}"
+            >
               {{ tag }}
             </a>
           </li>
@@ -44,8 +54,15 @@
         <span class="breadcrumb-separator">
           {% render 'icon', name: breadcrumb_separator %}
         </span>
-        <a href="{{ routes.collections_url }}/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}" title="{{ collection.title | escape }}">
-          {% unless collection.title %} {{ 'collections.general.all' | t }} {% else %} {{ collection.title }} {% endunless %}
+        <a
+          href="{{ routes.collections_url }}/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}"
+          title="{{ collection.title | escape }}"
+        >
+          {% unless collection.title %}
+            {{ 'collections.general.all' | t }}
+          {% else %}
+            {{ collection.title }}
+          {% endunless %}
         </a>
       </li>
     {% elsif template contains 'search' %}

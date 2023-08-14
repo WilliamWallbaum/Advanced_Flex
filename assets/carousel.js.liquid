@@ -1,0 +1,54 @@
+// carousel.js.liquid
+document.addEventListener('DOMContentLoaded', function () {
+  const carousel = document.querySelector('.product-grid');
+  const slides = carousel.querySelectorAll('.product');
+  const pagination = document.createElement('div');
+  pagination.classList.add('pagination');
+  carousel.appendChild(pagination);
+
+  const productsPerPage = {{ product_count }};
+  let currentPage = 1;
+
+  function showPage(page) {
+    const startIndex = (page - 1) * productsPerPage;
+    const endIndex = startIndex + productsPerPage;
+    slides.forEach((slide, i) => {
+      slide.style.display = i >= startIndex && i < endIndex ? 'block' : 'none';
+    });
+  }
+
+  function updatePagination() {
+    const totalPages = Math.ceil(slides.length / productsPerPage);
+    pagination.innerHTML = '';
+    for (let i = 1; i <= totalPages; i++) {
+      const dot = document.createElement('span');
+      dot.classList.add('dot');
+      if (i === currentPage) {
+        dot.classList.add('active');
+      }
+      dot.addEventListener('click', () => {
+        currentPage = i;
+        showPage(currentPage);
+        updatePagination();
+      });
+      pagination.appendChild(dot);
+    }
+  }
+
+  function switchToNextPage() {
+    currentPage = (currentPage % Math.ceil(slides.length / productsPerPage)) + 1;
+    showPage(currentPage);
+    updatePagination();
+  }
+
+  // Set an interval to switch between pages every 5 seconds (adjust as needed)
+  const intervalId = setInterval(switchToNextPage, 5000);
+
+  // Pause the carousel when hovering over products or pagination dots
+  carousel.addEventListener('mouseover', () => clearInterval(intervalId));
+  carousel.addEventListener('mouseleave', () => (intervalId = setInterval(switchToNextPage, 5000)));
+
+  // Show the initial page and set up pagination
+  showPage(currentPage);
+  updatePagination();
+});

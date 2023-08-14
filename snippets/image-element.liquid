@@ -1,18 +1,19 @@
 {% comment %}
-Required values
-image: <image object>
-alt: <image alt property>
-______________
-Optional values
-progressive: <boolean>
-stretch_width: <boolean>
-additional_classes: <string>
-inline_style: <string>
-back_to_basics: <boolean>
-object_fit: <boolean>
-image_crop: <boolean>
-max_height: <number>
-calculate_aspect_ratio: <boolean>
+  Required values
+  image: <image object>
+  alt: <image alt property>
+  ______________
+  Optional values
+  progressive: <boolean>
+  stretch_width: <boolean>
+  figure_classes: <string>
+  additional_classes: <string>
+  inline_style: <string>
+  back_to_basics: <boolean>
+  object_fit: <boolean>
+  image_crop: <boolean>
+  max_height: <number>
+  calculate_aspect_ratio: <boolean>
 {% endcomment %}
 
 {% comment %}Check if image is progressive (does not support transparent pngs){% endcomment %}
@@ -82,39 +83,46 @@ calculate_aspect_ratio: <boolean>
 {% endif %}
 
 {% if back_to_basics %}
-  <div class="image-element__wrap"
-              style="{{ image_background_color }}{{ height_style }}">
-      <img  alt="{{ alt | escape }}" src="{{ image | img_url: '2000x' }}"
-            {% if inline_style %}
-              style="{{ inline_style }}"
-            {% endif %}
-            {% if additional_classes %}
-              class="{{ additional_classes }}"
-            {% endif %}
-      />
-  </div>
+  <figure
+    class="image-element__wrap {{ figure_classes }}"
+    style="{{ image_background_color }}{{ height_style }}"
+  >
+    <img
+      alt="{{ alt | escape }}"
+      src="{{ image | img_url: '2000x' }}"
+      {% if inline_style %}
+        style="{{ inline_style }}"
+      {% endif %}
+      {% if additional_classes %}
+        class="{{ additional_classes }}"
+      {% endif %}
+    >
+  </figure>
 {% else %}
-{% comment %}Build image element{% endcomment %}
-<div class="image-element__wrap"
-            {% if calculate_aspect_ratio %}
-              data-calculate-aspect-ratio
-            {% endif %}
-            style="{{ image_background_color }}{{ height_style }} {% unless stretch_width == true or object_fit %}max-width: {{ image.width }}px;{% endunless %}">
-  <img  alt="{{ alt | escape }}"
-        class="lazyload transition--{{ settings.image_loading_style }} {{ additional_classes }}"
-        {% if low_quality_image %}
-          src="{{ low_quality_image }}"
-        {% endif %}
-        data-src="{{ image | img_url: '1600x' }}"
-        data-sizes="auto"
-        data-srcset="{{ srcset }}"
-        data-aspectratio="{{ image.width }}/{{ image.height }}"
-        height="{{ image.height }}"
-        width="{{ image.width }}"
-        srcset="data:image/svg+xml;utf8,<svg%20xmlns='http://www.w3.org/2000/svg'%20width='{{ image.width }}'%20height='{{ image.height }}'></svg>"
-        style="{{ inline_style }};{{ height_style }}"
-  />
-</div>
+  {% comment %}Build image element{% endcomment %}
+  <figure
+    class="image-element__wrap {{ figure_classes }}"
+    {% if calculate_aspect_ratio %}
+      data-calculate-aspect-ratio
+    {% endif %}
+    style="{{ image_background_color }}{{ height_style }} {% unless stretch_width == true or object_fit %}max-width: {{ image.width }}px;{% endunless %}"
+  >
+    <img
+      alt="{{ alt | escape }}"
+      class="lazyload transition--{{ settings.image_loading_style }} {{ additional_classes }}"
+      {% if low_quality_image %}
+        src="{{ low_quality_image }}"
+      {% endif %}
+      data-src="{{ image | img_url: '1600x' }}"
+      data-sizes="auto"
+      data-srcset="{{ srcset }}"
+      data-aspectratio="{{ image.width }}/{{ image.height }}"
+      height="{{ image.height }}"
+      width="{{ image.width }}"
+      srcset="data:image/svg+xml;utf8,<svg%20xmlns='http://www.w3.org/2000/svg'%20width='{{ image.width }}'%20height='{{ image.height }}'></svg>"
+      style="{{ inline_style }};{{ height_style }}"
+    >
+  </figure>
 {% endif %}
 
 {% comment %}Fallback for no javascript{% endcomment %}

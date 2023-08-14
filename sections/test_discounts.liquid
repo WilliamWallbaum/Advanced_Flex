@@ -1,0 +1,38 @@
+<script src="{{ 'discounts.js' | asset_url }}" defer></script>
+
+{% for discount in discounts %}
+  <h3>{{ discount.title }}</h3>
+  <p>{{ discount.amount | money }}</p>
+{% endfor %}
+
+{% schema %}
+{
+  "name": "Test Discounts",
+  "settings": [
+    {
+      "id": "test_discounts",
+      "type": "text",
+      "label": "Text box heading",
+      "default": "Title"
+    },
+    {
+      "id": "custom_text_body",
+      "type": "richtext",
+      "label": "Add custom text below",
+      "default": "<p>Add your text here</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "custom-text",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

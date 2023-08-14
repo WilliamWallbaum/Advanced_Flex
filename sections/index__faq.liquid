@@ -1,7 +1,7 @@
 {% comment %}
-** FAQ - dynamic **
-- Draggable section
-- Uses blocks
+  ** FAQ - dynamic **
+  - Draggable section
+  - Uses blocks
 {% endcomment %}
 
 {% assign id = section.id %}
@@ -17,24 +17,24 @@
 {% assign custom_css = section.settings.custom_css %}
 
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {% for block in section.blocks %}
-      {% unless block.type == 'heading' %}
-        {
-          "@type": "Question",
-          "name": "{{ block.settings.title | escape }}",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "{{ block.settings.answer | strip_html }}"
-          }
-        }{% unless forloop.last %},{% endunless %}
-      {% endunless %}
-    {% endfor %}
-  ]
-}
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {% for block in section.blocks %}
+        {% unless block.type == 'heading' %}
+          {
+            "@type": "Question",
+            "name": "{{ block.settings.title | escape }}",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "{{ block.settings.answer | strip_html }}"
+            }
+          }{% unless forloop.last %},{% endunless %}
+        {% endunless %}
+      {% endfor %}
+    ]
+  }
 </script>
 
 {% comment %} Section specific CSS {% endcomment %}
@@ -71,22 +71,23 @@
 {% endif %}
 {% endcapture %}
 
-<section class="section
-        {{ css_class }}
-        is-width-{{ width }}
-        has-gutter-enabled
-        {% if width == 'wide' %}
-          equal-columns--outside-trim
-        {% endif %}
-        has-background"
-        {% if animation != "none" %}data-scroll-class="{{ animation }}"{% endif %}>
+<section
+  class="
+    section
+    {{ css_class }}
+    is-width-{{ width }}
+    has-gutter-enabled
+    {% if width == 'wide' %}
+      equal-columns--outside-trim
+    {% endif %}
+    has-background
+  "
+  {% if animation != 'none' %}
+    data-scroll-class="{{ animation }}"
+  {% endif %}
+>
   <div class="container">
-    {% render 'heading',
-            title: title,
-            heading_tag: 'h2',
-            context: 'faq',
-            text_alignment: 'left'
-    %}
+    {% render 'heading', title: title, heading_tag: 'h2', context: 'faq', text_alignment: 'left' %}
 
     {% if section.blocks.size > 0 %}
       {% for block in section.blocks %}
@@ -99,15 +100,23 @@
     <div class="page-faq__column-wrap container column-wrapper">
       <div class="{% if image == true %}one-half{% else %}one-whole{% endif %} medium-down--one-whole column faq faq__column-1">
         {% if section.blocks.size > 0 %}
-          <dl class="{{ section.settings.css_class }}
-                    faq-accordion
-                    accordion-icon--{{ settings.toggle_icon_style }}">
+          <dl
+            class="
+              {{ section.settings.css_class }}
+              faq-accordion
+              accordion-icon--{{ settings.toggle_icon_style }}
+            "
+          >
             {% for block in section.blocks %}
               {% if block.type == 'content' %}
-
                 {% if block.settings.title != blank %}
                   <dt>
-                    <button class="accordion-style--{{ settings.toggle_icon_style }} accordion__button" type="button" aria-controls="panel-{{ block.id }}" aria-expanded="true">
+                    <button
+                      class="accordion-style--{{ settings.toggle_icon_style }} accordion__button"
+                      type="button"
+                      aria-controls="panel-{{ block.id }}"
+                      aria-expanded="true"
+                    >
                       {{ icon_set }}
                       {{ block.settings.title }}
                     </button>
@@ -120,13 +129,10 @@
                 {% endif %}
 
               {% elsif block.type == 'heading' %}
-
                 {% if block.settings.title != blank %}
                   <h2 class="title faq-title">{{ block.settings.title }}</h2>
                 {% endif %}
-
               {% endif %}
-
             {% endfor %}
           </dl>
         {% endif %}
@@ -137,11 +143,11 @@
           {% if block.type == 'image' %}
             <div class="one-half medium-down--one-whole column faq faq--image faq__column-2">
               {% if block.settings.image != blank %}
-                  {% render 'image-element',
-                          image: block.settings.image,
-                          alt: block.settings.image.alt,
-                          stretch_width: true
-                  %}
+                {% render 'image-element',
+                  image: block.settings.image,
+                  alt: block.settings.image.alt,
+                  stretch_width: true
+                %}
               {% else %}
                 {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
               {% endif %}
@@ -243,24 +249,6 @@
           "label": "Zoom in"
         }
       ]
-    },
-    {
-      "type": "header",
-      "content": "Advanced"
-    },
-    {
-      "type": "paragraph",
-      "content": "[Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360022329373)"
-    },
-    {
-      "type": "text",
-      "id": "css_class",
-      "label": "CSS Class"
-    },
-    {
-      "type": "textarea",
-      "id": "custom_css",
-      "label": "Custom CSS"
     }
   ],
   "blocks": [

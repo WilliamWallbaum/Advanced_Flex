@@ -1,0 +1,166 @@
+{{ 'multi_column_section.css' | asset_url | stylesheet_tag }}
+
+{% assign section = section.settings %}
+
+{% if section.cols %}
+  <section
+    id="{{ section.section_name }}"
+    class="section is-width-{{ section.width }} multi-col {% case section.cols %}{% when '2' %}two-col{% when '3' %}three-col{% when '4' %}four-col{% endcase %}"
+  >
+    {% if section.show_header %}
+      <header id="{{ section.section_name }}-header" class="multi-col-header">
+        <h2 header id="{{ section.section_name }}-header-name">{{ section.section_name }}</h2>
+        <div header id="{{ section.section_name }}-header-text">{{ section.header_text }}</div>
+      </header>
+    {% endif %}
+    <div id="{{ section.section_name }}-body" class="multi-col-body">
+      <!-- block -->
+      {% for block in section.blocks %}
+        {% if block.type == 'custom' %}
+          <div class="dynamic-block" data-col="{{ forloop.index }}">
+            <img
+              src="{{ block.settings.image_picker.src }}"
+              alt="{{ block.settings.image_picker.alt }}"
+              loading="lazy"
+              width="{{ block.settings.image_picker.width }}"
+              height="{{ block.settings.image_picker.height }}"
+              id="{{ block.settings.image_picker.id }}"
+            >
+            <h3>{{ block.settings.title }}</h3>
+            <div>{{ block.settings.content }}</div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      <!-- columns -->
+      {% for i in (1..section.cols) %}
+        <div id="{{ section.section_name }}-col-{{ i }}" class="col-{{ i }}">
+          <div class="draggable-block" data-col="{{ i }}">Drag me!</div>
+        </div>
+      {% endfor %}
+    </div>
+    {% if section.show_footer %}
+      <footer id="{{ section.section_name }}-footer" class="multi-col-footer">{{ section.footer_text }}</footer>
+    {% endif %}
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Multi Column Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Configuration"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_header",
+      "label": "Show Section Header",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "section_name",
+      "label": "Section Name"
+    },
+    {
+      "type": "richtext",
+      "id": "header_text",
+      "label": "Header Text"
+    },
+    {
+      "type": "header",
+      "content": "Section Body"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wide",
+      "options": [
+        {
+          "value": "half",
+          "label": "Half"
+        },
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "cols",
+      "label": "Number of Columns",
+      "default": "1",
+      "options": [
+        {
+          "value": "1",
+          "label": "One"
+        },
+        {
+          "value": "2",
+          "label": "Two"
+        },
+        {
+          "value": "3",
+          "label": "Three"
+        },
+        {
+          "value": "4",
+          "label": "Four"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Section Footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_footer",
+      "label": "Show Section Footer",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "footer_text",
+      "label": "Footer Text"
+    }
+  ],
+  "blocks":[
+    {
+      "type": "custom",
+      "name": "Dynamic Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_picker",
+          "label": "Image Picker"
+        },
+        {
+          "type": "text",
+          "label": "Block Title",
+          "id": "title"
+        },
+        {
+          "type": "richtext",
+          "label": "Block Content",
+          "id": "content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multi Column Section",
+      "category": "template"
+    }
+  ]
+}
+{% endschema %}

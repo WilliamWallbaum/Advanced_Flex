@@ -111,9 +111,12 @@
 {% javascript %}
   document.addEventListener("DOMContentLoaded", function() {
     const url = window.location.pathname; // Get the path of the current URL
+    console.log(url)
 
     const lastDashIndex = url.lastIndexOf('-'); // Find the last occurrence of the dash
+    console.log(lastDashIndex)
     const promoCode = url.substr(lastDashIndex + 1); // Extract the substring after the last dash
+    console.log(promoCode)
 
       if (promoCode === "/pages/hcra") {
         promoCode = '23fba'; // Assign default promo code if no promo code is found
@@ -136,12 +139,12 @@
     {
       "type": "text",
       "id": "description-title",
-      "label": "Description Title"
+      "label": "Promo Title"
     },
     {
-      "type": "textarea",
+      "type": "richtext",
       "id": "description-copy",
-      "label": "Description Copy"
+      "label": "Promo Copy"
     },
     {
       "type": "checkbox",
@@ -178,6 +181,9 @@
       "label": "Bottom Bun Title",
       "default": "At Checkout to Recieve Your Discount"
     }
-  ]
+  ],
+  "presets" : [{
+    "name": "Blue Wave Promo"
+  }]
 }
 {% endschema %}

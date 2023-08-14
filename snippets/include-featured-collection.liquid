@@ -1,6 +1,6 @@
 {% comment %}
-** Single featured collection - dynamic **
-- Draggable section
+  ** Single featured collection - dynamic **
+  - Draggable section
 {% endcomment %}
 
 {% comment %} Assign object as block or section {% endcomment %}
@@ -24,7 +24,9 @@
 
 {% comment %} Check to see if enough products available to create slide {% endcomment %}
 {% if object.settings.collection_style == 'slider' %}
-  {% if object.settings.products_limit > object.settings.products_per and collection.all_products_count > object.settings.products_per %}
+  {% if object.settings.products_limit > object.settings.products_per
+    and collection.all_products_count > object.settings.products_per
+  %}
     {%- assign layout = 'slider' -%}
   {% else %}
     {%- assign layout = 'grid' -%}
@@ -50,23 +52,25 @@
 {% endstyle %}
 
 {% comment %} HTML markup {% endcomment %}
-<section class="section
-                {{ object.settings.css_class }}
-                is-width-{{ object.settings.width }}
-                {% if object.settings.show_gutter == false %}
-                  has-no-side-gutter
-                  has-background
-                {% else %}
-                  has-gutter-enabled
-                {% endif %}
-                "
-                {% if object.settings.animation != "none" %}
-                  data-scroll-class="{{ object.settings.animation }}"
-                {% endif %}>
+<section
+  class="
+    section
+    {{ object.settings.css_class }}
+    is-width-{{ object.settings.width }}
+    {% if object.settings.show_gutter == false %}
+      has-no-side-gutter
+      has-background
+    {% else %}
+      has-gutter-enabled
+    {% endif %}
+  "
+  {% if object.settings.animation != 'none' %}
+    data-scroll-class="{{ object.settings.animation }}"
+  {% endif %}
+>
   {% if title != blank %}
     <div class="container">
-      {%
-        render 'heading',
+      {% render 'heading',
         title: title,
         heading_tag: 'h2',
         context: 'featured-collection',
@@ -80,8 +84,7 @@
       {% comment %} Loop through products {% endcomment %}
       {% if layout == 'slider' %}
         {% if collection.all_products_count > 0 %}
-          {%
-            render 'product-slider',
+          {% render 'product-slider',
             limit: object.settings.products_limit,
             products: collection.products,
             skip_product: product,
@@ -95,8 +98,7 @@
         {% endif %}
       {% else %}
         {% if collection.all_products_count > 0 %}
-          {%
-            render 'product-loop',
+          {% render 'product-loop',
             limit: object.settings.products_limit,
             products: collection.products,
             skip_product: product,
@@ -110,14 +112,18 @@
     {% else %}
       {% comment %} Placeholder images {% endcomment %}
       {% for i in (1..10) %}
-        <div class="collection__item
-          	one-fifth
-            {% if object.settings.mobile_products_per_row == '1' %}
-              small-down--one-whole
-            {% else %}
-              small-down--one-half
-            {% endif %}
-            thumbnail column">
+        <div
+          class="
+            collection__item
+            one-fifth
+             {% if object.settings.mobile_products_per_row == '1' %}
+               small-down--one-whole
+             {% else %}
+               small-down--one-half
+             {% endif %}
+             thumbnail column
+          "
+        >
           {% capture num %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
           {{ 'product-' | append: num | placeholder_svg_tag: 'placeholder-svg placeholder-svg--product' }}
         </div>

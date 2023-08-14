@@ -13,14 +13,13 @@
 {% comment %} Section Specific CSS {% endcomment %}
 {% style %}
   .button-item {
-    padding: var(--global-p1);
     background-color: var(--f-fall);
     background-color: var(--f-ok);
     display: flex;
     flex-direction: row;
     justify-content: center;
     border-style: none;
-    margin: 0.07rem;
+    margin: calc(var(--global-p1)* .07);
   }
 
   .button-item a {
@@ -28,7 +27,7 @@
     font-family: var(--pf-primary-font);
     font-weight: 700;
     font-size: 18px;
-    padding: 16px;
+    padding: calc(var(--global-p1)* .5);
     border-style: none;
     text-decoration: none;
   }
@@ -53,7 +52,8 @@
   #tabs h2,
   #tabs h3,
   #tabs h4 {
-    padding: var(--global-p1) 0;
+    padding: 0;
+    margin: 0;
     font-weight: 700;
   }
 
@@ -276,16 +276,7 @@
           data-pf-type="Image"
           style="display: flex; padding: 1em; align-content: center; flex-direction: column; flex-wrap: wrap;"
         >
-          <img
-            src="https://cdn.shopify.com/s/files/1/0586/6841/7209/t/18/assets/pf-7892f57e--puppywarranty5_1200x.jpg?v=1629305307"
-            srcset="https://cdn.shopify.com/s/files/1/0586/6841/7209/t/18/assets/pf-7892f57e--puppywarranty5.jpg?v=1629305307 1536w"
-            width="815"
-            height="160"
-            sizes="(min-width: 1536px) 1536px, (min-width: 1024px) 1280px, (min-width: 640px) 768px, 320px"
-            loading="lazy"
-            alt="Warranty Included:6 Month Limited Warranty and30 Day Money Back"
-            title="Warranty Included:6 Month Limited Warranty and30 Day Money Back"
-          >
+          {% include 'image-element', image: images['puppy_warranty.jpg'], loading: 'lazy' %}
         </figure>
       </div>
     </div>
@@ -484,6 +475,15 @@
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
 const buttons = document.querySelectorAll(".button-item");
 
 buttons.forEach((button) => {
@@ -535,6 +535,15 @@ document.addEventListener("DOMContentLoaded", () =>
   forceHeight("#tabs", ".title-box")
 );
 window.addEventListener("resize", () => forceHeight("#tabs", ".title-box"));
+
+
+
+
+
+
+
+
+
 
 
 

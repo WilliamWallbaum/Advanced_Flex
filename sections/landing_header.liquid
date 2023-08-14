@@ -20,7 +20,6 @@
         {% endif %}
 
         {% include 'video' %}
-
       </div>
 
       {% if section.settings.show_product %}
@@ -56,8 +55,6 @@
   </section>
 {% endif %}
 
-
-  
 {% style %}
   main {
       margin-bottom: var(--global-p4);
@@ -299,7 +296,7 @@
       "label": "Qualifier"
     },
     {
-      "type": "textarea",
+      "type": "richtext",
       "id": "description",
       "label": "Description"
     },
@@ -403,7 +400,7 @@
           "info": "Video plays in the page."
         },
         {
-          "type": "text",
+          "type": "richtext",
           "id": "description",
           "label": "Video alt text",
           "info": "Describe the video for customers using screen readers."
@@ -467,7 +464,7 @@
   ],
   "presets": [
     {
-      "name": "Videos"
+      "name": "Blue Wave Mast"
     }
   ]
 }

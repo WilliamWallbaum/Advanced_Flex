@@ -1,0 +1,54 @@
+{% if section.settings.show_breadcrumbs %}
+  {% include 'breadcrumb', breadcrumb_separator: section.settings.breadcrumb_separator %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Breadcrumb Section",
+  "tag": "section",
+  "class": "section breadcrumb-section",
+  "settings": [
+  {
+    "type": "checkbox",
+    "id": "show_breadcrumbs",
+    "label": "Show Breadcrumbs",
+    "default": true
+  },
+  {
+    "type": "select",
+    "id": "breadcrumb_separator",
+    "label": "Breadcrumb Separator",
+    "default": "caret",
+    "options": [
+      {
+        "value": "arrow",
+        "label": "Arrow"
+      },
+      {
+        "value": "caret",
+        "label": "Caret"
+      },
+      {
+        "value": "bullet",
+        "label": "Bullet"
+      },
+      {
+        "value": "slash",
+        "label": "Slash"
+      }
+    ]
+  }
+  ],
+  "presets": [
+    {
+    "name": "Breadcrumb Section"
+  }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

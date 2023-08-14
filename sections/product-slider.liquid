@@ -1,0 +1,58 @@
+{% comment %}
+  product-slider.liquid
+  This section displays a slider of products with their metadata.
+{% endcomment %}
+
+<div class="product-slider">
+  <h1>Product Slider</h1>
+  <div class="slider-container">
+    {% for product in section.products %}
+      <div class="slider-item">
+        <h3>{{ product.title }}</h3>
+        <p>{{ product.metafields.global.custom_field }}</p>
+        <!-- Add any other product metadata you want to display -->
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ],
+  "presets": [{
+    "name": "Product Slider",
+    "category": "Collection"
+  }]
+}
+{% endschema %}
+
+{% stylesheet %}
+  /* Add any custom styles for the product slider */
+  .product-slider {
+    /* Your styles here */
+  }
+
+  .slider-container {
+    /* Your styles here */
+  }
+
+  .slider-item {
+    /* Your styles here */
+  }
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

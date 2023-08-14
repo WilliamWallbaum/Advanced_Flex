@@ -1,0 +1,309 @@
+<script src="{{ 'addPair.js' | asset_url }}" defer></script>
+{% if section.settings.show_variants %}
+  <header class="is-width-{{ section.settings.width }} product-variant-header">
+    <h1>The {{ product.title }}</h1>
+
+    {% if section.settings.show_reviews %}
+      {% comment %} Yotpo Reviews {% endcomment %}
+      <div class="yotpo bottomLine" data-product-id="{{ product.id }}"></div>
+    {% endif %}
+
+    {% if section.settings.show_header_text %}
+      <h2>{{ section.settings.section_title }}</h2>
+      <p>{{ section.settings.instructions }}</p>
+    {% endif %}
+  </header>
+
+  <div id="variant-container" class=" is-width-{{ section.settings.width }} card-container">
+    {% assign leftVariant = null %}
+    {% assign pairVariant = null %}
+    {% assign rightVariant = null %}
+
+    {% for variant in product.variants %}
+      {% assign variantTitle = variant.title | downcase %}
+      {% if variantTitle contains 'left' %}
+        {% assign leftVariant = variant %}
+      {% elsif variantTitle contains 'pair' %}
+        {% assign pairVariant = variant %}
+      {% elsif variantTitle contains 'right' %}
+        {% assign rightVariant = variant %}
+      {% endif %}
+    {% endfor %}
+
+    {% if leftVariant %}
+      <div class="card">
+        {% include 'image-element', image: leftVariant.featured_image.src %}
+
+        <div class="card-body">
+          <p>
+            <s>{{ leftVariant.compare_at_price | money }}</s>
+          </p>
+          <h3>{{ leftVariant.price | money }}</h3>
+        </div>
+
+        <div class="card-footer">
+          <form action="/cart/add" method="post" id="product-form-{{ leftVariant.id }}" class="card-footer">
+            <input type="hidden" name="id" value="{{ leftVariant.id }}">
+            <button
+              type="submit"
+              name="add"
+              class="button button--add-to-cart action_button--secondary"
+              data-label="Add to cart"
+            >
+              Add {{ leftVariant.title }} to Cart
+            </button>
+          </form>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if pairVariant %}
+      <div class="card">
+        {% include 'image-element', image: pairVariant.featured_image.src %}
+
+        <div class="card-body">
+          <p>
+            <s>{{ pairVariant.compare_at_price | money }}</s>
+          </p>
+          <h3>{{ pairVariant.price | money }}</h3>
+        </div>
+
+        <div class="card-footer">
+          <button
+            id="add-pair"
+            class="button button--add-to-cart action_button--secondary add-pair-button"
+            data-left-variant="{{ leftVariant.id }}"
+            data-right-variant="{{ rightVariant.id }}"
+            data-label="Add to cart"
+          >
+            Add Pair to Cart
+          </button>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if rightVariant %}
+      <div class="card">
+        {% include 'image-element', image: rightVariant.featured_image.src %}
+
+        <div class="card-body">
+          <p>
+            <s>{{ rightVariant.compare_at_price | money }}</s>
+          </p>
+          <h3>{{ rightVariant.price | money }}</h3>
+        </div>
+
+        <div class="card-footer">
+          <form action="/cart/add" method="post" id="product-form-{{ rightVariant.id }}">
+            <input type="hidden" name="id" value="{{ rightVariant.id }}">
+            <button
+              type="submit"
+              name="add"
+              class="button button--add-to-cart action_button--secondary"
+              data-label="Add to cart"
+            >
+              Add {{ rightVariant.title }} to Cart
+            </button>
+          </form>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+  <footer class="is-width-{{ section.settings.width }} product-variant-footer">
+    {% if section.settings.show_product_description %}
+      <div class="product-description">
+        {{ product.content }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_trust_badges %}
+      {% include 'trust-badges' %}
+    {% endif %}
+  </footer>
+{% endif %}
+
+{% style %}
+  .variant-display {
+    display: grid;
+    padding: var(--global-p2);
+  }
+  .variant-display h1 {
+    font-size: calc(var(--text-basic) * 3);
+    text-align: center;
+    border-bottom: 2px solid;
+    z-index: 5;
+  }
+  #variant-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+    grid-gap: var(--global-p2);
+    padding: var(--global-p2) 0;
+  }
+  .card-body {
+    display: grid;
+    grid-gap: var(--global-p1);
+    grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+    align-items: baseline;
+    padding: 0 calc(var(--global-p1) * 1.5);
+    justify-content: space-around;
+  }
+  .card-body h3 {
+    display: inline-grid;
+  }
+  .card-body p {
+    display: inline-grid;
+    justify-items: end;
+  }
+  .yotpo.bottomLine {
+    margin-top: -16px;
+  }
+  header .yotpo .yotpo-display-wrapper .standalone-bottomline {
+    display: grid;
+    justify-items: center;
+  }
+  header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline a.text-m {
+    display: none;
+  }
+  header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline .yotpo-icon {
+    font-size: calc(var(--text-basic) * 1.3);
+  }
+  /* Make the second star larger */
+  header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline .yotpo-icon:nth-child(2) {
+    font-size: calc(var(--text-basic) * 1.5); /* Adjust the size of the second and third stars */
+  }
+  /* Make the fourth star larger */
+  header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline .rating-star:nth-child(4) {
+    font-size: calc(var(--text-basic) * 1.5); /* Adjust the size of the second and third stars */
+  }
+  /* Make the middle star even larger */
+  header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline .rating-star:nth-child(3) {
+    font-size: calc(var(--text-basic) * 1.9); /* Adjust the size of the middle star */
+  }
+  header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-stars {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    align-items: baseline;
+    justify-items: center;
+  }
+  header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline {
+    background-color: white;
+    padding: 0 var(--global-p1);
+  }
+  .product-variant-footer {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-gap: var(--global-p2);
+  }
+
+  /* Responsive Styles */
+  @media screen and (max-width: 768px) {
+    .variant-display {
+      padding: var(--global-p1); /* Reduce padding for smaller screens */
+    }
+    #variant-container {
+      grid-template-columns: 1fr; /* Show one card per row on smaller screens */
+    }
+    .card-body {
+      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr)); /* Adjust card columns for smaller screens */
+    }
+    .card-body h3 {
+      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr)); /* Adjust card columns for smaller screens */
+    }
+    .card-body p {
+      font-size: calc(var(--text-basic)*1.25);
+    }
+    .card-body h3 {
+      font-size: calc(var(--text-basic)*1.5);
+    }
+    .product-variant-footer {
+      grid-template-columns: 1fr; /* Show one column for footer on smaller screens */
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Product Variant Display",
+  "tag": "section",
+  "class": "section variant-display",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_variants",
+      "label": "Show Variants Section",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wide",
+      "options": [
+        {
+          "value": "half",
+          "label": "Half"
+        },
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews",
+      "label": "Show Reviews",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_badges",
+      "label": "Show Trust Badges",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_header_text",
+      "label": "Show Header Text",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Flexible Purchase Options"
+    },
+    {
+      "type": "richtext",
+      "id": "instructions",
+      "label": "Instructions",
+      "default": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!<p>"
+    },
+    {
+      "type": "header",
+      "content": "Product Card Options"
+    },
+    {
+      "type": "header",
+      "content": "Section Footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_description",
+      "label": "Show Product Description",
+      "default": true
+    }
+  ],
+  "presets" : [{
+    "name": "Product Variant Display"
+  }]
+}
+{% endschema %}
