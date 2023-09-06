@@ -1,51 +1,85 @@
-{% capture current_url %}
-  {%- if context == 'article' -%}
-    {{ shop.url }}{{ article.url }}
-  {%- else -%}
-    {{ canonical_url }}
+{% comment %}
+  Renders social icons.
+  Accepts:
+  - class: {String} a class to be added to the <ul> element (optional).
+
+  Usage:
+  {% render 'social-icons',
+    class: 'my-class'
+  %}
+{% endcomment %}
+
+<ul class="list-unstyled list-social{% if class %} {{ class}}{% endif %}" role="list">
+  {%- if settings.social_facebook_link != blank -%}
+    <li class="list-social__item">
+      <a href="{{ settings.social_facebook_link }}" class="link list-social__link">
+        {%- render 'icon-facebook' -%}
+        <span class="visually-hidden">{{ 'general.social.links.facebook' | t }}</span>
+      </a>
+    </li>
   {%- endif -%}
-{% endcapture %}
-
-{% capture buttons %}
-<div class="social-share-buttons social-share-buttons--{{ settings.social_media_share_style }} field is-grouped has-margin-bottom">
-  {% capture title %}{% if context == 'article' %}{{ article.title | strip_html | url_escape }}{% else %}{{ product.title | strip_html | url_escape }}{% endif %}{% endcapture %}
-  {% capture shop_name %}{{ shop.name | url_param_escape }}{% endcapture %}
-  {% capture twitter_name %}{{ settings.twitter_link | split: 'twitter.com/' | last }}{% endcapture %}
-
-  {% comment %} Twitter {% endcomment %}
-  <div class="share-btn share-btn--twitter control">
-    <a target="_blank" rel="noopener" class="button" title="{{ 'layout.social_sharing.twitter_title' | t }}" href="https://twitter.com/intent/tweet?text={{ title | replace: '&','%26' }}&url={{ current_url }}{%- if twitter_name != blank -%}&via={{ twitter_name }}{%- endif -%}">
-      {% render 'icon', name: 'twitter' %}
-    </a>
-  </div>
-
-  {% comment %} Facebook {% endcomment %}
-  <div class="share-btn share-btn--facebook control">
-    <a target="_blank"  rel="noopener"class="button" title="{{ 'layout.social_sharing.facebook_title' | t }}" href="https://www.facebook.com/sharer/sharer.php?u={{ current_url }}">
-      {% render 'icon', name: 'facebook' %}
-    </a>
-  </div>
-
-  {% comment %} Pinterest {% endcomment %}
-  <div class="share-btn share-btn--pinterest control">
-    {% if context == 'article' %}
-      <a target="_blank"  rel="noopener"data-pin-do="skipLink" class="button" title="{{ 'layout.social_sharing.pinterest_title' | t }}" href="https://pinterest.com/pin/create/button/?url={{ current_url }}&description={{ article.content | strip_html | truncate: 240 }}&media={% if article.image %}{{ article.image | img_url: 'grande' }}{% else %}{% assign my_image_url=article.content | escape %}{% if my_image_url contains '&lt;img' %}{% assign my_image_url = my_image_url | split: 'src=&quot;' %}{% assign my_image_url = my_image_url[1] | split: '&quot;' %}{% assign my_image_url = my_image_url[0] | remove: '//cdn' %}{% assign my_image_url = my_image_url | remove: 'http:http://' %}{% assign my_image_url = my_image_url | remove: 'https:' %}{{ my_image_url | prepend: 'https://cdn'}}{% endif %}{% endif %}">
-        {% render 'icon', name: 'pinterest' %}
+  {%- if settings.social_instagram_link != blank -%}
+    <li class="list-social__item">
+      <a href="{{ settings.social_instagram_link }}" class="link list-social__link">
+        {%- render 'icon-instagram' -%}
+        <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
       </a>
-    {% else %}
-      <a target="_blank"  rel="noopener"data-pin-do="skipLink" class="button" title="{{ 'layout.social_sharing.pinterest_title' | t }}" href="https://pinterest.com/pin/create/button/?url={{ current_url }}&description={{ title | truncate: 240 }}&media=https:{{ product.featured_image.src | product_img_url: '600x' }}">
-        {% render 'icon', name: 'pinterest' %}
+    </li>
+  {%- endif -%}
+  {%- if settings.social_youtube_link != blank -%}
+    <li class="list-social__item">
+      <a href="{{ settings.social_youtube_link }}" class="link list-social__link">
+        {%- render 'icon-youtube' -%}
+        <span class="visually-hidden">{{ 'general.social.links.youtube' | t }}</span>
       </a>
-    {% endif %}
-  </div>
-
-  <div class="share-btn share-btn--mail control"><!--Email-->
-    <a href="mailto:?subject={{ 'layout.social_sharing.email_subject' | t: title: title }}&amp;body={{ 'layout.social_sharing.email_message' | t: title: title, name: shop_name }}%0D%0A%0D%0A{{ current_url }}" target="_blank"  rel="noopener" class="button" title="{{ 'layout.social_sharing.email_title' | t }}">
-      {% render 'icon', name: 'email' %}
-    </a>
-  </div>
-</div>
-
-{% endcapture %}
-
-{{ buttons }}
+    </li>
+  {%- endif -%}
+  {%- if settings.social_tiktok_link != blank -%}
+    <li class="list-social__item">
+      <a href="{{ settings.social_tiktok_link }}" class="link list-social__link">
+        {%- render 'icon-tiktok' -%}
+        <span class="visually-hidden">{{ 'general.social.links.tiktok' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_twitter_link != blank -%}
+    <li class="list-social__item">
+      <a href="{{ settings.social_twitter_link }}" class="link list-social__link">
+        {%- render 'icon-twitter' -%}
+        <span class="visually-hidden">{{ 'general.social.links.twitter' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_pinterest_link != blank -%}
+    <li class="list-social__item">
+      <a href="{{ settings.social_pinterest_link }}" class="link list-social__link">
+        {%- render 'icon-pinterest' -%}
+        <span class="visually-hidden">{{ 'general.social.links.pinterest' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_snapchat_link != blank -%}
+    <li class="list-social__item">
+      <a href="{{ settings.social_snapchat_link }}" class="link list-social__link">
+        {%- render 'icon-snapchat' -%}
+        <span class="visually-hidden">{{ 'general.social.links.snapchat' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_tumblr_link != blank -%}
+    <li class="list-social__item">
+      <a href="{{ settings.social_tumblr_link }}" class="link list-social__link">
+        {%- render 'icon-tumblr' -%}
+        <span class="visually-hidden">{{ 'general.social.links.tumblr' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+  {%- if settings.social_vimeo_link != blank -%}
+    <li class="list-social__item">
+      <a href="{{ settings.social_vimeo_link }}" class="link list-social__link">
+        {%- render 'icon-vimeo' -%}
+        <span class="visually-hidden">{{ 'general.social.links.vimeo' | t }}</span>
+      </a>
+    </li>
+  {%- endif -%}
+</ul>
