@@ -1,53 +1,90 @@
 {{ 'multi_column_section.css' | asset_url | stylesheet_tag }}
 
 {% assign section = section.settings %}
+{% assign section_name = section.section_name | replace: ' ', '-' | downcase | default: 'multi-col' %}
 
-{% if section.cols %}
-  <section
-    id="{{ section.section_name }}"
-    class="section is-width-{{ section.width }} multi-col {% case section.cols %}{% when '2' %}two-col{% when '3' %}three-col{% when '4' %}four-col{% endcase %}"
-  >
-    {% if section.show_header %}
-      <header id="{{ section.section_name }}-header" class="multi-col-header">
-        <h2 header id="{{ section.section_name }}-header-name">{{ section.section_name }}</h2>
-        <div header id="{{ section.section_name }}-header-text">{{ section.header_text }}</div>
-      </header>
-    {% endif %}
-    <div id="{{ section.section_name }}-body" class="multi-col-body">
-      <!-- block -->
-      {% for block in section.blocks %}
-        {% if block.type == 'custom' %}
-          <div class="dynamic-block" data-col="{{ forloop.index }}">
-            <img
-              src="{{ block.settings.image_picker.src }}"
-              alt="{{ block.settings.image_picker.alt }}"
-              loading="lazy"
-              width="{{ block.settings.image_picker.width }}"
-              height="{{ block.settings.image_picker.height }}"
-              id="{{ block.settings.image_picker.id }}"
-            >
-            <h3>{{ block.settings.title }}</h3>
-            <div>{{ block.settings.content }}</div>
-          </div>
+<section id="{{ section_name }}" class="section is-width-{{ section.width }} multi-col">
+  <!-- start section header -->
+  {% if section.show_header %}
+    <header id="{{ section_name }}-header" class="multi-col-header">
+      <h2 header id="{{ section_name }}-header-name">{{ section.section_name }}</h2>
+      <div header id="{{ section_name }}-header-text">{{ section.header_text }}</div>
+    </header>
+  {% endif %}
+  <!-- end section header -->
+
+  <!-- start section body -->
+  <div id="{{ section_name }}-body" class="multi-col-body">
+    <style>
+      figure.block-img { max-width: {{ section.img_width }}px !important; }
+      .multi-col-header { justify-items: {{ section.header_align }}; }
+      [id^="block-"] { justify-items: {{ section.block_align }}; }
+      .multi-col-footer { justify-items: {{ section.footer_align }}; }
+    </style>
+    <!-- start columns -->
+
+    <!-- start block 1 -->
+    {% if section.show_block_1 %}
+      <div id="block-1" class="{{ section.is_card }}">
+        {% if section.block_image_1 %}
+          {% include 'image-element' with image: section.block_image_1, figure_classes: "block-img" %}
         {% endif %}
-      {% endfor %}
-
-      <!-- columns -->
-      {% for i in (1..section.cols) %}
-        <div id="{{ section.section_name }}-col-{{ i }}" class="col-{{ i }}">
-          <div class="draggable-block" data-col="{{ i }}">Drag me!</div>
-        </div>
-      {% endfor %}
-    </div>
-    {% if section.show_footer %}
-      <footer id="{{ section.section_name }}-footer" class="multi-col-footer">{{ section.footer_text }}</footer>
+        <h3>{{ section.block_title_1 }}</h3>
+        <p>{{ section.block_content_1 }}</p>
+      </div>
     {% endif %}
-  </section>
-{% endif %}
+    <!-- end block 1 -->
+
+    <!-- start block 2 -->
+    {% if section.show_block_2 %}
+      <div id="block-2" class="{{ section.is_card }}">
+        {% if section.block_image_2 %}
+          {% include 'image-element' with image: section.block_image_2, figure_classes: "block-img" %}
+        {% endif %}
+        <h3>{{ section.block_title_2 }}</h3>
+        <p>{{ section.block_content_2 }}</p>
+      </div>
+    {% endif %}
+    <!-- end block 2 -->
+
+    <!-- start block 3 -->
+    {% if section.show_block_3 %}
+      <div id="block-3" class="{{ section.is_card }}">
+        {% if section.block_image_3 %}
+          {% include 'image-element' with image: section.block_image_3, figure_classes: "block-img" %}
+        {% endif %}
+        <h3>{{ section.block_title_3 }}</h3>
+        <p>{{ section.block_content_3 }}</p>
+      </div>
+    {% endif %}
+    <!-- end block 3 -->
+
+    <!-- start block 4 -->
+    {% if section.show_block_4 %}
+      <div id="block-4" class="{{ section.is_card }}">
+        {% if section.block_image_4 %}
+          {% include 'image-element' with image: section.block_image_4, figure_classes: "block-img" %}
+        {% endif %}
+        <h3>{{ section.block_title_4 }}</h3>
+        <p>{{ section.block_content_4 }}</p>
+      </div>
+    {% endif %}
+    <!-- end block 4 -->
+
+    <!-- end columns -->
+  </div>
+  <!-- end section body -->
+
+  <!-- start section footer -->
+  {% if section.show_footer %}
+    <footer id="{{ section_name }}-footer" class="multi-col-footer">{{ section.footer_text }}</footer>
+  {% endif %}
+  <!-- end section footer -->
+</section>
 
 {% schema %}
-{
-  "name": "Multi Column Section",
+  {
+  "name": "multi-col-section",
   "settings": [
     {
       "type": "header",
@@ -71,7 +108,7 @@
     },
     {
       "type": "header",
-      "content": "Section Body"
+      "content": "Layout"
     },
     {
       "type": "select",
@@ -94,28 +131,198 @@
       ]
     },
     {
-      "type": "select",
-      "id": "cols",
-      "label": "Number of Columns",
-      "default": "1",
+      "type": "range",
+      "id": "img_width",
+      "label": "Block Image Height",
+      "default":200,
+      "min": 150,
+      "max": 300,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "radio",
+      "id": "is_card",
+      "label": "Block Style",
+      "default": "",
       "options": [
         {
-          "value": "1",
-          "label": "One"
+          "value": "",
+          "label": "No Style"
         },
         {
-          "value": "2",
-          "label": "Two"
-        },
-        {
-          "value": "3",
-          "label": "Three"
-        },
-        {
-          "value": "4",
-          "label": "Four"
+          "value": "card",
+          "label": "Card"
         }
       ]
+    },
+    {
+      "type": "radio",
+      "id": "header_align",
+      "label": "Header Alignment",
+      "default": "start",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "radio",
+      "id": "block_align",
+      "label": "Block Alignment",
+      "default": "start",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "radio",
+      "id": "footer_align",
+      "label": "Footer Alignment",
+      "default": "start",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Block One"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_block_1",
+      "label": "Show Block 1",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "block_image_1",
+      "label": "Image Picker"
+    },
+    {
+      "type": "text",
+      "id": "block_title_1",
+      "label": "Header Title",
+      "default": "<p>defualt</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "block_content_1",
+      "label": "Block Content",
+      "default": "<p>defualt</p>"
+    },
+    {
+      "type": "header",
+      "content": "Block Two"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_block_2",
+      "label": "Show Block 2",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "block_image_2",
+      "label": "Image Picker"
+    },
+    {
+      "type": "text",
+      "id": "block_title_2",
+      "label": "Header Title",
+      "default": "<p>defualt</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "block_content_2",
+      "label": "Block Content",
+      "default": "<p>defualt</p>"
+    },
+    {
+      "type": "header",
+      "content": "Block Three"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_block_3",
+      "label": "Show Block 3",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "block_image_3",
+      "label": "Image Picker"
+    },
+    {
+      "type": "text",
+      "id": "block_title_3",
+      "label": "Header Title",
+      "default": "<p>defualt</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "block_content_3",
+      "label": "Block Content",
+      "default": "<p>defualt</p>"
+    },
+    {
+      "type": "header",
+      "content": "Block Four"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_block_4",
+      "label": "Show Block 4",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "block_image_4",
+      "label": "Image Picker"
+    },
+    {
+      "type": "text",
+      "id": "block_title_4",
+      "label": "Header Title",
+      "default": "<p>defualt</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "block_content_4",
+      "label": "Block Content",
+      "default": "<p>defualt</p>"
     },
     {
       "type": "header",
@@ -131,29 +338,6 @@
       "type": "richtext",
       "id": "footer_text",
       "label": "Footer Text"
-    }
-  ],
-  "blocks":[
-    {
-      "type": "custom",
-      "name": "Dynamic Block",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image_picker",
-          "label": "Image Picker"
-        },
-        {
-          "type": "text",
-          "label": "Block Title",
-          "id": "title"
-        },
-        {
-          "type": "richtext",
-          "label": "Block Content",
-          "id": "content"
-        }
-      ]
     }
   ],
   "presets": [
