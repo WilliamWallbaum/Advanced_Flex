@@ -1,0 +1,79 @@
+{% comment %}
+  Required values
+  show_product_title: <boolean>
+  show_reviews: <boolean>
+  show_header_text: <boolean>
+  ______________
+  Optional values
+  header_title: <string>
+  header_copy: <string>
+{% endcomment %}
+
+<header class="product-variant-header">
+  {% if section.settings.show_product_title %}
+    <h1>The {{ product.title }}</h1>
+  {% endif %}
+
+  {% if section.settings.show_reviews %}
+    {% comment %} Yotpo Reviews {% endcomment %}
+    <div class="yotpo bottomLine" data-product-id="{{ product.id }}"></div>
+  {% endif %}
+
+  {% if section.settings.show_header_text %}
+    {% if section.settings.header_title %}
+      <h2>{{ header_title }}</h2>
+    {% endif %}
+    {% if section.settings.header_copy %}
+      <p>{{ header_copy }}</p>
+    {% endif %}
+  {% endif %}
+</header>
+
+{% style %}
+   .product-variant-header {
+     padding-bottom: var(--global-p1);
+   }
+   .product-variant-header {
+
+   } h1 {
+    font-size: calc(var(--text-basic) * 3);
+    text-align: center;
+    border-bottom: 2px solid;
+  }
+
+  .yotpo.bottomLine {
+    margin-top: -16px;
+  }
+  header .yotpo .yotpo-display-wrapper .standalone-bottomline {
+    display: grid;
+    justify-items: center;
+  }
+  header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline a.text-m {
+    display: none;
+  }
+  header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline .yotpo-icon {
+    font-size: calc(var(--text-basic) * 1.3);
+  }
+  /* Make the second star larger */
+  header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline .yotpo-icon:nth-child(2) {
+    font-size: calc(var(--text-basic) * 1.5); /* Adjust the size of the second and third stars */
+  }
+  /* Make the fourth star larger */
+  header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline .rating-star:nth-child(4) {
+    font-size: calc(var(--text-basic) * 1.5); /* Adjust the size of the second and third stars */
+  }
+  /* Make the middle star even larger */
+  header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline .rating-star:nth-child(3) {
+    font-size: calc(var(--text-basic) * 1.9); /* Adjust the size of the middle star */
+  }
+  header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-stars {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    align-items: baseline;
+    justify-items: center;
+  }
+  header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline {
+    background-color: white;
+    padding: 0 var(--global-p1);
+  }
+{% endstyle %}
