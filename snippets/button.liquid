@@ -1,19 +1,32 @@
 {% comment %}
-Required values
-label: <string>
-______________
-Optional values
-href: <string>
-type: <string>
-style: <string>
-class: <string>
-attribute: <string>
+  Required values
+  label: <string>
+  ______________
+  Optional values
+  href: <string>
+  type: <string>
+  style: <string>
+  size: <string>
+  class: <string>
+  attribute: <string>
 {% endcomment %}
 
 {% if label != blank %}
-  {% if type == "link" %}
-    <a {% if href != blank %}href="{{ href }}"{% endif %} class="button {{ style }} {{ class }}" {{ attribute }}>{{ label }}</a>
+  {% if type == 'link' %}
+    <a
+      {% if href != blank %}
+        href="{{ href }}"
+      {% endif %}
+      class="button {{ style }} {{ size }} {{ class }}"
+      {{ attribute }}
+    >
+      {{- label -}}
+    </a>
+  {% elsif type == 'button' and href %}
+    <form action="{{ href }}">
+      <input type="submit" value="{{ label }}" class="button {{ style }} {{ size }} {{ class }}">
+    </form>
   {% else %}
-    <button type="{{ type }}" class="button {{ style }} {{ class }}" {{ attribute }}>{{ label }}</button>
+    <button type="{{ type }}" class="button {{ style }} {{ size }} {{ class }}" {{ attribute }}>{{ label }}</button>
   {% endif %}
 {% endif %}

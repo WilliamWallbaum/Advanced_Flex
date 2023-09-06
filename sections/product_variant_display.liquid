@@ -1,0 +1,294 @@
+<script src="{{ 'addPair.js' | asset_url }}" defer></script>
+{% if section.settings.show_variants %}
+  <span id="variant-anchor"></span>
+  {% if section.settings.show_section_header %}
+    {%
+      include 'product_header' with
+      show_product_title: section.settings.show_product_title,
+      show_reviews: section.settings.show_reviews,
+      show_header_text: section.settings.show_header_text,
+      header_title: section.settings.header_title,
+      header_copy: section.settings.header_copy
+    %}
+  {% endif %}
+
+  <div id="variant-container" class=" is-width-{{ section.settings.width }} card-container">
+    {% assign leftVariant = null %}
+    {% assign pairVariant = null %}
+    {% assign rightVariant = null %}
+
+    {% for variant in product.variants %}
+      {% assign variantTitle = variant.title | downcase %}
+      {% if variantTitle contains 'left' %}
+        {% assign leftVariant = variant %}
+      {% elsif variantTitle contains 'pair' %}
+        {% assign pairVariant = variant %}
+      {% elsif variantTitle contains 'right' %}
+        {% assign rightVariant = variant %}
+      {% endif %}
+    {% endfor %}
+
+    {% if leftVariant %}
+      {% assign button_label = 'Add ' | append: leftVariant.title | append: ' to Cart' %}
+      {%
+        include 'product-card'
+        show_product_description: false,,
+        custom_product: leftVariant,
+        button_label: button_label,
+        button_class: "button--add-to-cart action_button--secondary",
+        button_style: section.settings.button_style,
+        button_type: 'submit',
+        button_attribute: 'data-label="Add to cart" name="add"',
+        button_cart: true
+      %}
+    {% endif %}
+
+    {% if pairVariant %}
+      {% assign button_label = 'Add ' | append: pairVariant.title | append: ' to Cart' %}
+      {% assign pair_type = section.settings.pair_type %}
+      {% if pair_type == 'individual' %}
+        {% assign data_right_variant = rightVariant.id %}
+        {% assign data_left_variant = leftVariant.id %}
+        {% assign button_attribute = 'data-right-variant="'
+          | append: data_right_variant
+          | append: '" data-left-variant="'
+          | append: data_left_variant
+          | append: '" name="add"'
+          | append: 'data-label="Add to cart"'
+        %}
+        {% assign button_class = 'button--add-to-cart action_button--secondary add-pair-button' %}
+      {% else %}
+        {% assign button_attribute = 'data-label="Add to cart" name="add"' %}
+        {% assign button_class = 'button--add-to-cart action_button--secondary' %}
+      {% endif %}
+
+      {%
+        include 'product-card'
+        show_product_description: false,,
+        custom_product: pairVariant,
+        button_label: button_label,
+        button_class: button_class,
+        button_style: section.settings.button_style,
+        button_type: 'submit',
+        button_attribute: button_attribute,
+        button_cart: true
+      %}
+    {% endif %}
+
+    {% if rightVariant %}
+      {% assign button_label = 'Add ' | append: rightVariant.title | append: ' to Cart' %}
+      {%
+        include 'product-card'
+        show_product_description: false,,
+        custom_product: rightVariant,
+        button_label: button_label,
+        button_class: "button--add-to-cart action_button--secondary",
+        button_style: section.settings.button_style,
+        button_type: 'submit',
+        button_attribute: 'data-label="Add to cart" name="add"',
+        button_cart: true
+      %}
+    {% endif %}
+  </div>
+  <footer class="is-width-{{ section.settings.width }} product-variant-footer">
+    {% if section.settings.show_product_description %}
+      <div class="product-description">
+        {{ product.content }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_trust_badges %}
+      {% include 'trust-badges' %}
+    {% endif %}
+  </footer>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product Variant Display",
+  "tag": "section",
+  "class": "section variant-display",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_variants",
+      "label": "Show Variants Section",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wide",
+      "options": [
+        {
+          "value": "half",
+          "label": "Half"
+        },
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section_header",
+      "label": "Show Section Header",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_title",
+      "label": "Show Product Title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews",
+      "label": "Show Reviews",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_header_text",
+      "label": "Show Header Text",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Header Title",
+      "default": "Flexible Purchase Options"
+    },
+    {
+      "type": "richtext",
+      "id": "header_copy",
+      "label": "Header Copy",
+      "default": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!<p>"
+    },
+    {
+      "type": "header",
+      "content": "Trust Badges"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_badges",
+      "label": "Show Trust Badges",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Product Card Options"
+    },
+    {
+      "type": "radio",
+      "id": "pair_type",
+      "label": "Pair Type",
+      "default": "individual",
+      "options": [
+        {
+          "value": "individual",
+          "label": "Individual"
+        },
+        {
+          "value": "pair",
+          "label": "Pair"
+        }
+      ],
+      "info": "When clicking the 'Add to Cart', the 'Individual' option adds both a Left and a Right hearing aids separately, while the 'Pair' option adds as a single item."
+    },
+    {
+      "type": "header",
+      "content": "Section Footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_description",
+      "label": "Show Product Description",
+      "default": true
+    }
+  ],
+  "presets" : [{
+    "name": "Product Variant Display"
+  }]
+}
+{% endschema %}
+
+{% style %}
+  .variant-display {
+    display: grid;
+    padding: var(--global-p2);
+  }
+  #variant-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+    grid-gap: var(--global-p2);
+    padding: var(--global-p2) 0;
+  }
+  #variant-anchor {
+    content: '';
+    display: block;
+    position: relative;
+    top: -100px;
+    height: 1px;
+    visibility: hidden;
+  }
+  .card-body {
+    display: grid;
+    grid-gap: var(--global-p1);
+    grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+    align-items: baseline;
+    padding: 0 calc(var(--global-p1) * 1.5);
+    justify-content: space-around;
+  }
+  .card-body h3 {
+    display: inline-grid;
+  }
+  .card-body p {
+    display: inline-grid;
+    justify-items: end;
+  }
+  .product-variant-footer {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-gap: var(--global-p2);
+  }
+
+  /* Responsive Styles */
+  @media screen and (max-width: 768px) {
+    .variant-display {
+      padding: var(--global-p1); /* Reduce padding for smaller screens */
+    }
+    #variant-container {
+      grid-template-columns: 1fr; /* Show one card per row on smaller screens */
+    }
+    .card-body {
+      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr)); /* Adjust card columns for smaller screens */
+    }
+    .card-body h3 {
+      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr)); /* Adjust card columns for smaller screens */
+    }
+    .card-body p {
+      font-size: calc(var(--text-basic)*1.25);
+    }
+    .card-body h3 {
+      font-size: calc(var(--text-basic)*1.5);
+    }
+    .product-variant-footer {
+      grid-template-columns: 1fr; /* Show one column for footer on smaller screens */
+    }
+  }
+{% endstyle %}

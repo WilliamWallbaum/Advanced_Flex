@@ -1,0 +1,90 @@
+<div class="video-block">
+  <h2>{{ section.settings.heading }}</h2>
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'video-stored' %}
+        <div class="stored-video" {{ block.shopify_attributes }}>
+          {% if block.settings.video %}
+            {{ block.settings.video | video_tag:
+            autoplay: block.settings.autoplay,
+            controls: block.settings.controls,
+            muted: block.settings.mute,
+            loop: block.settings.loop,
+            download: block.settings.download
+            }}
+          {% endif %}
+        </div>
+      {% when 'external-video' %}
+        <div class="external-video" {{ block.shopify_attributes }}>
+          {% if block.settings.video_url.type == 'youtube' %}
+            <div class="responsive-video">
+              <iframe
+                src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}{% if block.settings.controls %}?{% if block.settings.controls == false %}controls=0{% endif %}{% endif %}"
+                class="youtube"
+                title="{{ block.settings.description | escape }}"
+                allow="encrypted-media;{% if block.settings.fullscreen %}fullscreen;{% endif %}{% if block.settings.encrypted %} encrypted-media;{% endif %}{% if block.settings.pnp %}picture-in-picture;{% endif %}{% if block.settings.gyroscope %}gyroscope;{% endif %}{% if block.settings.accelerometer %}accelerometer;{% endif %}{% if block.settings.copy %}clipboard-write;{% endif %}"
+              ></iframe>
+            </div>
+          {% else %}
+            <div class="responsive-video">
+            </div>
+          {% endif %}
+        </div>
+    {% endcase %}
+  {% endfor %}
+</div>
+
+<script>
+{% if section.blocks contains 'video-stored' %}
+  function onYouTubeIframeAPIReady() {
+    {% for block in section.blocks %}
+      {% if block.type == 'video-stored' and block.settings.video %}
+        var player{{ block.id }};
+
+        function onYouTubePlayerAPIReady() {
+          player{{ block.id }} = new YT.Player('youtube-player-{{ block.id }}', {
+            videoId: '{{ block.settings.video }}',
+            playerVars: {
+              autoplay: {% if block.settings.autoplay %}1{% else %}0{% endif %},
+              controls: {% if block.settings.controls %}1{% else %}0{% endif %},
+              loop: {% if block.settings.loop %}1{% else %}0{% endif %},
+              mute: {% unless block.settings.autoplay %}1{% else %}0{% endunless %},
+              download: {% if block.settings.download %}1{% else %}0{% endif %},
+              events: {
+                'onReady': onPlayerReady
+              }
+            }
+          });
+        }
+
+        function onPlayerReady(event) {
+          {% if block.settings.autoplay %}
+            event.target.playVideo();
+          {% endif %}
+        }
+
+        // Load the YouTube API asynchronously
+        var tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      {% endif %}
+    {% endfor %}
+  }
+{% endif %}
+</script>
+
+
+{% style %}
+  .video-section {
+    position: relative;
+    height: auto;
+  }
+  .video-section video {
+    margin: var(--global-p2) 0;
+  }
+  
+  .video-section iframe{
+    
+  }
+{% endstyle %}

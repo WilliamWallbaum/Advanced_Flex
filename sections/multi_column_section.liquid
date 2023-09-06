@@ -1,0 +1,350 @@
+{{ 'multi_column_section.css' | asset_url | stylesheet_tag }}
+
+{% assign section = section.settings %}
+{% assign section_name = section.section_name | replace: ' ', '-' | downcase | default: 'multi-col' %}
+
+<section id="{{ section_name }}" class="section is-width-{{ section.width }} multi-col">
+  <!-- start section header -->
+  {% if section.show_header %}
+    <header id="{{ section_name }}-header" class="multi-col-header">
+      <h2 header id="{{ section_name }}-header-name">{{ section.section_name }}</h2>
+      <div header id="{{ section_name }}-header-text">{{ section.header_text }}</div>
+    </header>
+  {% endif %}
+  <!-- end section header -->
+
+  <!-- start section body -->
+  <div id="{{ section_name }}-body" class="multi-col-body">
+    <style>
+      figure.block-img { max-width: {{ section.img_width }}px !important; }
+      .multi-col-header { justify-items: {{ section.header_align }}; }
+      [id^="block-"] { justify-items: {{ section.block_align }}; }
+      .multi-col-footer { justify-items: {{ section.footer_align }}; }
+    </style>
+    <!-- start columns -->
+
+    <!-- start block 1 -->
+    {% if section.show_block_1 %}
+      <div id="block-1" class="{{ section.is_card }}">
+        {% if section.block_image_1 %}
+          {% include 'image-element' with image: section.block_image_1, figure_classes: "block-img" %}
+        {% endif %}
+        <h3>{{ section.block_title_1 }}</h3>
+        <p>{{ section.block_content_1 }}</p>
+      </div>
+    {% endif %}
+    <!-- end block 1 -->
+
+    <!-- start block 2 -->
+    {% if section.show_block_2 %}
+      <div id="block-2" class="{{ section.is_card }}">
+        {% if section.block_image_2 %}
+          {% include 'image-element' with image: section.block_image_2, figure_classes: "block-img" %}
+        {% endif %}
+        <h3>{{ section.block_title_2 }}</h3>
+        <p>{{ section.block_content_2 }}</p>
+      </div>
+    {% endif %}
+    <!-- end block 2 -->
+
+    <!-- start block 3 -->
+    {% if section.show_block_3 %}
+      <div id="block-3" class="{{ section.is_card }}">
+        {% if section.block_image_3 %}
+          {% include 'image-element' with image: section.block_image_3, figure_classes: "block-img" %}
+        {% endif %}
+        <h3>{{ section.block_title_3 }}</h3>
+        <p>{{ section.block_content_3 }}</p>
+      </div>
+    {% endif %}
+    <!-- end block 3 -->
+
+    <!-- start block 4 -->
+    {% if section.show_block_4 %}
+      <div id="block-4" class="{{ section.is_card }}">
+        {% if section.block_image_4 %}
+          {% include 'image-element' with image: section.block_image_4, figure_classes: "block-img" %}
+        {% endif %}
+        <h3>{{ section.block_title_4 }}</h3>
+        <p>{{ section.block_content_4 }}</p>
+      </div>
+    {% endif %}
+    <!-- end block 4 -->
+
+    <!-- end columns -->
+  </div>
+  <!-- end section body -->
+
+  <!-- start section footer -->
+  {% if section.show_footer %}
+    <footer id="{{ section_name }}-footer" class="multi-col-footer">{{ section.footer_text }}</footer>
+  {% endif %}
+  <!-- end section footer -->
+</section>
+
+{% schema %}
+  {
+  "name": "multi-col-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Configuration"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_header",
+      "label": "Show Section Header",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "section_name",
+      "label": "Section Name"
+    },
+    {
+      "type": "richtext",
+      "id": "header_text",
+      "label": "Header Text"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wide",
+      "options": [
+        {
+          "value": "half",
+          "label": "Half"
+        },
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "img_width",
+      "label": "Block Image Height",
+      "default":200,
+      "min": 150,
+      "max": 300,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "radio",
+      "id": "is_card",
+      "label": "Block Style",
+      "default": "",
+      "options": [
+        {
+          "value": "",
+          "label": "No Style"
+        },
+        {
+          "value": "card",
+          "label": "Card"
+        }
+      ]
+    },
+    {
+      "type": "radio",
+      "id": "header_align",
+      "label": "Header Alignment",
+      "default": "start",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "radio",
+      "id": "block_align",
+      "label": "Block Alignment",
+      "default": "start",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "radio",
+      "id": "footer_align",
+      "label": "Footer Alignment",
+      "default": "start",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Block One"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_block_1",
+      "label": "Show Block 1",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "block_image_1",
+      "label": "Image Picker"
+    },
+    {
+      "type": "text",
+      "id": "block_title_1",
+      "label": "Header Title",
+      "default": "<p>defualt</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "block_content_1",
+      "label": "Block Content",
+      "default": "<p>defualt</p>"
+    },
+    {
+      "type": "header",
+      "content": "Block Two"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_block_2",
+      "label": "Show Block 2",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "block_image_2",
+      "label": "Image Picker"
+    },
+    {
+      "type": "text",
+      "id": "block_title_2",
+      "label": "Header Title",
+      "default": "<p>defualt</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "block_content_2",
+      "label": "Block Content",
+      "default": "<p>defualt</p>"
+    },
+    {
+      "type": "header",
+      "content": "Block Three"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_block_3",
+      "label": "Show Block 3",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "block_image_3",
+      "label": "Image Picker"
+    },
+    {
+      "type": "text",
+      "id": "block_title_3",
+      "label": "Header Title",
+      "default": "<p>defualt</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "block_content_3",
+      "label": "Block Content",
+      "default": "<p>defualt</p>"
+    },
+    {
+      "type": "header",
+      "content": "Block Four"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_block_4",
+      "label": "Show Block 4",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "block_image_4",
+      "label": "Image Picker"
+    },
+    {
+      "type": "text",
+      "id": "block_title_4",
+      "label": "Header Title",
+      "default": "<p>defualt</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "block_content_4",
+      "label": "Block Content",
+      "default": "<p>defualt</p>"
+    },
+    {
+      "type": "header",
+      "content": "Section Footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_footer",
+      "label": "Show Section Footer",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "footer_text",
+      "label": "Footer Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multi Column Section",
+      "category": "template"
+    }
+  ]
+}
+{% endschema %}

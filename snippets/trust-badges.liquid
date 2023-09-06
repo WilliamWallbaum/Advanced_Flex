@@ -1,0 +1,19 @@
+<div class="trust-badges">
+  {% include 'image-element',
+    image: images['Advanced-Affordable-Hearing_American-Badge.png'],
+    alt: 'American owned and operated',
+    loading: 'lazy'
+  %}
+  {% include 'image-element',
+    image: images['Advanced-Affordable-Hearing_Money-Back-Guarantee.png'],
+    alt: '100% money-back guarantee',
+    loading: 'lazy'
+  %}
+</div>
+{% style %}
+  .trust-badges {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+    justify-items: center;
+  }
+{% endstyle %}

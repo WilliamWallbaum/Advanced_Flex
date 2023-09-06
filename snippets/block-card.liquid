@@ -1,0 +1,16 @@
+{% comment %}
+  // block-card.liquid
+  This is the Card template.
+{% endcomment %}
+
+<div class="card col-{{ col_num }}" {{ block.shopify_attributes }}>
+  {% if block.block_image %}
+    {% include 'image-element' with image: block.block_image %}
+  {% endif %}
+  <h3>This is a block {{ block.block_title }}</h3>
+  {{ block.block_content }}
+  <p>
+    Block Type: {{ block.type }}, Column: {{ block.col_num }}
+    {{ col }}
+  </p>
+</div>

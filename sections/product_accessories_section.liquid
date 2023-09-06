@@ -1,0 +1,444 @@
+{% comment %}
+  ** Product - main content area **
+  - Product template
+{% endcomment %}
+
+{% assign id = section.id %}
+{% assign section = section %}
+{% comment %} Layout {% endcomment %}
+{% assign width = section.width %}
+{% assign padding_top = section.padding_top %}
+{% assign padding_bottom = section.padding_bottom %}
+
+{% liquid
+  assign selected_variant = product.selected_variant
+
+  if product.variants.size == 1 or settings.select_first_available_variant
+    assign selected_variant = product.selected_or_first_available_variant
+  endif
+%}
+
+<div class="product-{{ product.id }} section is-width-{{ width }}">
+  <header id="section-header" class="is-width-{{ section.width }} product-variant-header">
+    <h1>The {{ product.title }}</h1>
+
+    {% if section.show_reviews %}
+      {% comment %} Yotpo Reviews {% endcomment %}
+      <div class="yotpo bottomLine" data-product-id="{{ product.id }}"></div>
+    {% endif %}
+
+    {% if section.show_header_text %}
+      <h2>{{ section.section_title }}</h2>
+      <p>{{ section.instructions }}</p>
+    {% endif %}
+  </header>
+  {%
+    render 'product_accessories',
+    product: product,
+    sold_out_options: settings.sold_out_options,
+    selected_variant: selected_variant,
+    width: width,
+    display_sku: section.settings.display_sku,
+    display_social_buttons: section.settings.display_social_buttons,
+    display_tags: section.settings.display_tags,
+    display_thumbnails: section.settings.display_thumbnails,
+    display_type: section.settings.display_type,
+    display_vendor: section.settings.display_vendor,
+    enable_product_lightbox: section.settings.enable_product_lightbox,
+    enable_shopify_product_badges: section.settings.enable_shopify_product_badges,
+    enable_thumbnail_slider: section.settings.enable_thumbnail_slider,
+    enable_zoom: section.settings.enable_zoom,
+    gallery_arrows: section.settings.gallery_arrows,
+    product_description_position: section.settings.product_description_position,
+    product_height: section.settings.product_height,
+    product_images_position: settings.product_images_position,
+    set_product_height: section.settings.set_product_height,
+    show_payment_button: section.settings.show_payment_button,
+    size_chart: settings.size_chart,
+    slideshow_transition: section.settings.slideshow_transition,
+    stickers_enabled: settings.stickers_enabled,
+    tag_style: settings.tag_style,
+    thumbnail_position: section.settings.thumbnail_position,
+    video_looping: section.settings.video_looping,
+  %}
+</div>
+
+{% comment %} JavaScript {% endcomment %}
+<script
+  type="application/json"
+  data-section-id="{{ section.id }}"
+  data-section-data
+>
+  {
+    "display_savings": {{ section.settings.display_savings | json }},
+    "gallery_arrows": {{ section.settings.gallery_arrows | json }},
+    "thumbnail_arrows": {{ section.settings.gallery_arrows | json }},
+    "enable_zoom": {{ section.settings.enable_zoom | json }},
+    "enable_product_lightbox": {{ section.settings.enable_product_lightbox | json }},
+    "enable_thumbnail_slider": {{ section.settings.enable_thumbnail_slider | json }},
+    "slideshow_speed": {{ section.settings.slideshow_speed | json }},
+    "slideshow_transition": {{ section.settings.slideshow_transition | json }},
+    "thumbnails_enabled": {{ section.settings.display_thumbnails | json }},
+    "thumbnail_position": {{ section.settings.thumbnail_position | json }},
+    "product_media_amount": {{ product.media.size }},
+    "template": "classic"
+  }
+</script>
+
+<script src="{{ 'z__jsProduct.js' | asset_url }}"></script>
+
+{% style %}
+  #section-header {
+    margin: var(--global-p1) 0;
+  }
+  #section-header h1 {
+    font-size: calc(var(--text-basic) * 3);
+    text-align: center;
+    border-bottom: 2px solid;
+  }
+  .yotpo.bottomLine {
+    margin-top: -16px;
+  }
+  #section-header .yotpo .yotpo-display-wrapper .standalone-bottomline {
+    display: grid;
+    justify-items: center;
+  }
+  #section-header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline a.text-m {
+    display: none;
+  }
+  #section-header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline .yotpo-icon {
+    font-size: calc(var(--text-basic) * 1.3);
+  }
+  /* Make the second star larger */
+  #section-header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline .yotpo-icon:nth-child(2),
+  #section-header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline .rating-star:nth-child(4) {
+    font-size: calc(var(--text-basic) * 1.5);
+  }
+  /* Make the middle star even larger */
+  #section-header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline .rating-star:nth-child(3) {
+    font-size: calc(var(--text-basic) * 1.9); /* Adjust the size of the middle star */
+  }
+  #section-header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-stars {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: baseline;
+    justify-items: center;
+  }
+  #section-header .yotpo .yotpo-display-wrapper .standalone-bottomline .yotpo-bottomline {
+    background-color: white;
+    padding: 0 var(--global-p1);
+  }
+  .purchase-details__quantity.product-quantity-box.quantity-box--box {
+      display: none;
+  }
+  #price-box {
+    background-color: var(--primary-color);
+    padding: calc(var(--global-p1)*.1) calc(var(--global-p1)*2);
+    width: fit-content;
+    margin-bottom: var(--global-p1);
+  }
+  #price-box h2{
+    color: var(--color-bg);
+  }
+  @media only screen and (max-width: 798px) {
+
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Product Accessories",
+  "tag": "section",
+  "class": "product-template product-main has-sidebar-option jsProduct product-accessories",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "product_breadcrumb",
+      "label": "Show breadcrumb links"
+    },
+    {
+      "type": "header",
+      "content": "Product gallery"
+    },
+    {
+      "type": "checkbox",
+      "id": "display_thumbnails",
+      "label": "Show thumbnails",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "gallery_arrows",
+      "label": "Show arrows",
+      "info": "Applies to desktop only.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_zoom",
+      "label": "Magnify on hover",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_product_lightbox",
+      "label": "Enable lightbox",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "slideshow_speed",
+      "label": "Gallery speed",
+      "min": 0,
+      "max": 6,
+      "unit": "sec",
+      "default": 0,
+      "info": "Set to 0 to disable autoplay."
+    },
+    {
+      "type": "select",
+      "id": "slideshow_transition",
+      "label": "Gallery transition",
+      "options": [
+        {
+          "value": "slide",
+          "label": "Slide"
+        },
+        {
+          "value": "fade",
+          "label": "Fade"
+        }
+      ],
+      "default": "slide"
+    },
+    {
+      "type": "select",
+      "id": "thumbnail_position",
+      "label": "Thumbnails",
+      "options": [
+        {
+          "value": "left-thumbnails",
+          "label": "Left"
+        },
+        {
+          "value": "right-thumbnails",
+          "label": "Right"
+        },
+        {
+          "value": "bottom-thumbnails",
+          "label": "Bottom"
+        }
+      ],
+      "default": "bottom-thumbnails"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_thumbnail_slider",
+      "label": "Enable thumbnail slider",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Product information"
+    },
+    {
+      "type": "checkbox",
+      "id": "display_vendor",
+      "label": "Show vendor",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "display_sku",
+      "label": "Show SKU",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_review_stars",
+      "label": "Show star rating",
+      "info": "Reviews app must be enabled. [Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360008549274#section2)",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "display_savings",
+      "label": "Show price savings",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "display_collections",
+      "label": "Show collections",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "display_type",
+      "label": "Show type",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "display_tags",
+      "label": "Show tags",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "display_social_buttons",
+      "label": "Show social media share icons",
+      "default": true
+    },
+    {
+      "type": "radio",
+      "id": "product_description_position",
+      "label": "Description position",
+      "options": [
+        {
+          "value": "top",
+          "label": "Above 'add to cart'"
+        },
+        {
+          "value": "bottom",
+          "label": "Below 'add to cart'"
+        }
+      ],
+      "default": "top"
+    },
+    {
+      "type": "header",
+      "content": "Dynamic Checkout Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_button",
+      "label": "Show dynamic checkout button",
+      "info": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https:\/\/help.shopify.com\/manual\/using-themes\/change-the-layout\/dynamic-checkout)",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Media",
+      "info": "Learn more about [media types](https://help.shopify.com/en/manual/products/product-media)"
+    },
+    {
+      "type": "radio",
+      "id": "product_images_position",
+      "label": "Media position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "set_product_height",
+      "label": "Set height of product media",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "product_height",
+      "label": "Product media height",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "default": 500,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "video_looping",
+      "label": "Enable video looping",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "options": [
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ],
+      "default": "standard"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top spacing",
+      "min": 0,
+      "max": 80,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom spacing",
+      "min": 0,
+      "max": 80,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "animation",
+      "label": "Animation",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "fadeIn",
+          "label": "Fade in"
+        },
+        {
+          "value": "fadeInDown",
+          "label": "Fade in down"
+        },
+        {
+          "value": "fadeInLeft",
+          "label": "Fade in left"
+        },
+        {
+          "value": "fadeInRight",
+          "label": "Fade in right"
+        },
+        {
+          "value": "slideInLeft",
+          "label": "Slide in left"
+        },
+        {
+          "value": "slideInRight",
+          "label": "Slide in right"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Accessories"
+    }
+  ]
+}
+{% endschema %}

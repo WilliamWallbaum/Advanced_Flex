@@ -1,93 +1,65 @@
 {% assign main_collection = product.collections.first %}
+{% assign width = section.settings.width %}
 
 {% style %}
   #product-recommendations {
     padding: var(--global-p2);
   }
-
-  .product-grid {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    padding-top: var(--global-p2);
-  }
-
-  .product-card {
-    background-color: #FFFFFF;
-    padding-bottom: var(--global-p2);
-    border-radius: var(--global-radius);
-    box-shadow: var(--global-shadow);
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
-    flex: 1;
-  }
-
-  .product-card:hover {
-    box-shadow: var(--global-shadow);
-    transform: translateY(-5px);
-  }
-
-  .product-image {
-    margin-bottom: var(--global-p1);
-  }
-
-  .product-image img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: var(--global-radius) var(--global-radius) 0 0;
-  }
-
-  .product-card h4 {
-    padding: 0  var(--global-p2);
-  }
-
-  /* Responsive Design */
-  @media screen and (max-width: 767px) {
-    .product-grid {
-      flex-direction: column;
-    }
-  }
 {% endstyle %}
 
 <!-- Product Recommendations -->
 {% if section.settings.show_section %}
-  <section id="product-recommendations" class="section">
-    <h2>{{ section.settings['recommendation-title'] }}</h2>
-    {% if section.settings['similar-products'] %}
-      <div id="similar-products">
-        <h3>{{ section.settings['similar-products-title'] }}</h3>
+  <div
+    id="product-recommendations"
+    class="section is-width-{{ width }} product-recommendations"
+    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.product-limit }}&intent={{ section.settings['product-type'] }}"
+  >
+    <header>
+      <h2>{{ section.settings['recommendation-title'] }}</h2>
+      <h3>{{ section.settings['similar-products-title'] }}</h3>
+    </header>
 
-        <div class="product-grid">
-          {% for product in main_collection.products limit: section.settings['product-limit'] %}
-            <a href="{{ product.url }}">
-              <div class="product-card">
-                {% if section.settings['show-product-image'] %}
-                  <figure class="product-image">
-                    <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
-                  </figure>
-                {% endif %}
-                {% if section.settings.show_title %}
-                  <h4>{{ product.title }}</h4>
-                {% endif %}
-                {% if section.settings.show_price %}
-                  <p>{{ product.price | money }}</p>
-                {% endif %}
-                {% if section.settings.show_description %}
-                  <p>{{ product.description }}</p>
-                {% endif %}
-              </div>
-            </a>
-          {% endfor %}
-        </div>
-      </div>
-    {% endif %}
-  </section>
+    <div class="product-grid">
+      {% if section.settings['product-type'] == 'related' %}
+        {% for product in recommendations.products limit: section.settings['product-limit'] %}
+          {% include 'product-card',
+            show_show_product_description: section.settings.show_description,
+            button_label: section.settings.button_label,
+            button_class: section.settings.button_class,
+            button_style: section.settings.button_style,
+            card_width: section.settings.card_width
+          %}
+        {% endfor %}
+      {% elsif section.settings['product-type'] == 'complementary' %}
+        {% for product in recommendations.products limit: section.settings['product-limit'] %}
+          {% include 'product-card',
+            show_show_product_description: section.settings.show_description,
+            button_label: section.settings.button_label,
+            button_class: section.settings.button_class,
+            button_style: section.settings.button_style,
+            card_width: section.settings.card_width
+          %}
+        {% endfor %}
+      {% else %}
+        {% for product in main_collection.products limit: section.settings['product-limit'] %}
+          {% include 'product-card',
+            show_show_product_description: section.settings.show_description,
+            button_label: section.settings.button_label,
+            button_class: section.settings.button_class,
+            button_style: section.settings.button_style,
+            card_width: section.settings.card_width
+          %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
 {% endif %}
 
 {% schema %}
 {
-  "name": "Product Recommendation",
-  "class": "product-recommendation",
+  "name": "Product Recommendations",
+  "class": "product-recommendation-section",
+  "tag": "section",
   "settings": [
     {
       "type": "checkbox",
@@ -102,16 +74,113 @@
       "default": "Product Recommendations"
     },
     {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "standard",
+      "options": [
+        {
+          "value": "half",
+          "label": "Half"
+        },
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ]
+    },
+    {
       "type": "checkbox",
       "id": "similar-products",
       "label": "Show Similar Products",
       "default": true
     },
     {
+      "type": "radio",
+      "id": "product-type",
+      "label": "Product Type",
+      "options": [
+        {
+          "value": "complementary",
+          "label": "Complementary Products"
+        },
+        {
+          "value": "related",
+          "label": "Related Products"
+        },
+        {
+          "value": "collection",
+          "label": "Collection"
+        }
+      ],
+      "default": "complementary"
+    },
+    {
+      "type": "header",
+      "content": "Product Card",
+      "info": "Save the page to reload the cards, sometimes you might need to reload the page, for changes to appear."
+    },
+    {
       "type": "text",
       "id": "similar-products-title",
       "label": "Similar Products Title",
       "default": "Similar Products"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label"
+    },
+    {
+      "type": "select",
+      "id": "button_class",
+      "label": "Button Class",
+      "options": [
+        {
+          "value": "btn",
+          "label": "Default Button"
+        },
+        {
+          "value": "btn-primary",
+          "label": "Primary Button"
+        },
+        {
+          "value": "btn-secondary",
+          "label": "Secondary Button"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button Style",
+      "options": [
+        {
+          "value": "btn--small",
+          "label": "Small Button"
+        },
+        {
+          "value": "btn--large",
+          "label": "Large Button"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "card_width",
+      "label": "Card Width",
+      "min": 100,
+      "max": 360,
+      "step": 20,
+      "default": 260
     },
     {
       "type": "checkbox",
@@ -142,10 +211,39 @@
       "id": "product-limit",
       "label": "Product Limit",
       "min": 1,
-      "max": 6,
+      "max": 8,
       "step": 1,
-      "default": 3
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Recommendations"
     }
   ]
 }
 {% endschema %}
+
+{% javascript %}
+  const handleIntersection = (entries, observer) => {
+    if (!entries[0].isIntersecting) return;
+    observer.unobserve(productRecommendationsSection);
+    const url = productRecommendationsSection.dataset.url;
+    fetch(url)
+      .then(response => response.text())
+      .then(text => {
+        const html = document.createElement('div');
+        html.innerHTML = text;
+        const recommendations = html.querySelector('.product-recommendations');
+        if (recommendations && recommendations.innerHTML.trim().length) {
+          productRecommendationsSection.innerHTML = recommendations.innerHTML;
+        }
+      })
+      .catch(e => {
+        console.error(e);
+      });
+  };
+  const productRecommendationsSection = document.querySelector('.product-recommendations');
+  const observer = new IntersectionObserver(handleIntersection, {rootMargin: '0px 0px 200px 0px'});
+  observer.observe(productRecommendationsSection);
+{% endjavascript %}

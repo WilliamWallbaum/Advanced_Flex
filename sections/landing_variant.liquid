@@ -24,6 +24,7 @@
         <div class="card">
           <img
             src="{{ leftVariant.featured_image.src | img_url: 'original' }}"
+            loading="lazy"
             alt="{{ leftVariant.featured_image.alt }}"
             width="{{ leftVariant.featured_image.width }}"
             height="{{ leftVariant.featured_image.height }}"
@@ -46,6 +47,7 @@
         <div class="card">
           <img
             src="{{ pairVariant.featured_image.src | img_url: 'original' }}"
+            loading="lazy"
             alt="{{ pairVariant.featured_image.alt }}"
             width="{{ pairVariant.featured_image.width }}"
             height="{{ pairVariant.featured_image.height }}"
@@ -66,6 +68,7 @@
         <div class="card">
           <img
             src="{{ rightVariant.featured_image.src | img_url: 'original' }}"
+            loading="lazy"
             alt="{{ rightVariant.featured_image.alt }}"
             width="{{ rightVariant.featured_image.width }}"
             height="{{ rightVariant.featured_image.height }}"
@@ -162,20 +165,23 @@
     {
       "type": "text",
       "id": "section_title",
-      "label": "Section Title",
+      "label": "Variant Title",
       "default": "Flexible Purchase Options"
     },
     {
-      "type": "textarea",
+      "type": "richtext",
       "id": "instructions",
-      "label": "Instructions",
-      "default": "Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!"
+      "label": "Variant Copy",
+      "default": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!</p>"
     },
     {
       "type": "product",
       "id": "product",
       "label": "Product"
     }
-  ]
+  ],
+  "presets" : [{
+    "name": "Blue Wave Variants"
+  }]
 }
 {% endschema %}

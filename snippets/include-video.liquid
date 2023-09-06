@@ -1,6 +1,6 @@
 {% comment %}
-** Video - dynamic **
-- Draggable section
+  ** Video - dynamic **
+  - Draggable section
 {% endcomment %}
 
 {% comment %} Assign object as block or section {% endcomment %}
@@ -120,31 +120,38 @@
 {% endstyle %}
 
 {% comment %} HTML markup {% endcomment %}
-<section class="featured-video
-                section
-                {{ object.settings.css_class }}
-                is-width-{{ object.settings.width }}
-                {% if object.settings.mobile_text_below_video == true %}
-                  mobile-text--below-media
-                  {% else %}
-                  mobile-text--over-media
-                {% endif %}
-                {% if video_exists %} has-video-added {% endif %}
-                video-controls-enabled--{{ object.settings.controls }}"
-        {% if object.settings.animation != "none" %}
-          data-scroll-class="{{ object.settings.animation }}"
-        {% endif %}>
-  <div class="container
-              video__container
-              {% if object.settings.width == 'wide' or object.settings.width == 'half' %}
-                equal-columns--outside-trim
-              {% endif %}">
+<section
+  class="
+    featured-video
+    section
+    {{ object.settings.css_class }}
+    is-width-{{ object.settings.width }}
+    {% if object.settings.mobile_text_below_video == true %}
+      mobile-text--below-media
+      {% else %}
+      mobile-text--over-media
+    {% endif %}
+    {% if video_exists %} has-video-added {% endif %}
+    video-controls-enabled--{{ object.settings.controls }}
+  "
+  {% if object.settings.animation != 'none' %}
+    data-scroll-class="{{ object.settings.animation }}"
+  {% endif %}
+>
+  <div
+    class="
+      container
+      video__container
+      {% if object.settings.width == 'wide' or object.settings.width == 'half' %}
+        equal-columns--outside-trim
+      {% endif %}
+    "
+  >
     <div class="one-whole column">
       <div class="video-wrapper overlay--{{ object.settings.overlay_style }} video-present--{{ video_exists }} video-controls--{{ object.settings.controls }}">
         {% if image != blank %}
           <div class="image-wrapper" data-image-element>
-            {%
-              render 'image-element',
+            {% render 'image-element',
               image: image,
               alt: image.alt,
               additional_classes: 'placeholder-img',
@@ -163,11 +170,21 @@
         {% if video_exists %}
           {% if iframe_video != blank %}
             <div class="plyr__video-embed video-{{ id }}" data-video-element>
-            {% if iframe_video.type == 'youtube' %}
-              <iframe src="https://www.youtube.com/embed/{{ iframe_video.id }}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1" allowfullscreen allowtransparency allow="autoplay"></iframe>
-            {% elsif iframe_video.type == 'vimeo' %}
-              <iframe src="https://player.vimeo.com/video/{{ iframe_video.id }}?loop=false&amp;byline=false&amp;portrait=false&amp;title=false&amp;speed=true&amp;transparent=0&amp;gesture=media" allowfullscreen allowtransparency allow="autoplay"></iframe>
-            {% endif %}
+              {% if iframe_video.type == 'youtube' %}
+                <iframe
+                  src="https://www.youtube.com/embed/{{ iframe_video.id }}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+                  allowfullscreen
+                  allowtransparency
+                  allow="autoplay"
+                ></iframe>
+              {% elsif iframe_video.type == 'vimeo' %}
+                <iframe
+                  src="https://player.vimeo.com/video/{{ iframe_video.id }}?loop=false&amp;byline=false&amp;portrait=false&amp;title=false&amp;speed=true&amp;transparent=0&amp;gesture=media"
+                  allowfullscreen
+                  allowtransparency
+                  allow="autoplay"
+                ></iframe>
+              {% endif %}
             </div>
           {% elsif html5_video != blank %}
             <div class="video-element" data-video-element>

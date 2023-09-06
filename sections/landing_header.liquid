@@ -1,26 +1,79 @@
 {% assign bg_image = section.settings.background_image | img_url: 'master' %}
 <script src="{{ 'addPair.js' | asset_url }}" defer></script>
 
+{% if section.settings.show_section %}
+  <section id="landing-mast">
+    <div id="mast-container">
+      <span id="empty"></span>
+      <div id="intro">
+        <div id="page-title">
+          <h1>{{ section.settings.title }}</h1>
+          {% if section.settings.qualifier %}
+            <p id="qualifier">{{ section.settings.qualifier }}</p>
+          {% endif %}
+        </div>
+
+        {% if section.settings.description != blank %}
+          <div id="intro-copy">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+
+        {% include 'video' %}
+      </div>
+
+      {% if section.settings.show_product %}
+        <div id="product">
+          {% capture product %}{{ section.settings.product }}{% endcapture %}
+          {% assign product = section.settings.product %}
+          {% capture productData %} {{ product | json }} {% endcapture %}
+          <figure id="product-image">
+            {% if section.settings.product_image %}
+              <img src="{{ section.settings.product_image | img_url: 'master' }}" alt="{{ product.title }}">
+            {% else %}
+              <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}">
+            {% endif %}
+          </figure>
+
+          <div id="price-box">
+            <p id="price-box-title">{{ section.settings.price_box_title }}</p>
+
+            <span id="price-box-inner">
+              <h3 id="price-box-compare">{{ product.compare_at_price | money }}</h3>
+              {% assign discountPrice = product.price | minus: section.settings.discount_amount %}
+              <h2 id="price-box-price">{{ discountPrice | money }}</h2>
+            </span>
+            <p>{{ section.settings.qualifier }}</p>
+          </div>
+        </div>
+      {% else %}
+        <figure id="featured-image">
+          <img src="{{ section.settings.product_image | img_url: 'master' }}" alt="{{ product.title }}">
+        </figure>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
+
 {% style %}
-    main {
+  main {
       margin-bottom: var(--global-p4);
     }
-    [id^="shopify-section-template-"] section {
+  [id^="shopify-section-template-"] section {
       width: {{ settings.desktop_section_width }}%;
       padding: var(--global-p1);
       margin: 0 auto;
     }
-    h2 {
+  h2 {
       font-size: calc(var(--text-basic) * 1.5);
       font-weight: 800;
     }
-    #landing-mast {
+  #landing-mast {
       width: 100%;
       background-image: url('{{ bg_image }}');
       background-repeat: no-repeat;
     }
-
-    #mast-container {
+  #mast-container {
       width: 80%;
       margin: 0 auto;
       display: grid;
@@ -30,47 +83,38 @@
         "empty intro product";
       padding-bottom: var(--global-p4);
     }
-
-    #empty {
+  #empty {
       grid-area: empty;
     }
-
-    #page-title h1 {
+  #page-title h1 {
       color: var(--color-bg);
     }
-
-    #page-title h1 {
+  #page-title h1 {
       font-size: 2rem;
       font-weight: 900;
     }
-
-    #qualifier {
+  #qualifier {
       font-size: 1rem;
       font-weight: 400;
       color: var(--color-bg);
     }
-
-    #intro {
+  #intro {
       grid-area: intro;
       font-size: 1.25rem;
-      font-weight: 600;
+      font-weight: 600;-
     }
-
-    #intro-copy {
+  #intro-copy {
       margin-top: var(--global-p1);
       margin-right: var(--global-p4);
     }
-
-    #product {
+  #product {
       grid-area: product;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-
-    #product-image { width: 100%; }
-
-    #price-box {
+  #product-image { width: 100%; }
+  #price-box {
       width: 100%;
       padding: var(--global-p1);
       display: flex;
@@ -86,8 +130,7 @@
       border-color: #1f5438;
       border-radius: 25px;
     }
-
-    #price-box-inner {
+  #price-box-inner {
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -99,14 +142,12 @@
       border-width: 1.5px;
       border-color: #1f5438;
     }
-
-    #price-box-title {
+  #price-box-title {
       font-size: calc(var(--text-basic) + 50%);
       font-weight: 800;
       line-height: 1;
     }
-
-    #price-box-compare {
+  #price-box-compare {
       margin-bottom: 0;
       font-size: calc(var(--text-basic) + 30%);
       font-weight: 500;
@@ -115,13 +156,11 @@
       text-decoration-color: red;
       text-decoration-thickness: 0.2rem;
     }
-
-    #price-box-price {
+  #price-box-price {
       margin-bottom: 0;
       font-size: calc(var(--text-basic) + 50%);
       font-weight: 600;
     }
-
   @media only screen and (max-width: 767px) {
     /* Small devices */
     [id^="shopify-section-template-"] section {
@@ -223,62 +262,23 @@
   }
 {% endstyle %}
 
-{% if section.settings.show_section %}
-  <section id="landing-mast">
-    <div id="mast-container">
-      <span id="empty"></span>
-      <div id="intro">
-        <div id="page-title">
-          <h1>{{ section.settings.title }}</h1>
-          {% if section.settings.qualifier %}
-            <p id="qualifier">{{ section.settings.qualifier }}</p>
-          {% endif %}
-        </div>
-
-        <div id="intro-copy">
-          {{ section.settings.description }}
-        </div>
-      </div>
-
-      {% if section.settings.show_product %}
-        <div id="product">
-          {% capture product %}{{ section.settings.product }}{% endcapture %}
-          {% assign product = section.settings.product %}
-          {% capture productData %} {{ product | json }} {% endcapture %}
-          <figure id="product-image">
-            {% if section.settings.product_image %}
-              <img src="{{ section.settings.product_image | img_url: 'master' }}" alt="{{ product.title }}">
-            {% else %}
-              <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}">
-            {% endif %}
-          </figure>
-
-          <div id="price-box">
-            <p id="price-box-title">{{ section.settings.price_box_title }}</p>
-            <span id="price-box-inner">
-              <h3 id="price-box-compare">{{ product.compare_at_price | money }}</h3>
-              <h2 id="price-box-price">{{ product.price | money }}</h2>
-            </span>
-          </div>
-        </div>
-      {% else %}
-        <figure id="featured-image">
-          <img src="{{ section.settings.product_image | img_url: 'master' }}" alt="{{ product.title }}">
-        </figure>
-      {% endif %}
-    </div>
-  </section>
-{% endif %}
-
 {% schema %}
 {
   "name": "Landing Page Mast",
+  "tag": "section",
+  "limit": 1,
+  "max_blocks": 1,
   "settings": [
     {
       "type": "checkbox",
       "id": "show_section",
       "label": "Show Section",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section Settings",
+      "info": "general section settings"
     },
     {
       "type": "image_picker",
@@ -296,9 +296,14 @@
       "label": "Qualifier"
     },
     {
-      "type": "textarea",
+      "type": "richtext",
       "id": "description",
       "label": "Description"
+    },
+    {
+      "type": "header",
+      "content": "Product",
+      "info": "Promotional Product"
     },
     {
       "type": "checkbox",
@@ -314,18 +319,152 @@
     {
       "type": "image_picker",
       "id": "product_image",
-      "label": "Product Image"
+      "label": "Product Image",
+      "info": "Optional product image."
+    },
+    {
+      "type": "header",
+      "content": "Price Box",
+      "info": "Information in the green price box"
     },
     {
       "type": "text",
       "id": "price_box_title",
       "label": "Price Box Title",
-      "default": "Now on Sale"
+      "default": "Now on Sale",
+      "info": "Title in the green box"
     },
     {
-      "type": "image_picker",
-      "id": "featured_image",
-      "label": "Featured Image"
+      "type": "text",
+      "label": "Discount Amount",
+      "id": "discount_amount",
+      "default": "50",
+      "info": "Enter the discount amount in dollars."
+    }
+    ],
+"blocks": [
+    {
+      "name": "Shopify Hosted Video",
+      "type": "video-stored",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "A Shopify-hosted video"
+        },
+        {
+          "type": "checkbox",
+          "id": "controls",
+          "label": "Show controls",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "autoplay",
+          "label": "Autoplay",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "mute",
+          "label": "Mute",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "download",
+          "label": "Allow download",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "loop",
+          "label": "Loop",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "External Video",
+      "type": "external-video",
+      "settings": [
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "accept": [
+            "youtube",
+            "vimeo"
+          ],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+          "label": "URL",
+          "info": "Video plays in the page."
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Video alt text",
+          "info": "Describe the video for customers using screen readers."
+        },
+        {
+          "type": "checkbox",
+          "id": "controls",
+          "label": "Show controls",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "autoplay",
+          "label": "Autoplay",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "mute",
+          "label": "Mute",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "encrypted",
+          "label": "Protect Privacy",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "fullscreen",
+          "label": "Allow Fullscreen",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "pnp",
+          "label": "Allow Picture-in-Picture",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "gyroscope",
+          "label": "Allow Gyroscope",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "accelerometer",
+          "label": "Allow Accelerometer",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "copy",
+          "label": "Allow Users to Copy to Clipboard",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blue Wave Mast"
     }
   ]
 }

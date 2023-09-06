@@ -3,6 +3,7 @@ Advance Flex is an updated and customized version of the flex theme used on Adva
  [sale.advancedhearing.com](https://sale.advancedhearing.com/)
 
 ## Templates
+
 ### Landing Page
 Landing pages have several custom sections. Each with their own set of options built to customize via the theme editor. All sections have the options to show or not. Plus it's built useing Shopify 2.0 template, allowing user to rearrange sections or add new sections. There are also global options in the Settings_Schema.
 
@@ -65,7 +66,39 @@ Allows user to set custom widths supporting mobile devices. ranges from 50-100%
 - Global Gap Range
 Allows user to set custom gap sizes from 1-5rem
 
-## Modules
+
+### Collection Section
+This section is a customizable and dynamic collection display component for an e-commerce website. It allows users to showcase a selected collection with various options for displaying products, including a banner, product cards, and a sidebar.
+
+#### Features and Customization:
+Show Collection Section: Allows users to toggle the visibility of the collection section on their website.
+
+#### Collection Settings:
+**Collection Name:** Users can provide a custom name for the collection that will be displayed as the header.
+**Select Collection:** Users can choose the specific collection to display products from.
+**Banner Image: Users** can upload an optional banner image to showcase at the top of the collection section.
+**Width:** Users can select from three width options for the collection section: "Half," "Standard," or "Wide."
+
+#### Product Card Settings:
+**Card Width in Pixels:** Users can set the width of the product cards in pixels.
+**Show Product Description:** Allows users to toggle the display of product descriptions on the product cards.
+**Button Text:** Users can specify the label for the button displayed on each product card. The default value is "View Product."
+**Button Style:** Users can choose from three button styles: "Default," "Primary," or "Secondary."
+**Button Class (optional):** Users can provide an optional custom class for the product card buttons.
+
+#### Sidebar Settings:
+**Show Sidebar:** Users can toggle the visibility of the sidebar on their website.
+
+#### Banner Settings:
+**Show Banner:** Allows users to toggle the visibility of the banner at the top of the collection section.
+**Banner Text:** Users can provide custom descriptive text for the banner.
+
+#### How It's Made:
+The section consists of a main container for the collection section, which includes optional elements such as a banner, product cards, and a sidebar, based on user settings. The product cards are dynamically generated based on the selected collection and the specified product count. Each product card includes information such as the product image, title, price, and a customizable button.
+
+The user can also set the width of the product cards, toggle the display of product descriptions, and choose the button style for the product cards. Additionally, the user has the option to display a banner at the top of the section with custom text and an optional banner image.
+
+## Modules/Assets
 ### addPair.js
 This module stores a function that takes on three variables:
 - the class of the elements to assign a click handler (`listeningEl`)

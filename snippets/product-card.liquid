@@ -1,0 +1,93 @@
+{% comment %}
+  Required values
+  show_product_description: <boolean>
+  ______________
+  Optional values
+  button_label: <string>
+  button_class: <string>
+  button_style: <string>
+  button_type: <string>
+  button_size: <string>
+  button_cart: <boolean>
+  button_attribute: <string>
+  card_width: <number>
+  custom_product: <object>
+  custom_image: <object>
+{% endcomment %}
+
+<a href="{{ product.url }}" class="product">
+  <div class="product-card" style="max-width: {{ card_width }}px">
+    {% assign use_product = custom_product | default: product %}
+    {% assign use_image = custom_image | default: use_product.featured_image %}
+
+    {% include 'image-element' with image: use_image, alt: use_image.alt, loading: 'lazy', width: use_image.width, height: use_image.height %}
+
+    <div class="product-card-body">
+      {% if section.settings.show_product_description %}
+        {{ use_product.description }}
+      {% endif %}
+
+      <h3>{{ use_product.title }}</h3>
+      <p class="price">{{ use_product.price | money_with_currency }}</p>
+    </div>
+
+    {% if button_cart == true %}
+      <footer class="product-card-footer">
+        <form action="/cart/add" method="post" id="product-form-{{ use_product.id }}" class="card-footer">
+          <input type="hidden" name="id" value="{{ use_product.id }}">
+          {% include 'button',
+            label: button_label,
+            class: button_class,
+            style: button_style,
+            href: use_product.url,
+            type: button_type,
+            size: button_size,
+            attribute: button_attribute
+          %}
+        </form>
+      </footer>
+    {% else %}
+      <footer class="product-card-footer">
+        {% include 'button',
+          label: button_label,
+          class: button_class,
+          style: button_style,
+          href: use_product.url,
+          type: button_type,
+          size: button_size,
+          attribute: button_attribute
+        %}
+      </footer>
+    {% endif %}
+  </div>
+</a>
+
+{% style %}
+  .product-grid {
+    display: grid;
+    padding: var(--global-p1) var(--global-p2);
+    grid-gap: var(--global-p2);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-items: center;
+  }
+  .product {
+    box-shadow: var(--global-shadow);
+    border-radius: var(--global-radius);
+    padding: var(--global-p1);
+  }
+  .product:hover {
+    transform: scale(1.05); /* increases the size slightly on hover */
+    box-shadow: var(--global-shadow-hover); /* adds a subtle shadow on hover */
+  }
+  .product-card {
+    height: 100%;
+    display: grid;
+    grid-gap: var(--global-p1);
+    text-align: center;
+    align-content: space-evenly;
+  }
+
+  .product-card-body .price {
+    font-size: calc(var(--text-basic)*1.5);
+  }
+{% endstyle %}

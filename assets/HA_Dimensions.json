@@ -1,0 +1,426 @@
+{
+   {
+      "hearing_aid": {
+         "brand": "HearClear™",
+         "model": "HCRA",
+         "for": "Mild to Moderate"
+      },
+      "controls": {
+         "program_button": true,
+         "volume": "rocker",
+         "trimpots": {
+            "equiped": false
+         }
+      },
+      "dimensions": {
+         "height": {
+            "mm": 30,
+            "in": "1.38"
+         },
+         "width": {
+            "mm": 9,
+            "in": ".35"
+         },
+         "depth": {
+            "mm": 11,
+            "in": ".43"
+         }
+      },
+      "technical_specifications": {
+         "Peak SSPL90 (dB SPL)": "131 dB",
+         "HFA SSPL 90 (dB SPL)": "122 dB",
+         "Peak Gain(dB)": "45 dB",
+         "HFA full on Gain (dB)": "35 dB",
+         "Total Harmonic Distort @ 500 Hz": "3%",
+         "Total Harmonic Distort @ 800 Hz": "2%",
+         "Total Harmonic Distort @ 1600 Hz": "2%",
+         "EQ Input Noise (dB)": "28",
+         "Battery Current (mA)": null,
+         "Frequency Range": "300-6200"
+      }
+   },
+   {
+      "hearing_aid": {
+         "brand": "HearClear™",
+         "model": "HCRD",
+         "for": "Noticeable to Severe"
+      },
+      "controls": {
+         "program_button": true,
+         "volume": "wheel",
+         "trimpots": {
+            "equiped": false
+         }
+      },
+      "dimensions": {
+         "height": {
+            "mm": 34,
+            "in": "1.34"
+         },
+         "width": {
+            "mm": 10,
+            "in": ".39"
+         },
+         "depth": {
+            "mm": 14,
+            "in": ".55"
+         }
+      },
+      "technical_specifications": {
+         "Peak SSPL90 (dB SPL)": "130 dB",
+         "HFA SSPL 90 (dB SPL)": "121 dB",
+         "HFA full on Gain (dB)": "43 dB",
+         "Total Harmonic Distort @ 500 Hz": "2%",
+         "Total Harmonic Distort @ 800 Hz": "2%",
+         "Total Harmonic Distort @ 1600 Hz": "1%",
+         "EQ Input Noise (dB)": "27",
+         "Battery Current (mA)": null,
+         "Frequency Range": "300-5500"
+      }
+   },
+   {
+      "hearing_aid": {
+         "brand": "HearClear™",
+         "model": "HCR3",
+         "for": "Noticeable to Severe"
+      },
+      "controls": {
+         "program_button": true,
+         "volume": "rocker",
+         "trimpots": {
+            "equiped": false
+         }
+      },
+      "dimensions": {
+         "height": {
+            "mm": 35,
+            "in": "1.38"
+         },
+         "width": {
+            "mm": 10,
+            "in": ".39"
+         },
+         "depth": {
+            "mm": 16,
+            "in": ".62"
+         }
+      },
+      "technical_specifications": {
+         "Peak SSPL90 (dB SPL)": "130 dB",
+         "HFA SSPL 90 (dB SPL)": "121 dB",
+         "HFA full on Gain (dB)": "48 dB",
+         "Total Harmonic Distort @ 500 Hz": "3%",
+         "Total Harmonic Distort @ 800 Hz": "3%",
+         "Total Harmonic Distort @ 1600 Hz": "3%",
+         "EQ Input Noise (dB)": "30",
+         "Battery Current (mA)": null,
+         "Frequency Range": "350-5000",
+         "Latency": "<15ms",
+         "Attack": "0.25ms",
+         "Release": "28.25ms"
+      }
+   },
+   {
+      "hearing_aid": {
+         "brand": "HearClear™",
+         "model": "HCGO",
+         "for": "Noticeable to Significant"
+      },
+      "controls": {
+         "program_button": true,
+         "volume": "rocker",
+         "trimpots": {
+            "equiped": false
+         }
+      },
+      "dimensions": {
+         "height": {
+            "mm": 35,
+            "in": "1.38"
+         },
+         "width": {
+            "mm": 10,
+            "in": ".39"
+         },
+         "depth": {
+            "mm": 16,
+            "in": ".62"
+         }
+      },
+      "technical_specifications": {
+         "Peak SSPL90 (dB SPL)": "131 dB",
+         "HFA SSPL 90 (dB SPL)": "122 dB",
+         "Peak Gain(dB)": "45 dB",
+         "HFA full on Gain (dB)": "35 dB",
+         "Total Harmonic Distort @ 500 Hz": "3%",
+         "Total Harmonic Distort @ 800 Hz": "2%",
+         "Total Harmonic Distort @ 1600 Hz": "2%",
+         "EQ Input Noise (dB)": "28",
+         "Battery Current (mA)": null,
+         "Frequency Range": "300-6200"
+      }
+   },
+   {
+      "hearing_aid": {
+         "brand": "HearClear™",
+         "model": "HCX2",
+         "for": "Noticeable to Severe"
+      },
+      "controls": {
+      "program_button": true,
+      "volume": "wheel",
+      "trimpots": {
+         "equiped": false
+      }
+      },
+      "dimensions": {
+         "height": {
+            "mm": 32,
+            "in": "1.26"
+         },
+         "width": {
+            "mm": 8,
+            "in": ".31"
+         },
+         "depth": {
+            "mm": 14,
+            "in": ".55"
+         }
+      },
+      "technical_specifications": {
+         "Peak SSPL90 (dB SPL)": "119 dB",
+         "HFA SSPL 90 (dB SPL)": "110 dB",
+         "Peak Gain(dB)": "44 dB",
+         "Reference Test Gain (dB)": "33 dB",
+         "HFA full on Gain (dB)": "34 dB",
+         "Total Harmonic Distort @ 500 Hz": "4%",
+         "Total Harmonic Distort @ 800 Hz": "3%",
+         "Total Harmonic Distort @ 1600 Hz": "3%",
+         "EQ Input Noise (dB)": "30",
+         "Frequency Range": "300-5500",
+         "Battery Current (mA)": "1.0",
+         "Long-Lasting Battery Size": "13"
+      }
+   },
+   {
+      "hearing_aid": {
+         "brand": "HearClear™",
+         "model": "HC64",
+         "for": "Severe to Profound"
+      },
+      "controls": {
+      "program_button": true,
+      "volume": "wheel",
+      "trimpots": {
+         "equiped": true
+      }
+      },
+      "dimensions": {
+         "height": {
+            "mm": 44,
+            "in": "1.77"
+         },
+         "width": {
+            "mm": 9,
+            "in": ".35"
+         },
+         "depth": {
+            "mm": 16,
+            "in": ".62"
+         }
+      },
+      "technical_specifications": {
+         "Peak SSPL90 (dB SPL)": "135 dB",
+         "HFA SSPL 90 (dB SPL)": "130 dB",
+         "Peak Gain(dB)": "74 dB",
+         "HFA full on Gain (dB)": "64 dB",
+         "Total Harmonic Distort @ 500 Hz": "3%",
+         "Total Harmonic Distort @ 800 Hz": "3%",
+         "Total Harmonic Distort @ 1600 Hz": "3%",
+         "EQ Input Noise (dB)": "30",
+         "Frequency Range": "200-5500",
+         "Latency": "<15ms",
+         "Attack": "0.25ms",
+         "Release": "28.25ms",
+         "Battery Current (mA)": "1.5",
+         "Long-Lasting Battery Size": "675"
+      }
+   },
+   {
+      "hearing_aid": {
+         "brand": "HearClear™",
+         "model": "HC12",
+         "for": "Noticeable to Severe"
+      },
+      "controls": {
+      "program_button": true,
+      "volume": "wheel",
+      "trimpots": {
+         "equiped": true
+      }
+      },
+      "dimensions": {
+         "height": {
+            "mm": 25,
+            "in": ".98"
+         },
+         "width": {
+            "mm": 7,
+            "in": ".27"
+         },
+         "depth": {
+            "mm": 12,
+            "in": ".47"
+         }
+      },
+      "technical_specifications": {
+         "Peak SSPL90 (dB SPL)": "90dB-125dB + 3dB",
+         "HFA SSPL 90 (dB SPL)": "109dB-120dB +/- 4dB",
+         "Peak Gain(dB)": null,
+         "HFA full on Gain (dB)": "Up to 45 dB +/- 5dB",
+         "Total Harmonic Distort @ 500 Hz": "1% - 4% Max",
+         "Total Harmonic Distort @ 800 Hz": "1% - 4% Max",
+         "Total Harmonic Distort @ 1600 Hz": "3%",
+         "EQ Input Noise (dB)": "35",
+         "Frequency Range": "200-5500",
+         "Latency": "<15ms",
+         "Attack": "0.25ms",
+         "Release": "28.25ms",
+         "Battery Current (mA)": "0.9",
+         "Long-Lasting Battery Size": "312"
+      }
+   },
+   {
+      "hearing_aid": {
+         "brand": "HearClear™",
+         "model": "HCZ3",
+         "for": "Significant to Severe"
+      },
+      "controls": {
+      "program_button": true,
+      "volume": "wheel",
+      "trimpots": {
+         "equiped": true
+      }
+      },
+      "dimensions": {
+         "height": {
+            "mm": 35,
+            "in": "1.37"
+         },
+         "width": {
+            "mm": 7,
+            "in": ".27"
+         },
+         "depth": {
+            "mm": 13,
+            "in": ".51"
+         }
+      },
+      "technical_specifications": {
+         "Peak SSPL90 (dB SPL)": "130 dB",
+         "HFA SSPL 90 (dB SPL)": "123 dB",
+         "Peak Gain(dB)": "58 dB",
+         "Reference Test Gain (dB)": "47 dB",
+         "HFA full on Gain (dB)": "48 dB",
+         "Total Harmonic Distort @ 500 Hz": "3%",
+         "Total Harmonic Distort @ 800 Hz": "1.5%",
+         "Total Harmonic Distort @ 1600 Hz": "1%",
+         "EQ Input Noise (dB)": "27 dB",
+         "Frequency Range": "200-5500",
+         "Battery Current (mA)": "1.0",
+         "Long-Lasting Battery Size": "13",
+         "Latency": "<15ms",
+         "Attack": "0.25ms",
+         "Release": "28.25ms"
+      }
+   },
+   {
+      "hearing_aid": {
+         "brand": "HearClear™",
+         "model": "HC206",
+         "for": "Noticeable to Significant"
+      },
+      "controls": {
+      "program_button": true,
+      "volume": "rocker",
+      "trimpots": {
+         "equiped": false
+      }
+      },
+      "dimensions": {
+         "height": {
+            "mm": 30,
+            "in": "1.18"
+         },
+         "width": {
+            "mm": 8,
+            "in": ".31"
+         },
+         "depth": {
+            "mm": 11,
+            "in": ".43"
+         }
+      },
+      "technical_specifications": {
+         "Peak SSPL90 (dB SPL)": "132 dB",
+         "HFA SSPL 90 (dB SPL)": "126 dB",
+         "Peak Gain(dB)": "45 dB",
+         "Reference Test Gain (dB)": "35 dB",
+         "HFA full on Gain (dB)": "38 dB",
+         "Total Harmonic Distort @ 500 Hz": "3%",
+         "Total Harmonic Distort @ 800 Hz": "3%",
+         "Total Harmonic Distort @ 1600 Hz": "3%",
+         "EQ Input Noise (dB)": "30",
+         "Battery Current (mA)": "1.0",
+         "Frequency Range": "200-5500",
+         "Latency": "<15ms",
+         "Attack": "0.25ms",
+         "Release": "28.25ms"
+      }
+   },
+   {
+      "hearing_aid": {
+         "brand": "HearClear™",
+         "model": "POCO Z",
+         "for": "Mild to Moderate"
+      },
+      "controls": {
+      "program_button": true,
+      "volume": "touch",
+      "trimpots": {
+         "equiped": false
+      }
+      },
+      "dimensions": {
+         "height": {
+            "mm": 23,
+            "in": ".91"
+         },
+         "width": {
+            "mm": 23,
+            "in": ".91"
+         },
+         "depth": {
+            "mm": 13,
+            "in": ".51"
+         }
+      },
+      "technical_specifications": {
+         "Peak SSPL90 (dB SPL)": "118 dB",
+         "HFA SSPL 90 (dB SPL)": "114 dB",
+         "Peak Gain(dB)": "31 dB",
+         "Reference Test Gain (dB)": null,
+         "HFA full on Gain (dB)": "26 dB",
+         "Total Harmonic Distort @ 500 Hz": "2%",
+         "Total Harmonic Distort @ 800 Hz": "2%",
+         "Total Harmonic Distort @ 1600 Hz": "2%",
+         "EQ Input Noise (dB)": "28",
+         "Battery Current (mA)": null,
+         "Frequency Range": "250-5000",
+         "Latency": "<15ms",
+         "Attack": "0.25ms",
+         "Release": "28.25ms"
+      }
+   }
+}
