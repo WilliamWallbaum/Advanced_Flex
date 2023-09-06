@@ -1,35 +1,41 @@
 /* Custom Colors */
+/* Custom Colors */
 :root {
-  --primary-color: #054f8e;
-  --p-ok: oklch(42.4% 0.122 251.64);
-  --p-fall: #054f8e;
-  --secondary-color: var(--s-ok), var(--s-fall);
-  --s-ok: oklch(45.86% 0.181 27.48);
-  --s-fall: #a50d12;
-  --foreground-color: var(--f-ok), var(--f-fall);
-  --f-ok: oklch(58.29% 0.118 237.54);
-  --f-fall: #2084b8;
-  --background-color: var(--b-ok), var(--b-fall);
-  --b-ok: oklch(60.3% 0.235 26.99);
-  --b-fall: #ed1c24;
-  --tertiary-color: var(--t-ok), var(--t-fall);
-  --t-ok: oklch(91.51% 0.19 106.71);
-  --t-fall: #f3ea21;
-  --tertiary-color-d: var(--td-ok), var(--td-fall);
-  --td-ok: oklch(80.55% 0.162 80.37);
-  --td-fall: #f5b21a;
-  --light-blue-fall: rgba(155, 217, 235, 0.9);
-  --light-blue-ok: oklch(85% 0.068 217 / 90%);
   --black: #000000;
   --global-p1: 1rem;
-  --global-p2: 2rem;
-  --global-p3: 3rem;
-  --global-p4: 4rem;
+  --global-p2: calc(var(--global-p1) * 2);
+  --global-p3: calc(var(--global-p1) * 3);
+  --global-p4: calc(var(--global-p1) * 4);
   --global-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   --global-shadow-hover: 0 0 20px rgba(0, 0, 0, 0.3);
   --global-radius: 0.5rem;
   --text-basic: 1rem;
 }
+
+/* Define color variables using OKLCH values if supported */
+@supports (color: color(display-p3 0 0 0)) {
+  :root {
+    --primary-color: oklch(42.4% 0.122 251.64);
+    --secondary-color: oklch(45.86% 0.181 27.48);
+    --tertiary-color: oklch(91.51% 0.19 106.71);
+    --foreground-color: oklch(58.29% 0.118 237.54);
+    --background-color: oklch(60.3% 0.235 26.99);
+    --light-blue: oklch(85% 0.068 217 / 90%);
+  }
+}
+
+/* Define color variables using HSL values as a fallback */
+@supports not (color: color(display-p3 0 0 0)) {
+  :root {
+    --primary-color: hsl(207.66 92% 29%);
+    --secondary-color: hsl(357.87 86% 35%);
+    --tertiary-color: hsl(57.42 90% 54%);
+    --foreground-color: hsl(200.49 71% 42%);
+    --background-color: hsl(357.64 85% 52%);
+    --light-blue: hsl(193.08 67% 76% / 0.9);
+  }
+}
+
 
 h1,
 h2 {
