@@ -1,16 +1,14 @@
 {% comment %}
-** Product - sections view **
-- Product template
-- Uses blocks
+  ** Product - sections view **
+  - Product template
+  - Uses blocks
 {% endcomment %}
 
 {% assign id = section.id %}
 {% comment %} Layout {% endcomment %}
+{% assign width = section.settings.width %}
 {% assign padding_top = section.settings.padding_top %}
 {% assign padding_bottom = section.settings.padding_bottom %}
-{% comment %} Advanced {% endcomment %}
-{% assign css_class = section.settings.css_class %}
-{% assign custom_css = section.settings.custom_css %}
 
 {% comment %} Section specific CSS {% endcomment %}
 {% style %}
@@ -24,11 +22,6 @@
       display: none;
     }
   {% endif %}
-
-  {% render 'css-loop',
-          css: custom_css,
-          id: id
-  %}
 {% endstyle %}
 
 {% assign collection_handles = product.collections | map: 'handle' %}
@@ -42,40 +35,50 @@
 {% assign product_tags = product.tags | join: ' ' %}
 
 {% comment %} HTML markup {% endcomment %}
-<section class="section
-                is-width-wide
-                {{ css_class }}
-                ">
+<section
+  class="
+    section
+    is-width-wide
+    {{ css_class }}
+  "
+>
   <div class="product-{{ product.id }}">
-    <div class="product_section
-                js-product_section
-                container
-                is-justify-center"
-                data-rv-handle="{{ product.handle }}">
+    <div
+      class="
+        product_section
+        js-product_section
+        container
+        is-justify-center
+      "
+      data-rv-handle="{{ product.handle }}"
+    >
+      {% for block in section.blocks %}
+        {% assign animation = block.settings.animation | default: 'none' %}
+        {% assign width = block.settings.width %}
 
-        {% for block in section.blocks %}
-          {% assign animation = block.settings.animation | default: 'none' %}
-          {% assign width = block.settings.width %}
-
-          <div id="shopify-section-{{ block.id }}" {{ block.shopify_attributes }}
-        class="shopify-section
-                product-sections__block
-                block__{{ block.type | downcase | replace: '_', '-' }}
-                {% if block.type == 'featured_collection' %}
-                  jsFeaturedCollection
-                {% elsif block.type == 'image_with_overlay' %}
-                  overlaid-header-option
-                {% elsif block.type == 'featured_product' %}
-                  jsProduct
-                {% elsif block.type == 'map' %}
-                  jsMap
-                {% elsif block.type == 'video' %}
-                  jsVideo
-                {% endif %}"
-          {% if animation != "none" %}
+        <div
+          id="shopify-section-{{ block.id }}"
+          {{ block.shopify_attributes }}
+          class="
+            shopify-section
+            product-sections__block
+            block__{{ block.type | downcase | replace: '_', '-' }}
+            {% if block.type == 'featured_collection' %}
+              jsFeaturedCollection
+            {% elsif block.type == 'image_with_overlay' %}
+              overlaid-header-option
+            {% elsif block.type == 'featured_product' %}
+              jsProduct
+            {% elsif block.type == 'map' %}
+              jsMap
+            {% elsif block.type == 'video' %}
+              jsVideo
+            {% endif %}
+          "
+          {% if animation != 'none' %}
             data-scroll-class="{{ animation }}"
-          {% endif %}>
-
+          {% endif %}
+        >
           {% if block.type == 'product_gallery' %}
             {% comment %}Product gallery{% endcomment %}
             {% style %}
@@ -92,14 +95,17 @@
               }
             {% endstyle %}
 
-            <section class="section
+            <section
+              class="
+                section
                 {{ css_class }}
                 is-width-{{ width }}
-                product-gallery__block">
+                product-gallery__block
+              "
+            >
               <div class="container product-gallery__container">
                 <div class="product__images one-whole column">
-                  {%
-                    render 'product__images',
+                  {% render 'product__images',
                     product: product,
                     display_thumbnails: block.settings.display_thumbnails,
                     thumbnail_position: block.settings.thumbnail_position,
@@ -154,18 +160,21 @@
             {% endstyle %}
 
             {% comment %} Product information {% endcomment %}
-            <section class="section
+            <section
+              class="
+                section
                 {{ css_class }}
                 product-info__block
-                is-width-{{ width }}">
+                is-width-{{ width }}
+              "
+            >
               <div class="one-whole column">
                 <div class="product__information has-product-sticker">
-
                   {% comment %} Sale sticker {% endcomment %}
                   {% if settings.stickers_enabled %}
                     {% render 'product-thumbnail__sticker',
-                            context: 'product',
-                            collection_handles: collection_handles
+                      context: 'product',
+                      collection_handles: collection_handles
                     %}
                   {% endif %}
 
@@ -199,7 +208,16 @@
 
                   {% comment %} Size chart Mobile {% endcomment %}
                   {% if settings.size_chart != blank or meta-size-chart %}
-                    <a href="javascript:;" class="product__size-chart size-chart--medium-down" data-fancybox data-src="#size-chart{{product.id}}" data-type="inline">{{ 'products.product.size_chart' | t }} {% render 'icon', name: 'right-caret' %}</a>
+                    <a
+                      href="javascript:;"
+                      class="product__size-chart size-chart--medium-down"
+                      data-fancybox
+                      data-src="#size-chart{{product.id}}"
+                      data-type="inline"
+                    >
+                      {{- 'products.product.size_chart' | t }}
+                      {% render 'icon', name: 'right-caret' -%}
+                    </a>
                     {% render 'popup-size-chart', product_id: product.id %}
                   {% endif %}
 
@@ -216,7 +234,7 @@
                         </style>
                       </noscript>
                       {% assign compare_at_price = false %}
-                    
+
                       {% if product.compare_at_price and product.compare_at_price != product.price %}
                         {% if product.compare_at_price_varies %}
                           {%- capture price_min -%}
@@ -226,7 +244,7 @@
                               value: product.compare_at_price_min,
                             -%}
                           {%- endcapture -%}
-                    
+
                           {%- capture price_max -%}
                             {%-
                               render 'price-ui-templates',
@@ -234,8 +252,10 @@
                               value: product.compare_at_price_max,
                             -%}
                           {%- endcapture -%}
-                    
-                          {%- assign compare_at_price = 'product.price.range_html' | t: price_min: price_min, price_max: price_max -%}
+
+                          {%- assign compare_at_price = 'product.price.range_html'
+                            | t: price_min: price_min, price_max: price_max
+                          -%}
                         {% else %}
                           {%- capture compare_at_price -%}
                             {%-
@@ -246,7 +266,7 @@
                           {%- endcapture -%}
                         {% endif %}
                       {% endif %}
-                    
+
                       {% if product.price_varies %}
                         {%- capture price_min -%}
                           {%-
@@ -255,7 +275,7 @@
                             value: product.price_min,
                           -%}
                         {%- endcapture -%}
-                    
+
                         {%- capture price_max -%}
                           {%-
                             render 'price-ui-templates',
@@ -263,8 +283,10 @@
                             value: product.price_max,
                           -%}
                         {%- endcapture -%}
-                    
-                        {%- assign price = 'product.price.range_html' | t: price_min: price_min, price_max: price_max -%}
+
+                        {%- assign price = 'product.price.range_html'
+                          | t: price_min: price_min, price_max: price_max
+                        -%}
                       {% else %}
                         {%- capture price -%}
                           {%-
@@ -274,7 +296,7 @@
                           -%}
                         {%- endcapture -%}
                       {% endif %}
-                    
+
                       {%-
                         render 'price-ui-templates',
                         template: 'price-ui',
@@ -285,19 +307,24 @@
                     </div>
                     {% comment %}Inject @pixelunion/shopify-price-ui/price-ui end{% endcomment %}
 
-
                     {% comment %} Size chart {% endcomment %}
                     {% if size_chart != blank or meta-size-chart %}
-                      <a href="javascript:;" class="product__size-chart medium-down--hidden" data-fancybox data-src="#size-chart{{ product.id }}" data-type="inline">{{ 'products.product.size_chart' | t }} {% render 'icon', name: 'right-caret' %}</a>
-                      {%
-                        render 'popup-size-chart',
-                        product_id: product.id
-                      %}
+                      <a
+                        href="javascript:;"
+                        class="product__size-chart medium-down--hidden"
+                        data-fancybox
+                        data-src="#size-chart{{ product.id }}"
+                        data-type="inline"
+                      >
+                        {{- 'products.product.size_chart' | t }}
+                        {% render 'icon', name: 'right-caret' -%}
+                      </a>
+                      {% render 'popup-size-chart', product_id: product.id %}
                     {% endif %}
                   </div>
 
                   {% comment %} Description - top {% endcomment %}
-                  {% if block.settings.product_description_position == "top" %}
+                  {% if block.settings.product_description_position == 'top' %}
                     {% if product.description != blank %}
                       <div class="description content">
                         {{ product.description | split: '<!-- split -->' | first }}
@@ -307,14 +334,12 @@
 
                   {% comment %} Purchase form {% endcomment %}
                   <div class="product-form-container">
-
-                  {% comment %} Notify form {% endcomment %}
-                  {% render 'product__notify-me-form', product: product %}
+                    {% comment %} Notify form {% endcomment %}
+                    {% render 'product__notify-me-form', product: product %}
 
                     {% comment %} Product form {% endcomment %}
                     {% unless collection_handles contains 'coming-soon' %}
-                      {%
-                        render 'product__form',
+                      {% render 'product__form',
                         context: 'product',
                         product: product,
                         sold_out_options: settings.sold_out_options,
@@ -326,7 +351,7 @@
                   </div>
 
                   {% comment %} Description - bottom {% endcomment %}
-                  {% if block.settings.product_description_position == "bottom" %}
+                  {% if block.settings.product_description_position == 'bottom' %}
                     {% if product.description != blank %}
                       <div class="description content bottom has-padding-top">
                         {{ product.description | split: '<!-- split -->' | first }}
@@ -335,7 +360,10 @@
                   {% endif %}
 
                   {% comment %} Collections, type, tags {% endcomment %}
-                  {% if block.settings.display_collections or block.settings.display_tags or block.settings.display_type %}
+                  {% if block.settings.display_collections
+                    or block.settings.display_tags
+                    or block.settings.display_type
+                  %}
                     <div class="product__classification-links has-padding-top">
                       {% if block.settings.display_collections %}
                         <p class="product__collections-list tags">
@@ -361,7 +389,12 @@
                           {% for tag in product.tags %}
                             {% unless tag contains 'meta-' %}
                               <span class="tag tag--{{ settings.tag_style }}">
-                                <a href="{{ routes.collections_url }}/{% if collection %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handle }}" title="{{ 'products.product.products_tagged' | t: tag: tag }}">{{ tag }}</a>
+                                <a
+                                  href="{{ routes.collections_url }}/{% if collection %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handle }}"
+                                  title="{{ 'products.product.products_tagged' | t: tag: tag }}"
+                                >
+                                  {{- tag -}}
+                                </a>
                               </span>
                             {% endunless %}
                           {% endfor %}
@@ -400,7 +433,7 @@
             {% comment %} Image with text {% endcomment %}
             {% include 'include-one-image-with-text', type: 'block' %}
 
-          {% elsif block.type == "blog" %}
+          {% elsif block.type == 'blog' %}
             {% comment %} Blog {% endcomment %}
             {% include 'include-featured-blog', type: 'block' %}
 
@@ -412,7 +445,7 @@
             {% comment %} Logo list {% endcomment %}
             {% include 'include-logo-list', type: 'block' %}
 
-          {% elsif block.type == "divider" %}
+          {% elsif block.type == 'divider' %}
             {% comment %} Divider {% endcomment %}
             {% include 'include-divider', type: 'block' %}
 
@@ -420,29 +453,30 @@
             {% comment %} Map {% endcomment %}
             {% include 'include-map', type: 'block' %}
 
-          {% elsif block.type == "page" %}
+          {% elsif block.type == 'page' %}
             {% comment %} Page {% endcomment %}
             {% include 'include-content-page', type: 'block' %}
 
           {% elsif block.type == 'recommended_products' %}
-          {% comment %} Recommended products {% endcomment %}
-          <section class="section is-width-{{ width }}" data-product-recommendations-container
-              {% if animation != "none" %}
+            {% comment %} Recommended products {% endcomment %}
+            <section
+              class="section is-width-{{ width }}"
+              data-product-recommendations-container
+              {% if animation != 'none' %}
                 data-scroll-class="{{ animation }}"
-              {% endif %}>
-          </section>
-
-          {% style %}
-            #shopify-section-{{ block.id }} {
-              padding-top: {{ block.settings.padding_top }}px;
-              padding-bottom: {{ block.settings.padding_bottom }}px;
-              width: 95%;
-              {% if block.settings.width == 'wide' %}
-                width: 100%;
               {% endif %}
-            }
-          {% endstyle %}
+            ></section>
 
+            {% style %}
+              #shopify-section-{{ block.id }} {
+                padding-top: {{ block.settings.padding_top }}px;
+                padding-bottom: {{ block.settings.padding_bottom }}px;
+                width: 95%;
+                {% if block.settings.width == 'wide' %}
+                  width: 100%;
+                {% endif %}
+              }
+            {% endstyle %}
           {% endif %}
         </div>
       {% endfor %}
@@ -477,7 +511,6 @@
 <script src="{{ 'z__jsProduct.js' | asset_url }}"></script>
 
 {% schema %}
-
 {
   "name": "Product - sections",
   "max_blocks": 15,
@@ -511,19 +544,24 @@
       "unit": "px"
     },
     {
-      "type": "header",
-      "content": "Advanced",
-      "info": "[Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360022329373)"
-    },
-    {
-      "type": "text",
-      "id": "css_class",
-      "label": "CSS Class"
-    },
-    {
-      "type": "textarea",
-      "id": "custom_css",
-      "label": "Custom CSS"
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "standard",
+      "options": [
+        {
+          "value": "half",
+          "label": "Half"
+        },
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ]
     }
   ],
   "blocks": [
@@ -3473,5 +3511,4 @@
     ]
   }
 }
-
 {% endschema %}
