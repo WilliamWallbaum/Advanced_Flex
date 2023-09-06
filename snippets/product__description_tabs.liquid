@@ -127,10 +127,12 @@
     flex-direction: row;
     justify-content: center;
   }
+  figure.image-element__wrap {
+    align-self: center;
+  }
 {% endstyle %}
 
 {% comment %} HTML markup {% endcomment %}
-
 <div id="tabs" class="tab-content section">
   <div class="tab-header">
     <button class="button-item"><a href="#section-1">Description</a></button>
@@ -157,20 +159,11 @@
     </p>
     <p>Warranty Included: 6 Month Limited Warranty and 30 Day Money Back Guarantee – Risk-Free!</p>
     <figure
-      title="Warranty Included:6 Month Limited Warranty and30 Day Money Back"
+      title="{{ images['puppy_warranty.jpg'].alt }}"
       data-pf-type="Image"
       style="display: flex; padding: 1em; align-content: center; flex-direction: column; flex-wrap: wrap;"
     >
-      <img
-        src="https://cdn.shopify.com/s/files/1/0586/6841/7209/t/18/assets/pf-7892f57e--puppywarranty5_1200x.jpg?v=1629305307"
-        srcset="https://cdn.shopify.com/s/files/1/0586/6841/7209/t/18/assets/pf-7892f57e--puppywarranty5.jpg?v=1629305307 1536w"
-        width="815"
-        height="160"
-        sizes="(min-width: 1536px) 1536px, (min-width: 1024px) 1280px, (min-width: 640px) 768px, 320px"
-        loading="lazy"
-        alt="Warranty Included:6 Month Limited Warranty and30 Day Money Back"
-        title="Warranty Included:6 Month Limited Warranty and30 Day Money Back"
-      >
+      {% include 'image-element', image: images.['puppy_warranty.jpg'], alt: images.['puppy_warranty.jpg'].alt %}
     </figure>
   </div>
 
@@ -180,7 +173,7 @@
       {% for product in collections.all.products limit: 3 %}
         <div class="similar-product">
           <a href="{{ product.url }}">
-            <img src="{{ product.featured_image.src | product_img_url: 'Large' }}" alt="{{ product.title }}">
+            {% include 'image-element', image: product.featured_image.src, alt: product.title %}
             <h4>{{ product.title }}</h4>
             <h5>{{ product.price | money }}</h5>
             {% if product.metafields.proddesc.technical_information.value %}
@@ -217,7 +210,7 @@
     <div style="display: flex; flex-direction: row;">
       <figure style="flex: 3;">
         {% if size_comparison %}
-          <img src="{{ size_comparison | img_url: 'Large' }}" alt="Size Comparison">
+          {% include 'image-element', image: size_comparison, alt: size_comparison.alt, object_fit: true %}
         {% endif %}
       </figure>
 
@@ -243,11 +236,15 @@
     <h2>What's in the Box</h2>
 
     <div style="display: flex; flex-direction: row;">
-      <figure style="flex: 3;">
-        {% if box_image %}
-          <img src="{{ box_image | img_url: 'Large' }}" alt="Here's what comes with your {{ product.title }}">
-        {% endif %}
-      </figure>
+      {% if box_image -%}
+        {%-
+          include 'image-element' with {
+          image: box_image,
+          alt: box_image.alt,
+          object_fit: true
+          }
+        %}
+      {% endif %}
 
       {% if product_accessories %}
         <ul>
@@ -262,7 +259,7 @@
               {% if product_accessories.manual.link.User %}
                 <li><a href="{{ product_accessories.manual.link.User }}">User Manual</a></li>
               {% endif %}
-              {% if product_accessories.manual.link.App %}
+              {% if product_accessories.manual.link.App != empty and product_accessories.manual.link.App != ' ' %}
                 <li><a href="{{ product_accessories.manual.link.App }}">App Manual</a></li>
               {% endif %}
             {% else %}
