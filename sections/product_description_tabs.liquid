@@ -5,248 +5,37 @@
 {% assign description_title = product.metafields.proddesc.description_title %}
 {% assign size_comparison = product.metafields.proddesc.size_comparison %}
 {% assign technical_information = product.metafields.proddesc.technical_information.value %}
-{% assign tech_info = product.metafields.proddesc.tech_info %}
+{% assign technical_specifications = technical_information.technical_specifications %}
+{% assign dimensions = technical_information.dimensions %}
+{% assign ha = technical_information.hearing_aid %}
 {% assign box_image = product.metafields.proddesc.box_image %}
 {% assign product_accessories = product.metafields.proddesc.box_list.value %}
 {% assign youtube = product.metafields.proddesc.product_video %}
 
-{% comment %} Section Specific CSS {% endcomment %}
-{% style %}
-  .button-item {
-    background-color: var(--f-fall);
-    background-color: var(--f-ok);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    border-style: none;
-    margin: calc(var(--global-p1)* .07);
-  }
-
-  .button-item a {
-    color: #fdfdfd;
-    font-family: var(--pf-primary-font);
-    font-weight: 700;
-    font-size: 18px;
-    padding: calc(var(--global-p1)* .5);
-    border-style: none;
-    text-decoration: none;
-  }
-
-  .button-item:hover,
-  .active.button-item {
-    background-color: var(--p-fall);
-    background-color: var(--p-ok);
-    color: #fff;
-  }
-
-  [id^="section-content-"] {
-    display: none;
-    padding: var(--global-p2);
-    flex-direction: column;
-  }
-
-  .active {
-    display: flex;
-  }
-
-  #tabs h2,
-  #tabs h3,
-  #tabs h4 {
-    padding: 0;
-    margin: 0;
-    font-weight: 700;
-  }
-
-  #comparison-products {
-    display: flex;
-    padding: var(--global-p1) 0;
-  }
-
-  .similar-product {
-    display: flex;
-    flex: 1;
-    margin: var(--global-p1);
-  }
-
-  .similar-product a {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .similar-product h4 {
-    font-size: x-large;
-    padding-top: var(--global-p1);
-  }
-
-  .similar-product h5 {
-    font-size: larger;
-    font-weight: 500;
-    padding-bottom: var(--global-p1);
-  }
-
-  .title-box {
-    border-bottom: 1px solid;
-    margin-bottom: var(--global-p1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .img-tbl {
-    display: flex;
-  }
-
-  .flex-fig {
-    margin: 1em 0;
-  }
-
-  .flex-fig img {
-    width: 100%;
-    margin:0;
-    padding:0;
-  }
-
-  table {
-    border-radius: var(--global-p2);
-  }
-
-  td,
-  th {
-    padding-left: var(--global-p1);
-    padding-right: var(--global-p1);
-    text-align: left;
-  }
-
-  table tr:nth-child(even) {
-    background-color: var(--light-blue-fall);
-    background-color: var(--light-blue-ok);
-  }
-
-  table tr:last-child td:first-child {
-    border-radius: 0 0 0 var(--global-p2);
-  }
-
-  table tr:last-child td:last-child {
-    border-radius: 0 0 var(--global-p2) 0;
-  }
-
-  table tbody tr {
-    border: none;
-  }
-
-  .video-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: var(--global-p1);
-  }
-
-  @keyframes slide-fade-in {
-    0% {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .tab-header {
-      flex: 1 1 0%;
-      color: #fdfdfd;
-      font-family: var(--pf-primary-font);
-      display: flex;
-      flex-direction: row;
-    }
-    .button-item.mobile-button,
-    .button-item.mobile-button.active {
-      display: none;
-    }
-
-    .button-item {
-      border-top-right-radius: 15px;
-      flex: 1 1 0%;
-    }
-
-    .button-item:not(:last-of-type) a {
-      border-right: 0;
-    }
-
-    .img-tbl {
-      flex-direction: row;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .tab-header {
-      display: none;
-    }
-    .mobile-button {
-      display: flex;
-    }
-    .button-item {
-      width: 100%;
-    }
-    .active {
-      display: flex;
-    }
-    /* set transition properties for the element */
-    [id^="section-content-"] {
-      height: 0;
-      padding: 0;
-      opacity: 0;
-      transition: height 0.3s ease-in-out, padding 0.3s ease-in-out,
-        opacity 0.3s ease-in-out;
-    }
-
-    /* update styles for the active class */
-    [id^="section-content-"].active {
-      height: auto;
-      padding: var(--global-p2);
-      opacity: 1;
-    }
-
-    .img-tbl {
-      flex-direction: column;
-    }
-  }
-{% endstyle %}
-
 {% comment %} HTML markup {% endcomment %}
 {% if settings.show_product_description_tabs %}
-  <section id="tabs" class="tab-content section">
+  <div id="tabs">
     <div class="tab-header">
       <button class="button-item">
-        <a href="#section-1">{{ settings.tab_1 }}</a>
+        <a href="#section-1" class="smooth-scroll">{{ settings.tab_1 }}</a>
       </button>
       <button class="button-item">
-        <a href="#section-2">{{ settings.tab_2 }}</a>
+        <a href="#section-2" class="smooth-scroll">{{ settings.tab_2 }}</a>
       </button>
       <button class="button-item">
-        <a href="#section-3">{{ settings.tab_3 }}</a>
+        <a href="#section-3" class="smooth-scroll">{{ settings.tab_3 }}</a>
       </button>
       <button class="button-item">
-        <a href="#section-4">{{ settings.tab_4 }}</a>
+        <a href="#section-4" class="smooth-scroll">{{ settings.tab_4 }}</a>
       </button>
       <button class="button-item">
-        <a href="#section-5">{{ settings.tab_5 }}</a>
+        <a href="#section-5" class="smooth-scroll">{{ settings.tab_5 }}</a>
       </button>
     </div>
 
     <div id="section-1" class="tab-content">
       <button class="button-item mobile-button active">
-        <a href="#section-1">{{ settings.tab_1 }}</a>
+        <a href="#section-1" class="smooth-scroll">{{ settings.tab_1 }}</a>
       </button>
 
       <div id="section-content-1" class="content active">
@@ -257,7 +46,7 @@
 
     <div id="section-2" class="tab-content">
       <button class="button-item mobile-button">
-        <a href="#section-2">{{ settings.tab_2 }}</a>
+        <a href="#section-2" class="smooth-scroll">{{ settings.tab_2 }}</a>
       </button>
 
       <div id="section-content-2" class="content">
@@ -271,39 +60,52 @@
           choice.
         </p>
         <p>Warranty Included: 6 Month Limited Warranty and 30 Day Money Back Guarantee – Risk-Free!</p>
-        <figure
-          title="Warranty Included:6 Month Limited Warranty and30 Day Money Back"
-          data-pf-type="Image"
-          style="display: flex; padding: 1em; align-content: center; flex-direction: column; flex-wrap: wrap;"
-        >
-          {% include 'image-element', image: images['puppy_warranty.jpg'], loading: 'lazy' %}
-        </figure>
+        {% include 'image-element', image: images.['puppy_warranty.jpg'], loading: 'lazy', alt: images.['puppy_warranty.jpg'].alt %}
       </div>
     </div>
 
     <div id="section-3" class="tab-content">
       <button class="button-item mobile-button">
-        <a href="#section-3">{{ settings.tab_3 }}</a>
+        <a href="#section-3" class="smooth-scroll">{{ settings.tab_3 }}</a>
       </button>
 
       <div id="section-content-3" class="content">
-        <h2>Compare Our Top Rechargeable Hearing Aids</h2>
-        <div id="comparison-products" style="flex-direction:row;">
+        <h2>Compare Our Top {{ product.collections.first.title }}</h2>
+        <div id="comparison-products">
           {% assign main_collection = product.collections.first %}
           {% for product in collections[main_collection.handle].products limit: 3 %}
             {% if product.handle != current_variant.product.handle %}
+              {% assign technical_information = product.metafields.proddesc.technical_information.value %}
+              {% assign technical_specifications = technical_information.technical_specifications %}
+              {% assign dimensions = technical_information.dimensions %}
+              {% assign ha = technical_information.hearing_aid %}
               <div class="similar-product">
                 <a href="{{ product.url }}">
-                  <img src="{{ product.featured_image.src | product_img_url: 'Large' }}" alt="{{ product.title }}">
+                  {% include 'image-element', image: product.featured_image.src, alt: product.title, loading: 'lazy' %}
                   <div class="title-box">
                     <h4>{{ product.title }}</h4>
                     <h5>{{ product.price | money }}</h5>
                   </div>
 
-                  {% if product.metafields.proddesc.technical_information.value %}
+                  {% if technical_information %}
+                    <div class="dimension-box">
+                      <div class="dimension-box-header">
+                        <h5>Size:</h5>
+                        <p><small>height x width x depth</small></p>
+                      </div>
+                      <div class="dimension-box-dimensions">
+                        <p>{{ dimensions.height.mm }}mm x {{ dimensions.width.mm }}mm x {{ dimensions.depth.mm }}mm</p>
+                        <p>{{ dimensions.height.in }}in x {{ dimensions.width.in }}in x {{ dimensions.depth.in }}in</p>
+                      </div>
+                    </div>
+                    {% comment %} Hearing Levels {% endcomment %}
+                    {% if ha %}
+                      <h5><small>For Hearing Levels:</small> {{ ha.for }}</h5>
+                    {% endif %}
                     <table>
                       <tbody>
-                        {% for key_value in product.metafields.proddesc.technical_information.value %}
+                        <!-- Technical Specifications and Dimensions -->
+                        {% for key_value in technical_specifications %}
                           {% assign kv_pair = key_value | split: ',' %}
                           {% assign key = kv_pair[0]
                             | split: ':'
@@ -339,23 +141,41 @@
 
     <div id="section-4" class="tab-content">
       <button class="button-item mobile-button">
-        <a href="#section-4">{{ settings.tab_4 }}</a>
+        <a href="#section-4" class="smooth-scroll">{{ settings.tab_4 }}</a>
       </button>
 
       <div id="section-content-4" class="content">
-        <h2>Size Comparison & Technical Information</h2>
+        <h2>{{ settings.tab_4 }}</h2>
 
         <div class="img-tbl">
-          <figure id="size-comparison" class="flex-fig">
-            {% if size_comparison %}
-              <img src="{{ size_comparison | img_url: 'Large' }}" alt="Size Comparison">
-            {% endif %}
-          </figure>
+          {% if size_comparison %}
+            {% include 'image-element',
+              image: size_comparison,
+              alt: size_comparison.alt,
+              loading: 'lazy',
+              figure_classes: 'full'
+            %}
+          {% endif %}
+          {% if dimensions %}
+            <div class="dimension-box">
+              <div class="dimension-box-header">
+                <p><small>height x width x depth</small></p>
+              </div>
+              <div class="dimension-box-dimensions">
+                <p>{{ dimensions.height.mm }}mm x {{ dimensions.width.mm }}mm x {{ dimensions.depth.mm }}mm</p>
+                <p>{{ dimensions.height.in }}in x {{ dimensions.width.in }}in x {{ dimensions.depth.in }}in</p>
+              </div>
+              {% comment %} Hearing Levels {% endcomment %}
+              {% if ha %}
+                <h4><small>For Hearing Levels:</small> {{ ha.for }}</h4>
+              {% endif %}
+            </div>
+          {% endif %}
 
-          {% if technical_information %}
+          {% if technical_specifications %}
             <table>
               <tbody>
-                {% for key_value in technical_information %}
+                {% for key_value in technical_specifications %}
                   {% assign kv_pair = key_value | split: ',' %}
                   {% assign key = kv_pair[0] | split: ':' | last | remove: '"' | remove: '[' | remove: ']' | strip %}
                   {% assign value = kv_pair[1] | split: ':' | last | remove: '"' | remove: '[' | remove: ']' | strip %}
@@ -373,18 +193,16 @@
 
     <div id="section-5" class="tab-content">
       <button class="button-item mobile-button">
-        <a href="#section-5">{{ settings.tab_5 }}</a>
+        <a href="#section-5" class="smooth-scroll">{{ settings.tab_5 }}</a>
       </button>
 
       <div id="section-content-5" class="content">
         <h2>What's in the Box</h2>
 
         <div class="img-tbl">
-          <figure class="flex-fig">
-            {% if box_image %}
-              <img src="{{ box_image | img_url: 'Large' }}" alt="Here's what comes with your {{ product.title }}">
-            {% endif %}
-          </figure>
+          {% if box_image %}
+            {% include 'image-element', image: box_image, alt: box_image.alt, loading: 'lazy', figure_classes: 'full' %}
+          {% endif %}
 
           {% if product_accessories %}
             <ul>
@@ -392,14 +210,14 @@
                 <li>{{ product_accessories.hearing_aid }}</li>
               {% endif %}
               {% if product_accessories.storage_case %}
-                <li>Storage case</li>
+                <li>Storage Case</li>
               {% endif %}
               {% if product_accessories.manual.available %}
                 {% if product_accessories.manual.link %}
                   {% if product_accessories.manual.link.User %}
                     <li><a href="{{ product_accessories.manual.link.User }}">User Manual</a></li>
                   {% endif %}
-                  {% if product_accessories.manual.link.App %}
+                  {% if product_accessories.manual.link.App != empty and product_accessories.manual.link.App != ' ' %}
                     <li><a href="{{ product_accessories.manual.link.App }}">App Manual</a></li>
                   {% endif %}
                 {% else %}
@@ -408,10 +226,10 @@
               {% endif %}
 
               {% if product_accessories.alcohol_wipe %}
-                <li>Alcohol wipe</li>
+                <li>Alcohol Wipe</li>
               {% endif %}
               {% if product_accessories.different_sized_domes %}
-                <li>Different sized domes</li>
+                <li>Different Sized Domes</li>
               {% endif %}
               {% if product_accessories.tube %}
                 <li>
@@ -434,9 +252,11 @@
               {% if product_accessories.battery.available %}
                 <li>
                   {% if product_accessories.battery.type == 'single_use' %}
-                    Single-use battery ({{ product_accessories.battery.size }})
+                    {{ product_accessories.battery.type | replace: '_', '-' | capitalize }} Battery (
+                    {{- product_accessories.battery.size -}}
+                    )
                   {% else %}
-                    {{ product_accessories.battery.type }} battery ({{ product_accessories.battery.size }})
+                    {{ product_accessories.battery.type | capitalize }} Battery
                   {% endif %}
                 </li>
               {% endif %}
@@ -445,7 +265,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
 {% endif %}
 
 {% comment %} Youtube Video {% endcomment %}
@@ -468,92 +288,259 @@
   {% endif %}
 {% endif %}
 
-{% comment %} Section Specific JavaScript {% endcomment %}
 {% javascript %}
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-const buttons = document.querySelectorAll(".button-item");
+    document.addEventListener('DOMContentLoaded', () => {
+      const buttons = document.querySelectorAll('.button-item');
+      const sections = document.querySelectorAll('.content');
 
-buttons.forEach((button) => {
-  button.addEventListener("click", function () {
-    // Get the href of the button's link
-    const href = this.querySelector("a").getAttribute("href");
-    // change href link to correct content element
-    const sectionId = href.replace("#section-", "#section-content-");
-    // Get the content section corresponding to the href
-    const section = document.querySelector(sectionId);
+      buttons.forEach((button) => {
+        button.addEventListener('click', function (event) {
+          event.preventDefault();
 
-    // Get all the button-items and content sections
-    const allButtons = document.querySelectorAll(".button-item");
-    const allSections = document.querySelectorAll(".content");
+          const href = this.querySelector('a').getAttribute('href');
+          const sectionId = href.replace('#section-', '#section-content-');
+          const section = document.querySelector(sectionId);
 
-    // Remove active class from all button-items and content sections
-    allButtons.forEach((button) => button.classList.remove("active"));
-    allSections.forEach((section) => section.classList.remove("active"));
+          buttons.forEach((btn) => btn.classList.remove('active'));
+          sections.forEach((sec) => sec.classList.remove('active'));
 
-    // Add active class to the clicked button and its corresponding section
-    this.classList.add("active");
-    section.classList.add("active");
-  });
-});
+          this.classList.add('active');
+          section.classList.add('active');
 
-function forceHeight(targetContainer, selectorClass) {
-  const container = document.querySelector(targetContainer);
-  const selections = container.querySelectorAll(selectorClass);
-  let targetHeight = "";
+          event.stopPropagation();
+          return false;
+        });
+      });
 
-  selections.forEach((selection) => {
-    selection.style.height = "auto";
-    targetHeight = Math.max(targetHeight, selection.offsetHeight);
-  });
-
-  if (targetHeight > 0) {
-    selections.forEach((selection) => {
-      selection.style.height = `${targetHeight}px`;
+      buttons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          // Add your custom button click behavior here
+          return false;
+        });
+      });
     });
-  }
-}
-// Call forceHeight on page load and on window resize
-document.addEventListener("DOMContentLoaded", () => {
-  if (document.querySelector("#tabs")) {
-    forceHeight("#tabs", ".title-box");
-  }
-});
-document.addEventListener("DOMContentLoaded", () =>
-  forceHeight("#tabs", ".title-box")
-);
-window.addEventListener("resize", () => forceHeight("#tabs", ".title-box"));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  const specs_size = Object.assign({}, technical_specifications, dimensions);
 {% endjavascript %}
 
 {% schema %}
 {
-  "name": "Product Descriptions Tabs"
+  "name": "Product Descriptions Tabs",
+  "tag": "section",
+  "class": "section tab-content",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tab_1",
+      "label": "Tab 1 Label",
+      "default": "Description"
+    },
+    {
+      "type": "text",
+      "id": "tab_2",
+      "label": "Tab 2 Label",
+      "default": "Warranty"
+    },
+    {
+      "type": "text",
+      "id": "tab_3",
+      "label": "Tab 3 Label",
+      "default": "Size Comparison & Technical Information"
+    },
+    {
+      "type": "text",
+      "id": "tab_4",
+      "label": "Tab 4 Label",
+      "default": "Size"
+    },
+    {
+      "type": "text",
+      "id": "tab_5",
+      "label": "Tab 5 Label",
+      "default": "What's in the Box"
+    }
+  ]
 }
 {% endschema %}
+
+{% comment %} Section Specific CSS {% endcomment %}
+{% style %}
+  .button-item {
+    background-color: var(--foreground-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-style: none;
+    margin: calc(var(--global-p1)* .07);
+  }
+
+  .button-item a {
+    color: #fdfdfd;
+    font-family: var(--pf-primary-font);
+    font-weight: 700;
+    font-size: 18px;
+    padding: calc(var(--global-p1)* .5);
+    border-style: none;
+    text-decoration: none;
+  }
+
+  .button-item:hover,
+  .active.button-item {
+    background-color: var(--foreground-color);
+    color: #fff;
+  }
+  [id^="section-content-"] {
+    display: none;
+    padding: var(--global-p2);
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: height 0.9s ease 0.5s, opacity 0.5s ease;
+    transition-delay: 0.9s;
+  }
+  .active {
+    display: grid;
+    height: auto;
+    opacity: 1;
+    transition: opacity 0.9s ease 0.5s, height 0.5s ease;
+  }
+  #tabs h2,
+  #tabs h3,
+  #tabs h4 {
+    padding: 0;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  #comparison-products {
+    display: grid;
+    padding: var(--global-p1) 0;
+    grid-gap: var(--global-p2);
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .similar-product h4 {
+    font-size: x-large;
+  }
+
+  .similar-product h5 {
+    font-size: larger;
+    font-weight: 500;
+  }
+  .dimension-box h5 {
+    margin: 0;
+  }
+  .dimension-box-header {
+    display: flex;
+    gap: var(--global-p1);
+    align-items: baseline;
+  }
+  .dimension-box-dimensions {
+    display: inline-flex;
+    gap: var(--global-p1);
+    align-items: baseline;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .title-box {
+    border-bottom: 1px solid;
+    margin-bottom: var(--global-p1);
+    display: grid;
+    grid-gap: var(--global-p1);
+  }
+
+  .img-tbl {
+    display: grid;
+    grid-template-areas: "left right";
+    grid-gap: var(--global-p1);
+  }
+
+  .img-tbl .full {
+    grid-area: left;
+    width: 100%;
+    align-self: end;
+  }
+
+  .img-tbl .dimension-box {
+    grid-area: left;
+  }
+
+  .img-tbl table {
+    grid-area: right;
+  }
+
+  table {border-radius: var(--global-p2);}
+
+  td,
+  th {
+    padding-left: var(--global-p1);
+    padding-right: var(--global-p1);
+    text-align: left;
+  }
+
+  table tr:nth-child(even) {
+    background-color: var(--light-blue);
+  }
+
+  table tr:last-child td:first-child {border-radius: 0 0 0 var(--global-p2);}
+
+  table tr:last-child td:last-child {border-radius: 0 0 var(--global-p2) 0;}
+
+  table tbody tr {border: none;}
+
+  .video-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: var(--global-p1);
+  }
+
+  figure.image-element__wrap {justify-self: center;}
+
+  @media (min-width: 768px) {
+    .tab-header {
+      flex: 1 1 0%;
+      color: #fdfdfd;
+      font-family: var(--pf-primary-font);
+      display: flex;
+      flex-direction: row;
+    }
+    .button-item.mobile-button,
+    .button-item.mobile-button.active {display: none;}
+
+    .button-item {
+      border-top-right-radius: 15px;
+      flex: 1 1 0%;
+    }
+
+    .button-item:not(:last-of-type) a {border-right: 0;}
+
+    .img-tbl {grid-template-columns: 3fr 1fr;}
+  }
+
+  @media (max-width: 768px) {
+    .tab-header {display: none;}
+    .mobile-button {display: flex;}
+    .button-item {width: 100%;}
+    .active {display: grid;}
+    /* set transition properties for the element */
+    [id^="section-content-"] {
+      height: 0;
+      padding: 0;
+      opacity: 0;
+      transition: height 0.3s ease-in-out, padding 0.3s ease-in-out,
+        opacity 0.3s ease-in-out;
+    }
+
+    /* update styles for the active class */
+    [id^="section-content-"].active {
+      height: auto;
+      padding: var(--global-p2);
+      opacity: 1;
+    }
+    #comparison-products {grid-template-columns: 1fr;}
+    .img-tbl {grid-template-columns: 1fr}
+  }
+{% endstyle %}
