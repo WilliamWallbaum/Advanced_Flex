@@ -1,0 +1,593 @@
+{% comment %}
+  ** Product - main content area **
+  - Product template
+{% endcomment %}
+
+{% assign show_product_title = section.settings.show_product_title %}
+{% assign show_header_text = section.settings.show_header_text %}
+{% assign header_title = section.settings.header_title %}
+{% assign header_copy = section.settings.header_copy %}
+{% assign technical_information = product.metafields.proddesc.technical_information.value %}
+{% assign technical_specifications = technical_information.technical_specifications %}
+{% assign ha = technical_information.hearing_aid %}
+
+{% comment %} Layout {% endcomment %}
+{% assign width = section.width %}
+
+{% liquid
+  assign selected_variant = product.selected_variant
+
+  if product.variants.size == 1 or settings.select_first_available_variant
+    assign selected_variant = product.selected_or_first_available_variant
+  endif
+%}
+
+<div class="product-{{ product.id }} section is-width-{{ width }}">
+  {% if section.settings.show_section_header %}
+    {%
+      include 'product_header' with
+      show_product_title: section.settings.show_product_title,
+      show_reviews: section.settings.show_reviews,
+      show_header_text: section.settings.show_header_text,
+      header_title: section.settings.header_title,
+      header_copy: section.settings.header_copy
+    %}
+  {% endif %}
+
+  <div class="product_section js-product_section container is-justify-space-between has-padding-bottom">
+    <div class="product__images one-half column medium-down--one-whole">
+      {% render 'product__images',
+        product: product,
+        display_thumbnails: section.settings.display_thumbnails,
+        thumbnail_position: section.settings.thumbnail_position,
+        enable_thumbnail_slider: section.settings.enable_thumbnail_slider,
+        product_height: section.settings.product_height,
+        set_product_height: section.settings.set_product_height,
+        video_looping: section.settings.video_looping,
+        gallery_arrows: section.settings.gallery_arrows,
+        slideshow_transition: section.settings.slideshow_transition,
+        enable_product_lightbox: section.settings.enable_product_lightbox,
+        enable_zoom: section.settings.enable_zoom
+      %}
+    </div>
+
+    <div class="product__information has-product-sticker one-half column medium-down--one-whole">
+      {% comment %} Sale sticker {% endcomment %}
+      {% if stickers_enabled %}
+        {% assign collection_handles = product.collections | map: 'handle' %}
+        {% render 'product-thumbnail__sticker', context: 'product', collection_handles: collection_handles %}
+      {% endif %}
+
+      <div class="description content">
+        {{ product.description }}
+      </div>
+
+      {% comment %} Hearing Levels {% endcomment %}
+      {% if ha %}
+        <h4><small>For Hearing Levels:</small> {{ ha.for }}</h4>
+      {% endif %}
+
+      {% comment %} Price {% endcomment %}
+      <div id="price-container">
+        {% comment %} Price {% endcomment %}
+        <div id="price-box">
+          <h2 class="price">
+            {% if section.settings.price_pretext %}{{ section.settings.price_pretext | richtext }}{% endif -%}
+            &nbsp;{{ product.price | money_with_currency }}
+          </h2>
+        </div>
+        {% comment %} Savings {% endcomment %}
+        {% if section.settings.show_savings %}
+          {% if product.compare_at_price > product.price %}
+            <h3 class="savings">
+              {{ section.settings.savings_pretext | richtext }}&nbsp;
+              {{ product.compare_at_price | minus: product.price | money_with_currency }}
+            </h3>
+          {% endif %}
+        {% endif %}
+      </div>
+
+      {% comment %} Feature List {% endcomment %}
+      {% if section.settings.show_feature_list %}
+        <div class="feature-list">
+          {{ section.settings.feature_list | richtext }}
+        </div>
+      {% endif %}
+
+      {% comment %} Trust Badges {% endcomment %}
+      {% if section.settings.show_trust_badges %}
+        <div id="trust-badges-container">
+          {% include 'trust-badges' %}
+        </div>
+      {% endif %}
+
+      {% comment %} Description - top {% endcomment %}
+      {% if product_description_position == 'top' and product.description != blank %}
+        <div class="description content has-padding-top">
+          {{ product.description | split: '<!-- split -->' | first }}
+        </div>
+      {% endif %}
+
+      {% comment %} Social share icons {% endcomment %}
+      {% if section.settings.display_social_buttons %}
+        <div class="product__social-share has-padding-top">
+          {% render 'social-share-buttons' %}
+        </div>
+      {% endif %}
+
+      {% comment %} Description - split {% endcomment %}
+      {% if product.description contains '<!-- split -->' %}
+        <div class="product-description-split">
+          <div class="description content">
+            {{ product.description | split: '<!-- split -->' | last }}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_button %}
+        <div class="description content has-padding-top">
+          {% assign button_label = section.settings.button_label -%}
+          {%- assign default_link = product.url | append: '#' | append: 'variant-container' %}
+          {% assign button_link = section.settings.button_link %}
+          {% if button_link == blank %}
+            {% assign button_link = default_link %}
+          {% endif %}
+          {% assign button_type = section.settings.button_type %}
+          {% assign button_style = section.settings.button_style %}
+          {% assign button_size = section.settings.button_size %}
+          {% assign button_class = section.settings.button_class %}
+          {% assign button_attribute = section.settings.button_attribute %}
+
+          {%
+            include 'button' with
+            label: button_label,
+            href: button_link,
+            type: button_type,
+            style: button_style,
+            size: button_size,
+            class: button_class,
+            attribute: button_attribute
+          %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% comment %} JavaScript {% endcomment %}
+<script type="application/json" data-section-id="{{ section.id }}" data-section-data>
+  {
+    "display_savings": {{ section.settings.display_savings | json }},
+    "gallery_arrows": {{ section.settings.gallery_arrows | json }},
+    "thumbnail_arrows": {{ section.settings.gallery_arrows | json }},
+    "enable_zoom": {{ section.settings.enable_zoom | json }},
+    "enable_product_lightbox": {{ section.settings.enable_product_lightbox | json }},
+    "enable_thumbnail_slider": {{ section.settings.enable_thumbnail_slider | json }},
+    "slideshow_speed": {{ section.settings.slideshow_speed | json }},
+    "slideshow_transition": {{ section.settings.slideshow_transition | json }},
+    "thumbnails_enabled": {{ section.settings.display_thumbnails | json }},
+    "thumbnail_position": {{ section.settings.thumbnail_position | json }},
+    "product_media_amount": {{ product.media.size }},
+    "template": "classic"
+  }
+</script>
+
+<script src="{{ 'z__jsProduct.js' | asset_url }}"></script>
+
+{% javascript %}
+  document.querySelector(".shop-sale").addEventListener("click", function(event) {
+    const form = this.closest("form"); // Find the closest parent form element
+    const targetLink = form.getAttribute("action"); // Get the action attribute value
+    console.log(targetLink)
+    if (targetLink && targetLink.startsWith("#")) {
+      event.preventDefault(); // Prevent the default link behavior
+      const targetElement = document.querySelector(targetLink);
+      if (targetElement) {
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+
+        // Use custom scroll behavior with CSS transitions for ease-in-out effect
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        const duration = 1000; // Set the duration in milliseconds
+        const startTime = performance.now();
+
+        function step(currentTime) {
+          const elapsedTime = currentTime - startTime;
+          if (elapsedTime >= duration) {
+            window.scrollTo(0, targetPosition);
+            return;
+          }
+
+          const easing = easeInOutCubic(elapsedTime, startPosition, distance, duration);
+          window.scrollTo(0, easing);
+
+          requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+      }
+    }
+  });
+
+  function easeInOutCubic(t, b, c, d) {
+    t /= d / 2;
+    if (t < 1) return c / 2 * t * t * t + b;
+    t -= 2;
+    return c / 2 * (t * t * t + 2) + b;
+  }
+{% endjavascript %}
+
+{% style %}
+  #section-header {
+    margin: var(--global-p1) 0;
+  }
+  .purchase-details__quantity.product-quantity-box.quantity-box--box {
+    display: none;
+  }
+  h4 {
+      font-size: calc(var(--text-basic)*1.5);
+      margin-bottom: calc(var(--global-p1)*.5);
+    }
+  #price-container {
+    display: flex;
+    gap: var(--global-p1);
+    margin-bottom: var(--global-p1);
+  }
+  #price-box {
+    background-color: var(--primary-color);
+    padding: calc(var(--global-p1) * 0.1) calc(var(--global-p1) * 2);
+  }
+  #price-box h2 {
+    color: var(--color-bg);
+  }
+  .savings {
+    padding: calc(var(--global-p1) * 0.1) calc(var(--global-p1) * 2);
+  }
+  .feature-list ul li {
+    list-style-type: "✓";
+    padding-left: 10px;
+  }
+  .feature-list ul li::marker {
+    color: green;
+    font-size: calc(var(--text-basic) * 1.25);
+  }
+  #trust-badges-container {
+    display: flex;
+    justify-content: center;
+  }
+  .shop-sale {
+    display: flex;
+    width: 100%;
+  }
+  @media only screen and (max-width: 798px) {
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Product Starter",
+  "tag": "section",
+  "class": "product-template product-main has-sidebar-option jsProduct product-accessories",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wide",
+      "options": [
+        {
+          "value": "half",
+          "label": "Half"
+        },
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section_header",
+      "label": "Show Section Header",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_title",
+      "label": "Show Product Title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews",
+      "label": "Show Reviews",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_header_text",
+      "label": "Show Header Text",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Header Title",
+      "default": "Flexible Purchase Options"
+    },
+    {
+      "type": "richtext",
+      "id": "header_copy",
+      "label": "Header Copy",
+      "default": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!<p>"
+    },
+    {
+      "type": "header",
+      "content": "Product gallery"
+    },
+    {
+      "type": "checkbox",
+      "id": "display_thumbnails",
+      "label": "Show thumbnails",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "gallery_arrows",
+      "label": "Show arrows",
+      "info": "Applies to desktop only.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_zoom",
+      "label": "Magnify on hover",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_product_lightbox",
+      "label": "Enable lightbox",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_thumbnail_slider",
+      "label": "Enable thumbnail slider",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Product information"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_feature_list",
+      "label": "Show Features",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "feature_list",
+      "label": "Feature List"
+    },
+    {
+      "type": "text",
+      "id": "price_pretext",
+      "label": "Price Pretext"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_savings",
+      "label": "Show Price Savings",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "savings_pretext",
+      "label": "Savings Pretext",
+      "default": "You Save:"
+    },
+    {
+      "type": "checkbox",
+      "id": "display_social_buttons",
+      "label": "Show social media share icons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_badges",
+      "label": "Show Trust Badges",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Media",
+      "info": "Learn more about [media types](https://help.shopify.com/en/manual/products/product-media)"
+    },
+    {
+      "type": "radio",
+      "id": "product_images_position",
+      "label": "Media position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "set_product_height",
+      "label": "Set height of product media",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "product_height",
+      "label": "Product media height",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "default": 500,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "video_looping",
+      "label": "Enable video looping",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "animation",
+      "label": "Animation",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "fadeIn",
+          "label": "Fade in"
+        },
+        {
+          "value": "fadeInDown",
+          "label": "Fade in down"
+        },
+        {
+          "value": "fadeInLeft",
+          "label": "Fade in left"
+        },
+        {
+          "value": "fadeInRight",
+          "label": "Fade in right"
+        },
+        {
+          "value": "slideInLeft",
+          "label": "Slide in left"
+        },
+        {
+          "value": "slideInRight",
+          "label": "Slide in right"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Button Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Shop the Sale"
+    },
+    {
+      "type": "text",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "#variant-anchor",
+      "info": "Default '#variant-anchor'. Slides down to variant section."
+    },
+    {
+      "type": "select",
+      "id": "button_type",
+      "label": "Button Type",
+      "options": [
+        {
+          "value": "button",
+          "label": "Button"
+        },
+        {
+          "value": "link",
+          "label": "Link"
+        }
+      ],
+      "default": "button"
+    },
+    {
+      "type": "select",
+      "id": "button_size",
+      "label": "Button Size",
+      "options": [
+        {
+          "value": "is-small",
+          "label": "Small"
+        },
+        {
+          "value": "is-normal",
+          "label": "Normal"
+        },
+        {
+          "value": "is-medium",
+          "label": "Medium"
+        },
+        {
+          "value": "is-large",
+          "label": "Large"
+        }
+      ],
+      "default": "is-normal"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button Style",
+      "options": [
+        {
+          "value": "button--primary",
+          "label": "Primary"
+        },
+        {
+          "value": "button--secondary",
+          "label": "Secondary"
+        }
+      ],
+      "default": "button--primary"
+    },
+    {
+      "type": "text",
+      "id": "button_class",
+      "label": "Button Custom Class",
+      "default": "shop-sale",
+      "info": "To list multiple classes, seperate them with a space. Default is 'shop-sale'"
+    },
+    {
+      "type": "text",
+      "id": "button_attribute",
+      "label": "Button Custom Attribute",
+      "default": "name"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Starter"
+    }
+  ]
+}
+{% endschema %}
