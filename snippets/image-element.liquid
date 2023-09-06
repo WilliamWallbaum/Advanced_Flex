@@ -129,3 +129,9 @@
 <noscript class="noscript">
   <img class="{{ additional_classes }}" src="{{ image | img_url: '2000x' }}" alt="{{ alt | escape }}">
 </noscript>
+
+{% style %}
+  figure.image-element__wrap {
+    margin: 0;
+  }
+{% endstyle %}
