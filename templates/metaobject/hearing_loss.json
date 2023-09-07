@@ -5,28 +5,28 @@
       "max": 15
     },
     "slight": {
-      "min": -10,
-      "max": 15
+      "min": 16,
+      "max": 25
     },
     "mild": {
-      "min": -10,
-      "max": 15
+      "min": 26,
+      "max": 40
     },
     "moderate": {
-      "min": -10,
-      "max": 15
+      "min": 41,
+      "max": 55
     },
     "moderately severe": {
-      "min": -10,
-      "max": 15
+      "min": 56,
+      "max": 70
     },
     "severe": {
-      "min": -10,
-      "max": 15
+      "min": 71,
+      "max": 90
     },
     "profound": {
-      "min": -10,
-      "max": 15
+      "min": 91,
+      "max": null
     }
   }
 }
