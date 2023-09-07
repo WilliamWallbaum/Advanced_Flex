@@ -1,0 +1,32 @@
+{
+  "hearing_levels": {
+    "normal": {
+      "min": -10,
+      "max": 15
+    },
+    "slight": {
+      "min": -10,
+      "max": 15
+    },
+    "mild": {
+      "min": -10,
+      "max": 15
+    },
+    "moderate": {
+      "min": -10,
+      "max": 15
+    },
+    "moderately severe": {
+      "min": -10,
+      "max": 15
+    },
+    "severe": {
+      "min": -10,
+      "max": 15
+    },
+    "profound": {
+      "min": -10,
+      "max": 15
+    }
+  }
+}
