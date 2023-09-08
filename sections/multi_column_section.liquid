@@ -15,12 +15,6 @@
 
   <!-- start section body -->
   <div id="{{ section_name }}-body" class="multi-col-body">
-    <style>
-      figure.block-img { max-width: {{ section.img_width }}px !important; }
-      .multi-col-header { justify-items: {{ section.header_align }}; }
-      [id^="block-"] { justify-items: {{ section.block_align }}; }
-      .multi-col-footer { justify-items: {{ section.footer_align }}; }
-    </style>
     <!-- start columns -->
 
     <!-- start block 1 -->
@@ -88,6 +82,10 @@
   [id^="block-"] {
     width: {{ section.block_width }}%;
   }
+  figure.block-img { max-width: {{ section.img_width }}px !important; }
+  .multi-col-header { justify-items: {{ section.header_align }}; }
+  [id^="block-"] { justify-items: {{ section.block_align }}; }
+  .multi-col-footer { justify-items: {{ section.footer_align }}; }
 </style>
 
 {% schema %}
