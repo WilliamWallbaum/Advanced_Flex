@@ -1,8 +1,8 @@
 <link rel="stylesheet" type="text/css" href="{{ 'ion.rangeSlider.min.css' | asset_url }}">
 <script src="{{ 'ion.rangeSlider.min.js' | asset_url }}" async></script>
 
-{% assign minLevel = info.hearing_levels[min].min %}
-{% assign maxLevel = info.hearing_levels[max].max %}
+{% assign minLevel = info.hearing_levels.normal.min | json %}
+{% assign maxLevel = info.hearing_levels.profound.max | json %}
 
 <input type="text" class="hearing-levels">
 Value: {{ product.metafields.custom.info.hearing_levels.value }}
