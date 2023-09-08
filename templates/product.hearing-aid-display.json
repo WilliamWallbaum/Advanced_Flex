@@ -95,7 +95,6 @@
     },
     "product-tabs": {
       "type": "product_description_tabs",
-      "disabled": true,
       "settings": {
         "tab_1": "Description",
         "tab_2": "Warranty",
@@ -106,6 +105,7 @@
     },
     "product_recommendation": {
       "type": "product_recommendation",
+      "disabled": true,
       "settings": {
         "show_section": true,
         "recommendation-title": "Compatible Tubes and Domes",
