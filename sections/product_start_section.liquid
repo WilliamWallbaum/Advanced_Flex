@@ -34,8 +34,11 @@
     %}
   {% endif %}
 
-  <div class="container">
-    <div class="product__images one-half column medium-down--one-whole">
+  <div
+    id="description-container"
+    class="container"
+  >
+    <div id="product-img-container" class="product__images one-half column medium-down--one-whole">
       {% render 'product__images',
         product: product,
         display_thumbnails: section.settings.display_thumbnails,
