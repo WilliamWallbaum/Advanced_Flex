@@ -53,7 +53,7 @@
         "gradient_color": "linear-gradient(180deg, rgba(5, 79, 142, 0.1), rgba(255, 255, 255, 1) 100%)",
         "block_width": 35,
         "width": "wide",
-        "img_width": 25,
+        "img_width": 20,
         "is_card": "",
         "header_align": "center",
         "block_align": "center",
