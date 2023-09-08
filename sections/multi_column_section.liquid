@@ -81,6 +81,11 @@
   {% endif %}
   <!-- end section footer -->
 </div>
+<style>
+  .multi-col {
+    background-color: {{ gradient_color }};
+  }
+</style>
 
 {% schema %}
   {
@@ -114,7 +119,7 @@
     {
       "type": "color_background",
       "id": "gradient_color",
-      "label": "Select Gradient background",
+      "label": "Select Gradient Background",
       "default": "linear-gradient(#054F8E, #FFFFFF)"
     },
     {
