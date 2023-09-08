@@ -3,7 +3,7 @@
 {% assign section = section.settings %}
 {% assign section_name = section.section_name | replace: ' ', '-' | downcase | default: 'multi-col' %}
 
-<section id="{{ section_name }}" class="section is-width-{{ section.width }} multi-col">
+<div id="{{ section_name }}" class="section is-width-{{ section.width }} multi-col">
   <!-- start section header -->
   {% if section.show_header %}
     <header id="{{ section_name }}-header" class="multi-col-header">
@@ -80,11 +80,12 @@
     <footer id="{{ section_name }}-footer" class="multi-col-footer">{{ section.footer_text }}</footer>
   {% endif %}
   <!-- end section footer -->
-</section>
+</div>
 
 {% schema %}
   {
   "name": "multi-col-section",
+    "tag": "section",
   "settings": [
     {
       "type": "header",
@@ -109,6 +110,12 @@
     {
       "type": "header",
       "content": "Layout"
+    },
+    {
+      "type": "color_background",
+      "id": "gradient_color",
+      "label": "Select Gradient background",
+      "default": "linear-gradient(#ffffff, #000000)"
     },
     {
       "type": "select",
