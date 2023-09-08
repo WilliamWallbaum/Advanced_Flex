@@ -50,6 +50,7 @@
         "show_header": true,
         "section_name": "Peace of Mind",
         "header_text": "<p>Your new {{ product.title }} will comes ready to use.<\/p>",
+        "gradient_color": "linear-gradient(180deg, rgba(5, 79, 142, 0.1), rgba(255, 255, 255, 1) 100%)",
         "width": "wide",
         "img_width": 150,
         "is_card": "",
