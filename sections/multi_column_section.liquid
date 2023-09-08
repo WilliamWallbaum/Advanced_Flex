@@ -83,7 +83,12 @@
     width: {{ section.block_width }}%;
   }
   figure.block-img { max-width: {{ section.img_width }}% !important; }
-  .multi-col-header { justify-items: {{ section.header_align }}; }
+  .multi-col-header {
+    justify-items: {{ section.header_align }};
+  }
+  .multi-col-header h2 {
+    font-size: calc(var(--text-basic)*({{ header_font_size }} / 100));
+  }
   [id^="block-"] { justify-items: {{ section.block_align }}; }
   .multi-col-footer { justify-items: {{ section.footer_align }}; }
 </style>
@@ -112,6 +117,16 @@
       "type": "richtext",
       "id": "header_text",
       "label": "Header Text"
+    },
+    {
+      "type": "range",
+      "id": "header_font_size",
+      "label": "Block Width",
+      "default":100,
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "%"
     },
     {
       "type": "header",
