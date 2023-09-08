@@ -1,5 +1,11 @@
 {
   "sections": {
+    "ba17f5e4-3dfa-4847-95c4-34031e7a0155": {
+      "type": "hearing_levels",
+      "settings": {
+        "show_hearing_levels": true
+      }
+    },
     "91fc1096-5959-4b9e-b400-cf10ded3ba75": {
       "type": "breadcrumb-section",
       "settings": {
@@ -127,6 +133,7 @@
     }
   },
   "order": [
+    "ba17f5e4-3dfa-4847-95c4-34031e7a0155",
     "91fc1096-5959-4b9e-b400-cf10ded3ba75",
     "product",
     "0aa1d565-cf6d-4996-893e-35aeefeded83",
