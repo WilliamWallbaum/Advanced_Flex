@@ -85,6 +85,9 @@
   .multi-col {
     background: {{  section.gradient_color }};
   }
+  [id^="block-"] {
+    width: {{  section.gradient_color }};
+  }
 </style>
 
 {% schema %}
@@ -123,6 +126,16 @@
       "default": "linear-gradient(#054F8E, #FFFFFF)"
     },
     {
+      "type": "range",
+      "id": "block_width",
+      "label": "Block Width",
+      "default":200,
+      "min": 150,
+      "max": 300,
+      "step": 10,
+      "unit": "px"
+    },
+    {
       "type": "select",
       "id": "width",
       "label": "Width",
@@ -145,7 +158,7 @@
     {
       "type": "range",
       "id": "img_width",
-      "label": "Block Image Height",
+      "label": "Block Image Width",
       "default":200,
       "min": 150,
       "max": 300,
