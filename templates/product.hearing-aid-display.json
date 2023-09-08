@@ -50,7 +50,7 @@
         "show_header": true,
         "section_name": "Peace of Mind",
         "header_text": "<p>Your new {{ product.title }} will comes ready to use.<\/p>",
-        "header_font_size": 43,
+        "header_font_size": 30,
         "gradient_color": "linear-gradient(180deg, rgba(5, 79, 142, 0.1), rgba(255, 255, 255, 1) 100%)",
         "block_width": 35,
         "width": "wide",
