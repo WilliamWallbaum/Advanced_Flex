@@ -51,7 +51,7 @@
         "section_name": "Peace of Mind",
         "header_text": "<p>Your new {{ product.title }} will comes ready to use.<\/p>",
         "width": "wide",
-        "img_width": 200,
+        "img_width": 150,
         "is_card": "",
         "header_align": "center",
         "block_align": "center",
