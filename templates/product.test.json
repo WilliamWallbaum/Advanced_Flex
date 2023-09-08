@@ -68,15 +68,15 @@
         "block_content_1": "<p>With lifetime professional support, you can be confident that you will always have the help you need to get the most out of your hearing aids. Our team of experts is here to help you every step of the way, from choosing the right hearing aids to ensuring that they are properly adjusted.<\/p>",
         "show_block_2": true,
         "block_image_2": "shopify:\/\/shop_images\/ship.svg",
-        "block_title_2": "dfgsdfg",
-        "block_content_2": "<p>dfg<\/p>",
+        "block_title_2": "Try {{ product.title }} Risk-Free for 30 Days",
+        "block_content_2": "<ul><li>Get started with your 30 day risk-free trial of hearing aids today. If you're not satisfied, return them for a full refund. We're so confident you'll love our hearing aids, we offer a 100% satisfaction guarantee.<\/li><\/ul>",
         "show_block_3": false,
         "block_title_3": "defualt",
         "block_content_3": "<p>defualt<\/p>",
         "show_block_4": false,
         "block_title_4": "defualt",
         "block_content_4": "<p>defualt<\/p>",
-        "show_footer": true,
+        "show_footer": false,
         "footer_text": "<p>xcvbcn<\/p>"
       }
     },
