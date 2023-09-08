@@ -1,12 +1,76 @@
+<link rel="stylesheet" type="text/css" href="{{ 'ion.rangeSlider.min.css' | asset_url }}">
+<script src="{{ 'ion.rangeSlider.min.js' | asset_url }}" async></script>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Section name",
+  "settings": []
+}
 {% endschema %}
 
 {% stylesheet %}
 {% endstylesheet %}
 
 {% javascript %}
+  // Extracting hearing level names
+  const hearingLevelNames = Object.keys(hearingLevels);
+
+  const min = hearingLevels.normal.min;
+  const max = hearingLevels.profound.max || 100;
+  const marks = hearingLevelNames;
+
+  $(".hearing-levels").ionRangeSlider({
+    type: "double",
+    min: min,
+    max: max,
+    from: hearingLevels.slight.min, // sets bar
+    to: hearingLevels.severe.max,
+    grid: true,
+    grid_snap: true,
+    from_fixed: true, // fix position of FROM handle
+    to_fixed: true, // fix position of TO handle
+    max_postfix: "+",
+    postfix: " dB",
+    hide_min_max: false, // show/hide MIN and MAX labels
+    hide_from_to: false, // show/hide FROM and TO labels
+    block: false, // block instance from changing
+    // prettify_enabled: true,
+    // prettify: hearingLevelNames,
+    // values: hearingLevelNames,
+    onStart: function (data) {
+      addMarks(data.slider);
+    }
+  });
+  // console.log(hearingLevelNames);
+
+  function convertToPercent(num) {
+    return ((num - min) / (max - min)) * 100;
+  }
+
+  function addMarks($slider) {
+    let html = "";
+    let left = 0;
+    let left_p = "";
+    let i;
+
+    // Create a div to contain the spans
+    html += '<div class="marks-container">';
+
+    for (i = 0; i < marks.length; i++) {
+      left = convertToPercent(hearingLevels[marks[i]].min); // Use the min value from hearingLevels
+      left_p = left + "%";
+
+      let className =
+        "showcase__mark " + marks[i].toLowerCase().replace(" ", "-");
+
+      html += '<span class="' + className + '" style="left: ' + left_p + '">';
+      html += marks[i];
+      html += "</span>";
+    }
+
+    // Close the marks-container div
+    html += "</div>";
+
+    $slider.append(html);
+  }
 {% endjavascript %}
