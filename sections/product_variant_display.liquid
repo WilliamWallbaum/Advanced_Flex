@@ -103,6 +103,12 @@
   </footer>
 {% endif %}
 
+<script>
+  .variant h2 {
+    font-size: {{ section.settings.header_font_size }};
+  }
+</script>
+
 {% schema %}
 {
   "name": "Product Variant Display",
@@ -154,6 +160,16 @@
       "id": "show_product_title",
       "label": "Show Product Title",
       "default": true
+    },
+    {
+      "type": "range",
+      "id": "header_font_size",
+      "label": "Header Title Size",
+      "info": "multiplies the size of base text size by the value divided by 10 [base size * (value / 10)]",
+      "default":10,
+      "min": 5,
+      "max": 50,
+      "step": 1
     },
     {
       "type": "checkbox",
