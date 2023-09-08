@@ -95,6 +95,7 @@
     },
     "product-tabs": {
       "type": "product_description_tabs",
+      "disabled": true,
       "settings": {
         "tab_1": "Description",
         "tab_2": "Warranty",
