@@ -51,7 +51,10 @@
       %}
     </div>
 
-    <div class="product__information has-product-sticker one-half column medium-down--one-whole">
+    <div
+      id="description-container"
+      class="product__information has-product-sticker one-half column medium-down--one-whole"
+    >
       {% comment %} Sale sticker {% endcomment %}
       {% if stickers_enabled %}
         {% assign collection_handles = product.collections | map: 'handle' %}
@@ -259,7 +262,14 @@
     display: flex;
     width: 100%;
   }
-  @media only screen and (max-width: 798px) {
+  @media (max-width: 768px) {
+    container {
+      flex-direction: column;
+      align-items: center;
+    }
+    #description-container {
+      width: 100%;
+    }
   }
 {% endstyle %}
 
