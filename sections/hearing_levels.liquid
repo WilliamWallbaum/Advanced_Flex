@@ -5,11 +5,7 @@
 {% assign maxLevel = info.hearing_levels[max].max %}
 
 <input type="text" class="hearing-levels">
-{{ minLevel }}
-{{ info.hearing_levels }}
-{{ product.metafields.proddesc.technical_information.value }}
-{% assign technical_information = product.metafields.proddesc.technical_information.value %}
-{{ technical_information }}
+{{ info.hearing_levels.profound.max.value }}
 
 {% schema %}
 {
