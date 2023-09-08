@@ -5,8 +5,8 @@
 {% assign maxLevel = info.hearing_levels.profound.max | json %}
 
 <input type="text" class="hearing-levels">
-Value: {{ product.metafields.custom.info.hearing_levels.value }}
-{{ product.metafields.proddesc.size_comparison }}
+Value: {{ product.metafields.custom.info.hearing_levels.value | json }}
+{{ product.metafields.proddesc.size_comparison | json }}
 
 {% schema %}
 {
