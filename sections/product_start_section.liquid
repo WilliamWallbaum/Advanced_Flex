@@ -226,59 +226,65 @@
 {% endjavascript %}
 
 {% style %}
-  #section-header {
-    margin: var(--global-p1) 0;
-  }
-  .purchase-details__quantity.product-quantity-box.quantity-box--box {
-    display: none;
-  }
-  h4 {
-      font-size: calc(var(--text-basic)*1.5);
-      margin-bottom: calc(var(--global-p1)*.5);
+    #section-header {
+      margin: var(--global-p1) 0;
     }
-  #price-container {
-    display: flex;
-    gap: var(--global-p1);
-    margin-bottom: var(--global-p1);
-  }
-  #price-box {
-    background-color: var(--primary-color);
-    padding: calc(var(--global-p1) * 0.1) calc(var(--global-p1) * 2);
-  }
-  #price-box h2 {
-    color: var(--color-bg);
-  }
-  .savings {
-    padding: calc(var(--global-p1) * 0.1) calc(var(--global-p1) * 2);
-  }
-  .feature-list ul li {
-    list-style-type: "✓";
-    padding-left: 10px;
-  }
-  .feature-list ul li::marker {
-    color: green;
-    font-size: calc(var(--text-basic) * 1.25);
-  }
-  #trust-badges-container {
-    display: flex;
-    justify-content: center;
-  }
-  .shop-sale {
-    display: flex;
-    width: 100%;
-  }
-  @media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: center;
-  }
-  #description-container {
-    width: 100%;
-    padding: 0 var(--global-p4) var(--global-p2)
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    .purchase-details__quantity.product-quantity-box.quantity-box--box {
+      display: none;
+    }
+    h4 {
+        font-size: calc(var(--text-basic)*1.5);
+        margin-bottom: calc(var(--global-p1)*.5);
+      }
+    #price-container {
+      display: flex;
+      gap: var(--global-p1);
+      margin-bottom: var(--global-p1);
+    }
+    #price-box {
+      background-color: var(--primary-color);
+      padding: calc(var(--global-p1) * 0.1) calc(var(--global-p1) * 2);
+    }
+    #price-box h2 {
+      color: var(--color-bg);
+    }
+    .savings {
+      padding: calc(var(--global-p1) * 0.1) calc(var(--global-p1) * 2);
+    }
+    .feature-list ul li {
+      list-style-type: "✓";
+      padding-left: 10px;
+    }
+    .feature-list ul li::marker {
+      color: green;
+      font-size: calc(var(--text-basic) * 1.25);
+    }
+    #trust-badges-container {
+      display: flex;
+      justify-content: center;
+    }
+    .shop-sale {
+      display: flex;
+      width: 100%;
+    }
+    @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+    #description-container {
+      width: 100%;
+      padding: 0 var(--global-p4) var(--global-p2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #description-inner-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--global-p1);
+      margin: 0;
+    }
   }
 {% endstyle %}
 
