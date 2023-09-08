@@ -105,7 +105,6 @@
     },
     "product_recommendation": {
       "type": "product_recommendation",
-      "disabled": true,
       "settings": {
         "show_section": true,
         "recommendation-title": "Compatible Tubes and Domes",
