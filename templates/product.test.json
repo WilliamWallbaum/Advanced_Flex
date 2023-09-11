@@ -10,6 +10,9 @@
     "a6f3637a-6795-40f1-84a1-71d624f47559": {
       "type": "product_diagram",
       "settings": {
+        "show_header": true,
+        "section_name": "So Simple to Use",
+        "header_text": "",
         "header_font_size": 23,
         "list_font_size": 16,
         "show_footer": true,
