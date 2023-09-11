@@ -11,7 +11,7 @@
       "type": "product_diagram",
       "settings": {
         "show_footer": true,
-        "footer_text": "<p>hello<\/p>"
+        "footer_text": "<p>this is the footer<\/p>"
       }
     },
     "product": {
