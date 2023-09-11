@@ -54,7 +54,11 @@
   </div>
 {% endif %}
 
-<style></style>
+<style>
+  #diagram-list {
+    font-size: calc(var(--text-basic)*({{ section.header_font_size }} / 10));
+  }
+</style>
 {% style %}
   #diagram-body {
     display: flex;
@@ -87,6 +91,26 @@
     {
       "type": "header",
       "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "header_font_size",
+      "label": "Header Title Size",
+      "info": "multiplies the size of base text size by the value divided by 10 [base size * (value / 10)]",
+      "default":10,
+      "min": 5,
+      "max": 50,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "list_font_size",
+      "label": "List Font Size",
+      "info": "multiplies the size of base text size by the value divided by 10 [base size * (value / 10)]",
+      "default":10,
+      "min": 5,
+      "max": 50,
+      "step": 1
     },
     {
       "type": "header",
