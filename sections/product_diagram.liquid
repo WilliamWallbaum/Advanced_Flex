@@ -4,9 +4,6 @@
 {% assign technical_information = product.metafields.proddesc.technical_information.value %}
 {% assign diagram = technical_information.diagram %}
 
-hello
-{{ diagram }}
-
 {% if diagram %}
   <div id="{{ section_name }}" class="section is-width-{{ section.width }} multi-col">
     <!-- start section header -->
