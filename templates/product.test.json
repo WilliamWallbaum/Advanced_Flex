@@ -7,19 +7,6 @@
         "breadcrumb_separator": "slash"
       }
     },
-    "a6f3637a-6795-40f1-84a1-71d624f47559": {
-      "type": "product_diagram",
-      "settings": {
-        "show_header": true,
-        "section_name": "So Simple to Use",
-        "header_text": "",
-        "header_font_size": 23,
-        "list_font_size": 16,
-        "diagram_width": 40,
-        "show_footer": true,
-        "footer_text": "<p>this is the footer<\/p>"
-      }
-    },
     "product": {
       "type": "product_start_section",
       "settings": {
@@ -137,6 +124,19 @@
         "product-limit": 4
       }
     },
+    "a6f3637a-6795-40f1-84a1-71d624f47559": {
+      "type": "product_diagram",
+      "settings": {
+        "show_header": true,
+        "section_name": "So Simple to Use",
+        "header_text": "",
+        "header_font_size": 23,
+        "list_font_size": 16,
+        "diagram_width": 40,
+        "show_footer": true,
+        "footer_text": "<p>this is the footer<\/p>"
+      }
+    },
     "Yotpo": {
       "type": "Yotpo",
       "settings": {
@@ -145,12 +145,12 @@
   },
   "order": [
     "91fc1096-5959-4b9e-b400-cf10ded3ba75",
-    "a6f3637a-6795-40f1-84a1-71d624f47559",
     "product",
     "0aa1d565-cf6d-4996-893e-35aeefeded83",
     "32332f0a-3dd1-44c5-ba4b-8f72c7cf099f",
     "product-tabs",
     "product_recommendation",
+    "a6f3637a-6795-40f1-84a1-71d624f47559",
     "Yotpo"
   ]
 }
