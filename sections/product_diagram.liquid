@@ -21,7 +21,7 @@ hello
     <!-- start section body -->
     <div id="{{ section_name }}-body" class="diagram-body">
       <!-- start column 1 -->
-      {% if section.show_column_1 %}
+      {% if diagram %}
         <div id="" class="">
           {% for key_value in diagram %}
             {% assign kv_pair = key_value | split: ',' %}
