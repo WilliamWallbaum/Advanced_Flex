@@ -38,7 +38,7 @@
           {% include 'image-element',
             image: product.metafields.proddesc.digram_image,
             alt: product.metafields.proddesc.digram_image.alt,
-            figure_classes: diagram,
+            figure_classes: diagram-figure,
             loading: 'lazy'
           %}
         </div>
@@ -62,7 +62,7 @@
   #diagram-list {
     font-size: calc(var(--text-basic)*({{ section.list_font_size }} / 10));
   }
-  .diagram {
+  .diagram-figure {
     width: {{ section.diagram_width }}%;
   }
 </style>
