@@ -1,12 +1,83 @@
+{% assign section = section.settings %}
+{% assign section_name = section.section_name | replace: ' ', '-' | downcase | default: 'diagram' %}
+
+<div id="{{ section_name }}" class="section is-width-{{ section.width }} multi-col">
+  <!-- start section header -->
+  {% if section.show_header %}
+    <header id="{{ section_name }}-header" class="diagram-header">
+      <h2 header id="{{ section_name }}-header-name">{{ section.section_name }}</h2>
+      <div header id="{{ section_name }}-header-text">{{ section.header_text }}</div>
+    </header>
+  {% endif %}
+  <!-- end section header -->
+
+  <!-- start section body -->
+  <div id="{{ section_name }}-body" class="diagram-body">
+    <!-- start column 1 -->
+    {% if section.show_column_1 %}
+      <div id="" class=""></div>
+    {% endif %}
+    <!-- end column 1 -->
+
+    <!-- start column 2 -->
+    {% if section.show_column_2 %}
+      <div id="" class=""></div>
+    {% endif %}
+    <!-- end column 2 -->
+  </div>
+  <!-- end section body -->
+
+  <!-- start section footer -->
+  {% if section.show_footer %}
+    <footer id="{{ section_name }}-footer" class="multi-col-footer">{{ section.footer_text }}</footer>
+  {% endif %}
+  <!-- end section footer -->
+</div>
+
+<style></style>
+
 {% schema %}
   {
-    "name": "Section name",
-    "settings": []
-  }
+  "name": "product diagram section",
+    "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Configuration"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "header",
+      "content": "List"
+    },
+    {
+      "type": "header",
+      "content": "Section Footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_footer",
+      "label": "Show Section Footer",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "footer_text",
+      "label": "Footer Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Diagram Section",
+      "category": "template"
+    }
+  ]
+}
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
