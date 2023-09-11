@@ -1,15 +1,13 @@
 {% assign section = section.settings %}
 {% assign section_name = section.section_name | replace: ' ', '-' | downcase | default: 'diagram' %}
 {% assign diagram = product.metafields.proddesc.diagram.value %}
+{% assign technical_information = product.metafields.proddesc.technical_information.value %}
+{% assign diagram = technical_information.diagram %}
 
 hello
-{% assign technical_information = product.metafields.proddesc.technical_information.value %}
-{% assign technical_specifications = technical_information.technical_specifications %}
-{% assign dimensions = technical_information.dimensions %}
-{% assign diagram = technical_information.diagram %}
 {{ diagram }}
 
-{% if product.metafields.proddesc.diagram %}
+{% if diagram %}
   <div id="{{ section_name }}" class="section is-width-{{ section.width }} multi-col">
     <!-- start section header -->
     {% if section.show_header %}
