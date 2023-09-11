@@ -2,7 +2,10 @@
 {% assign section_name = section.section_name | replace: ' ', '-' | downcase | default: 'diagram' %}
 {% assign diagram = product.metafields.proddesc.diagram.value %}
 hello
-{{ diagram }}
+{{ product.metafields.proddesc.diagram.value }}
+{{ product.metafields.proddesc.diagram }}
+{{ product.metafields.proddesc.dimensions }}
+
 {% if product.metafields.proddesc.diagram %}
   <div id="{{ section_name }}" class="section is-width-{{ section.width }} multi-col">
     <!-- start section header -->
