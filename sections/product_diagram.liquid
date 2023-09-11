@@ -1,13 +1,12 @@
 {% assign section = section.settings %}
 {% assign section_name = section.section_name | replace: ' ', '-' | downcase | default: 'diagram' %}
 {% assign diagram = product.metafields.proddesc.diagram.value %}
+
 hello
-{{ product.metafields.proddesc.diagram.value }}
-{{ product.metafields.proddesc.diagram }}
-{{ product.metafields.proddesc.dimensions.width.in.value }}
 {{ product.metafields.proddesc.dimensions.value }}
 {{ product.metafields.proddesc.technical_information.hearing_aid.brand.value }}
 {{ product.metafields.proddesc.description_title }}
+{{ product.metafields.proddesc.technical_information.technical_specifications.diagram }}
 
 {% if product.metafields.proddesc.diagram %}
   <div id="{{ section_name }}" class="section is-width-{{ section.width }} multi-col">
