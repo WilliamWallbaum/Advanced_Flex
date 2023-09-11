@@ -1,11 +1,5 @@
 {
   "sections": {
-    "ba17f5e4-3dfa-4847-95c4-34031e7a0155": {
-      "type": "hearing_levels",
-      "settings": {
-        "show_hearing_levels": true
-      }
-    },
     "91fc1096-5959-4b9e-b400-cf10ded3ba75": {
       "type": "breadcrumb-section",
       "settings": {
@@ -56,8 +50,11 @@
         "show_header": true,
         "section_name": "Peace of Mind",
         "header_text": "<p>Your new {{ product.title }} will comes ready to use.<\/p>",
+        "header_font_size": 30,
+        "gradient_color": "linear-gradient(180deg, rgba(5, 79, 142, 0.1), rgba(255, 255, 255, 1) 100%)",
+        "block_width": 45,
         "width": "standard",
-        "img_width": 150,
+        "img_width": 30,
         "is_card": "",
         "header_align": "center",
         "block_align": "center",
@@ -87,6 +84,7 @@
         "width": "standard",
         "show_section_header": true,
         "show_product_title": false,
+        "header_font_size": 10,
         "show_reviews": false,
         "show_header_text": true,
         "header_title": "Flexible Purchase Options!",
@@ -133,7 +131,6 @@
     }
   },
   "order": [
-    "ba17f5e4-3dfa-4847-95c4-34031e7a0155",
     "91fc1096-5959-4b9e-b400-cf10ded3ba75",
     "product",
     "0aa1d565-cf6d-4996-893e-35aeefeded83",
