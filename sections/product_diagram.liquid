@@ -3,10 +3,10 @@
 {% assign diagram = product.metafields.proddesc.diagram.value %}
 
 hello
-{{ product.metafields.proddesc.dimensions.value }}
-{{ product.metafields.proddesc.technical_information.hearing_aid.brand.value }}
-{{ product.metafields.proddesc.description_title }}
-{{ product.metafields.proddesc.technical_information.diagram }}
+{% assign technical_information = product.metafields.proddesc.technical_information.value %}
+{% assign technical_specifications = technical_information.technical_specifications %}
+{% assign dimensions = technical_information.dimensions %}
+{{ dimensions.height.mm }}
 
 {% if product.metafields.proddesc.diagram %}
   <div id="{{ section_name }}" class="section is-width-{{ section.width }} multi-col">
