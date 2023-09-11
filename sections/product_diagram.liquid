@@ -38,6 +38,7 @@
           {% include 'image-element',
             image: product.metafields.proddesc.digram_image,
             alt: product.metafields.proddesc.digram_image.alt,
+            figure_classes: diagram,
             loading: 'lazy'
           %}
         </div>
@@ -60,6 +61,9 @@
   }
   #diagram-list {
     font-size: calc(var(--text-basic)*({{ section.list_font_size }} / 10));
+  }
+  .diagram {
+    width: {{ section.diagram_width }}%;
   }
 </style>
 {% style %}
@@ -139,6 +143,16 @@
     {
       "type": "header",
       "content": "Image"
+    },
+    {
+      "type": "range",
+      "id": "diagram_width",
+      "label": "Diagram Width",
+      "default":100,
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "%"
     },
     {
       "type": "header",
