@@ -128,6 +128,13 @@
       "type": "Yotpo",
       "settings": {
       }
+    },
+    "a6f3637a-6795-40f1-84a1-71d624f47559": {
+      "type": "product_diagram",
+      "settings": {
+        "show_footer": true,
+        "footer_text": "<p>hello<\/p>"
+      }
     }
   },
   "order": [
@@ -137,6 +144,7 @@
     "32332f0a-3dd1-44c5-ba4b-8f72c7cf099f",
     "product-tabs",
     "product_recommendation",
-    "Yotpo"
+    "Yotpo",
+    "a6f3637a-6795-40f1-84a1-71d624f47559"
   ]
 }
