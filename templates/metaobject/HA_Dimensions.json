@@ -38,6 +38,13 @@
         "EQ Input Noise (dB)": "28",
         "Battery Current (mA)": null,
         "Frequency Range": "300-6200"
+      },
+      "diagram": {
+        "1": "Microphone",
+        "2": "Rocker Switch",
+        "3": "Hearing Tube",
+        "4": "Dome",
+        "5": "Battery Charging Port"
       }
     },
     {
@@ -77,6 +84,14 @@
         "EQ Input Noise (dB)": "27",
         "Battery Current (mA)": null,
         "Frequency Range": "300-5500"
+      },
+      "diagram": {
+        "1": "Microphone",
+        "2": "Volume Control Wheel",
+        "3": "Progrom Button",
+        "4": "Charging Port",
+        "5": "Hearing Tube",
+        "6": "Dome"
       }
     },
     {
@@ -119,6 +134,14 @@
         "Latency": "<15ms",
         "Attack": "0.25ms",
         "Release": "28.25ms"
+      },
+      "diagram": {
+        "1": "Microphone",
+        "2": "Progrom Button",
+        "3": "Volume Switch",
+        "4": "Charging Port",
+        "5": "Hearing Tube",
+        "6": "Dome"
       }
     },
     {
@@ -159,6 +182,14 @@
         "EQ Input Noise (dB)": "28",
         "Battery Current (mA)": null,
         "Frequency Range": "300-6200"
+      },
+      "diagram": {
+        "1": "Microphone",
+        "2": "Progrom Button",
+        "3": "Volume Switch",
+        "4": "Charging Port",
+        "5": "Hearing Tube",
+        "6": "Dome"
       }
     },
     {
@@ -201,6 +232,14 @@
         "Frequency Range": "300-5500",
         "Battery Current (mA)": "1.0",
         "Long-Lasting Battery Size": "13"
+      },
+      "diagram": {
+        "1": "Microphone",
+        "2": "Volume Control Wheel",
+        "3": "Program Button",
+        "4": "Battery Door",
+        "5": "Hearing Tube",
+        "6": "Dome"
       }
     },
     {
@@ -245,6 +284,15 @@
         "Release": "28.25ms",
         "Battery Current (mA)": "1.5",
         "Long-Lasting Battery Size": "675"
+      },
+      "diagram": {
+        "1": "Earhook",
+        "2": "Volume Control Wheel",
+        "3": "Trimmer (H, P) Cover",
+        "4": "Program Button",
+        "5": "Battery Door",
+        "6": "Thick Tube",
+        "7": "Dome"
       }
     },
     {
@@ -289,6 +337,14 @@
         "Release": "28.25ms",
         "Battery Current (mA)": "0.9",
         "Long-Lasting Battery Size": "312"
+      },
+      "diagram": {
+        "1": "Microphone",
+        "2": "Trimpot Control",
+        "3": "Volume Control Wheel",
+        "4": "Battery Door",
+        "5": "Hearing Tube",
+        "6": "Dome"
       }
     },
     {
@@ -334,6 +390,15 @@
         "Latency": "<15ms",
         "Attack": "0.25ms",
         "Release": "28.25ms"
+      },
+      "diagram": {
+        "1": "Microphone",
+        "2": "Volume Control Wheel",
+        "3": "Trimmer (H, P) Cover",
+        "4": "Program Button",
+        "5": "Battery Door",
+        "6": "Hearing Tube",
+        "7": "Dome"
       }
     },
     {
@@ -378,6 +443,14 @@
         "Latency": "<15ms",
         "Attack": "0.25ms",
         "Release": "28.25ms"
+      },
+      "diagram": {
+        "1": "Microphone",
+        "2": "Program Button",
+        "3": "Volume Control Wheel",
+        "4": "Battery Door",
+        "5": "Hearing Tube",
+        "6": "Dome"
       }
     },
     {
@@ -422,6 +495,12 @@
         "Latency": "<15ms",
         "Attack": "0.25ms",
         "Release": "28.25ms"
+      },
+      "diagram": {
+        "1": "Microphone",
+        "2": "Touch Button",
+        "3": "Charging Contact",
+        "4": "Dome"
       }
     }
   ]
