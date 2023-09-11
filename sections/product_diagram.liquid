@@ -6,7 +6,8 @@ hello
 {% assign technical_information = product.metafields.proddesc.technical_information.value %}
 {% assign technical_specifications = technical_information.technical_specifications %}
 {% assign dimensions = technical_information.dimensions %}
-{{ dimensions.height.mm }}
+{% assign diagram = technical_information.diagram %}
+{{ diagram }}
 
 {% if product.metafields.proddesc.diagram %}
   <div id="{{ section_name }}" class="section is-width-{{ section.width }} multi-col">
