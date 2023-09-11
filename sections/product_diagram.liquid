@@ -33,15 +33,14 @@
       <!-- end column 1 -->
 
       <!-- start column 2 -->
+      {{ product.metafields.proddesc.digram_image.src }}
       {% if product.metafields.proddesc.digram_image %}
         <div id="" class="">
-          {{ product.metafields.proddesc.digram_image.src }}
           {% include 'image-element',
             image: product.metafields.proddesc.digram_image.src,
             alt: product.metafields.proddesc.digram_image.alt,
             loading: 'lazy'
           %}
-          {{-  }}
         </div>
       {% endif %}
       <!-- end column 2 -->
