@@ -3022,14 +3022,10 @@
         "type": "product_recommendation",
         "settings": {
           "show_section": true,
-          "recommendation-title": "Product Recommendations",
-          "similar-products": true,
-          "similar-products-title": "Similar Products",
           "show-product-image": true,
           "show_title": true,
           "show_price": true,
-          "show_description": false,
-          "product-limit": 4
+          "show_description": false
         }
       },
       "landing_header": {

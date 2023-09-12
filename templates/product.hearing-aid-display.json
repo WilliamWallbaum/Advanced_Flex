@@ -108,12 +108,12 @@
       "type": "product_recommendation",
       "settings": {
         "show_section": true,
-        "recommendation-title": "Compatible Tubes and Domes",
+        "section_title": "Product Recommendations",
         "header_font_size": 30,
+        "header_copy": "<p>Similar Products<\/p>",
         "width": "standard",
-        "similar-products": true,
-        "product-type": "complementary",
-        "similar-products-title": "",
+        "show_similar_products": true,
+        "product_type": "complementary",
         "button_label": "",
         "button_class": "btn",
         "button_style": "btn--small",
@@ -122,7 +122,7 @@
         "show_title": true,
         "show_price": true,
         "show_description": false,
-        "product-limit": 4
+        "product_limit": 3
       }
     },
     "460dc558-0812-42ab-832f-77e2df7cd174": {
