@@ -66,6 +66,11 @@
   </div>
 {% endif %}
 
+<style>
+  header{
+    font-size: {{ section.settings.header_font_size }};
+  }
+</style>
 {% schema %}
 {
   "name": "Product Recommendations",
@@ -83,6 +88,16 @@
       "id": "recommendation-title",
       "label": "Product Recommendations Title",
       "default": "Product Recommendations"
+    },
+    {
+      "type": "range",
+      "id": "header_font_size",
+      "label": "Header Title Size",
+      "info": "multiplies the size of base text size by the value divided by 10 [base size * (value / 10)]",
+      "default":30,
+      "min": 5,
+      "max": 50,
+      "step": 1
     },
     {
       "type": "header",
