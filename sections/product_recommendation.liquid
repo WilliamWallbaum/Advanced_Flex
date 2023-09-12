@@ -34,7 +34,7 @@
     </header>
     <div class="product-grid">
       {% if sec.product_type == 'related' %}
-        {% for product in recommendation.products limit: sec.product_limit %}
+        {% for product in recommendations.products limit: sec.product_limit %}
           {% include 'product-card',
             show_show_product_description: sec.show_description,
             button_label: sec.button_label,
@@ -44,7 +44,7 @@
           %}
         {% endfor %}
       {% elsif sec.product_type == 'complementary' %}
-        {% for product in recommendation.products limit: sec.product_limit %}
+        {% for product in recommendations.products limit: sec.product_limit %}
           {% include 'product-card',
             show_show_product_description: sec.show_description,
             button_label: sec.button_label,
