@@ -5,6 +5,11 @@
   #product-recommendations {
     padding: var(--global-p2);
   }
+  @media (max-width: 490px) {
+    #product-recommendations {
+      padding: var(--global-p1);
+    }
+  }
 {% endstyle %}
 
 <!-- Product Recommendations -->
@@ -14,7 +19,6 @@
     class="section is-width-{{ width }} product-recommendations"
     data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.product-limit }}&intent={{ section.settings['product-type'] }}"
   >
-    hello
     <header>
       <h2>{{ section.settings['recommendation-title'] }}</h2>
       <h3>{{ section.settings['similar-products-title'] }}</h3>
