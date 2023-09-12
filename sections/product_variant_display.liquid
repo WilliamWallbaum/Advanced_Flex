@@ -281,13 +281,18 @@
     display: inline-grid;
     justify-items: end;
   }
-  .product-variant-footer {
+  .variant-footer {
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-gap: var(--global-p2);
   }
 
   /* Responsive Styles */
+  @media (max-width: 490px) {
+    .variant-header h2 {
+      text-align: center;
+    }
+  }
   @media screen and (max-width: 768px) {
     #variant-container {
       grid-template-columns: 1fr;
