@@ -24,42 +24,42 @@
   <div
     id="product-recommendation"
     class="section is-width-{{ width }} product-recommendation"
-    data-url="{{ routes.product_recommendation_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.product-limit }}&intent={{ section['product-type'] }}"
+    data-url="{{ routes.product_recommendation_url }}?section_id={{ section.settings.id }}&product_id={{ product.id }}&limit={{ section.settings.product-limit }}&intent={{ section.settings['product-type'] }}"
   >
     <header id="{{ section_name }}-header">
-      <h2>{{ section['recommendation-title'] }}</h2>
-      <h3>{{ section['similar-products-title'] }}</h3>
+      <h2>{{ section.settings['recommendation-title'] }}</h2>
+      <h3>{{ section.settings['similar-products-title'] }}</h3>
     </header>
 
     <div class="product-grid">
-      {% if section['product-type'] == 'related' %}
-        {% for product in recommendation.products limit: section['product-limit'] %}
+      {% if section.settings['product-type'] == 'related' %}
+        {% for product in recommendation.products limit: section.settings['product-limit'] %}
           {% include 'product-card',
-            show_show_product_description: section.show_description,
-            button_label: section.button_label,
-            button_class: section.button_class,
-            button_style: section.button_style,
-            card_width: section.card_width
+            show_show_product_description: section.settings.show_description,
+            button_label: section.settings.button_label,
+            button_class: section.settings.button_class,
+            button_style: section.settings.button_style,
+            card_width: section.settings.card_width
           %}
         {% endfor %}
-      {% elsif section['product-type'] == 'complementary' %}
-        {% for product in recommendation.products limit: section['product-limit'] %}
+      {% elsif section.settings['product-type'] == 'complementary' %}
+        {% for product in recommendation.products limit: section.settings['product-limit'] %}
           {% include 'product-card',
             show_show_product_description: section.show_description,
-            button_label: section.button_label,
-            button_class: section.button_class,
-            button_style: section.button_style,
-            card_width: section.card_width
+            button_label: section.settings.button_label,
+            button_class: section.settings.button_class,
+            button_style: section.settings.button_style,
+            card_width: section.settings.card_width
           %}
         {% endfor %}
       {% else %}
-        {% for product in main_collection.products limit: section['product-limit'] %}
+        {% for product in main_collection.products limit: section.settings['product-limit'] %}
           {% include 'product-card',
-            show_show_product_description: section.show_description,
-            button_label: section.button_label,
-            button_class: section.button_class,
-            button_style: section.button_style,
-            card_width: section.card_width
+            show_show_product_description: section.settings.show_description,
+            button_label: section.settings.button_label,
+            button_class: section.settings.button_class,
+            button_style: section.settings.button_style,
+            card_width: section.settings.card_width
           %}
         {% endfor %}
       {% endif %}
