@@ -1,7 +1,7 @@
 {% assign main_collection = product.collections.first %}
 {% assign section = section.settings %}
 {% assign width = section.width %}
-{% assign section_name = section.name | replace: ' ', '-' | downcase | default: 'recommendation' %}
+{% assign section_name = section.section_title | replace: ' ', '-' | downcase | default: 'recommendation' %}
 
 {% style %}
   #product-recommendation {
@@ -27,8 +27,8 @@
     data-url="{{ routes.product_recommendation_url }}?section_id={{ section.settings.id }}&product_id={{ product.id }}&limit={{ section.settings.product-limit }}&intent={{ section.settings['product-type'] }}"
   >
     <header id="{{ section_name }}-header">
-      <h2>{{ section.settings.recommendation_title }}</h2>
-      <h3>{{ section.settings.similar_products_title }}</h3>
+      <h2>{{ section.settings.section_title }}</h2>
+      <div>{{ section.settings.header_copy }}</div>
     </header>
 
     <div class="product-grid">
@@ -85,10 +85,14 @@
       "default": true
     },
     {
+      "type": "header",
+      "content": "Header"
+    },
+    {
       "type": "text",
-      "id": "recommendation_title",
-      "label": "Product recommendation Title",
-      "default": "Product recommendation"
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Product Recommendations"
     },
     {
       "type": "range",
@@ -99,6 +103,12 @@
       "min": 5,
       "max": 50,
       "step": 1
+    },
+    {
+      "type": "richtext",
+      "id": "header_copy",
+      "label": "Header Copy",
+      "default": "<p>Similar Products</p>"
     },
     {
       "type": "header",
@@ -126,7 +136,7 @@
     },
     {
       "type": "checkbox",
-      "id": "similar-products",
+      "id": "show_similar_products",
       "label": "Show Similar Products",
       "default": true
     },
@@ -154,12 +164,6 @@
       "type": "header",
       "content": "Product Card",
       "info": "Save the page to reload the cards, sometimes you might need to reload the page, for changes to appear."
-    },
-    {
-      "type": "text",
-      "id": "similar_products_title",
-      "label": "Similar Products Title",
-      "default": "Similar Products"
     },
     {
       "type": "text",
