@@ -27,7 +27,7 @@
     data-url="{{ routes.product_recommendation_url }}?section_id={{ section.settings.id }}&product_id={{ product.id }}&limit={{ section.settings.product-limit }}&intent={{ section.settings['product-type'] }}"
   >
     <header id="{{ section_name }}-header">
-      <h2>{{ section.settings['recommendation-title'] }}</h2>
+      <h2>{{ section.settings.recommendation_title }}</h2>
       <h3>{{ section.settings['similar-products-title'] }}</h3>
     </header>
 
@@ -86,7 +86,7 @@
     },
     {
       "type": "text",
-      "id": "recommendation-title",
+      "id": "recommendation_title",
       "label": "Product recommendation Title",
       "default": "Product recommendation"
     },
