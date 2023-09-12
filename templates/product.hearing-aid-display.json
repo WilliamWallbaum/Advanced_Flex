@@ -124,11 +124,6 @@
         "product-limit": 4
       }
     },
-    "Yotpo": {
-      "type": "Yotpo",
-      "settings": {
-      }
-    },
     "460dc558-0812-42ab-832f-77e2df7cd174": {
       "type": "product_diagram",
       "settings": {
@@ -144,6 +139,11 @@
         "divider_2": true,
         "footer_text": ""
       }
+    },
+    "Yotpo": {
+      "type": "Yotpo",
+      "settings": {
+      }
     }
   },
   "order": [
@@ -153,7 +153,7 @@
     "32332f0a-3dd1-44c5-ba4b-8f72c7cf099f",
     "product-tabs",
     "product_recommendation",
-    "Yotpo",
-    "460dc558-0812-42ab-832f-77e2df7cd174"
+    "460dc558-0812-42ab-832f-77e2df7cd174",
+    "Yotpo"
   ]
 }
