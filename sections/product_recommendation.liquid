@@ -1,16 +1,17 @@
 {% assign main_collection = product.collections.first %}
-{% assign width = section.settings.width %}
-{% assign section_name = section.name | replace: ' ', '-' | downcase | default: 'diagram' %}
+{% assign section = section.settings %}
+{% assign width = section.width %}
+{% assign section_name = section.name | replace: ' ', '-' | downcase | default: 'recommendation' %}
 
 {% style %}
-  #product-recommendations {
+  #product-recommendation {
     padding: var(--global-p2);
     display: flex;
     gap: var(--global-p1);
       flex-direction: column;
   }
   @media (max-width: 490px) {
-    #product-recommendations {
+    #product-recommendation {
       padding: var(--global-p1);
     }
     .product-grid {
@@ -18,47 +19,47 @@
     }
 {% endstyle %}
 
-<!-- Product Recommendations -->
-{% if section.settings.show_section %}
+<!-- Product recommendation -->
+{% if section.show_section %}
   <div
-    id="product-recommendations"
-    class="section is-width-{{ width }} product-recommendations"
-    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.product-limit }}&intent={{ section.settings['product-type'] }}"
+    id="product-recommendation"
+    class="section is-width-{{ width }} product-recommendation"
+    data-url="{{ routes.product_recommendation_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.product-limit }}&intent={{ section['product-type'] }}"
   >
     <header id="{{ section_name }}-header">
-      <h2>{{ section.settings['recommendation-title'] }}</h2>
-      <h3>{{ section.settings['similar-products-title'] }}</h3>
+      <h2>{{ section['recommendation-title'] }}</h2>
+      <h3>{{ section['similar-products-title'] }}</h3>
     </header>
 
     <div class="product-grid">
-      {% if section.settings['product-type'] == 'related' %}
-        {% for product in recommendations.products limit: section.settings['product-limit'] %}
+      {% if section['product-type'] == 'related' %}
+        {% for product in recommendation.products limit: section['product-limit'] %}
           {% include 'product-card',
-            show_show_product_description: section.settings.show_description,
-            button_label: section.settings.button_label,
-            button_class: section.settings.button_class,
-            button_style: section.settings.button_style,
-            card_width: section.settings.card_width
+            show_show_product_description: section.show_description,
+            button_label: section.button_label,
+            button_class: section.button_class,
+            button_style: section.button_style,
+            card_width: section.card_width
           %}
         {% endfor %}
-      {% elsif section.settings['product-type'] == 'complementary' %}
-        {% for product in recommendations.products limit: section.settings['product-limit'] %}
+      {% elsif section['product-type'] == 'complementary' %}
+        {% for product in recommendation.products limit: section['product-limit'] %}
           {% include 'product-card',
-            show_show_product_description: section.settings.show_description,
-            button_label: section.settings.button_label,
-            button_class: section.settings.button_class,
-            button_style: section.settings.button_style,
-            card_width: section.settings.card_width
+            show_show_product_description: section.show_description,
+            button_label: section.button_label,
+            button_class: section.button_class,
+            button_style: section.button_style,
+            card_width: section.card_width
           %}
         {% endfor %}
       {% else %}
-        {% for product in main_collection.products limit: section.settings['product-limit'] %}
+        {% for product in main_collection.products limit: section['product-limit'] %}
           {% include 'product-card',
-            show_show_product_description: section.settings.show_description,
-            button_label: section.settings.button_label,
-            button_class: section.settings.button_class,
-            button_style: section.settings.button_style,
-            card_width: section.settings.card_width
+            show_show_product_description: section.show_description,
+            button_label: section.button_label,
+            button_class: section.button_class,
+            button_style: section.button_style,
+            card_width: section.card_width
           %}
         {% endfor %}
       {% endif %}
@@ -68,12 +69,12 @@
 
 <style>
   #{{ section_name }}-header h2 {
-    font-size: calc(var(--text-basic)*({{ section.settings.header_font_size }} / 10));
+    font-size: calc(var(--text-basic)*({{ section.header_font_size }} / 10));
   }
 </style>
 {% schema %}
 {
-  "name": "Product Recommendations",
+  "name": "Product recommendation",
   "class": "product-recommendation-section",
   "tag": "section",
   "settings": [
@@ -86,8 +87,8 @@
     {
       "type": "text",
       "id": "recommendation-title",
-      "label": "Product Recommendations Title",
-      "default": "Product Recommendations"
+      "label": "Product recommendation Title",
+      "default": "Product recommendation"
     },
     {
       "type": "range",
@@ -244,7 +245,7 @@
   ],
   "presets": [
     {
-      "name": "Product Recommendations"
+      "name": "Product recommendation"
     }
   ]
 }
@@ -253,23 +254,23 @@
 {% javascript %}
   const handleIntersection = (entries, observer) => {
     if (!entries[0].isIntersecting) return;
-    observer.unobserve(productRecommendationsSection);
-    const url = productRecommendationsSection.dataset.url;
+    observer.unobserve(productrecommendationSection);
+    const url = productrecommendationSection.dataset.url;
     fetch(url)
       .then(response => response.text())
       .then(text => {
         const html = document.createElement('div');
         html.innerHTML = text;
-        const recommendations = html.querySelector('.product-recommendations');
-        if (recommendations && recommendations.innerHTML.trim().length) {
-          productRecommendationsSection.innerHTML = recommendations.innerHTML;
+        const recommendation = html.querySelector('.product-recommendation');
+        if (recommendation && recommendation.innerHTML.trim().length) {
+          productrecommendationSection.innerHTML = recommendation.innerHTML;
         }
       })
       .catch(e => {
         console.error(e);
       });
   };
-  const productRecommendationsSection = document.querySelector('.product-recommendations');
+  const productrecommendationSection = document.querySelector('.product-recommendation');
   const observer = new IntersectionObserver(handleIntersection, {rootMargin: '0px 0px 200px 0px'});
-  observer.observe(productRecommendationsSection);
+  observer.observe(productrecommendationSection);
 {% endjavascript %}
