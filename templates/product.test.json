@@ -134,7 +134,7 @@
         "header_font_size": 30,
         "divider_1": true,
         "list_font_size": 16,
-        "diagram_width": 40,
+        "diagram_width": 30,
         "show_footer": false,
         "divider_2": false,
         "footer_text": "<p>hello<\/p>"
