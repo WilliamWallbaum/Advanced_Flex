@@ -28,10 +28,12 @@
   >
     <header id="{{ section_name }}-header">
       <h2>{{ section.section_title }}</h2>
-      <div>{{ section.header_copy }}</div>
+      <div>
+        {{ section.header_copy }}
+        {{ section.settings.product_limit }}
+        {{ section.settings.product_type }}
+      </div>
     </header>
-    {{ section.settings.product_limit }}
-    {{ section.settings.product_type }}
     <div class="product-grid">
       {% if section.settings.product_type == 'related' %}
         {% for product in recommendation.products limit: section.settings.product_limit %}
