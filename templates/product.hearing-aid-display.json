@@ -84,7 +84,7 @@
         "width": "standard",
         "show_section_header": true,
         "show_product_title": false,
-        "header_font_size": 30,
+        "header_font_size": 34,
         "show_reviews": false,
         "show_header_text": true,
         "header_title": "Flexible Purchase Options",
@@ -109,6 +109,7 @@
       "settings": {
         "show_section": true,
         "recommendation-title": "Compatible Tubes and Domes",
+        "header_font_size": 30,
         "width": "standard",
         "similar-products": true,
         "product-type": "complementary",
