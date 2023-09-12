@@ -135,8 +135,8 @@
         "divider_1": true,
         "list_font_size": 16,
         "diagram_width": 40,
-        "show_footer": true,
-        "divider_2": true,
+        "show_footer": false,
+        "divider_2": false,
         "footer_text": "<p>hello<\/p>"
       }
     },
