@@ -1,6 +1,6 @@
 {% assign main_collection = product.collections.first %}
 {% assign width = section.settings.width %}
-{% assign section_name = section.section_name | replace: ' ', '-' | downcase | default: 'diagram' %}
+{% assign section_name = section['recommendation-title'] | replace: ' ', '-' | downcase | default: 'diagram' %}
 
 {% style %}
   #product-recommendations {
