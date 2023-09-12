@@ -10,7 +10,7 @@
 {% assign technical_information = product.metafields.proddesc.technical_information.value %}
 {% assign technical_specifications = technical_information.technical_specifications %}
 {% assign ha = technical_information.hearing_aid %}
-{% assign section_name = header_title | replace: ' ', '-' | downcase | default: 'diagram' %}
+{% assign section_name = header_title | replace: ' ', '-' | downcase | default: 'product-start' %}
 
 {% comment %} Layout {% endcomment %}
 {% assign width = section.width %}
