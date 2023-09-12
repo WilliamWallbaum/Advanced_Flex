@@ -5,7 +5,7 @@
 {% assign diagram = technical_information.diagram %}
 
 {% if diagram %}
-  <div id="{{ section_name }}" class="section is-width-{{ section.width }}">
+  <div id="{{ section_name }}" class="section is-width-{{ section.width }} diagram">
     <!-- start section header -->
     {% if section.show_header %}
       <header id="{{ section_name }}-header" class="diagram-header">
@@ -64,11 +64,6 @@
 <style>
   #{{ section_name }} {
     background: {{ section.gradient_color }};
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: var(--global-p1);
   }
   .diagram-header h2 {
     font-size: calc(var(--text-basic)*({{ section.header_font_size }} / 10));
@@ -83,31 +78,43 @@
   }
 </style>
 {% style %}
-    .diagram-body {
-      display: flex;
-      gap: var(--global-p1);
-      justify-content: space-evenly;
-      align-items: center;
-    }
-    #diagram-image {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      max-width: calc(var(--global-p1)*20);
-    }
-    #diagram-image figure {
-      width:100%;
-    }
-    #diagram-list {
-      display: flex;
-      align-items: center;
-    }
-    hr {
-      background-color: var(--primary-color);
-      margin: calc(var(--global-p1)*.1) 0 calc(var(--global-p1)*1.2);
-    }
+  .diagram-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--global-p1);
+  padding: var(--global-p1) calc(var(--global-p1)*4);
+
+  }
+  .diagram-body {
+    display: flex;
+    gap: var(--global-p1);
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  #diagram-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: calc(var(--global-p1)*20);
+  }
+  #diagram-image figure {
+    width:100%;
+  }
+  #diagram-list {
+    display: flex;
+    align-items: center;
+  }
+  hr {
+    background-color: var(--primary-color);
+    margin: calc(var(--global-p1)*.1) 0 calc(var(--global-p1)*1.2);
+  }
   @media (max-width: 490px) {
+    .diagram-section {
+      padding: var(--global-p1);
+    }
     .diagram-header {
       width: 100%;
     }
@@ -117,14 +124,12 @@
     }
   }
   @media (min-width: 491px) and (min-width: 768px) {}
-  @media (max-width: 769px) {
-
-  }
+  @media (max-width: 769px) {}
 {% endstyle %}
 
 {% schema %}
   {
-  "name": "product diagram section",
+    "name": "product diagram section",
     "tag": "section",
   "settings": [
     {
