@@ -24,7 +24,7 @@
   <div
     id="{{ section_name }}-container"
     class="section is-width-{{ width }} product-recommendation"
-    data-url="{{ routes.product_recommendation_url }}?section_id={{ section.settings.id }}&product_id={{ product.id }}&limit={{ section.settings.product-limit }}&intent={{ section.settings['product-type'] }}"
+    data-url="{{ routes.product_recommendation_url }}?section_id={{ section.settings.id }}&product_id={{ product.id }}&limit={{ section.settings.product_limit }}&intent={{ section.settings.product_type }}"
   >
     <header id="{{ section_name }}-header">
       <h2>{{ section.settings.section_title }}</h2>
@@ -32,8 +32,8 @@
     </header>
 
     <div class="product-grid">
-      {% if section.settings['product-type'] == 'related' %}
-        {% for product in recommendation.products limit: section.settings['product-limit'] %}
+      {% if section.settings.product_type == 'related' %}
+        {% for product in recommendation.products limit: section.settings.product_limit %}
           {% include 'product-card',
             show_show_product_description: section.settings.show_description,
             button_label: section.settings.button_label,
@@ -42,8 +42,8 @@
             card_width: section.settings.card_width
           %}
         {% endfor %}
-      {% elsif section.settings['product-type'] == 'complementary' %}
-        {% for product in recommendation.products limit: section.settings['product-limit'] %}
+      {% elsif section.settings.product_type == 'complementary' %}
+        {% for product in recommendation.products limit: section.settings.product_limit %}
           {% include 'product-card',
             show_show_product_description: section.show_description,
             button_label: section.settings.button_label,
@@ -53,7 +53,7 @@
           %}
         {% endfor %}
       {% else %}
-        {% for product in main_collection.products limit: section.settings['product-limit'] %}
+        {% for product in main_collection.products limit: section.settings.product_limit %}
           {% include 'product-card',
             show_show_product_description: section.settings.show_description,
             button_label: section.settings.button_label,
@@ -142,7 +142,7 @@
     },
     {
       "type": "radio",
-      "id": "product-type",
+      "id": "product_type",
       "label": "Product Type",
       "options": [
         {
@@ -239,7 +239,7 @@
     },
     {
       "type": "range",
-      "id": "product-limit",
+      "id": "product_limit",
       "label": "Product Limit",
       "min": 1,
       "max": 8,
