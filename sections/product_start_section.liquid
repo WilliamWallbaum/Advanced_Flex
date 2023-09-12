@@ -10,7 +10,7 @@
 {% assign technical_information = product.metafields.proddesc.technical_information.value %}
 {% assign technical_specifications = technical_information.technical_specifications %}
 {% assign ha = technical_information.hearing_aid %}
-{% assign section_name = section.section_name | replace: ' ', '-' | downcase | default: 'diagram' %}
+{% assign section_name = header_title | replace: ' ', '-' | downcase | default: 'diagram' %}
 
 {% comment %} Layout {% endcomment %}
 {% assign width = section.width %}
@@ -27,17 +27,17 @@
   {% if section.settings.show_section_header %}
     {%
       include 'product_header' with
-      show_product_title: section.settings.show_product_title,
+      show_product_title: show_product_title,
       show_reviews: section.settings.show_reviews,
-      show_header_text: section.settings.show_header_text,
-      header_title: section.settings.header_title,
-      header_copy: section.settings.header_copy,
+      show_header_text: show_header_text,
+      header_title: header_title,
+      header_copy: header_copy,
       section_name: section_name
     %}
   {% endif %}
 
   <div
-    id="description-container"
+    id="{{ section_name }}-container"
     class="container"
   >
     <div id="product-img-container" class="product__images one-half column medium-down--one-whole">
