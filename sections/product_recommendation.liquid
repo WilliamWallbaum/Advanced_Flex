@@ -22,7 +22,7 @@
 <!-- Product recommendation -->
 {% if section.show_section %}
   <div
-    id="product-recommendation"
+    id="{{ section_name }}-container"
     class="section is-width-{{ width }} product-recommendation"
     data-url="{{ routes.product_recommendation_url }}?section_id={{ section.settings.id }}&product_id={{ product.id }}&limit={{ section.settings.product-limit }}&intent={{ section.settings['product-type'] }}"
   >
