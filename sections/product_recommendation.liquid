@@ -33,7 +33,7 @@
 
     <div class="product-grid">
       {% if section.product_type == 'related' %}
-        {% for product in recommendation.products limit: section.settings.product_limit %}
+        {% for product in recommendation.products limit: section.product_limit %}
           {% include 'product-card',
             show_show_product_description: section.settings.show_description,
             button_label: section.settings.button_label,
@@ -43,7 +43,7 @@
           %}
         {% endfor %}
       {% elsif section.product_type == 'complementary' %}
-        {% for product in recommendation.products limit: section.settings.product_limit %}
+        {% for product in recommendation.products limit: section.product_limit %}
           {% include 'product-card',
             show_show_product_description: section.show_description,
             button_label: section.settings.button_label,
