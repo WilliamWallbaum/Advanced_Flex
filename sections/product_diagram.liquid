@@ -56,6 +56,9 @@
 {% endif %}
 
 <style>
+  #{{ section_name }} {
+    background-color: {{ section.gradient_color }};
+  }
   .diagram-header h2 {
     font-size: calc(var(--text-basic)*({{ section.header_font_size }} / 10));
   }
