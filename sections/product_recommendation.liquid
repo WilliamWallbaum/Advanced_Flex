@@ -27,8 +27,8 @@
     data-url="{{ routes.product_recommendation_url }}?section_id={{ section.settings.id }}&product_id={{ product.id }}&limit={{ section.settings.product_limit }}&intent={{ section.settings.product_type }}"
   >
     <header id="{{ section_name }}-header">
-      <h2>{{ section.settings.section_title }}</h2>
-      <div>{{ section.settings.header_copy }}</div>
+      <h2>{{ section.section_title }}</h2>
+      <div>{{ section.header_copy }}</div>
     </header>
 
     <div class="product-grid">
