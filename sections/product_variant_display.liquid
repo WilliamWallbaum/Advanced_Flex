@@ -103,11 +103,11 @@
   </footer>
 {% endif %}
 
-<script>
+<style>
   .product-variant-header h2 {
     font-size: {{ section.settings.header_font_size }};
   }
-</script>
+</style>
 
 {% schema %}
 {
@@ -261,6 +261,9 @@
     height: 1px;
     visibility: hidden;
   }
+  .product-variant-header{
+    padding: var(--global-p1);
+  }
   .card-body {
     display: grid;
     grid-gap: var(--global-p1);
@@ -286,6 +289,9 @@
   @media screen and (max-width: 768px) {
     #variant-container {
       grid-template-columns: 1fr; /* Show one card per row on smaller screens */
+    }
+    .product-variant-header {
+
     }
     .card-body {
       grid-template-columns: repeat(auto-fit, minmax(40%, 1fr)); /* Adjust card columns for smaller screens */
