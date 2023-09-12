@@ -49,6 +49,9 @@
 
     <!-- start section footer -->
     {% if section.show_footer %}
+      {% if section.divider_2 %}
+        <hr>
+      {% endif %}
       <footer id="{{ section_name }}-footer" class="diagram-footer">{{ section.footer_text }}</footer>
     {% endif %}
     <!-- end section footer -->
@@ -139,6 +142,12 @@
       "step": 1
     },
     {
+      "type": "checkbox",
+      "id": "divider_1",
+      "label": "Show Divider Line",
+      "default": true
+    },
+    {
       "type": "range",
       "id": "list_font_size",
       "label": "List Font Size",
@@ -174,6 +183,12 @@
       "type": "checkbox",
       "id": "show_footer",
       "label": "Show Section Footer",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "divider_2",
+      "label": "Show Divider Line",
       "default": true
     },
     {
