@@ -30,8 +30,11 @@
       <h2>{{ section.section_title }}</h2>
       <div>
         {{ section.header_copy }}
+        {{ routes.product_recommendation_url }}
+        {{ section.settings.id }}
+        {{ product.id }}
         {{ section.product_limit }}
-        {{ section.product_type }}
+        {{ section.settings.product_type }}
       </div>
     </header>
     <div class="product-grid">
