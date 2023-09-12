@@ -58,6 +58,7 @@
 <style>
   #{{ section_name }} {
     background-color: {{ section.gradient_color }};
+    padding: var(--global-p1) var(--global-p4);
   }
   .diagram-header h2 {
     font-size: calc(var(--text-basic)*({{ section.header_font_size }} / 10));
@@ -76,7 +77,6 @@
   .diagram-body {
     display: flex;
     flex-direction: row;
-    padding: var(--global-p1) var(--global-p4);
     justify-content: center;
   }
   #diagram-list {
