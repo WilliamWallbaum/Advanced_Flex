@@ -128,6 +128,22 @@
       "type": "Yotpo",
       "settings": {
       }
+    },
+    "460dc558-0812-42ab-832f-77e2df7cd174": {
+      "type": "product_diagram",
+      "settings": {
+        "gradient_color": "linear-gradient(0deg, rgba(5, 79, 142, 0.1), rgba(255, 255, 255, 1) 100%)",
+        "show_header": true,
+        "section_name": "So Simple to Use",
+        "header_text": "<p>Enjoy all-day comfort with our intuitive controls that allow you to easily adjust your {{ product.title }} to suit your needs.<\/p>",
+        "header_font_size": 30,
+        "divider_1": true,
+        "list_font_size": 16,
+        "diagram_width": 40,
+        "show_footer": false,
+        "divider_2": true,
+        "footer_text": ""
+      }
     }
   },
   "order": [
@@ -137,6 +153,7 @@
     "32332f0a-3dd1-44c5-ba4b-8f72c7cf099f",
     "product-tabs",
     "product_recommendation",
-    "Yotpo"
+    "Yotpo",
+    "460dc558-0812-42ab-832f-77e2df7cd174"
   ]
 }
