@@ -69,6 +69,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: var(--global-p1);
   }
   .diagram-header h2 {
     font-size: calc(var(--text-basic)*({{ section.header_font_size }} / 10));
@@ -76,9 +77,8 @@
   #diagram-list {
     font-size: calc(var(--text-basic)*({{ section.list_font_size }} / 10));
   }
-  .image {
+  .diagram-body {
     width: {{ section.diagram_width }}%;
-    max-width: 400px;
   }
 </style>
 {% style %}
@@ -87,8 +87,10 @@
   }
   .diagram-body {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    width: 41%;
+    gap: var(--global-p1);
+    justify-content: space-around;
+    align-items: center;
   }
   #diagram-image {
     display: flex;
