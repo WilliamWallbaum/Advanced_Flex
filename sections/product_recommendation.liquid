@@ -1,6 +1,6 @@
 {% assign main_collection = product.collections.first %}
 {% assign width = section.settings.width %}
-{% assign section_name = section['recommendation-title'] | replace: ' ', '-' | downcase | default: 'diagram' %}
+{% assign section_name = section.name | replace: ' ', '-' | downcase | default: 'diagram' %}
 
 {% style %}
   #product-recommendations {
@@ -69,7 +69,7 @@
 
 <style>
   #{{ section_name }}-header {
-    font-size: {{ section.settings.header_font_size }};
+    font-size: {{ section.settings.header_font_size }}px;
   }
 </style>
 {% schema %}
