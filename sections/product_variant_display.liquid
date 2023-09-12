@@ -1,6 +1,8 @@
 <script src="{{ 'addPair.js' | asset_url }}" defer></script>
+{% assign section_name = section.section_name | replace: ' ', '-' | downcase | default: 'variant' %}
+
 {% if section.settings.show_variants %}
-  <span id="variant-anchor"></span>
+  <span id="{{ section_name }}-anchor"></span>
   {% if section.settings.show_section_header %}
     {%
       include 'product_header' with
@@ -12,7 +14,7 @@
     %}
   {% endif %}
 
-  <div id="variant-container" class="section is-width-{{ section.settings.width }} card-container">
+  <div id="{{ section_name }}-container" class="section is-width-{{ section.settings.width }} card-container">
     {% assign leftVariant = null %}
     {% assign pairVariant = null %}
     {% assign rightVariant = null %}
@@ -90,7 +92,7 @@
       %}
     {% endif %}
   </div>
-  <footer class="is-width-{{ section.settings.width }} product-variant-footer">
+  <footer class="is-width-{{ section.settings.width }} {{ section_name }}-footer">
     {% if section.settings.show_product_description %}
       <div class="product-description">
         {{ product.content }}
@@ -104,7 +106,7 @@
 {% endif %}
 
 <style>
-  .product-variant-header h2 {
+  .{{section_name}}-header h2 {
     font-size:  calc(var(--text-basic)*({{ section.settings.header_font_size }} / 10));
   }
 </style>
