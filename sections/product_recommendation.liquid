@@ -4,13 +4,17 @@
 {% style %}
   #product-recommendations {
     padding: var(--global-p2);
+    display: flex;
+    gap: var(--global-p1);
+    flex-direction: row;
   }
   @media (max-width: 490px) {
     #product-recommendations {
       padding: var(--global-p1);
+      flex-direction: column;
     }
     .product-grid {
-      padding: var(--global-p1) !important;
+      padding: 0 !important;
     }
 {% endstyle %}
 
