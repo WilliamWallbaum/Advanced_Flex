@@ -24,7 +24,7 @@
   <div
     id="{{ section_name }}-container"
     class="section is-width-{{ width }} product-recommendation"
-    data-url="{{ routes.product_recommendation_url }}?section_id={{ section.settings.id }}&product_id={{ product.id }}&limit={{ section.product_limit }}&intent={{ section.settings.product_type }}"
+    data-url="{{ routes.product_recommendation_url }}?section_id={{ section.settings.id }}&product_id={{ product.id }}&limit={{ section.product_limit }}&intent={{ section.product_type }}"
   >
     <header id="{{ section_name }}-header">
       <h2>{{ section.section_title }}</h2>
@@ -35,8 +35,8 @@
       </div>
     </header>
     <div class="product-grid">
-      {% if section.settings.product_type == 'related' %}
-        {% for product in recommendation.products limit: section.settings.product_limit %}
+      {% if section.product_type == 'related' %}
+        {% for product in recommendation.products limit: section.product_limit %}
           {% include 'product-card',
             show_show_product_description: section.settings.show_description,
             button_label: section.settings.button_label,
@@ -45,8 +45,8 @@
             card_width: section.settings.card_width
           %}
         {% endfor %}
-      {% elsif section.settings.product_type == 'complementary' %}
-        {% for product in recommendation.products limit: section.settings.product_limit %}
+      {% elsif section.product_type == 'complementary' %}
+        {% for product in recommendation.products limit: section.product_limit %}
           {% include 'product-card',
             show_show_product_description: section.show_description,
             button_label: section.settings.button_label,
@@ -56,7 +56,7 @@
           %}
         {% endfor %}
       {% else %}
-        {% for product in main_collection.products limit: section.settings.product_limit %}
+        {% for product in main_collection.products limit: section.product_limit %}
           {% include 'product-card',
             show_show_product_description: section.settings.show_description,
             button_label: section.settings.button_label,
