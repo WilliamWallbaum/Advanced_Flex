@@ -74,6 +74,7 @@
   }
   .image {
     width: {{ section.diagram_width }}%;
+    max-width: 400px;
   }
 </style>
 {% style %}
@@ -85,9 +86,10 @@
     flex-direction: row;
     justify-content: center;
   }
-  #diagram-list {
-  }
   #diagram-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   #diagram-list {
     display: flex;
