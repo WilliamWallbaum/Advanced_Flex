@@ -131,7 +131,7 @@
         "show_header": true,
         "section_name": "So Simple to Use",
         "header_text": "<p>Enjoy all-day comfort with our intuitive controls that allow you to easily adjust your {{ product.title }} to suit your needs.<\/p>",
-        "header_font_size": 23,
+        "header_font_size": 30,
         "list_font_size": 16,
         "diagram_width": 40,
         "show_footer": true,
