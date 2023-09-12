@@ -127,6 +127,7 @@
     "a6f3637a-6795-40f1-84a1-71d624f47559": {
       "type": "product_diagram",
       "settings": {
+        "gradient_color": "linear-gradient(0deg, rgba(5, 79, 142, 0.1), rgba(255, 255, 255, 1) 100%)",
         "show_header": true,
         "section_name": "So Simple to Use",
         "header_text": "",
