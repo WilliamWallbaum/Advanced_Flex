@@ -30,9 +30,16 @@
       <h2>{{ section.section_title }}</h2>
       <div>
         {{ section.header_copy }}
-        url={{ routes.product_recommendations_url }} section_id={{ section.id }} product_id={{ product.id }} limit=
-        {{- section.settings.product_limit }}
-        intent={{ section.settings.product_type }}
+        <br>
+        url = {{ routes.product_recommendations_url }}
+        <br>
+        section_id = {{ section.id }}
+        <br>
+        product_id = {{ product.id }}
+        <br>
+        limit = {{ section.settings.product_limit }}
+        <br>
+        intent = {{ section.settings.product_type }}
       </div>
     </header>
     <div class="product-grid">
