@@ -68,7 +68,7 @@
 
 <style>
   #{{ section_name }}-header h2 {
-    font-size: {{ section.settings.header_font_size }}px;
+    font-size: calc(var(--text-basic)*({{ section.header_font_size }} / 10));
   }
 </style>
 {% schema %}
