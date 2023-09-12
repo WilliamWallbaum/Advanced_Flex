@@ -135,7 +135,7 @@
         "list_font_size": 16,
         "diagram_width": 40,
         "show_footer": true,
-        "footer_text": "<p>this is the footer<\/p>"
+        "footer_text": ""
       }
     },
     "Yotpo": {

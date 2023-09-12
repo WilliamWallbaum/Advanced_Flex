@@ -10,6 +10,9 @@
     {% if section.show_header %}
       <header id="{{ section_name }}-header" class="diagram-header">
         <h2 header id="{{ section_name }}-header-name">{{ section.section_name }}</h2>
+        {% if section.divider_1 %}
+          <hr>
+        {% endif %}
         <div header id="{{ section_name }}-header-text">{{ section.header_text }}</div>
       </header>
     {% endif %}
