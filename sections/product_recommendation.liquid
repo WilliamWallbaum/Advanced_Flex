@@ -24,7 +24,7 @@
   <div
     id="{{ section_name }}-container"
     class="section is-width-{{ width }} product-recommendation"
-    data-url="{{ routes.product_recommendation_url }}?section_id={{ section.settings.id }}&product_id={{ product.id }}&limit={{ section.product_limit }}&intent={{ section.product_type }}"
+    data-url="{{ routes.product_recommendations_url }}?section_id={{ section.settings.id }}&product_id={{ product.id }}&limit={{ section.product_limit }}&intent={{ section.product_type }}"
   >
     <header id="{{ section_name }}-header">
       <h2>{{ section.section_title }}</h2>
