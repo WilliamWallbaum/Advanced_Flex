@@ -65,6 +65,10 @@
   #{{ section_name }} {
     background: {{ section.gradient_color }};
     padding: var(--global-p1) var(--global-p4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .diagram-header h2 {
     font-size: calc(var(--text-basic)*({{ section.header_font_size }} / 10));
