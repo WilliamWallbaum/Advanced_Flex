@@ -2,12 +2,13 @@
 {% assign sec = section.settings %}
 {% assign width = section.width %}
 {% assign section_name = section.section_title | replace: ' ', '-' | downcase | default: 'recommendation' %}
+{% assign container_class = 'section' | append: ' is-width-' | append: sec.width %}
 
 <!-- Product recommendation -->
 {% if sec.show_section %}
   <div
     id="{{ section_name }}-container"
-    class="is-width-{{ sec.width }} product-recommendation"
+    class="{{ container_class }} product-recommendation"
     data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ sec.product_limit }}&intent={{ sec.product_type }}"
   >
     <header id="{{ section_name }}-header">
