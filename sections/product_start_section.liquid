@@ -267,9 +267,13 @@
     .savings {
       padding: calc(var(--global-p1) * 0.1) calc(var(--global-p1) * 2);
     }
+    .feature-list {
+      justify-self: self-start;
+      padding-left: var(--global-p1);
+    }
     .feature-list ul li {
       list-style-type: "✓";
-      padding-left: 10px;
+      padding-left: calc(var(--global-p1) * .2);
     }
     .feature-list ul li::marker {
       color: green;
