@@ -10,7 +10,7 @@
     "c123dd3d-b7bf-472f-ba40-88056193ceaf": {
       "type": "product_start_section",
       "settings": {
-        "width": "standard",
+        "width": "wide",
         "show_section_header": true,
         "show_product_title": true,
         "show_reviews": true,
@@ -53,7 +53,7 @@
         "header_font_size": 30,
         "gradient_color": "linear-gradient(180deg, rgba(5, 79, 142, 0.1), rgba(255, 255, 255, 1) 100%)",
         "block_width": 35,
-        "width": "standard",
+        "width": "wide",
         "img_width": 20,
         "is_card": "",
         "header_align": "center",
@@ -81,7 +81,7 @@
       "type": "product_variant_display",
       "settings": {
         "show_variants": true,
-        "width": "standard",
+        "width": "wide",
         "show_section_header": true,
         "show_product_title": false,
         "header_font_size": 30,
@@ -97,7 +97,7 @@
     "product-tabs": {
       "type": "product_description_tabs",
       "settings": {
-        "width": "standard",
+        "width": "wide",
         "tab_1": "Description",
         "tab_2": "Warranty",
         "tab_3": "Size Comparison & Technical Information",
@@ -112,7 +112,7 @@
         "section_title": "{{ product.title }} Accessories",
         "header_font_size": 30,
         "header_copy": "<p>These are the recommended tubes and domes that accompany your {{ product.title }}.<\/p><p>If you have questions or need help picking our Customer Care Team is just a phone call away <a href=\"tel:18003181395\" title=\"Customer Care Team\">1 (800) 318-1395<\/a><\/p>",
-        "width": "standard",
+        "width": "wide",
         "show_similar_products": true,
         "product_type": "complementary",
         "button_label": "",
@@ -129,7 +129,7 @@
     "460dc558-0812-42ab-832f-77e2df7cd174": {
       "type": "product_diagram",
       "settings": {
-        "width": "standard",
+        "width": "wide",
         "gradient_color": "linear-gradient(0deg, rgba(5, 79, 142, 0.1), rgba(255, 255, 255, 1) 100%)",
         "show_header": true,
         "section_name": "So Simple to Use",
