@@ -573,7 +573,7 @@
 
     #comparison-products, .img-tbl {grid-template-columns: 1fr}
 
-    div#section-content-4 {
+    #section-content-4 {
       padding: var(--global-p1) 0;
       grid-gap: var(--global-p1);
     }
@@ -595,6 +595,25 @@
 
     #section-content-4 .img-tbl table {
       grid-area: table;
+    }
+
+    #section-content-5 {
+      padding: var(--global-p1) 0;
+      grid-gap: var(--global-p1);
+    }
+
+    #section-content-5 .img-tbl {
+      grid-template-areas:5
+        "figure"
+        "list";
+    }
+
+    #section-content-5 .img-tbl figure {
+      grid-area: figure;
+    }
+
+    #section-content-5 .img-tbl ul {
+      grid-area: list;
     }
   }
 {% endstyle %}
