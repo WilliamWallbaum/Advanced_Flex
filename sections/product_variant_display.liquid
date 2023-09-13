@@ -294,22 +294,11 @@
     #variant-container {
       grid-template-columns: 1fr;
     }
-    .card-body {
-      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr)); /* Adjust card columns for smaller screens */
-    }
-    .card-body h3 {
-      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr)); /* Adjust card columns for smaller screens */
-    }
-    .card-body p {
-      font-size: calc(var(--text-basic)*1.25);
-    }
-    .card-body h3 {
-      font-size: calc(var(--text-basic)*1.5);
-    }
     .product-variant-footer {
-      grid-template-columns: 1fr; /* Show one column for footer on smaller screens */
+      grid-template-columns: 1fr;
     }
   }
+
   @media (min-width: 769px) and (max-width: 1024px)  {
   }
 {% endstyle %}
