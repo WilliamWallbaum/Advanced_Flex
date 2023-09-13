@@ -230,13 +230,17 @@
           "header header"
           "img desc";
       grid-template-columns: 1fr 1fr;
-      grid-gap: var(--global-p1);
+      grid-gap: calc(var(--global-p1)*2);
+      align-items: center;
     }
     #product-start-header {
       grid-area: header;
     }
     #product-start-description {
       grid-area: desc;
+      display: grid;
+      justify-items: center;
+      grid-gap:  var(--global-p1);
     }
     #product-start-img {
       grid-area: img;
