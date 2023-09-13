@@ -1,6 +1,6 @@
 <script src="{{ 'addPair.js' | asset_url }}" defer></script>
 {% assign section_name = section.settings.section_name | replace: ' ', '-' | downcase | default: 'variant' %}
-{% assign container_class = "section is-width-{{ section.settings.width }}" %}
+{% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
 
 {% if section.settings.show_variants %}
   <span id="{{ section_name }}-anchor"></span>
