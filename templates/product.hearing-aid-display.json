@@ -113,7 +113,7 @@
         "header_copy": "<p>Similar Products<\/p>",
         "width": "standard",
         "show_similar_products": true,
-        "product_type": "complementary",
+        "product_type": "related",
         "button_label": "",
         "button_class": "btn",
         "button_style": "btn--small",
