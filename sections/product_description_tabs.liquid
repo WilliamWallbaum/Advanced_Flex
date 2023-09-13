@@ -592,15 +592,25 @@
 
     #section-content-4 .img-tbl .dimension-box {
       grid-area: dimensions;
+      display: grid;
+      grid-gap: 1rem;
     }
 
     .dimension-box-dimensions {
       flex-direction: column;
+      align-items: center;
       gap: 0;
     }
 
+    .dimension-box-header {
+      display: flex;
+      gap: var(--global-p1);
+      align-items: center;
+      flex-direction: column;
+    }
+
     .dimension-box-dimensions p {
-      margin: 0;
+      margin: 0 !important;
     }
 
     .dimension-box h4 {
