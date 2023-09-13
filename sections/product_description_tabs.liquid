@@ -1,5 +1,10 @@
 {% comment %} Product Description Tabs {% endcomment %}
 
+{% comment %} Template Variables {% endcomment %}
+{% assign sec = section.settings %}
+{% assign section_name = section.settings.section_name | replace: ' ', '-' | downcase | default: 'tab' %}
+{% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
+
 {% comment %} Product Description MetaFields {% endcomment %}
 {% assign product_description = product.metafields.proddesc.description %}
 {% assign description_title = product.metafields.proddesc.description_title %}
@@ -13,29 +18,29 @@
 {% assign youtube = product.metafields.proddesc.product_video %}
 
 {% comment %} HTML markup {% endcomment %}
-{% if settings.show_product_description_tabs %}
+{% if sec.show_product_description_tabs %}
   <div id="tabs">
     <div class="tab-header">
       <button class="button-item">
-        <a href="#section-1" class="smooth-scroll">{{ settings.tab_1 }}</a>
+        <a href="#section-1" class="smooth-scroll">{{ sec.tab_1 }}</a>
       </button>
       <button class="button-item">
-        <a href="#section-2" class="smooth-scroll">{{ settings.tab_2 }}</a>
+        <a href="#section-2" class="smooth-scroll">{{ sec.tab_2 }}</a>
       </button>
       <button class="button-item">
-        <a href="#section-3" class="smooth-scroll">{{ settings.tab_3 }}</a>
+        <a href="#section-3" class="smooth-scroll">{{ sec.tab_3 }}</a>
       </button>
       <button class="button-item">
-        <a href="#section-4" class="smooth-scroll">{{ settings.tab_4 }}</a>
+        <a href="#section-4" class="smooth-scroll">{{ sec.tab_4 }}</a>
       </button>
       <button class="button-item">
-        <a href="#section-5" class="smooth-scroll">{{ settings.tab_5 }}</a>
+        <a href="#section-5" class="smooth-scroll">{{ sec.tab_5 }}</a>
       </button>
     </div>
 
     <div id="section-1" class="tab-content">
       <button class="button-item mobile-button active">
-        <a href="#section-1" class="smooth-scroll">{{ settings.tab_1 }}</a>
+        <a href="#section-1" class="smooth-scroll">{{ sec.tab_1 }}</a>
       </button>
 
       <div id="section-content-1" class="content active">
@@ -46,7 +51,7 @@
 
     <div id="section-2" class="tab-content">
       <button class="button-item mobile-button">
-        <a href="#section-2" class="smooth-scroll">{{ settings.tab_2 }}</a>
+        <a href="#section-2" class="smooth-scroll">{{ sec.tab_2 }}</a>
       </button>
 
       <div id="section-content-2" class="content">
@@ -66,7 +71,7 @@
 
     <div id="section-3" class="tab-content">
       <button class="button-item mobile-button">
-        <a href="#section-3" class="smooth-scroll">{{ settings.tab_3 }}</a>
+        <a href="#section-3" class="smooth-scroll">{{ sec.tab_3 }}</a>
       </button>
 
       <div id="section-content-3" class="content">
@@ -141,11 +146,11 @@
 
     <div id="section-4" class="tab-content">
       <button class="button-item mobile-button">
-        <a href="#section-4" class="smooth-scroll">{{ settings.tab_4 }}</a>
+        <a href="#section-4" class="smooth-scroll">{{ sec.tab_4 }}</a>
       </button>
 
       <div id="section-content-4" class="content">
-        <h2>{{ settings.tab_4 }}</h2>
+        <h2>{{ sec.tab_4 }}</h2>
 
         <div class="img-tbl">
           {% if size_comparison %}
@@ -193,7 +198,7 @@
 
     <div id="section-5" class="tab-content">
       <button class="button-item mobile-button">
-        <a href="#section-5" class="smooth-scroll">{{ settings.tab_5 }}</a>
+        <a href="#section-5" class="smooth-scroll">{{ sec.tab_5 }}</a>
       </button>
 
       <div id="section-content-5" class="content">
