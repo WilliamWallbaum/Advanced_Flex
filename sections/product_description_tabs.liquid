@@ -2,8 +2,8 @@
 
 {% comment %} Template Variables {% endcomment %}
 {% assign sec = section.settings %}
-{% assign section_name = section.settings.section_name | replace: ' ', '-' | downcase | default: 'tab' %}
-{% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
+{% assign section_name = sec.section_name | replace: ' ', '-' | downcase | default: 'tab' %}
+{% assign container_class = 'section' | append: ' is-width-' | append: sec.width %}
 
 {% comment %} Product Description MetaFields {% endcomment %}
 {% assign product_description = product.metafields.proddesc.description %}
