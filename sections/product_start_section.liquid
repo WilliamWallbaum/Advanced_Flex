@@ -21,7 +21,7 @@
   endif
 %}
 
-<div class="{{ container_class }} product-{{ product.id }}">
+<div id="{{ section_name }}-container" class="{{ container_class }} product-{{ product.id }}">
   {% if section.settings.show_section_header %}
     {%
       include 'product_header' with
@@ -34,7 +34,7 @@
     %}
   {% endif %}
 
-  <div id="{{ section_name }}-container">
+  <div id="{{ section_name }}-body">
     <div id="{{ section_name }}-img" class="product__images">
       {% render 'product__images',
         product: product,
@@ -225,7 +225,11 @@
 <style></style>
 {% style %}
   /* Grid Styles for Product Start Container */
-  #product-start-container {
+  #product-start-body {
+
+  }
+
+  #product-start-body {
     display: grid;
     grid-template-areas:
       "header header"
