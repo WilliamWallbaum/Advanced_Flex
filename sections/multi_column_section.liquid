@@ -4,7 +4,7 @@
 {% assign section_name = sec.section_name | replace: ' ', '-' | downcase | default: 'multi-col' %}
 {% assign container_class = 'section' | append: ' is-width-' | append: sec.width %}
 
-<div id="{{ section_name }}" class="section is-width-{{ sec.width }} multi-col">
+<div id="{{ section_name }}" class="{{ container_class }} multi-col">
   <!-- start section header -->
   {% if section.show_header %}
     <header id="{{ section_name }}-header" class="multi-col-header">
