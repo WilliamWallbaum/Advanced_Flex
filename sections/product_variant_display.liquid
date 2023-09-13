@@ -13,11 +13,11 @@
       header_title: section.settings.header_title,
       header_copy: section.settings.header_copy,
       section_name: section_name
-      class: container
+      class: container_class
     %}
   {% endif %}
 
-  <div id="{{ section_name }}-container" class="section is-width-{{ section.settings.width }} card-container">
+  <div id="{{ section_name }}-container" class="{{ container_class }} card-container">
     {% assign leftVariant = null %}
     {% assign pairVariant = null %}
     {% assign rightVariant = null %}
