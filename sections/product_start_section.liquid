@@ -35,7 +35,7 @@
   {% endif %}
 
   <div id="{{ section_name }}-container">
-    <div id="product-img-container" class="product__images one-half column medium-down--one-whole">
+    <div id="product-img-container" class="product__images">
       {% render 'product__images',
         product: product,
         display_thumbnails: section.settings.display_thumbnails,
@@ -54,7 +54,7 @@
     <!-- Start Description Section -->
     <div
       id="description-inner-container"
-      class="product__information has-product-sticker one-half column medium-down--one-whole"
+      class="product__information has-product-sticker one-half"
     >
       {% comment %} Sale sticker {% endcomment %}
       {% if stickers_enabled %}
