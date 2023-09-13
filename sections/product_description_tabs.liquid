@@ -556,6 +556,7 @@
     .mobile-button {display: flex;}
     .button-item {width: 100%;}
     .active {display: grid;}
+
     /* set transition properties for the element */
     [id^="section-content-"] {
       height: 0;
@@ -569,6 +570,10 @@
     [id^="section-content-"].active {
       height: auto;
       opacity: 1;
+    }
+
+    [id^="section-content-"] h2 {
+      text-align: center;
     }
 
     #comparison-products, .img-tbl {grid-template-columns: 1fr}
