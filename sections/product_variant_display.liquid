@@ -1,5 +1,5 @@
 <script src="{{ 'addPair.js' | asset_url }}" defer></script>
-{% assign section_name = section.section_name | replace: ' ', '-' | downcase | default: 'variant' %}
+{% assign section_name = section.settings.section_name | replace: ' ', '-' | downcase | default: 'variant' %}
 
 {% if section.settings.show_variants %}
   <span id="{{ section_name }}-anchor"></span>
@@ -14,7 +14,7 @@
     %}
   {% endif %}
 
-  <div id="{{ section_name }}-container" class="section is-width-{{ section.settings.width }} card-container">
+  <div id="{{ section_name }}-container" class="is-width-{{ section.settings.width }} card-container">
     {% assign leftVariant = null %}
     {% assign pairVariant = null %}
     {% assign rightVariant = null %}
@@ -115,7 +115,7 @@
 {
   "name": "Product Variant Display",
   "tag": "section",
-  "class": "section variant-display",
+  "class": "variant-display",
   "settings": [
     {
       "type": "checkbox",
