@@ -237,7 +237,7 @@
       "header header"
       "img desc";
     grid-template-columns: 1fr 1fr;
-    grid-gap: calc(var(--global-p1) * 2);
+    grid-gap: var(--global-p3);
     align-items: center;
     max-width: 1200px;
   }
@@ -266,7 +266,7 @@
   /* Font Size and Margin for h4 */
   h4 {
     font-size: calc(var(--text-basic) * 1.5);
-    margin-bottom: calc(var(--global-p1) * 0.5);
+    margin-bottom: var(--global-p0_5);
   }
 
   /* Price Container Styles */
@@ -278,7 +278,7 @@
 
   #price-box {
     background-color: var(--primary-color);
-    padding: calc(var(--global-p1) * 0.1) calc(var(--global-p1) * 2);
+    padding: var(--global-p0_1) var(--global-p2);
   }
 
   #price-box h2 {
@@ -287,7 +287,7 @@
 
   /* Savings Class */
   .savings {
-    padding: calc(var(--global-p1) * 0.1) calc(var(--global-p1) * 2);
+    padding: var(--global-p0_1) var(--global-p2);
   }
 
   /* Feature List Styles */
@@ -298,7 +298,7 @@
 
   .feature-list ul li {
     list-style-type: "✓";
-    padding-left: calc(var(--global-p1) * 0.5);
+    padding-left: var(--global-p0_5);
   }
 
   .feature-list ul li::marker {
