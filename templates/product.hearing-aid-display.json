@@ -108,9 +108,9 @@
       "type": "product_recommendation",
       "settings": {
         "show_section": true,
-        "section_title": "Product Recommendations",
+        "section_title": "{{ product.title }} Accessories",
         "header_font_size": 30,
-        "header_copy": "<p>Similar Products<\/p>",
+        "header_copy": "<p>These are the recommended tubes and domes that accompany your {{ product.title }}.<\/p><p>If you have questions or need help picking our Customer Care Team is just a phone call away <a href=\"tel:18003181395\" title=\"Customer Care Team\">1 (800) 318-1395<\/a><\/p>",
         "width": "standard",
         "show_similar_products": true,
         "product_type": "complementary",
