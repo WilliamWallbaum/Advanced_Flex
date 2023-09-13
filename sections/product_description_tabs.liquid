@@ -568,10 +568,33 @@
     /* update styles for the active class */
     [id^="section-content-"].active {
       height: auto;
-      padding: var(--global-p2);
       opacity: 1;
     }
-    #comparison-products {grid-template-columns: 1fr;}
-    .img-tbl {grid-template-columns: 1fr}
+
+    #comparison-products, .img-tbl {grid-template-columns: 1fr}
+
+    div#section-content-4 {
+      padding: var(--global-p1) 0;
+      grid-gap: var(--global-p1);
+    }
+
+    #section-content-4 .img-tbl {
+      grid-template-areas:
+        "dimensions"
+        "figure"
+        "table";
+    }
+
+    #section-content-4 .img-tbl figure {
+      grid-area: figure;
+    }
+
+    #section-content-4 .img-tbl .dimension-box {
+      grid-area: dimensions;
+    }
+
+    #section-content-4 .img-tbl table {
+      grid-area: table;
+    }
   }
 {% endstyle %}
