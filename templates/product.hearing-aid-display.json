@@ -97,6 +97,7 @@
     "product-tabs": {
       "type": "product_description_tabs",
       "settings": {
+        "width": "wide",
         "tab_1": "Description",
         "tab_2": "Warranty",
         "tab_3": "Size Comparison & Technical Information",
