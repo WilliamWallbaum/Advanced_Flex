@@ -1,5 +1,7 @@
 {% comment %} Product Description Tabs {% endcomment %}
 
+{% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
+
 {% comment %} Product Description MetaFields {% endcomment %}
 {% assign product_description = product.metafields.proddesc.description %}
 {% assign description_title = product.metafields.proddesc.description_title %}
@@ -14,7 +16,7 @@
 
 {% comment %} HTML markup {% endcomment %}
 {% if settings.show_product_description_tabs %}
-  <div id="tabs">
+  <div id="tabs" class="{{ container_class }}">
     <div class="tab-header">
       <button class="button-item">
         <a href="#section-1" class="smooth-scroll">{{ settings.tab_1 }}</a>
@@ -328,8 +330,36 @@
 {
   "name": "Product Descriptions Tabs",
   "tag": "section",
-  "class": "section tab-content",
+  "class": "tab-content",
   "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "standard",
+      "options": [
+        {
+          "value": "half",
+          "label": "Half"
+        },
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Tabs"
+    },
     {
       "type": "text",
       "id": "tab_1",
