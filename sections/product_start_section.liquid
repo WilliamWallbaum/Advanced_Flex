@@ -224,72 +224,94 @@
 
 <style></style>
 {% style %}
+  /* Grid Styles for Product Start Container */
   #product-start-container {
     display: grid;
     grid-template-areas:
-        "header header"
-        "img desc";
+      "header header"
+      "img desc";
     grid-template-columns: 1fr 1fr;
-    grid-gap: calc(var(--global-p1)*2);
+    grid-gap: calc(var(--global-p1) * 2);
     align-items: center;
   }
+
   #product-start-header {
     grid-area: header;
   }
+
   #product-start-description {
     grid-area: desc;
     display: grid;
     justify-items: center;
-    grid-gap:  var(--global-p1);
+    gap: var(--global-p1);
   }
+
   #product-start-img {
     grid-area: img;
   }
+
+  /* Hide Quantity Box */
   .purchase-details__quantity.product-quantity-box.quantity-box--box {
     display: none;
   }
+
+  /* Font Size and Margin for h4 */
   h4 {
-      font-size: calc(var(--text-basic)*1.5);
-      margin-bottom: calc(var(--global-p1)*.5);
-    }
+    font-size: calc(var(--text-basic) * 1.5);
+    margin-bottom: calc(var(--global-p1) * 0.5);
+  }
+
+  /* Price Container Styles */
   #price-container {
     display: flex;
     gap: var(--global-p1);
     margin-bottom: var(--global-p1);
   }
+
   #price-box {
     background-color: var(--primary-color);
     padding: calc(var(--global-p1) * 0.1) calc(var(--global-p1) * 2);
   }
+
   #price-box h2 {
     color: var(--color-bg);
   }
+
+  /* Savings Class */
   .savings {
     padding: calc(var(--global-p1) * 0.1) calc(var(--global-p1) * 2);
   }
+
+  /* Feature List Styles */
   .feature-list {
-    justify-self: self-start;
+    justify-self: start;
     padding-left: var(--global-p1);
   }
+
   .feature-list ul li {
     list-style-type: "✓";
-    padding-left: calc(var(--global-p1) * .5);
+    padding-left: calc(var(--global-p1) * 0.5);
   }
+
   .feature-list ul li::marker {
     color: green;
     font-size: calc(var(--text-basic) * 1.25);
   }
+
+  /* Trust Badges Container */
   #trust-badges-container {
     display: flex;
     justify-content: center;
   }
-  #decription-button {
+
+  /* Description Button */
+  #description-button {
     display: flex;
     width: 100%;
     flex-direction: column;
   }
 
-  /* Responsive Styles */
+  /* Responsive Styles for Smaller Screens */
   @media only screen and (max-width: 490px) {
     #product-start-container {
       grid-template-areas:
@@ -299,11 +321,15 @@
       grid-template-columns: 1fr;
     }
   }
+
   @media only screen and (max-width: 768px) {
+    /* Flex Container Styles */
     .container {
       flex-direction: column;
       align-items: center;
     }
+
+    /* Description Container Styles */
     #description-container {
       width: 100%;
       padding: 0 var(--global-p4) var(--global-p2);
@@ -311,12 +337,16 @@
       flex-direction: column;
       align-items: center;
     }
+
+    /* Inner Container Styles */
     #description-inner-container {
       display: flex;
       flex-direction: column;
       gap: var(--global-p1);
       margin: 0;
     }
+
+    /* Price Box Styles */
     #price-box {
       display: flex;
       flex-direction: column;
