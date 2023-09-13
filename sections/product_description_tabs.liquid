@@ -420,6 +420,7 @@
     background-color: var(--foreground-color);
     color: #fff;
   }
+
   [id^="section-content-"] {
     display: none;
     padding: var(--global-p2);
@@ -429,12 +430,14 @@
     transition: height 0.9s ease 0.5s, opacity 0.5s ease;
     transition-delay: 0.9s;
   }
+
   .active {
     display: grid;
     height: auto;
     opacity: 1;
     transition: opacity 0.9s ease 0.5s, height 0.5s ease;
   }
+
   #tabs h2,
   #tabs h3,
   #tabs h4 {
@@ -458,14 +461,17 @@
     font-size: larger;
     font-weight: 500;
   }
+
   .dimension-box h5 {
     margin: 0;
   }
+
   .dimension-box-header {
     display: flex;
     gap: var(--global-p1);
     align-items: baseline;
   }
+
   .dimension-box-dimensions {
     display: inline-flex;
     gap: var(--global-p1);
@@ -537,34 +543,6 @@
 
   figure.image-element__wrap {
     justify-self: center;
-  }
-
-  @media (min-width: 768px) {
-    .tab-header {
-      flex: 1 1 0%;
-      color: #fdfdfd;
-      font-family: var(--pf-primary-font);
-      display: flex;
-      flex-direction: row;
-    }
-
-    .button-item.mobile-button,
-    .button-item.mobile-button.active {
-      display: none;
-    }
-
-    .button-item {
-      border-top-right-radius: 15px;
-      flex: 1 1 0%;
-    }
-
-    .button-item:not(:last-of-type) a {
-      border-right: 0;
-    }
-
-    .img-tbl {
-      grid-template-columns: 3fr 1fr;
-    }
   }
 
   /* Responsive Styles */
@@ -678,6 +656,34 @@
 
     #section-content-5 .img-tbl ul {
       grid-area: list;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .tab-header {
+      flex: 1 1 0%;
+      color: #fdfdfd;
+      font-family: var(--pf-primary-font);
+      display: flex;
+      flex-direction: row;
+    }
+
+    .button-item.mobile-button,
+    .button-item.mobile-button.active {
+      display: none;
+    }
+
+    .button-item {
+      border-top-right-radius: 15px;
+      flex: 1 1 0%;
+    }
+
+    .button-item:not(:last-of-type) a {
+      border-right: 0;
+    }
+
+    .img-tbl {
+      grid-template-columns: 3fr 1fr;
     }
   }
 {% endstyle %}
