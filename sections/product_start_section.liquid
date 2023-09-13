@@ -8,6 +8,7 @@
 {% assign header_title = section.settings.header_title %}
 {% assign header_copy = section.settings.header_copy %}
 {% assign section_name = header_title | replace: ' ', '-' | downcase | default: 'product-start' %}
+{% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
 
 {% comment %} Layout {% endcomment %}
 {% assign width = section.width %}
@@ -29,13 +30,14 @@
       show_header_text: show_header_text,
       header_title: header_title,
       header_copy: header_copy,
-      section_name: section_name
+      section_name: section_name,
+      class: container_class
     %}
   {% endif %}
 
   <div
     id="{{ section_name }}-container"
-    class="container"
+    class="{{ container_class }}"
   >
     <div id="product-img-container" class="product__images one-half column medium-down--one-whole">
       {% render 'product__images',
