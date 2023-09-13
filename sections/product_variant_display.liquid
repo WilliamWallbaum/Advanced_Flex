@@ -108,12 +108,6 @@
   </footer>
 {% endif %}
 
-<style>
-  .{{section_name}}-header h2 {
-    font-size:  calc(var(--text-basic)*({{ section.settings.header_font_size }} / 10));
-  }
-</style>
-
 {% schema %}
 {
   "name": "Product Variant Display",
@@ -248,6 +242,12 @@
 }
 {% endschema %}
 
+<style>
+  .{{section_name}}-header h2 {
+    font-size:  calc(var(--text-basic)*({{ section.settings.header_font_size }} / 10));
+  }
+</style>
+
 {% style %}
   .variant-display {
     display: grid;
@@ -287,15 +287,15 @@
   }
 
   /* Responsive Styles */
-  @media (max-width: 490px) {
-    .variant-header h2 {
-      text-align: center;
-    }
-  }
-  @media screen and (max-width: 768px) {
+  @media (max-width: 490px) and (768px) {
     #variant-container {
       grid-template-columns: 1fr;
       padding: 0 var(--global-p2);
+    }
+  }
+  @media screen (max-width: 768px) {
+    .variant-header h2 {
+      text-align: center;
     }
     .card-body {
       grid-template-columns: repeat(auto-fit, minmax(40%, 1fr)); /* Adjust card columns for smaller screens */
@@ -312,5 +312,7 @@
     .product-variant-footer {
       grid-template-columns: 1fr; /* Show one column for footer on smaller screens */
     }
+  }
+  @media (min-width: 769px) and (max-width: 1024px)  {
   }
 {% endstyle %}
