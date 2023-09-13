@@ -3,14 +3,17 @@
   show_product_title: <boolean>
   show_reviews: <boolean>
   show_header_text: <boolean>
-  section_name: <>
+  section_name: <string>
+  class: <string>
   ______________
   Optional values
   header_title: <string>
   header_copy: <string>
+  section_name: <string>
+  class: <string>
 {% endcomment %}
 
-<header class="{{ section_name }}-header">
+<header class="{{ class }} {{ section_name | default: 'product' }}-header">
   {% if section.settings.show_product_title %}
     <h1>The {{ product.title }}</h1>
   {% endif %}
