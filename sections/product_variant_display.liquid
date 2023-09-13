@@ -287,15 +287,12 @@
   }
 
   /* Responsive Styles */
-  @media (max-width: 490px) {
-    #variant-container {
-      grid-template-columns: 1fr;
-      padding: 0 var(--global-p2);
-    }
-  }
   @media screen (max-width: 768px) {
     .variant-header h2 {
       text-align: center;
+    }
+    #variant-container {
+      grid-template-columns: 1fr;
     }
     .card-body {
       grid-template-columns: repeat(auto-fit, minmax(40%, 1fr)); /* Adjust card columns for smaller screens */
