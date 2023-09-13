@@ -35,7 +35,7 @@
   {% endif %}
 
   <div id="{{ section_name }}-container">
-    <div id="product-img-container" class="product__images">
+    <div id="{{ section_name }}-img" class="product__images">
       {% render 'product__images',
         product: product,
         display_thumbnails: section.settings.display_thumbnails,
@@ -53,8 +53,8 @@
 
     <!-- Start Description Section -->
     <div
-      id="description-inner-container"
-      class="product__information has-product-sticker one-half"
+      id="{{ section_name }}-description"
+      class="product__information has-product-sticker"
     >
       {% comment %} Sale sticker {% endcomment %}
       {% if stickers_enabled %}
@@ -233,6 +233,7 @@
           "header header"
           "img desc";
       grid-template-columns: 1fr 1fr;
+      grid-gap: var(--global-p1);
     }
     #product-start-header {
       grid-area: header;
