@@ -222,9 +222,23 @@
   }
 {% endjavascript %}
 
+<style>
+    .product-{{ product.id }} {
+      display: grid;
+      grid-template-areas:
+          "header header"
+          "img desc";
+  }
+</style>
 {% style %}
-    #section-header {
-      margin: var(--global-p1) 0;
+    #product-start-header {
+      grid-area: header;
+    }
+    #description-inner-container {
+      grid-area: desc;
+    }
+    #product-img-container {
+      grid-area: img;
     }
     .purchase-details__quantity.product-quantity-box.quantity-box--box {
       display: none;
@@ -289,7 +303,7 @@
 {
   "name": "Product Starter",
   "tag": "section",
-  "class": "jsProduct product-accessories",
+  "class": "jsProduct product-start",
   "settings": [
     {
       "type": "header",
