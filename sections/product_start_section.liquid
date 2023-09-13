@@ -225,8 +225,10 @@
 <style></style>
 {% style %}
   /* Grid Styles for Product Start Container */
-  #product-start-body {
-
+  #product-start-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   #product-start-body {
@@ -237,10 +239,12 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: calc(var(--global-p1) * 2);
     align-items: center;
+    max-width: 1200px;
   }
 
   #product-start-header {
     grid-area: header;
+    width: 100%;
   }
 
   #product-start-description {
