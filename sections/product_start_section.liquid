@@ -7,7 +7,7 @@
 {% assign show_header_text = section.settings.show_header_text %}
 {% assign header_title = section.settings.header_title %}
 {% assign header_copy = section.settings.header_copy %}
-{% assign section_name = header_title | replace: ' ', '-' | downcase | default: 'product-start' %}
+{% assign section_name = header_titl | replace: ' ', '-' | downcase | default: 'product-start' %}
 {% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
 
 {% comment %} Layout {% endcomment %}
