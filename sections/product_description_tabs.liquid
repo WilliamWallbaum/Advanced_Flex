@@ -570,6 +570,26 @@
       opacity: 1;
     }
     #comparison-products {grid-template-columns: 1fr;}
-    .img-tbl {grid-template-columns: 1fr}
+    .img-tbl {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+          "left"
+          "right";
+    }
+    #section-content-4 .img-tbl {
+      grid-template-areas:
+          "img"
+          "dimensions"
+          "table";
+    }
+    #section-content-4 .img-tbl figure {
+      grid-area: img;
+    }
+    #section-content-4 .img-tbl .dimension-box {
+      grid-area: dimensions;
+    }
+    #section-content-4 .img-tbl table {
+      grid-area: table;
+    }
   }
 {% endstyle %}
