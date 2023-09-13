@@ -222,15 +222,14 @@
   }
 {% endjavascript %}
 
-<style>
-    .product-{{ product.id }} {
+<style></style>
+{% style %}
+    #product-start-container {
       display: grid;
       grid-template-areas:
           "header header"
           "img desc";
-  }
-</style>
-{% style %}
+    }
     #product-start-header {
       grid-area: header;
     }
