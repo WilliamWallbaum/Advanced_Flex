@@ -81,7 +81,7 @@
       "type": "product_variant_display",
       "settings": {
         "show_variants": true,
-        "width": "standard",
+        "width": "wide",
         "show_section_header": true,
         "show_product_title": false,
         "header_font_size": 30,
