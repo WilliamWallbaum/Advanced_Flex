@@ -3,27 +3,11 @@
 {% assign width = section.width %}
 {% assign section_name = section.section_title | replace: ' ', '-' | downcase | default: 'recommendation' %}
 
-{% style %}
-  #product-recommendation {
-    padding: var(--global-p2);
-    display: flex;
-    gap: var(--global-p1);
-      flex-direction: column;
-  }
-  @media (max-width: 490px) {
-    #product-recommendation {
-      padding: var(--global-p1);
-    }
-    .product-grid {
-      padding: 0 !important;
-    }
-{% endstyle %}
-
 <!-- Product recommendation -->
 {% if sec.show_section %}
   <div
     id="{{ section_name }}-container"
-    class="section is-width-{{ width }} product-recommendation"
+    class="is-width-{{ sec.width }} product-recommendation"
     data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ sec.product_limit }}&intent={{ sec.product_type }}"
   >
     <header id="{{ section_name }}-header">
@@ -73,6 +57,23 @@
     font-size: calc(var(--text-basic)*({{ sec.header_font_size }} / 10));
   }
 </style>
+
+{% style %}
+  .product-recommendation {
+    padding: var(--global-p2);
+    display: flex;
+    gap: var(--global-p1);
+      flex-direction: column;
+  }
+  @media (max-width: 490px) {
+    .product-recommendation {
+      padding: var(--global-p1);
+    }
+    .product-grid {
+      padding: 0 !important;
+    }
+{% endstyle %}
+
 {% schema %}
 {
   "name": "Product recommendation",
