@@ -107,14 +107,14 @@
 
       {% comment %} Description - top {% endcomment %}
       {% if product_description_position == 'top' and product.description != blank %}
-        <div class="description content has-padding-top">
+        <div class="description content">
           {{ product.description | split: '<!-- split -->' | first }}
         </div>
       {% endif %}
 
       {% comment %} Social share icons {% endcomment %}
       {% if section.settings.display_social_buttons %}
-        <div class="product__social-share has-padding-top">
+        <div class="product__social-share">
           {% render 'social-share-buttons' %}
         </div>
       {% endif %}
@@ -129,7 +129,7 @@
       {% endif %}
 
       {% if section.settings.show_button %}
-        <div class="description content has-padding-top">
+        <div id="decription-button">
           {% assign button_label = section.settings.button_label -%}
           {%- assign default_link = product.url | append: '#' | append: 'variant-container' %}
           {% assign button_link = section.settings.button_link %}
