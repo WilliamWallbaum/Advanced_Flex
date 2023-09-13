@@ -288,6 +288,17 @@
       width: 100%;
       flex-direction: column;
     }
+
+    /* Responsive Styles */
+    @media (max-width: 490px) {
+      #product-start-container {
+        grid-template-areas:
+          "header"
+          "img"
+          "desc";
+        grid-template-columns: 1fr;
+      }
+    }
     @media (max-width: 768px) {
     .container {
       flex-direction: column;
