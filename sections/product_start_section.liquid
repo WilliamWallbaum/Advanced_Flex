@@ -331,13 +331,11 @@
   }
 
   @media only screen and (max-width: 768px) {
-    /* Flex Container Styles */
     .container {
       flex-direction: column;
       align-items: center;
     }
 
-    /* Description Container Styles */
     #description-container {
       width: 100%;
       padding: 0 var(--global-p4) var(--global-p2);
@@ -346,7 +344,14 @@
       align-items: center;
     }
 
-    /* Inner Container Styles */
+    #product-start-body {
+      grid-template-areas:
+        "header"
+        "img"
+        "desc";
+      grid-template-columns: 1fr;
+    }
+
     #description-inner-container {
       display: flex;
       flex-direction: column;
@@ -354,7 +359,6 @@
       margin: 0;
     }
 
-    /* Price Box Styles */
     #price-box {
       display: flex;
       flex-direction: column;
