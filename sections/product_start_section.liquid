@@ -7,9 +7,8 @@
 {% assign show_header_text = section.settings.show_header_text %}
 {% assign header_title = section.settings.header_title %}
 {% assign header_copy = section.settings.header_copy %}
-{% assign technical_information = product.metafields.proddesc.technical_information.value %}
-{% assign technical_specifications = technical_information.technical_specifications %}
-{% assign ha = technical_information.hearing_aid %}
+{% assign section_name = header_titl | replace: ' ', '-' | downcase | default: 'product-start' %}
+{% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
 
 {% comment %} Layout {% endcomment %}
 {% assign width = section.width %}
@@ -22,20 +21,21 @@
   endif
 %}
 
-<div class="product-{{ product.id }} section is-width-{{ width }}">
+<div id="{{ section_name }}-container" class="{{ container_class }} product-{{ product.id }}">
   {% if section.settings.show_section_header %}
     {%
       include 'product_header' with
-      show_product_title: section.settings.show_product_title,
+      show_product_title: show_product_title,
       show_reviews: section.settings.show_reviews,
-      show_header_text: section.settings.show_header_text,
-      header_title: section.settings.header_title,
-      header_copy: section.settings.header_copy
+      show_header_text: show_header_text,
+      header_title: header_title,
+      header_copy: header_copy,
+      section_name: section_name
     %}
   {% endif %}
 
-  <div class="product_section js-product_section container is-justify-space-between has-padding-bottom">
-    <div class="product__images one-half column medium-down--one-whole">
+  <div id="{{ section_name }}-body">
+    <div id="{{ section_name }}-img" class="product__images">
       {% render 'product__images',
         product: product,
         display_thumbnails: section.settings.display_thumbnails,
@@ -51,7 +51,11 @@
       %}
     </div>
 
-    <div class="product__information has-product-sticker one-half column medium-down--one-whole">
+    <!-- Start Description Section -->
+    <div
+      id="{{ section_name }}-description"
+      class="product__information has-product-sticker"
+    >
       {% comment %} Sale sticker {% endcomment %}
       {% if stickers_enabled %}
         {% assign collection_handles = product.collections | map: 'handle' %}
@@ -103,14 +107,14 @@
 
       {% comment %} Description - top {% endcomment %}
       {% if product_description_position == 'top' and product.description != blank %}
-        <div class="description content has-padding-top">
+        <div class="description content">
           {{ product.description | split: '<!-- split -->' | first }}
         </div>
       {% endif %}
 
       {% comment %} Social share icons {% endcomment %}
       {% if section.settings.display_social_buttons %}
-        <div class="product__social-share has-padding-top">
+        <div class="product__social-share">
           {% render 'social-share-buttons' %}
         </div>
       {% endif %}
@@ -125,7 +129,7 @@
       {% endif %}
 
       {% if section.settings.show_button %}
-        <div class="description content has-padding-top">
+        <div id="decription-button">
           {% assign button_label = section.settings.button_label -%}
           {%- assign default_link = product.url | append: '#' | append: 'variant-container' %}
           {% assign button_link = section.settings.button_link %}
@@ -151,6 +155,7 @@
         </div>
       {% endif %}
     </div>
+    <!-- End Description Section -->
   </div>
 </div>
 
@@ -218,48 +223,138 @@
 {% endjavascript %}
 
 {% style %}
-  #section-header {
-    margin: var(--global-p1) 0;
+  /* Grid Styles for Product Start Container */
+  #product-start-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+
+  #product-start-body {
+    display: grid;
+    grid-template-areas:
+      "header header"
+      "img desc";
+    grid-template-columns: 1fr 1fr;
+    grid-gap: var(--global-p3);
+    align-items: center;
+    max-width: 1200px;
+  }
+
+  .product-start-header {
+    grid-area: header;
+    width: 100%;
+  }
+
+  #product-start-description {
+    grid-area: desc;
+    display: grid;
+    justify-items: center;
+    gap: var(--global-p1);
+  }
+
+  #product-start-img {
+    grid-area: img;
+  }
+
+  /* Hide Quantity Box */
   .purchase-details__quantity.product-quantity-box.quantity-box--box {
     display: none;
   }
+
+  /* Font Size and Margin for h4 */
   h4 {
-      font-size: calc(var(--text-basic)*1.5);
-      margin-bottom: calc(var(--global-p1)*.5);
-    }
+    font-size: calc(var(--text-basic) * 1.5);
+    margin-bottom: var(--global-p5);
+  }
+
+  /* Price Container Styles */
   #price-container {
     display: flex;
     gap: var(--global-p1);
     margin-bottom: var(--global-p1);
   }
+
   #price-box {
     background-color: var(--primary-color);
-    padding: calc(var(--global-p1) * 0.1) calc(var(--global-p1) * 2);
+    padding: var(--global-p1) var(--global-p2);
   }
+
   #price-box h2 {
     color: var(--color-bg);
   }
+
+  /* Savings Class */
   .savings {
-    padding: calc(var(--global-p1) * 0.1) calc(var(--global-p1) * 2);
+    padding: var(--global-p1) var(--global-p2);
   }
+
+  /* Feature List Styles */
+  .feature-list {
+    justify-self: start;
+    padding-left: var(--global-p1);
+  }
+
   .feature-list ul li {
     list-style-type: "✓";
-    padding-left: 10px;
+    padding-left: var(--global-p1);
   }
+
   .feature-list ul li::marker {
     color: green;
     font-size: calc(var(--text-basic) * 1.25);
   }
+
+  /* Trust Badges Container */
   #trust-badges-container {
     display: flex;
     justify-content: center;
   }
-  .shop-sale {
+
+  /* Description Button */
+  #description-button {
     display: flex;
     width: 100%;
+    flex-direction: column;
   }
-  @media only screen and (max-width: 798px) {
+
+  /* Responsive Styles for Smaller Screens */
+  @media only screen and (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #description-container {
+      width: 100%;
+      padding: 0 var(--global-p4) var(--global-p2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #product-start-body {
+      grid-template-areas:
+        "header"
+        "img"
+        "desc";
+      grid-template-columns: 1fr;
+    }
+
+    #description-inner-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--global-p1);
+      margin: 0;
+    }
+
+    #price-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0;
+      text-align: center;
+    }
   }
 {% endstyle %}
 
@@ -267,7 +362,7 @@
 {
   "name": "Product Starter",
   "tag": "section",
-  "class": "product-template product-main has-sidebar-option jsProduct product-accessories",
+  "class": "jsProduct product-start",
   "settings": [
     {
       "type": "header",
@@ -325,7 +420,7 @@
       "type": "text",
       "id": "header_title",
       "label": "Header Title",
-      "default": "Flexible Purchase Options"
+      "default": "Product Start Section"
     },
     {
       "type": "richtext",
