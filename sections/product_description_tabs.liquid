@@ -1,5 +1,7 @@
 {% comment %} Product Description Tabs {% endcomment %}
 
+{% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
+
 {% comment %} Product Description MetaFields {% endcomment %}
 {% assign product_description = product.metafields.proddesc.description %}
 {% assign description_title = product.metafields.proddesc.description_title %}
@@ -14,7 +16,7 @@
 
 {% comment %} HTML markup {% endcomment %}
 {% if settings.show_product_description_tabs %}
-  <div id="tabs">
+  <div id="tabs" class="{{ container_class }}">
     <div class="tab-header">
       <button class="button-item">
         <a href="#section-1" class="smooth-scroll">{{ settings.tab_1 }}</a>
@@ -328,8 +330,36 @@
 {
   "name": "Product Descriptions Tabs",
   "tag": "section",
-  "class": "section tab-content",
+  "class": "tab-content",
   "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "standard",
+      "options": [
+        {
+          "value": "half",
+          "label": "Half"
+        },
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Tabs"
+    },
     {
       "type": "text",
       "id": "tab_1",
@@ -372,7 +402,7 @@
     flex-direction: row;
     justify-content: center;
     border-style: none;
-    margin: calc(var(--global-p1)* .07);
+    margin: calc(var(--global-p1) * 0.07);
   }
 
   .button-item a {
@@ -380,7 +410,7 @@
     font-family: var(--pf-primary-font);
     font-weight: 700;
     font-size: 18px;
-    padding: calc(var(--global-p1)* .5);
+    padding: calc(var(--global-p1) * 0.5);
     border-style: none;
     text-decoration: none;
   }
@@ -390,21 +420,24 @@
     background-color: var(--foreground-color);
     color: #fff;
   }
-  [id^="section-content-"] {
-    display: none;
-    padding: var(--global-p2);
+
+  .content {
+    display: grid;
     height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: height 0.9s ease 0.5s, opacity 0.5s ease;
-    transition-delay: 0.9s;
+    transition: 250ms height ease-in, 250ms 250ms opacity ease-in;
   }
+
   .active {
-    display: grid;
     height: auto;
     opacity: 1;
-    transition: opacity 0.9s ease 0.5s, height 0.5s ease;
   }
+
+  .content.active {
+    padding: calc(var(--global-p1) * .7) calc(var(--global-p1) * .5);
+  }
+
   #tabs h2,
   #tabs h3,
   #tabs h4 {
@@ -428,14 +461,17 @@
     font-size: larger;
     font-weight: 500;
   }
+
   .dimension-box h5 {
     margin: 0;
   }
+
   .dimension-box-header {
     display: flex;
     gap: var(--global-p1);
     align-items: baseline;
   }
+
   .dimension-box-dimensions {
     display: inline-flex;
     gap: var(--global-p1);
@@ -471,7 +507,9 @@
     grid-area: right;
   }
 
-  table {border-radius: var(--global-p2);}
+  table {
+    border-radius: var(--global-p2);
+  }
 
   td,
   th {
@@ -484,11 +522,17 @@
     background-color: var(--light-blue);
   }
 
-  table tr:last-child td:first-child {border-radius: 0 0 0 var(--global-p2);}
+  table tr:last-child td:first-child {
+    border-radius: 0 0 0 var(--global-p2);
+  }
 
-  table tr:last-child td:last-child {border-radius: 0 0 var(--global-p2) 0;}
+  table tr:last-child td:last-child {
+    border-radius: 0 0 var(--global-p2) 0;
+  }
 
-  table tbody tr {border: none;}
+  table tbody tr {
+    border: none;
+  }
 
   .video-wrapper {
     display: flex;
@@ -497,9 +541,137 @@
     margin: var(--global-p1);
   }
 
-  figure.image-element__wrap {justify-self: center;}
+  figure.image-element__wrap {
+    justify-self: center;
+  }
 
-  @media (min-width: 768px) {
+  /* Responsive Styles */
+  @media only screen and (max-width: 768px) {
+    .tab-header {
+      display: none;
+    }
+
+    .mobile-button {
+      display: none;
+    }
+
+    .button-item {
+      width: 100%;
+    }
+
+    /* set transition properties for the element */
+    .content {
+      height: auto;
+      opacity: 1;
+    }
+
+    [id^="section-content-"] h2,
+    [id^="section-content-"] h3 {
+      text-align: center;
+    }
+
+    #comparison-products,
+    .img-tbl {
+      grid-template-columns: 1fr;
+    }
+
+    #section-content-4 .img-tbl {
+      grid-template-areas:
+        "dimensions"
+        "figure"
+        "table";
+    }
+
+    #section-content-4 .img-tbl figure {
+      grid-area: figure;
+      margin-bottom: 0;
+    }
+
+    #section-content-4 .img-tbl .dimension-box {
+      grid-area: dimensions;
+      display: grid;
+      grid-gap: var(--global-p1);
+    }
+
+    #section-content-4 .img-tbl table {
+      grid-area: table;
+    }
+
+    #section-content-5 {
+      padding: var(--global-p1) 0;
+      grid-gap: var(--global-p1);
+    }
+
+    #section-content-5 .img-tbl {
+      grid-template-areas:
+        "figure"
+        "list";
+    }
+
+    #section-content-5 .img-tbl figure {
+      grid-area: figure;
+      margin-bottom: 0;
+    }
+
+    #section-content-5 .img-tbl ul {
+      grid-area: list;
+    }
+
+    .dimension-box-dimensions {
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .dimension-box-header {
+      display: flex;
+      gap: var(--global-p1);
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .dimension-box-dimensions p {
+      margin: 0 !important;
+    }
+
+    .dimension-box h4 {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    iframe {
+      border: 0;
+      width: fit-content;
+      height: auto;
+    }
+  }
+
+  @media only screen (max-width: 1200px) {
+    #section-content-4 .img-tbl .dimension-box {
+      grid-template-areas: "dimensions for";
+    }
+
+    .dimension-box-dimensions, .dimension-box-header {
+      grid-area: dimensions;
+    }
+
+    .dimension-box h4 {
+      grid-area: for;
+    }
+
+    .dimension-box-dimensions p {
+      margin: 0 !important;
+    }
+
+    .dimension-box h4 {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  @media (min-width: 769px) {
     .tab-header {
       flex: 1 1 0%;
       color: #fdfdfd;
@@ -507,40 +679,23 @@
       display: flex;
       flex-direction: row;
     }
+
     .button-item.mobile-button,
-    .button-item.mobile-button.active {display: none;}
+    .button-item.mobile-button.active {
+      display: none;
+    }
 
     .button-item {
       border-top-right-radius: 15px;
       flex: 1 1 0%;
     }
 
-    .button-item:not(:last-of-type) a {border-right: 0;}
-
-    .img-tbl {grid-template-columns: 3fr 1fr;}
-  }
-
-  @media (max-width: 768px) {
-    .tab-header {display: none;}
-    .mobile-button {display: flex;}
-    .button-item {width: 100%;}
-    .active {display: grid;}
-    /* set transition properties for the element */
-    [id^="section-content-"] {
-      height: 0;
-      padding: 0;
-      opacity: 0;
-      transition: height 0.3s ease-in-out, padding 0.3s ease-in-out,
-        opacity 0.3s ease-in-out;
+    .button-item:not(:last-of-type) a {
+      border-right: 0;
     }
 
-    /* update styles for the active class */
-    [id^="section-content-"].active {
-      height: auto;
-      padding: var(--global-p2);
-      opacity: 1;
+    .img-tbl {
+      grid-template-columns: 3fr 1fr;
     }
-    #comparison-products {grid-template-columns: 1fr;}
-    .img-tbl {grid-template-columns: 1fr}
   }
 {% endstyle %}
