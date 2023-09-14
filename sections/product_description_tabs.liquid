@@ -562,6 +562,19 @@
       padding: 0;
     }
 
+    [id^="section-content-"] .content {
+      display: none;
+      height: 0;
+      opacity: 0;
+      transition: 250ms height, 250ms opacity 250ms;
+    }
+
+    [id^="section-content-"] .content.active {
+      display: none;
+      height: auto;
+      opacity: 1;
+    }
+
     [id^="section-content-"] h2,
     [id^="section-content-"] h3 {
       text-align: center;
