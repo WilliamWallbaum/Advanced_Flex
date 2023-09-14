@@ -43,7 +43,11 @@ figure.collection-image {
       "content"
       "hr";
     grid-template-columns: 1fr;
+    justify-items: center;
     padding: var(--global-p1);
+  }
+  .collection-image {
+    width: 50%;
   }
 }
 @media only screen and (min-width: 769px) {
@@ -51,6 +55,6 @@ figure.collection-image {
     grid-template-areas:
       "image content"
       "hr hr";
-    }
     grid-template-columns: 1fr 8fr;
+    }
 }
