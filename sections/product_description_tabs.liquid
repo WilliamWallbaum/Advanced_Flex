@@ -424,14 +424,12 @@
   .content {
     display: none;
     padding: var(--global-p2);
-    height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: 500ms height cubic-bezier(0.25, 0.46, 0.45, 0.94), 250ms opacity 250ms;
+    transition: 250ms opacity 250ms;
   }
 
   .active {
-    display: grid;
     height: auto;
     opacity: 1;
   }
