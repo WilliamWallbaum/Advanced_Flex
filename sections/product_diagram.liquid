@@ -1,0 +1,270 @@
+{% assign section = section.settings %}
+{% assign section_name = section.section_name | replace: ' ', '-' | downcase | default: 'diagram' %}
+{% assign diagram = product.metafields.proddesc.diagram.value %}
+{% assign technical_information = product.metafields.proddesc.technical_information.value %}
+{% assign diagram = technical_information.diagram %}
+
+{% if diagram %}
+  <div id="{{ section_name }}" class="section is-width-{{ section.width }} diagram-section">
+    <!-- start section header -->
+    {% if section.show_header %}
+      <header id="{{ section_name }}-header" class="diagram-header">
+        <h2 header id="{{ section_name }}-header-name">{{ section.section_name }}</h2>
+        {% if section.divider_1 %}
+          <hr>
+        {% endif %}
+        <div header id="{{ section_name }}-header-text">{{ section.header_text }}</div>
+      </header>
+    {% endif %}
+    <!-- end section header -->
+
+    <!-- start section body -->
+    <div id="{{ section_name }}-body" class="diagram-body">
+      <!-- start column 1 -->
+      {% if diagram %}
+        <div id="diagram-list" class="list">
+          <ol>
+            {% for key_value in diagram %}
+              {% assign kv_pair = key_value | split: ',' %}
+              {% assign key = kv_pair[0] | split: ':' | last | remove: '"' | remove: '[' | remove: ']' | strip %}
+              {% assign value = kv_pair[1] | split: ':' | last | remove: '"' | remove: '[' | remove: ']' | strip %}
+              <li>{{ value }}</li>
+            {% endfor %}
+          </ol>
+        </div>
+      {% endif %}
+      <!-- end column 1 -->
+
+      <!-- start column 2 -->
+      {% if product.metafields.proddesc.digram_image %}
+        <div id="diagram-image" class="image">
+          {% include 'image-element',
+            image: product.metafields.proddesc.digram_image,
+            alt: product.metafields.proddesc.digram_image.alt,
+            figure_classes: diagram-figure,
+            loading: 'lazy'
+          %}
+        </div>
+      {% endif %}
+      <!-- end column 2 -->
+    </div>
+    <!-- end section body -->
+
+    <!-- start section footer -->
+    {% if section.show_footer %}
+      {% if section.divider_2 %}
+        <hr>
+      {% endif %}
+      <footer id="{{ section_name }}-footer" class="diagram-footer">{{ section.footer_text }}</footer>
+    {% endif %}
+    <!-- end section footer -->
+  </div>
+{% endif %}
+
+<style>
+  #{{ section_name }} {
+    background: {{ section.gradient_color }};
+  }
+  .diagram-header h2 {
+    font-size: calc(var(--text-basic)*({{ section.header_font_size }} / 10));
+  }
+  #diagram-list {
+    font-size: calc(var(--text-basic)*({{ section.list_font_size }} / 10));
+  }
+  @media (max-width: 490px) {
+    #{{ section_name }} {
+      padding: var(--global-p1);
+    }
+  }
+</style>
+{% style %}
+  /* Common styles for both regular and small screens */
+  .diagram-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--global-p1);
+    padding: var(--global-p1) calc(var(--global-p1)*4);
+  }
+
+  .diagram-body {
+    display: flex;
+    gap: var(--global-p1);
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  #diagram-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: calc(var(--global-p1)*20);
+  }
+
+  #diagram-image figure {
+    width: 100%;
+  }
+
+  #diagram-list {
+    display: flex;
+    align-items: center;
+  }
+
+  #decription-button {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  hr {
+    background-color: var(--primary-color);
+    margin: calc(var(--global-p1)*.1) 0 calc(var(--global-p1)*1.2);
+  }
+
+  /* Media query for screens with a maximum width of 490px */
+  @media (max-width: 490px) {
+    .diagram-section {
+      padding: var(--global-p1);
+    }
+
+    .diagram-header h2 {
+      text-align: center;
+    }
+
+    .diagram-body {
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+  {
+    "name": "product diagram section",
+    "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Configuration"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wide",
+      "options": [
+        {
+          "value": "half",
+          "label": "Half"
+        },
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ]
+    },
+    {
+      "type": "color_background",
+      "id": "gradient_color",
+      "label": "Select Gradient Background",
+      "default": "linear-gradient(#054F8E, #FFFFFF)"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_header",
+      "label": "Show Section Header",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "section_name",
+      "label": "Section Name"
+    },
+    {
+      "type": "richtext",
+      "id": "header_text",
+      "label": "Header Text"
+    },
+    {
+      "type": "range",
+      "id": "header_font_size",
+      "label": "Header Title Size",
+      "info": "multiplies the size of base text size by the value divided by 10 [base size * (value / 10)]",
+      "default":30,
+      "min": 5,
+      "max": 50,
+      "step": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "divider_1",
+      "label": "Show Divider Line",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "list_font_size",
+      "label": "List Font Size",
+      "info": "multiplies the size of base text size by the value divided by 10 [base size * (value / 10)]",
+      "default":10,
+      "min": 5,
+      "max": 50,
+      "step": 1
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "range",
+      "id": "diagram_width",
+      "label": "Diagram Width",
+      "default":100,
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "List"
+    },
+    {
+      "type": "header",
+      "content": "Section Footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_footer",
+      "label": "Show Section Footer",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "divider_2",
+      "label": "Show Divider Line",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "footer_text",
+      "label": "Footer Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Diagram Section",
+      "category": "template"
+    }
+  ]
+}
+{% endschema %}
