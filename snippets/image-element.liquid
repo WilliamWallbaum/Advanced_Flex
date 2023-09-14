@@ -85,7 +85,9 @@
 {% if back_to_basics %}
   <figure
     class="image-element__wrap {{ figure_classes }}"
-    style="{{ image_background_color }}{{ height_style }}"
+    {% if height_style or image_background_color %}
+      style="{{ image_background_color }}{{ height_style }}"
+    {% endif %}
   >
     <img
       alt="{{ alt | escape }}"
