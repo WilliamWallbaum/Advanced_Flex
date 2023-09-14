@@ -427,15 +427,14 @@
     height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: height 0.9s ease 0.5s, opacity 0.5s ease;
-    transition-delay: 0.9s;
+    transition: visibility 0s linear, opacity 0.33s linear 0.1s;
   }
 
   .active {
     display: grid;
     height: auto;
     opacity: 1;
-    transition: opacity 0.9s ease 0.5s, height 0.5s ease;
+   transition: visibility 0s linear, opacity 0.33s linear 0.1s;
   }
 
   #tabs h2,
