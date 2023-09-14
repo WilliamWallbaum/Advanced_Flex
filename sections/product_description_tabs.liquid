@@ -426,9 +426,7 @@
     height: 0;
     opacity: 0;
     overflow: hidden;
-    transition-duration: 250ms;
-    transition-property: opacity, height;
-    transition-timing-function: ease-in;
+    transition: 250ms height ease-in, 250ms 250ms opacity ease-in;
   }
 
   .active {
