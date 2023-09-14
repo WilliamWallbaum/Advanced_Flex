@@ -105,7 +105,7 @@
     {% if calculate_aspect_ratio %}
       data-calculate-aspect-ratio
     {% endif %}
-    style="{{ image_background_color }}{{ height_style }} {% unless stretch_width == true or object_fit %}max-width: {{ image.width }}px;{% endunless %}"
+    style="{{ image_background_color }}{{ height_style }} {% unless stretch_width == true or object_fit %}{% if image.width %}max-width: {{ image.width }}px;{% endif %}{% endunless %}"
   >
     <img
       alt="{{ alt | escape }}"
