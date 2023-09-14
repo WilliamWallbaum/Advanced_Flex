@@ -15,10 +15,6 @@
 
 header.collection-header {
     display: grid;
-    grid-template-areas:
-        "image content"
-        "hr hr";
-    grid-template-columns: 1fr 8fr;
     align-items: center;
     grid-gap: var(--global-p1);
 }
@@ -47,4 +43,13 @@ figure.collection-image {
       "content"
       "hr hr";
   }
+    grid-template-columns: 1fr;
+}
+@media only screen and (min-width: 769px) {
+  .collection-header {
+    grid-template-areas:
+      "image content"
+      "hr hr";
+    }
+    grid-template-columns: 1fr 8fr;
 }
