@@ -647,7 +647,7 @@
     }
   }
 
-  @media only screen (max-width: 1200px) {
+  @media only screen and (max-width: 1200px) {
     #section-content-4 .img-tbl .dimension-box {
       grid-template-areas: "dimensions for";
     }
@@ -671,7 +671,30 @@
     }
   }
 
-  @media (min-width: 769px) {
+  @media only screen and (min-width: 769px) and  {
+    #section-content-4 .img-tbl {
+      grid-template-areas:
+        "dimensions figure"
+        "table table";
+    }
+
+    #section-content-4 .img-tbl figure {
+      grid-area: figure;
+      margin-bottom: 0;
+    }
+
+    #section-content-4 .img-tbl .dimension-box {
+      grid-area: dimensions;
+      display: grid;
+      grid-gap: var(--global-p1);
+    }
+
+    #section-content-4 .img-tbl table {
+      grid-area: table;
+    }
+  }
+
+  @media only screen and (min-width: 769px) {
     .tab-header {
       flex: 1 1 0%;
       color: #fdfdfd;
