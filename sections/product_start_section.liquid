@@ -320,16 +320,6 @@
   }
 
   /* Responsive Styles for Smaller Screens */
-  @media only screen and (max-width: 490px) {
-    #product-start-container {
-      grid-template-areas:
-        "header"
-        "img"
-        "desc";
-      grid-template-columns: 1fr;
-    }
-  }
-
   @media only screen and (max-width: 768px) {
     .container {
       flex-direction: column;
@@ -350,6 +340,10 @@
         "img"
         "desc";
       grid-template-columns: 1fr;
+    }
+
+    .multi-col {
+      padding: var(--global-p1) calc(var(--global-p1) * 1);
     }
 
     #description-inner-container {
