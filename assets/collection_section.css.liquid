@@ -38,3 +38,13 @@ figure.collection-image {
 .collection-header-content {
   grid-area: content;
 }
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+  .collection-header {
+    grid-template-areas:
+      "image"
+      "content"
+      "hr hr";
+  }
+}
