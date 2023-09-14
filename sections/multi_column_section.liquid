@@ -1,72 +1,67 @@
 {{ 'multi_column_section.css' | asset_url | stylesheet_tag }}
 
-{% assign section = section.settings %}
-{% assign section_name = section.section_name | replace: ' ', '-' | downcase | default: 'multi-col' %}
+{% assign sec = section.settings %}
+{% assign section_name = sec.section_name | replace: ' ', '-' | downcase | default: 'multi-col' %}
+{% assign container_class = 'section' | append: ' is-width-' | append: sec.width %}
 
-<section id="{{ section_name }}" class="section is-width-{{ section.width }} multi-col">
+<div id="{{ section_name }}" class="{{ container_class }} multi-col">
   <!-- start section header -->
   {% if section.show_header %}
     <header id="{{ section_name }}-header" class="multi-col-header">
-      <h2 header id="{{ section_name }}-header-name">{{ section.section_name }}</h2>
-      <div header id="{{ section_name }}-header-text">{{ section.header_text }}</div>
+      <h2 header id="{{ section_name }}-header-name">{{ sec.section_name }}</h2>
+      <div header id="{{ section_name }}-header-text">{{ sec.header_text }}</div>
     </header>
   {% endif %}
   <!-- end section header -->
 
   <!-- start section body -->
   <div id="{{ section_name }}-body" class="multi-col-body">
-    <style>
-      figure.block-img { max-width: {{ section.img_width }}px !important; }
-      .multi-col-header { justify-items: {{ section.header_align }}; }
-      [id^="block-"] { justify-items: {{ section.block_align }}; }
-      .multi-col-footer { justify-items: {{ section.footer_align }}; }
-    </style>
     <!-- start columns -->
 
     <!-- start block 1 -->
-    {% if section.show_block_1 %}
-      <div id="block-1" class="{{ section.is_card }}">
-        {% if section.block_image_1 %}
-          {% include 'image-element' with image: section.block_image_1, figure_classes: "block-img" %}
+    {% if sec.show_block_1 %}
+      <div id="block-1" class="{{ sec.is_card }}">
+        {% if sec.block_image_1 %}
+          {% include 'image-element' with image: sec.block_image_1, figure_classes: "block-img" %}
         {% endif %}
-        <h3>{{ section.block_title_1 }}</h3>
-        <p>{{ section.block_content_1 }}</p>
+        <h3>{{ sec.block_title_1 }}</h3>
+        <p>{{ sec.block_content_1 }}</p>
       </div>
     {% endif %}
     <!-- end block 1 -->
 
     <!-- start block 2 -->
-    {% if section.show_block_2 %}
-      <div id="block-2" class="{{ section.is_card }}">
-        {% if section.block_image_2 %}
-          {% include 'image-element' with image: section.block_image_2, figure_classes: "block-img" %}
+    {% if sec.show_block_2 %}
+      <div id="block-2" class="{{ sec.is_card }}">
+        {% if sec.block_image_2 %}
+          {% include 'image-element' with image: sec.block_image_2, figure_classes: "block-img" %}
         {% endif %}
-        <h3>{{ section.block_title_2 }}</h3>
-        <p>{{ section.block_content_2 }}</p>
+        <h3>{{ sec.block_title_2 }}</h3>
+        <p>{{ sec.block_content_2 }}</p>
       </div>
     {% endif %}
     <!-- end block 2 -->
 
     <!-- start block 3 -->
-    {% if section.show_block_3 %}
-      <div id="block-3" class="{{ section.is_card }}">
-        {% if section.block_image_3 %}
-          {% include 'image-element' with image: section.block_image_3, figure_classes: "block-img" %}
+    {% if sec.show_block_3 %}
+      <div id="block-3" class="{{ sec.is_card }}">
+        {% if sec.block_image_3 %}
+          {% include 'image-element' with image: sec.block_image_3, figure_classes: "block-img" %}
         {% endif %}
-        <h3>{{ section.block_title_3 }}</h3>
-        <p>{{ section.block_content_3 }}</p>
+        <h3>{{ sec.block_title_3 }}</h3>
+        <p>{{ sec.block_content_3 }}</p>
       </div>
     {% endif %}
     <!-- end block 3 -->
 
     <!-- start block 4 -->
-    {% if section.show_block_4 %}
-      <div id="block-4" class="{{ section.is_card }}">
-        {% if section.block_image_4 %}
-          {% include 'image-element' with image: section.block_image_4, figure_classes: "block-img" %}
+    {% if sec.show_block_4 %}
+      <div id="block-4" class="{{ sec.is_card }}">
+        {% if sec.block_image_4 %}
+          {% include 'image-element' with image: sec.block_image_4, figure_classes: "block-img" %}
         {% endif %}
-        <h3>{{ section.block_title_4 }}</h3>
-        <p>{{ section.block_content_4 }}</p>
+        <h3>{{ sec.block_title_4 }}</h3>
+        <p>{{ sec.block_content_4 }}</p>
       </div>
     {% endif %}
     <!-- end block 4 -->
@@ -76,15 +71,34 @@
   <!-- end section body -->
 
   <!-- start section footer -->
-  {% if section.show_footer %}
-    <footer id="{{ section_name }}-footer" class="multi-col-footer">{{ section.footer_text }}</footer>
+  {% if sec.show_footer %}
+    <footer id="{{ section_name }}-footer" class="multi-col-footer">{{ sec.footer_text }}</footer>
   {% endif %}
   <!-- end section footer -->
-</section>
+</div>
+
+<style>
+  .multi-col {
+    background: {{ sec.gradient_color }};
+  }
+  [id^="block-"] {
+    width: {{ sec.block_width }}%;
+  }
+  figure.block-img { max-width: {{ sec.img_width }}% !important; }
+  .multi-col-header {
+    justify-items: {{ sec.header_align }};
+  }
+  .multi-col-header h2 {
+    font-size: calc(var(--text-basic)*({{ sec.header_font_size }} / 10));
+  }
+  [id^="block-"] { justify-items: {{ sec.block_align }}; }
+  .multi-col-footer { justify-items: {{ sec.footer_align }}; }
+</style>
 
 {% schema %}
   {
   "name": "multi-col-section",
+  "tag": "section",
   "settings": [
     {
       "type": "header",
@@ -107,8 +121,34 @@
       "label": "Header Text"
     },
     {
+      "type": "range",
+      "id": "header_font_size",
+      "label": "Header Title Size",
+      "info": "multiplies the size of base text size by the value divided by 10 [base size * (value / 10)]",
+      "default":10,
+      "min": 5,
+      "max": 50,
+      "step": 1
+    },
+    {
       "type": "header",
       "content": "Layout"
+    },
+    {
+      "type": "color_background",
+      "id": "gradient_color",
+      "label": "Select Gradient Background",
+      "default": "linear-gradient(#054F8E, #FFFFFF)"
+    },
+    {
+      "type": "range",
+      "id": "block_width",
+      "label": "Block Width",
+      "default":100,
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "%"
     },
     {
       "type": "select",
@@ -133,12 +173,12 @@
     {
       "type": "range",
       "id": "img_width",
-      "label": "Block Image Height",
-      "default":200,
-      "min": 150,
-      "max": 300,
-      "step": 10,
-      "unit": "px"
+      "label": "Block Image Width",
+      "default":100,
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "%"
     },
     {
       "type": "radio",
