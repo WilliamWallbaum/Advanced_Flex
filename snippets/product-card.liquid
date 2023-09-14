@@ -16,7 +16,12 @@
 {% endcomment %}
 
 <a href="{{ product.url }}" class="product">
-  <div class="product-card" style="max-width: {{ card_width }}px">
+  <div
+    class="product-card"
+    {% if card_width %}
+      style="max-width:{{ card_width }}px"
+    {% endif %}
+  >
     {% assign use_product = custom_product | default: product %}
     {% assign use_image = custom_image | default: use_product.featured_image %}
 
