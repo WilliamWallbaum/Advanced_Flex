@@ -61,10 +61,12 @@
   {% capture height_style %}
     max-height: {{ max_height }}px;
   {% endcapture %}
+
 {% elsif object_fit == true %}
   {% capture height_style %}
       max-height: {{ max_height }}px; width: calc({{ image.width }} /  {{ image.height }} * {{ max_height }}px);
   {% endcapture %}
+
 {% else %}
   {% comment %}Used to reset variable{% endcomment %}
   {% assign height_style = '' %}
@@ -74,6 +76,7 @@
 {% if settings.image_loading_style == 'blur-up' %}
   {% comment %}Low quality image loads first{% endcomment %}
   {% assign low_quality_image = image | img_url: '50x' %}
+
 {% elsif settings.image_loading_style == 'color' %}
   {% comment %}Dominant image color loads first{% endcomment %}
   {% assign dominant_color_image = image | img_url: '1x' %}
@@ -85,7 +88,9 @@
 {% if back_to_basics %}
   <figure
     class="image-element__wrap {{ figure_classes }}"
-    style="{{ image_background_color }}{{ height_style }}"
+    {% if height_style or image_background_color %}
+      style="{{ image_background_color }}{{ height_style }}"
+    {% endif %}
   >
     <img
       alt="{{ alt | escape }}"
@@ -105,7 +110,7 @@
     {% if calculate_aspect_ratio %}
       data-calculate-aspect-ratio
     {% endif %}
-    style="{{ image_background_color }}{{ height_style }} {% unless stretch_width == true or object_fit %}max-width: {{ image.width }}px;{% endunless %}"
+    style="{{ image_background_color }}{{ height_style }} {% unless stretch_width == true or object_fit %}{% if image.width %}max-width: {{ image.width }}px;{% endif %}{% endunless %}"
   >
     <img
       alt="{{ alt | escape }}"
@@ -120,7 +125,14 @@
       height="{{ image.height }}"
       width="{{ image.width }}"
       srcset="data:image/svg+xml;utf8,<svg%20xmlns='http://www.w3.org/2000/svg'%20width='{{ image.width }}'%20height='{{ image.height }}'></svg>"
-      style="{{ inline_style }};{{ height_style }}"
+      style="
+        {% if inline_style %}
+          {{ inline_style }};
+        {% endif %}
+        {% if height_style %}
+          {{ height_style }}
+        {% endif %}}
+      "
     >
   </figure>
 {% endif %}
@@ -133,5 +145,6 @@
 {% style %}
   figure.image-element__wrap {
     margin: 0;
+    width: 100%;
   }
 {% endstyle %}
