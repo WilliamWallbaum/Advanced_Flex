@@ -130,6 +130,13 @@
   figure.image-element__wrap {
     align-self: center;
   }
+
+  @media only screen and (max-width: 768px) {
+    #section-content-4 img-tbl {
+      grid-template-columns: 1fr;
+      grid-template-areas: "left" "right";
+    }
+  }
 {% endstyle %}
 
 {% comment %} HTML markup {% endcomment %}
