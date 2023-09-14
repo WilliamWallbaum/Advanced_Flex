@@ -16,11 +16,25 @@
 {% endcomment %}
 
 <a href="{{ product.url }}" class="product">
-  <div class="product-card" style="max-width: {{ card_width }}px">
+  <div
+    class="product-card"
+    {% if card_width %}
+      style="max-width:{{ card_width }}px"
+    {% endif %}
+  >
     {% assign use_product = custom_product | default: product %}
     {% assign use_image = custom_image | default: use_product.featured_image %}
 
-    {% include 'image-element' with image: use_image, alt: use_image.alt, loading: 'lazy', width: use_image.width, height: use_image.height %}
+    {%
+      include 'image-element' with
+      image: use_image,
+      alt: use_image.alt,
+      loading: 'lazy',
+      width: use_image.width,
+      height: use_image.height,
+      object_fit: false,
+      image_crop: false
+    %}
 
     <div class="product-card-body">
       {% if section.settings.show_product_description %}
