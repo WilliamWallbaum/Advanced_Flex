@@ -74,6 +74,7 @@
 {% if settings.image_loading_style == 'blur-up' %}
   {% comment %}Low quality image loads first{% endcomment %}
   {% assign low_quality_image = image | img_url: '50x' %}
+
 {% elsif settings.image_loading_style == 'color' %}
   {% comment %}Dominant image color loads first{% endcomment %}
   {% assign dominant_color_image = image | img_url: '1x' %}
