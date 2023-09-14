@@ -1,6 +1,9 @@
 <script src="{{ 'addPair.js' | asset_url }}" defer></script>
+{% assign section_name = section.settings.section_name | replace: ' ', '-' | downcase | default: 'variant' %}
+{% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
+
 {% if section.settings.show_variants %}
-  <span id="variant-anchor"></span>
+  <span id="{{ section_name }}-anchor"></span>
   {% if section.settings.show_section_header %}
     {%
       include 'product_header' with
@@ -8,11 +11,13 @@
       show_reviews: section.settings.show_reviews,
       show_header_text: section.settings.show_header_text,
       header_title: section.settings.header_title,
-      header_copy: section.settings.header_copy
+      header_copy: section.settings.header_copy,
+      section_name: section_name
+      class: container_class
     %}
   {% endif %}
 
-  <div id="variant-container" class=" is-width-{{ section.settings.width }} card-container">
+  <div id="{{ section_name }}-container" class="{{ container_class }} card-container">
     {% assign leftVariant = null %}
     {% assign pairVariant = null %}
     {% assign rightVariant = null %}
@@ -90,7 +95,7 @@
       %}
     {% endif %}
   </div>
-  <footer class="is-width-{{ section.settings.width }} product-variant-footer">
+  <footer class="is-width-{{ section.settings.width }} {{ section_name }}-footer">
     {% if section.settings.show_product_description %}
       <div class="product-description">
         {{ product.content }}
@@ -107,7 +112,7 @@
 {
   "name": "Product Variant Display",
   "tag": "section",
-  "class": "section variant-display",
+  "class": "variant-display",
   "settings": [
     {
       "type": "checkbox",
@@ -154,6 +159,16 @@
       "id": "show_product_title",
       "label": "Show Product Title",
       "default": true
+    },
+    {
+      "type": "range",
+      "id": "header_font_size",
+      "label": "Header Title Size",
+      "info": "multiplies the size of base text size by the value divided by 10 [base size * (value / 10)]",
+      "default":10,
+      "min": 5,
+      "max": 50,
+      "step": 1
     },
     {
       "type": "checkbox",
@@ -227,18 +242,24 @@
 }
 {% endschema %}
 
-{% style %}
-  .variant-display {
-    display: grid;
-    padding: var(--global-p2);
+<style>
+  .{{section_name}}-header h2 {
+    font-size:  calc(var(--text-basic)*({{ section.settings.header_font_size }} / 10));
   }
-  #variant-container {
+</style>
+
+{% style %}
+  /* Common Styles */
+  .variant-display, #variant-container, .card-body, .card-body h3, .card-body p, .variant-footer {
     display: grid;
+  }
+
+  #variant-container {
     grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
     grid-gap: var(--global-p2);
-    padding: var(--global-p2) 0;
   }
-  #variant-anchor {
+
+  #variant-anchor::before {
     content: '';
     display: block;
     position: relative;
@@ -246,49 +267,32 @@
     height: 1px;
     visibility: hidden;
   }
+
   .card-body {
-    display: grid;
     grid-gap: var(--global-p1);
     grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
     align-items: baseline;
     padding: 0 calc(var(--global-p1) * 1.5);
     justify-content: space-around;
   }
-  .card-body h3 {
+
+  .card-body h3, .card-body p {
     display: inline-grid;
   }
-  .card-body p {
-    display: inline-grid;
-    justify-items: end;
-  }
-  .product-variant-footer {
-    display: grid;
+
+  .variant-footer {
     grid-template-columns: 3fr 1fr;
     grid-gap: var(--global-p2);
   }
 
   /* Responsive Styles */
-  @media screen and (max-width: 768px) {
-    .variant-display {
-      padding: var(--global-p1); /* Reduce padding for smaller screens */
+  @media only screen and (max-width: 768px) {
+    .variant-header h2 {
+      text-align: center;
     }
-    #variant-container {
-      grid-template-columns: 1fr; /* Show one card per row on smaller screens */
-    }
-    .card-body {
-      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr)); /* Adjust card columns for smaller screens */
-    }
-    .card-body h3 {
-      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr)); /* Adjust card columns for smaller screens */
-    }
-    .card-body p {
-      font-size: calc(var(--text-basic)*1.25);
-    }
-    .card-body h3 {
-      font-size: calc(var(--text-basic)*1.5);
-    }
-    .product-variant-footer {
-      grid-template-columns: 1fr; /* Show one column for footer on smaller screens */
+
+    #variant-container, .product-variant-footer {
+      grid-template-columns: 1fr;
     }
   }
 {% endstyle %}
