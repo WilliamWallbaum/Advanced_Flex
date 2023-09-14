@@ -427,10 +427,12 @@
     height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: 250ms opacity 250ms;
+    transition-duration: 250ms;
+    transition-property: opacity;
   }
 
   .active {
+    display: grid;
     height: auto;
     opacity: 1;
   }
