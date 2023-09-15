@@ -744,13 +744,19 @@
     #section-content-5 .img-tbl ul {
       grid-area: list;
     }
+  }
   /* End Tablet Styles */
 
   /* Start Desktop Styles */
   @media only screen and (max-width: 1080px) {
-    /* Sections: Tab 2 - Warranty */
-    [id^="section-"] {
+    /* Elements: Content Area */
+    .tab-content {
       width: 100%;
     }
+
+    .content {
+      max-width: 1900px;
+    }
+  }
   /* End Desktop Styles */
 {% endstyle %}
