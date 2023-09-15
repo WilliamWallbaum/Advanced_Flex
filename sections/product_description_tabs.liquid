@@ -752,12 +752,13 @@
 
     .compare-dimension-body {
       display: flex;
-      justify-content: space-between;
+      flex-wrap: nowrap;
+      flex-direction: column;
       width: 100%;
     }
 
     .compare-dimension-body p {
-      margin: 0;
+      margin-bottom: 0 !important;
     }
 
     .compare-dimension-footer {
@@ -792,19 +793,20 @@
 
     .size-dimension-body {
       display: flex;
-      justify-content: space-between;
+      flex-wrap: nowrap;
+      flex-direction: column;
       width: 100%;
     }
 
     .size-dimension-body p {
-      margin: 0;
+      margin-bottom: 0 !important;
     }
 
     .size-dimension-footer {
       display: flex;
       flex-direction: column;
       width: 100%;
-          }
+    }
 
     .size-dimension-footer h4 {
       margin: 0;
