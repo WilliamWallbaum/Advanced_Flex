@@ -169,15 +169,15 @@
             %}
           {% endif %}
           {% if dimensions %}
-            <div class="dimension-box">
-              <div class="dimension-box-header">
+            <div class="size-dimensions">
+              <div class="size-dimension-header">
                 <p><small>height x width x depth</small></p>
               </div>
-              <div class="dimension-box-body">
+              <div class="size-dimension-body">
                 <p>{{ dimensions.height.mm }}mm x {{ dimensions.width.mm }}mm x {{ dimensions.depth.mm }}mm</p>
                 <p>{{ dimensions.height.in }}in x {{ dimensions.width.in }}in x {{ dimensions.depth.in }}in</p>
               </div>
-              <div class="dimension-box-footer">
+              <div class="size-dimension-footer">
                 {% comment %} Hearing Levels {% endcomment %}
                 {% if ha %}
                   <h6>For Hearing Levels:</h6>
@@ -606,6 +606,46 @@
     }
 
     .compare-dimenssion-footer h6 {
+      margin: 0;
+    }
+
+
+
+    /* Element: Size Dimension Box */
+    .size-dimenssions {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: calc(var(--global-p1) * .5);
+      padding: var(--global-p1) calc(var(--global-p1) * 0.5);
+    }
+
+    .size-dimenssion-head {
+      width: 100%;
+    }
+
+    .size-dimenssion-body {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .size-dimenssion-body p {
+      margin: 0;
+    }
+
+    .size-dimenssion-footer {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+          }
+
+    .size-dimenssion-footer h4 {
+      margin: 0;
+    }
+
+    .size-dimenssion-footer h6 {
       margin: 0;
     }
 
