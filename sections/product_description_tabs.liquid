@@ -574,15 +574,28 @@
       flex-direction: column;
       flex-wrap: wrap;
       align-items: flex-start;
+      gap: calc(var(--global-p1) * .5);
+      padding-left: calc(var(--global-p1) * .9);
     }
 
     #compare-dimenssion-head {}
 
     #compare-dimenssion-body {}
 
-    #compare-dimenssion-footer {}
+    #compare-dimenssion-body p {
+      margin: 0;
+    }
 
-    .dimension-box h5 {
+    #compare-dimenssion-footer {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #compare-dimenssion-footer h4 {
+      margin: 0;
+    }
+
+    #compare-dimenssion-footer h6 {
       margin: 0;
     }
 
