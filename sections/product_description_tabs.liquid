@@ -91,7 +91,7 @@
 
                   {% if technical_information %}
                     {% if dimensions %}
-                      <div id="compare-dimenssions" class="dimension-box">
+                      <div class="compare-dimenssions">
                         <div class="compare-dimenssion-head">
                           <h3>Size</h3>
                           <p><small>height x width x depth</small></p>
@@ -578,7 +578,7 @@
       flex-wrap: wrap;
       align-items: flex-start;
       gap: calc(var(--global-p1) * .5);
-      padding-left: calc(var(--global-p1) * .9);
+      padding-left: var(--global-p1) calc(var(--global-p1) * 0.5px);
     }
 
     .compare-dimenssion-head {}
