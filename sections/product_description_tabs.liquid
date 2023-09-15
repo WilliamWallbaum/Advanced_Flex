@@ -654,12 +654,20 @@
 
   /* Start Tablet Styles */
   @media only screen and (min-width: 769px) {
+
+    /* Elements: Content */
     .tab-header {
       display: flex;
       flex-direction: row; /* Ensures horizontal alignment */
       flex: 1; /* This allows the element to grow and take up available space */
       color: #fdfdfd;
       font-family: var(--pf-primary-font);
+    }
+
+    #tabs {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
     }
 
     /* Element: Button */
@@ -678,12 +686,8 @@
     }
 
     /* Sections: Tab 4 - Size */
-    #tabs {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-    .section-content-4 .img-tbl {
+    #section-content-4 {}
+    #section-content-4 .img-tbl {
       grid-template-columns: 2fr 1fr;
       grid-template-areas:
         "content figure"
