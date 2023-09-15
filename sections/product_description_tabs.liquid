@@ -727,8 +727,23 @@
     .dimension-box-dimensions p {
       margin: 0 !important;
     }
-  }
 
+
+    /* Sections: Tab 5 - What's In The Box? */
+    #section-content-5 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: "figure list";
+    }
+
+    #section-content-5 .img-tbl figure {
+      grid-area: figure;
+      margin-bottom: 0;
+    }
+
+    #section-content-5 .img-tbl ul {
+      grid-area: list;
+    }
   /* End Tablet Styles */
 
   /* Start Desktop Styles */
