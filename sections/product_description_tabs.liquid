@@ -692,13 +692,22 @@
 
         /* Sections: Tab 4 - Size */
         .section-content-4 .img-tbl {
-          grid-template-columns:1fr;
+          grid-template-columns: 2fr 1fr;
           grid-template-areas:
-            "left"
-            "right";
+            "content figure"
+            "table table";
+        }
+
+        #section-content-4 .img-tbl figure {
+          grid-area: figure;
+        }
+
+        #section-content-4 .img-tbl table {
+          grid-area: table;
         }
 
         #section-content-4 .img-tbl .dimension-box {
+          grid-area: content;
           grid-template-areas:
             "dimensions for";
         }
