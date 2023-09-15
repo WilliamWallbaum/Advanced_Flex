@@ -434,16 +434,13 @@
     padding: calc(var(--global-p1) * 0.5);
     border-style: none;
     text-decoration: none;
+    transition: 250ms background ease-in;
   }
 
   .button-item:hover,
   .active.button-item {
-    background-color: var(--foreground-color);
-    color: #fff;
-  }
-
-  .button-item.active {
     background-color: var(--primary-color);
+    color: #fff;
   }
 
   /* Elements: Content Area */
