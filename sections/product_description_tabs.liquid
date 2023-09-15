@@ -90,19 +90,26 @@
                   </div>
 
                   {% if technical_information %}
-                    <div class="dimension-box">
-                      <div class="dimension-box-header">
-                        <h5>Size:</h5>
-                        <p><small>height x width x depth</small></p>
+                    {% if dimensions %}
+                      <div id="compare-dimenssions" class="dimension-box">
+                        <div id="compare-dimenssion-head" class="dimension-box-header">
+                          <p><small>height x width x depth</small></p>
+                        </div>
+                        <div id="compare-dimenssion-body" class="dimension-box-body">
+                          <p>
+                            {{ dimensions.height.mm }}mm x {{ dimensions.width.mm }}mm x {{ dimensions.depth.mm }}mm
+                          </p>
+                          <p>
+                            {{ dimensions.height.in }}in x {{ dimensions.width.in }}in x {{ dimensions.depth.in }}in
+                          </p>
+                        </div>
+                        <div id="compare-dimenssion-footer" class="dimension-box-footer">
+                          {% comment %} Hearing Levels {% endcomment %}
+                          {% if ha %}
+                            <h4><small>For Hearing Levels:</small> {{ ha.for }}</h4>
+                          {% endif %}
+                        </div>
                       </div>
-                      <div class="dimension-box-dimensions">
-                        <p>{{ dimensions.height.mm }}mm x {{ dimensions.width.mm }}mm x {{ dimensions.depth.mm }}mm</p>
-                        <p>{{ dimensions.height.in }}in x {{ dimensions.width.in }}in x {{ dimensions.depth.in }}in</p>
-                      </div>
-                    </div>
-                    {% comment %} Hearing Levels {% endcomment %}
-                    {% if ha %}
-                      <h5><small>For Hearing Levels:</small> {{ ha.for }}</h5>
                     {% endif %}
                     <table>
                       <tbody>
@@ -163,14 +170,16 @@
               <div class="dimension-box-header">
                 <p><small>height x width x depth</small></p>
               </div>
-              <div class="dimension-box-dimensions">
+              <div class="dimension-box-body">
                 <p>{{ dimensions.height.mm }}mm x {{ dimensions.width.mm }}mm x {{ dimensions.depth.mm }}mm</p>
                 <p>{{ dimensions.height.in }}in x {{ dimensions.width.in }}in x {{ dimensions.depth.in }}in</p>
               </div>
-              {% comment %} Hearing Levels {% endcomment %}
-              {% if ha %}
-                <h4><small>For Hearing Levels:</small> {{ ha.for }}</h4>
-              {% endif %}
+              <div class="dimension-box-footer">
+                {% comment %} Hearing Levels {% endcomment %}
+                {% if ha %}
+                  <h4><small>For Hearing Levels:</small> {{ ha.for }}</h4>
+                {% endif %}
+              </div>
             </div>
           {% endif %}
 
@@ -511,20 +520,6 @@
     margin: 0;
   }
 
-  .dimension-box-header {
-    display: flex;
-    gap: var(--global-p1);
-    align-items: baseline;
-  }
-
-  .dimension-box-dimensions {
-    display: inline-flex;
-    gap: var(--global-p1);
-    align-items: baseline;
-    width: 100%;
-    justify-content: space-around;
-  }
-
   .title-box {
     border-bottom: 1px solid;
     margin-bottom: var(--global-p1);
@@ -574,6 +569,25 @@
       border: 0;
       width: fit-content;
       height: auto;
+    }
+
+    /* Element: Dimension Box */
+    .dimension-box {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .dimension-box-header {
+      display: flex;
+      gap: var(--global-p1);
+      align-items: baseline;
+    }
+
+    .dimension-box-dimensions {
+      display: inline-flex;
+      width: 100%;
+      justify-content: space-around;
     }
 
     /* Sections: Tab 3 - Comparison */
@@ -681,6 +695,21 @@
 
     .button-item:not(:last-of-type) a {
       border-right: 0;
+    }
+
+    /* Element: Dimension Box */
+    .dimension-box-header {
+      display: flex;
+      gap: var(--global-p1);
+      align-items: baseline;
+    }
+
+    .dimension-box-dimensions {
+      display: inline-flex;
+      gap: var(--global-p1);
+      align-items: baseline;
+      width: 100%;
+      justify-content: space-around;
     }
 
     /* Sections: Tab 4 - Size */
