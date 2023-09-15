@@ -730,9 +730,9 @@
 
 
     /* Sections: Tab 5 - What's In The Box? */
-    #section-content-5 {
+    #section-content-5 .img-tbl {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 2fr 1fr;
       grid-template-areas: "figure list";
     }
 
@@ -747,8 +747,10 @@
   /* End Tablet Styles */
 
   /* Start Desktop Styles */
-  @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: 1080px) {
     /* Sections: Tab 4 - Size */
-  }
+    #section-2 {
+      width: 100%;
+    }
   /* End Desktop Styles */
 {% endstyle %}
