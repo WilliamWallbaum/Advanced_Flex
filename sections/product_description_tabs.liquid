@@ -432,6 +432,7 @@
   .active {
     height: auto;
     opacity: 1;
+    transition: 250ms 250ms height ease-in, 250ms opacity ease-in;
   }
 
   .content.active {
@@ -671,30 +672,11 @@
     }
   }
 
-  @media only screen and (min-width: 769px) {
-    #section-content-4 .img-tbl {
-      grid-template-areas:
-        "dimensions figure"
-        "table table";
-    }
+  @media only screen and (min-width: 769px) and  {
 
-    #section-content-4 .img-tbl figure {
-      grid-area: figure;
-      margin-bottom: 0;
-    }
-
-    #section-content-4 .img-tbl .dimension-box {
-      grid-area: dimensions;
-      display: grid;
-      grid-gap: var(--global-p1);
-    }
-
-    #section-content-4 .img-tbl table {
-      grid-area: table;
-    }
   }
 
-  @media only screen and (min-width: 1080px) {
+  @media only screen and (min-width: 769px) {
     .tab-header {
       flex: 1 1 0%;
       color: #fdfdfd;
