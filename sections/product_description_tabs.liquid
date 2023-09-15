@@ -93,7 +93,7 @@
                     {% if dimensions %}
                       <div class="compare-dimensions">
                         <div class="compare-dimension-head">
-                          <h3>{{ settings.tab_3 }}</h3>
+                          <h3>Size</h3>
                           <p><small>height x width x depth</small></p>
                         </div>
                         <div class="compare-dimension-body">
@@ -549,6 +549,9 @@
       /* set transition properties for the element */
       height: auto;
       opacity: 1;
+    }
+    .content h2 {
+      font-size: calc(var(--text-basic) * 8);
     }
 
     [id^="section-content-"] h2,
