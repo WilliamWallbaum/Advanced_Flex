@@ -956,6 +956,8 @@
       flex-direction: row;
       gap: var(--global-p1);
       align-items: baseline;
+      justify-content: flex-end;
+      padding-right:  calc(var(--text-basic) * 4);
     }
 
     .size-dimension-footer h4 {
@@ -967,6 +969,7 @@
     /* Sections: Tab 4 - Size */
     #section-content-4 .img-tbl {
       grid-template-columns: 2fr 1fr;
+      grid-template-rows: 1fr 8fr;
       grid-template-areas:
         "content table"
         "figure table";
