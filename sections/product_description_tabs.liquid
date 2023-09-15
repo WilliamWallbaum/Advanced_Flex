@@ -15,29 +15,29 @@
 {% assign youtube = product.metafields.proddesc.product_video %}
 
 {% comment %} HTML markup {% endcomment %}
-{% if settings.show_product_description_tabs %}
+{% if section.settings.show_product_description_tabs %}
   <div id="tabs" class="{{ container_class }}">
     <div class="tab-header">
       <button class="button-item">
-        <a href="#section-1" class="smooth-scroll">{{ settings.tab_1 }}</a>
+        <a href="#section-1" class="smooth-scroll">{{ section.settings.tab_1 }}</a>
       </button>
       <button class="button-item">
-        <a href="#section-2" class="smooth-scroll">{{ settings.tab_2 }}</a>
+        <a href="#section-2" class="smooth-scroll">{{ section.settings.tab_2 }}</a>
       </button>
       <button class="button-item">
-        <a href="#section-3" class="smooth-scroll">{{ settings.tab_3 }}</a>
+        <a href="#section-3" class="smooth-scroll">{{ section.settings.tab_3 }}</a>
       </button>
       <button class="button-item">
-        <a href="#section-4" class="smooth-scroll">{{ settings.tab_4 }}</a>
+        <a href="#section-4" class="smooth-scroll">{{ section.settings.tab_4 }}</a>
       </button>
       <button class="button-item">
-        <a href="#section-5" class="smooth-scroll">{{ settings.tab_5 }}</a>
+        <a href="#section-5" class="smooth-scroll">{{ section.settings.tab_5 }}</a>
       </button>
     </div>
 
     <div id="section-1" class="tab-content">
       <button class="button-item mobile-button active">
-        <a href="#section-1" class="smooth-scroll">{{ settings.tab_1 }}</a>
+        <a href="#section-1" class="smooth-scroll">{{ section.settings.tab_1 }}</a>
       </button>
 
       <div id="section-content-1" class="content active">
@@ -48,7 +48,7 @@
 
     <div id="section-2" class="tab-content">
       <button class="button-item mobile-button">
-        <a href="#section-2" class="smooth-scroll">{{ settings.tab_2 }}</a>
+        <a href="#section-2" class="smooth-scroll">{{ section.settings.tab_2 }}</a>
       </button>
 
       <div id="section-content-2" class="content">
@@ -68,7 +68,7 @@
 
     <div id="section-3" class="tab-content">
       <button class="button-item mobile-button">
-        <a href="#section-3" class="smooth-scroll">{{ settings.tab_3 }}</a>
+        <a href="#section-3" class="smooth-scroll">{{ section.settings.tab_3 }}</a>
       </button>
 
       <div id="section-content-3" class="content">
@@ -90,20 +90,30 @@
                   </div>
 
                   {% if technical_information %}
-                    <div class="dimension-box">
-                      <div class="dimension-box-header">
-                        <h5>Size:</h5>
-                        <p><small>height x width x depth</small></p>
+                    {% if dimensions %}
+                      <div class="compare-dimensions">
+                        <div class="compare-dimension-head">
+                          <h3>Size</h3>
+                          <p><small>height x width x depth</small></p>
+                        </div>
+                        <div class="compare-dimension-body">
+                          <p>
+                            {{ dimensions.height.mm }}mm x {{ dimensions.width.mm }}mm x {{ dimensions.depth.mm }}mm
+                          </p>
+                          <p>
+                            {{ dimensions.height.in }}in x {{ dimensions.width.in }}in x {{ dimensions.depth.in }}in
+                          </p>
+                        </div>
+                        <div class="compare-dimension-footer">
+                          {% comment %} Hearing Levels {% endcomment %}
+                          {% if ha %}
+                            <h6>For Hearing Levels:</h6>
+                            <h4>{{ ha.for }}</h4>
+                          {% endif %}
+                        </div>
                       </div>
-                      <div class="dimension-box-dimensions">
-                        <p>{{ dimensions.height.mm }}mm x {{ dimensions.width.mm }}mm x {{ dimensions.depth.mm }}mm</p>
-                        <p>{{ dimensions.height.in }}in x {{ dimensions.width.in }}in x {{ dimensions.depth.in }}in</p>
-                      </div>
-                    </div>
-                    {% comment %} Hearing Levels {% endcomment %}
-                    {% if ha %}
-                      <h5><small>For Hearing Levels:</small> {{ ha.for }}</h5>
                     {% endif %}
+
                     <table>
                       <tbody>
                         <!-- Technical Specifications and Dimensions -->
@@ -143,11 +153,11 @@
 
     <div id="section-4" class="tab-content">
       <button class="button-item mobile-button">
-        <a href="#section-4" class="smooth-scroll">{{ settings.tab_4 }}</a>
+        <a href="#section-4" class="smooth-scroll">{{ section.settings.tab_4 }}</a>
       </button>
 
       <div id="section-content-4" class="content">
-        <h2>{{ settings.tab_4 }}</h2>
+        <h2>{{ section.settings.tab_4 }}</h2>
 
         <div class="img-tbl">
           {% if size_comparison %}
@@ -159,18 +169,21 @@
             %}
           {% endif %}
           {% if dimensions %}
-            <div class="dimension-box">
-              <div class="dimension-box-header">
+            <div class="size-dimensions">
+              <div class="size-dimension-header">
                 <p><small>height x width x depth</small></p>
               </div>
-              <div class="dimension-box-dimensions">
+              <div class="size-dimension-body">
                 <p>{{ dimensions.height.mm }}mm x {{ dimensions.width.mm }}mm x {{ dimensions.depth.mm }}mm</p>
                 <p>{{ dimensions.height.in }}in x {{ dimensions.width.in }}in x {{ dimensions.depth.in }}in</p>
               </div>
-              {% comment %} Hearing Levels {% endcomment %}
-              {% if ha %}
-                <h4><small>For Hearing Levels:</small> {{ ha.for }}</h4>
-              {% endif %}
+              <div class="size-dimension-footer">
+                {% comment %} Hearing Levels {% endcomment %}
+                {% if ha %}
+                  <h6>For Hearing Levels:</h6>
+                  <h4>{{ ha.for }}</h4>
+                {% endif %}
+              </div>
             </div>
           {% endif %}
 
@@ -195,11 +208,11 @@
 
     <div id="section-5" class="tab-content">
       <button class="button-item mobile-button">
-        <a href="#section-5" class="smooth-scroll">{{ settings.tab_5 }}</a>
+        <a href="#section-5" class="smooth-scroll">{{ section.settings.tab_5 }}</a>
       </button>
 
       <div id="section-content-5" class="content">
-        <h2>What's in the Box</h2>
+        <h2>{{ section.settings.tab_5 }}</h2>
 
         <div class="img-tbl">
           {% if box_image %}
@@ -219,7 +232,7 @@
                   {% if product_accessories.manual.link.User %}
                     <li><a href="{{ product_accessories.manual.link.User }}">User Manual</a></li>
                   {% endif %}
-                  {% if product_accessories.manual.link.App != empty and product_accessories.manual.link.App != ' ' %}
+                  {% if product_accessories.manual.link.App != empty or product_accessories.manual.link.App != '' %}
                     <li><a href="{{ product_accessories.manual.link.App }}">App Manual</a></li>
                   {% endif %}
                 {% else %}
@@ -333,6 +346,12 @@
   "class": "tab-content",
   "settings": [
     {
+      "type": "checkbox",
+      "id": "show_product_description_tabs",
+      "label": "Show Product Description Tabs",
+      "default": true
+    },
+    {
       "type": "header",
       "content": "Layout"
     },
@@ -402,8 +421,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     border-style: none;
     margin: calc(var(--global-p1) * 0.07);
+    transition: 250ms background ease-in;
   }
 
   .button-item a {
@@ -418,7 +439,7 @@
 
   .button-item:hover,
   .active.button-item {
-    background-color: var(--foreground-color);
+    background-color: var(--primary-color);
     color: #fff;
   }
 
@@ -446,7 +467,6 @@
   #tabs h4 {
     padding: 0;
     margin: 0;
-    font-weight: 700;
   }
 
   /* Elements: Table */
@@ -507,24 +527,6 @@
     font-weight: 500;
   }
 
-  .dimension-box h5 {
-    margin: 0;
-  }
-
-  .dimension-box-header {
-    display: flex;
-    gap: var(--global-p1);
-    align-items: baseline;
-  }
-
-  .dimension-box-dimensions {
-    display: inline-flex;
-    gap: var(--global-p1);
-    align-items: baseline;
-    width: 100%;
-    justify-content: space-around;
-  }
-
   .title-box {
     border-bottom: 1px solid;
     margin-bottom: var(--global-p1);
@@ -539,7 +541,6 @@
 
   .img-tbl .full {
     width: 100%;
-    align-self: end;
   }
   /* End General Styles */
 
@@ -555,6 +556,9 @@
       /* set transition properties for the element */
       height: auto;
       opacity: 1;
+    }
+    .content h2 {
+      font-size: calc(var(--text-basic) * 2.5);
     }
 
     [id^="section-content-"] h2,
@@ -575,6 +579,84 @@
       border: 0;
       width: fit-content;
       height: auto;
+    }
+
+    /* Element: Comparison Dimension Box */
+    .compare-dimensions {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: calc(var(--global-p1) * .5);
+      padding: var(--global-p1) calc(var(--global-p1) * 0.5);
+    }
+
+    .compare-dimension-head {
+      width: 100%;
+    }
+
+    .compare-dimension-body {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .compare-dimension-body p {
+      margin: 0;
+    }
+
+    .compare-dimension-footer {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+          }
+
+    .compare-dimension-footer h4 {
+      margin: 0;
+    }
+
+    .compare-dimension-footer h6 {
+      margin: 0;
+    }
+
+
+
+    /* Element: Size Dimension Box */
+    .size-dimensions {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: calc(var(--global-p1) * .5);
+      padding: var(--global-p1) calc(var(--global-p1) * 0.5);
+    }
+
+    .size-dimension-head {
+      width: 100%;
+    }
+
+    .size-dimension-body {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .size-dimension-body p {
+      margin: 0;
+    }
+
+    .size-dimension-footer {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+          }
+
+    .size-dimension-footer h4 {
+      margin: 0;
+    }
+
+    .size-dimension-footer h6 {
+      margin: 0;
     }
 
     /* Sections: Tab 3 - Comparison */
@@ -626,29 +708,6 @@
     #section-content-5 .img-tbl ul {
       grid-area: list;
     }
-
-    .dimension-box-dimensions {
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-    }
-
-    .dimension-box-header {
-      display: flex;
-      gap: var(--global-p1);
-      align-items: center;
-      flex-direction: column;
-    }
-
-    .dimension-box-dimensions p {
-      margin: 0 !important;
-    }
-
-    .dimension-box h4 {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-    }
   }
   /* End Mobile Styles */
 
@@ -657,10 +716,15 @@
     /* Elements: Content */
     .tab-header {
       display: flex;
-      flex-direction: row; /* Ensures horizontal alignment */
-      flex: 1; /* This allows the element to grow and take up available space */
+      flex-direction: row;
+      flex: 1;
       color: #fdfdfd;
       font-family: var(--pf-primary-font);
+    }
+
+    .content h2 {
+      font-size: calc(var(--text-basic) * 3);
+      font-weight: initial;
     }
 
     #tabs {
@@ -677,11 +741,91 @@
 
     .button-item {
       border-top-right-radius: 15px;
-      flex: 1; /* Same as .tab-header for consistent sizing */
+      flex: 1;
     }
 
     .button-item:not(:last-of-type) a {
-      border-right: 0; /* Removes right border for non-last items */
+      border-right: 0;
+    }
+
+    /* Element: Comparison Dimension Box */
+    .compare-dimensions {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: calc(var(--global-p1) * .5);
+      padding: var(--global-p1) calc(var(--global-p1) * 0.5);
+    }
+
+    .compare-dimension-head {
+      width: 100%;
+    }
+
+    .compare-dimension-body {
+      display: flex;
+      flex-wrap: nowrap;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .compare-dimension-body p {
+      margin-bottom: 0 !important;
+    }
+
+    .compare-dimension-footer {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+          }
+
+    .compare-dimension-footer h4 {
+      margin: 0;
+    }
+
+    .compare-dimension-footer h6 {
+      margin: 0;
+    }
+
+
+
+    /* Element: Size Dimension Box */
+    .size-dimensions {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: calc(var(--global-p1) * .5);
+      padding: var(--global-p1) calc(var(--global-p1) * 0.5);
+    }
+
+    .size-dimension-head {
+      width: 100%;
+    }
+
+    .size-dimension-body {
+      display: flex;
+      flex-wrap: nowrap;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .size-dimension-body p {
+      margin-bottom: 0 !important;
+    }
+
+    .size-dimension-footer {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .size-dimension-footer h4 {
+      margin: 0;
+    }
+
+    .size-dimension-footer h6 {
+      margin: 0;
     }
 
     /* Sections: Tab 4 - Size */
@@ -710,6 +854,11 @@
         "dimension-values"
         "for";
       grid-template-columns: 1fr;
+    }
+
+    #section-content-4 .img-tbl .dimension-box h4 {
+      display: flex;
+      flex-direction: column;
     }
 
     .dimension-box-header {
@@ -744,13 +893,106 @@
     #section-content-5 .img-tbl ul {
       grid-area: list;
     }
+  }
   /* End Tablet Styles */
 
   /* Start Desktop Styles */
-  @media only screen and (max-width: 1080px) {
-    /* Sections: Tab 2 - Warranty */
-    #section-2 {
+  @media only screen and (min-width: 1080px) {
+    /* Elements: Content Area */
+    .tab-content {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+    }
+
+    .content {
+      display: grid;
+      width: 100%;
+      max-width: 1500px;
+    }
+
+    /* Element: Comparison Dimension Box */
+    .compare-dimensions {
+    }
+
+    .compare-dimension-head {
+    }
+
+    .compare-dimension-body {
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: space-around;
+    }
+
+    .compare-dimension-body p {
+    }
+
+    .compare-dimension-footer {
+      flex-direction: row;
+      align-items: baseline;
+      gap: var(--global-p1);
+    }
+
+    .compare-dimension-footer h4 {
+      font-size: calc(var(--text-basic) * 1.2);
+      font-weight: 300;
+    }
+
+    .compare-dimension-footer h6 {
+    }
+
+
+
+    /* Element: Size Dimension Box */
+    .size-dimensions {
+      display: grid;
+      grid-template-columns: 1fr 2fr 3fr;
+    }
+
+    .size-dimension-head {
       width: 100%;
     }
+
+    .size-dimension-body {
+      flex-direction: row;
+      gap: var(--global-p1);
+      align-items: baseline;
+    }
+
+    .size-dimension-body p {
+      margin-bottom: 0 !important;
+    }
+
+    .size-dimension-footer {
+      flex-direction: row;
+      gap: var(--global-p1);
+      align-items: baseline;
+      justify-content: flex-end;
+      padding-right:  calc(var(--text-basic) * 4);
+    }
+
+    .size-dimension-footer h4 {
+    }
+
+    .size-dimension-footer h6 {
+    }
+
+    /* Sections: Tab 4 - Size */
+    #section-content-4 .img-tbl {
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 1fr 8fr;
+      grid-template-areas:
+        "content table"
+        "figure table";
+    }
+
+    #section-content-4 .img-tbl .dimension-box {
+      grid-template-areas: "dimension-head dimension-values for";
+      grid-template-columns: 1fr 3fr 4fr;
+      justify-items: center;
+      align-items: baseline;
+    }
+  }
   /* End Desktop Styles */
 {% endstyle %}
