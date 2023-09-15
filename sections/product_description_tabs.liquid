@@ -232,7 +232,7 @@
                   {% if product_accessories.manual.link.User %}
                     <li><a href="{{ product_accessories.manual.link.User }}">User Manual</a></li>
                   {% endif %}
-                  {% if product_accessories.manual.link.App != empty and product_accessories.manual.link.App != ' ' %}
+                  {% if product_accessories.manual.link.App != empty or product_accessories.manual.link.App != ' ' %}
                     <li><a href="{{ product_accessories.manual.link.App }}">App Manual</a></li>
                   {% endif %}
                 {% else %}
@@ -424,6 +424,7 @@
     align-items: center;
     border-style: none;
     margin: calc(var(--global-p1) * 0.07);
+    transition: 250ms background ease-in;
   }
 
   .button-item a {
@@ -434,7 +435,6 @@
     padding: calc(var(--global-p1) * 0.5);
     border-style: none;
     text-decoration: none;
-    transition: 250ms background ease-in;
   }
 
   .button-item:hover,
