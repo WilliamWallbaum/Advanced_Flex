@@ -97,11 +97,12 @@
     "product-tabs": {
       "type": "product_description_tabs",
       "settings": {
+        "show_product_description_tabs": true,
         "width": "wide",
         "tab_1": "Description",
         "tab_2": "Warranty",
-        "tab_3": "Size Comparison & Technical Information",
-        "tab_4": "Size & Specs",
+        "tab_3": "Compare",
+        "tab_4": "Size Comparison & Technical Information",
         "tab_5": "What's in the Box"
       }
     },
