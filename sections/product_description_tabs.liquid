@@ -444,10 +444,6 @@
     transition: 250ms height ease-in, 250ms 250ms opacity ease-in;
   }
 
-  .content h2 {
-    font-size: calc(var(--text-basic) * 3);
-  }
-
   .active {
     height: auto;
     opacity: 1;
@@ -717,6 +713,11 @@
       flex: 1;
       color: #fdfdfd;
       font-family: var(--pf-primary-font);
+    }
+
+    .content h2 {
+      font-size: calc(var(--text-basic) * 3);
+      font-weight: initial;
     }
 
     #tabs {
