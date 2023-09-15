@@ -91,12 +91,12 @@
 
                   {% if technical_information %}
                     {% if dimensions %}
-                      <div class="compare-dimenssions">
-                        <div class="compare-dimenssion-head">
+                      <div class="compare-dimensions">
+                        <div class="compare-dimension-head">
                           <h3>Size</h3>
                           <p><small>height x width x depth</small></p>
                         </div>
-                        <div class="compare-dimenssion-body">
+                        <div class="compare-dimension-body">
                           <p>
                             {{ dimensions.height.mm }}mm x {{ dimensions.width.mm }}mm x {{ dimensions.depth.mm }}mm
                           </p>
@@ -104,7 +104,7 @@
                             {{ dimensions.height.in }}in x {{ dimensions.width.in }}in x {{ dimensions.depth.in }}in
                           </p>
                         </div>
-                        <div class="compare-dimenssion-footer">
+                        <div class="compare-dimension-footer">
                           {% comment %} Hearing Levels {% endcomment %}
                           {% if ha %}
                             <h6>For Hearing Levels:</h6>
@@ -581,31 +581,31 @@
       padding: var(--global-p1) calc(var(--global-p1) * 0.5);
     }
 
-    .compare-dimenssion-head {
+    .compare-dimension-head {
       width: 100%;
     }
 
-    .compare-dimenssion-body {
+    .compare-dimension-body {
       display: flex;
       justify-content: space-between;
       width: 100%;
     }
 
-    .compare-dimenssion-body p {
+    .compare-dimension-body p {
       margin: 0;
     }
 
-    .compare-dimenssion-footer {
+    .compare-dimension-footer {
       display: flex;
       flex-direction: column;
       width: 100%;
           }
 
-    .compare-dimenssion-footer h4 {
+    .compare-dimension-footer h4 {
       margin: 0;
     }
 
-    .compare-dimenssion-footer h6 {
+    .compare-dimension-footer h6 {
       margin: 0;
     }
 
@@ -621,31 +621,31 @@
       padding: var(--global-p1) calc(var(--global-p1) * 0.5);
     }
 
-    .size-dimenssion-head {
+    .size-dimension-head {
       width: 100%;
     }
 
-    .size-dimenssion-body {
+    .size-dimension-body {
       display: flex;
       justify-content: space-between;
       width: 100%;
     }
 
-    .size-dimenssion-body p {
+    .size-dimension-body p {
       margin: 0;
     }
 
-    .size-dimenssion-footer {
+    .size-dimension-footer {
       display: flex;
       flex-direction: column;
       width: 100%;
           }
 
-    .size-dimenssion-footer h4 {
+    .size-dimension-footer h4 {
       margin: 0;
     }
 
-    .size-dimenssion-footer h6 {
+    .size-dimension-footer h6 {
       margin: 0;
     }
 
@@ -741,9 +741,9 @@
       align-items: baseline;
     }
 
-    #compare-dimenssion-head {}
+    #compare-dimension-head {}
 
-    #compare-dimenssion-body {}
+    #compare-dimension-body {}
 
     /* Sections: Tab 4 - Size */
     #section-content-4 {}
