@@ -654,7 +654,6 @@
 
   /* Start Tablet Styles */
   @media only screen and (min-width: 769px) {
-
     /* Elements: Content */
     .tab-header {
       display: flex;
@@ -696,6 +695,7 @@
 
     #section-content-4 .img-tbl figure {
       grid-area: figure;
+      margin-bottom: 0;
     }
 
     #section-content-4 .img-tbl table {
@@ -704,12 +704,20 @@
 
     #section-content-4 .img-tbl .dimension-box {
       grid-area: content;
-      grid-template-areas: "dimensions for";
+      display: grid;
+      grid-template-areas:
+        "dimension-head"
+        "dimension-values"
+        "for";
+      grid-template-columns: 1fr;
     }
 
-    .dimension-box-dimensions,
     .dimension-box-header {
-      grid-area: dimensions;
+      grid-area: dimension-head;
+    }
+
+    .dimension-box-dimensions {
+      grid-area: dimension-values;
     }
 
     .dimension-box h4 {
