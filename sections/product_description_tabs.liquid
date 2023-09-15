@@ -396,6 +396,7 @@
 
 {% comment %} Section Specific CSS {% endcomment %}
 {% style %}
+  /* Elements: Buttons */
   .button-item {
     background-color: var(--foreground-color);
     display: flex;
@@ -421,6 +422,7 @@
     color: #fff;
   }
 
+  /* Elements: Content Area */
   .content {
     display: grid;
     height: 0;
@@ -432,10 +434,11 @@
   .active {
     height: auto;
     opacity: 1;
+    transition: 250ms 250ms height ease-in, 250ms opacity ease-in;
   }
 
   .content.active {
-    padding: calc(var(--global-p1) * .7) calc(var(--global-p1) * .5);
+    padding: calc(var(--global-p1) * 0.7) calc(var(--global-p1) * 0.5);
   }
 
   #tabs h2,
@@ -446,6 +449,48 @@
     font-weight: 700;
   }
 
+  /* Elements: Table */
+  table {
+    border-radius: var(--global-p2);
+  }
+
+  td,
+  th {
+    padding-left: var(--global-p1);
+    padding-right: var(--global-p1);
+    text-align: left;
+  }
+
+  table tr:nth-child(even) {
+    background-color: var(--light-blue);
+  }
+
+  table tr:last-child td:first-child {
+    border-radius: 0 0 0 var(--global-p2);
+  }
+
+  table tr:last-child td:last-child {
+    border-radius: 0 0 var(--global-p2) 0;
+  }
+
+  table tbody tr {
+    border: none;
+  }
+
+  /* Elements: Video */
+  .video-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: var(--global-p1);
+  }
+
+  /* Elements: Images */
+  figure.image-element__wrap {
+    justify-self: center;
+  }
+
+  /* Sections: Tab 3 - Comparison */
   #comparison-products {
     display: grid;
     padding: var(--global-p1) 0;
@@ -489,78 +534,25 @@
 
   .img-tbl {
     display: grid;
-    grid-template-areas: "left right";
     grid-gap: var(--global-p1);
   }
 
   .img-tbl .full {
-    grid-area: left;
     width: 100%;
     align-self: end;
   }
+  /* End General Styles */
 
-  .img-tbl .dimension-box {
-    grid-area: left;
-  }
-
-  .img-tbl table {
-    grid-area: right;
-  }
-
-  table {
-    border-radius: var(--global-p2);
-  }
-
-  td,
-  th {
-    padding-left: var(--global-p1);
-    padding-right: var(--global-p1);
-    text-align: left;
-  }
-
-  table tr:nth-child(even) {
-    background-color: var(--light-blue);
-  }
-
-  table tr:last-child td:first-child {
-    border-radius: 0 0 0 var(--global-p2);
-  }
-
-  table tr:last-child td:last-child {
-    border-radius: 0 0 var(--global-p2) 0;
-  }
-
-  table tbody tr {
-    border: none;
-  }
-
-  .video-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: var(--global-p1);
-  }
-
-  figure.image-element__wrap {
-    justify-self: center;
-  }
-
-  /* Responsive Styles */
+  /* Start Mobile Styles */
   @media only screen and (max-width: 768px) {
+    /* Elements: Tab Header */
     .tab-header {
       display: none;
     }
 
-    .mobile-button {
-      display: none;
-    }
-
-    .button-item {
-      width: 100%;
-    }
-
-    /* set transition properties for the element */
+    /* Elements: Content */
     .content {
+      /* set transition properties for the element */
       height: auto;
       opacity: 1;
     }
@@ -570,11 +562,28 @@
       text-align: center;
     }
 
+    /* Element: Buttons */
+    .mobile-button {
+      display: none;
+    }
+    .button-item {
+      width: 100%;
+    }
+
+    /* Elements: Video */
+    iframe {
+      border: 0;
+      width: fit-content;
+      height: auto;
+    }
+
+    /* Sections: Tab 3 - Comparison */
     #comparison-products,
     .img-tbl {
       grid-template-columns: 1fr;
     }
 
+    /* Sections: Tab 4 - Size */
     #section-content-4 .img-tbl {
       grid-template-areas:
         "dimensions"
@@ -597,6 +606,7 @@
       grid-area: table;
     }
 
+    /* Sections: Tab 5 - What's in The Box? */
     #section-content-5 {
       padding: var(--global-p1) 0;
       grid-gap: var(--global-p1);
@@ -639,21 +649,75 @@
       display: flex;
       flex-direction: column;
     }
-
-    iframe {
-      border: 0;
-      width: fit-content;
-      height: auto;
-    }
   }
+  /* End Mobile Styles */
 
-  @media only screen (max-width: 1200px) {
-    #section-content-4 .img-tbl .dimension-box {
-      grid-template-areas: "dimensions for";
+  /* Start Tablet Styles */
+  @media only screen and (min-width: 769px) {
+    /* Elements: Content */
+    .tab-header {
+      display: flex;
+      flex-direction: row; /* Ensures horizontal alignment */
+      flex: 1; /* This allows the element to grow and take up available space */
+      color: #fdfdfd;
+      font-family: var(--pf-primary-font);
     }
 
-    .dimension-box-dimensions, .dimension-box-header {
-      grid-area: dimensions;
+    #tabs {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    /* Element: Button */
+    .button-item.mobile-button,
+    .button-item.mobile-button.active {
+      display: none;
+    }
+
+    .button-item {
+      border-top-right-radius: 15px;
+      flex: 1; /* Same as .tab-header for consistent sizing */
+    }
+
+    .button-item:not(:last-of-type) a {
+      border-right: 0; /* Removes right border for non-last items */
+    }
+
+    /* Sections: Tab 4 - Size */
+    #section-content-4 {}
+    #section-content-4 .img-tbl {
+      grid-template-columns: 1fr 2fr;
+      grid-template-areas:
+        "content figure"
+        "table table";
+    }
+
+    #section-content-4 .img-tbl figure {
+      grid-area: figure;
+      margin-bottom: 0;
+    }
+
+    #section-content-4 .img-tbl table {
+      grid-area: table;
+    }
+
+    #section-content-4 .img-tbl .dimension-box {
+      grid-area: content;
+      display: grid;
+      grid-template-areas:
+        "dimension-head"
+        "dimension-values"
+        "for";
+      grid-template-columns: 1fr;
+    }
+
+    .dimension-box-header {
+      grid-area: dimension-head;
+    }
+
+    .dimension-box-dimensions {
+      grid-area: dimension-values;
     }
 
     .dimension-box h4 {
@@ -664,38 +728,29 @@
       margin: 0 !important;
     }
 
-    .dimension-box h4 {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-    }
-  }
 
-  @media (min-width: 769px) {
-    .tab-header {
-      flex: 1 1 0%;
-      color: #fdfdfd;
-      font-family: var(--pf-primary-font);
-      display: flex;
-      flex-direction: row;
+    /* Sections: Tab 5 - What's In The Box? */
+    #section-content-5 .img-tbl {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-areas: "figure list";
     }
 
-    .button-item.mobile-button,
-    .button-item.mobile-button.active {
-      display: none;
+    #section-content-5 .img-tbl figure {
+      grid-area: figure;
+      margin-bottom: 0;
     }
 
-    .button-item {
-      border-top-right-radius: 15px;
-      flex: 1 1 0%;
+    #section-content-5 .img-tbl ul {
+      grid-area: list;
     }
+  /* End Tablet Styles */
 
-    .button-item:not(:last-of-type) a {
-      border-right: 0;
+  /* Start Desktop Styles */
+  @media only screen and (max-width: 1080px) {
+    /* Sections: Tab 2 - Warranty */
+    #section-2 {
+      width: 100%;
     }
-
-    .img-tbl {
-      grid-template-columns: 3fr 1fr;
-    }
-  }
+  /* End Desktop Styles */
 {% endstyle %}
