@@ -92,10 +92,11 @@
                   {% if technical_information %}
                     {% if dimensions %}
                       <div id="compare-dimenssions" class="dimension-box">
-                        <div id="compare-dimenssion-head" class="dimension-box-header">
+                        <div class="compare-dimenssion-head">
+                          <h3>Size</h3>
                           <p><small>height x width x depth</small></p>
                         </div>
-                        <div id="compare-dimenssion-body" class="dimension-box-body">
+                        <div class="compare-dimenssion-body">
                           <p>
                             {{ dimensions.height.mm }}mm x {{ dimensions.width.mm }}mm x {{ dimensions.depth.mm }}mm
                           </p>
@@ -103,7 +104,7 @@
                             {{ dimensions.height.in }}in x {{ dimensions.width.in }}in x {{ dimensions.depth.in }}in
                           </p>
                         </div>
-                        <div id="compare-dimenssion-footer" class="dimension-box-footer">
+                        <div class="compare-dimenssion-footer">
                           {% comment %} Hearing Levels {% endcomment %}
                           {% if ha %}
                             <h6>For Hearing Levels:</h6>
@@ -571,7 +572,7 @@
     }
 
     /* Element: Comparison Dimension Box */
-    #compare-dimenssions {
+    .compare-dimenssions {
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
@@ -580,24 +581,24 @@
       padding-left: calc(var(--global-p1) * .9);
     }
 
-    #compare-dimenssion-head {}
+    .compare-dimenssion-head {}
 
-    #compare-dimenssion-body {}
+    .compare-dimenssion-body {}
 
-    #compare-dimenssion-body p {
+    .compare-dimenssion-body p {
       margin: 0;
     }
 
-    #compare-dimenssion-footer {
+    .compare-dimenssion-footer {
       display: flex;
       flex-direction: column;
     }
 
-    #compare-dimenssion-footer h4 {
+    .compare-dimenssion-footer h4 {
       margin: 0;
     }
 
-    #compare-dimenssion-footer h6 {
+    .compare-dimenssion-footer h6 {
       margin: 0;
     }
 
