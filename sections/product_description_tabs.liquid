@@ -657,8 +657,8 @@
     /* Elements: Content */
     .tab-header {
       display: flex;
-      flex-direction: row; /* Ensures horizontal alignment */
-      flex: 1; /* This allows the element to grow and take up available space */
+      flex-direction: row;
+      flex: 1;
       color: #fdfdfd;
       font-family: var(--pf-primary-font);
     }
@@ -677,11 +677,11 @@
 
     .button-item {
       border-top-right-radius: 15px;
-      flex: 1; /* Same as .tab-header for consistent sizing */
+      flex: 1;
     }
 
     .button-item:not(:last-of-type) a {
-      border-right: 0; /* Removes right border for non-last items */
+      border-right: 0;
     }
 
     /* Sections: Tab 4 - Size */
@@ -751,17 +751,15 @@
   @media only screen and (max-width: 1080px) {
     /* Elements: Content Area */
     .tab-content {
-      /* Center the content vertically and horizontally */
       display: flex;
       flex-direction: column;
       width: 100%;
       align-items: center;
     }
 
-    /* Define a maximum width for the content */
     .content {
       max-width: 1500px;
-      margin: 0 auto; /* Center align the content horizontally within its parent */
+      margin: 0 auto;
     }
   }
   /* End Desktop Styles */
