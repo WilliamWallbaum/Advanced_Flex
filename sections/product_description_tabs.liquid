@@ -578,14 +578,17 @@
       flex-wrap: wrap;
       align-items: flex-start;
       gap: calc(var(--global-p1) * .5);
-      padding-left: var(--global-p1) calc(var(--global-p1) * 0.5px);
+      padding: var(--global-p1) calc(var(--global-p1) * 0.5px);
     }
 
-    .compare-dimenssion-head {}
+    .compare-dimenssion-head {
+      width: 100%;
+    }
 
     .compare-dimenssion-body {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
+      width: 100%;
     }
 
     .compare-dimenssion-body p {
@@ -595,7 +598,8 @@
     .compare-dimenssion-footer {
       display: flex;
       flex-direction: column;
-    }
+      width: 100%;
+          }
 
     .compare-dimenssion-footer h4 {
       margin: 0;
