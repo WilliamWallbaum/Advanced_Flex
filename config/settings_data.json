@@ -1130,7 +1130,7 @@
             "settings": {
               "title": "Iron-clad Guarantee",
               "heading_size": "large",
-              "text": "<p>We’re so certain you're going to love your HearClear™ hearing aids that we offer an<strong> iron-clad money back guarantee<\/strong>. If you're unsatisfied for any reason, just return your hearing aids within 30 days for a full refund. You have everything to gain and nothing to risk. Use our secure online ordering or call our Customer Care Team at <a href=\"tel:8003181395\" title=\"Customer Care Team\">1 800 318-1395  <\/a>today.<\/p>",
+              "text": "<p>We’re so certain you're going to love your HearClear™ hearing aids that we offer an<strong> iron-clad money back guarantee<\/strong>. If you're unsatisfied for any reason, just return your hearing aids within 30 days for a full refund. You have everything to gain and nothing to risk. Use our secure online ordering or call our Customer Care Team at <a href=\"tel:8003181395\" title=\"Customer Care Team\">1 800 318-1395 <\/a>today.<\/p>",
               "button_label": "",
               "link": "",
               "button_style": "button--primary",
@@ -1152,7 +1152,7 @@
           "padding_bottom": 0,
           "animation": "fadeIn",
           "css_class": "",
-          "custom_css": "{background-color:#333333;}h3 {text-align: center!important;font-weight: thin; font-size:2.2em; } img{max-width:420px;}"
+          "custom_css": "{\n  background-color: #333333;\n}\nh3 {\n  text-align: center !important;\n  font-weight: thin;\n  font-size: 2.2em;\n}\nimg {\n  max-width: 420px;\n}\n.image-with-text__text-column\n.image-with-text__column\n.one-half\n.medium-down--one-whole\n.column\n.has-padding-left\n.has-padding-right\n.has-background\n.is-flex\n.is-flex-wrap\n.is-justify-left\n.is-align-center {\n  background-color: transparent;\n}"
         }
       },
       "1627658737293c48b3": {
