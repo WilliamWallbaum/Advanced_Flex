@@ -62,9 +62,12 @@
         {% render 'product-thumbnail__sticker', context: 'product', collection_handles: collection_handles %}
       {% endif %}
 
-      <div class="description content">
-        {{ product.description }}
-      </div>
+      {% comment %} Description - top {% endcomment %}
+      {% if product_description_position == 'top' and product.description != blank %}
+        <div class="description content">
+          {{ product.description | split: '<!-- split -->' | first }}
+        </div>
+      {% endif %}
 
       {% comment %} Hearing Levels {% endcomment %}
       {% if ha %}
@@ -102,13 +105,6 @@
       {% if section.settings.show_trust_badges %}
         <div id="trust-badges-container">
           {% include 'trust-badges' %}
-        </div>
-      {% endif %}
-
-      {% comment %} Description - top {% endcomment %}
-      {% if product_description_position == 'top' and product.description != blank %}
-        <div class="description content">
-          {{ product.description | split: '<!-- split -->' | first }}
         </div>
       {% endif %}
 
