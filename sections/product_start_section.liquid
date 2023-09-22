@@ -61,11 +61,11 @@
         {% assign collection_handles = product.collections | map: 'handle' %}
         {% render 'product-thumbnail__sticker', context: 'product', collection_handles: collection_handles %}
       {% endif %}
-      hello
+
       <div class="description content">
         {{ product.description }}
       </div>
-      world
+
       {% comment %} Hearing Levels {% endcomment %}
       {% if ha %}
         <h4><small>For Hearing Levels:</small> {{ ha.for }}</h4>
