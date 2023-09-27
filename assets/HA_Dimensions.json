@@ -157,7 +157,10 @@
          "Total Harmonic Distort @ 1600 Hz": "2%",
          "EQ Input Noise (dB)": "28",
          "Battery Current (mA)": null,
-         "Frequency Range": "300-6200"
+         "Frequency Range": "300-6200",
+         "Latency": "<15ms",
+         "Attack": "0.25ms",
+         "Release": "28.25ms"
       }
    },
    {
@@ -198,6 +201,9 @@
          "Total Harmonic Distort @ 1600 Hz": "3%",
          "EQ Input Noise (dB)": "30",
          "Frequency Range": "300-5500",
+         "Latency": "<15ms",
+         "Attack": "0.25ms",
+         "Release": "28.25ms",
          "Battery Current (mA)": "1.0",
          "Long-Lasting Battery Size": "13"
       }
