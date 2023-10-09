@@ -7,7 +7,7 @@
     id="{{ section.section_name }}"
     class="section is-width-{{ section.width }} multi-col {% case section.cols %}{% when '2' %}two-col{% when '3' %}three-col{% when '4' %}four-col{% endcase %}"
   >
-    {% if section.show_header %}
+    {% if section.settings.show_header %}
       <header id="{{ section.section_name }}-header" class="multi-col-header">
         <h2>{{ section.settings.section_name }}</h2>
         <div>{{ section.settings.header_text }}</div>
