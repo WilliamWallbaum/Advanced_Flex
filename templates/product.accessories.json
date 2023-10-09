@@ -91,9 +91,42 @@
         "text_1": "<h3>100% Money Back Guarantee<\/h3><p>Try your hearing aids Risk Free for 30 days and if you are not satisfied with your purchase, you may return them for a FULL refund. (Shipping charges are not refundable.)<\/p>",
         "show_col_2": true,
         "image_2": "shopify:\/\/shop_images\/Advanced-Affordable-Hearing_American-Badge.png",
-        "text_2": "<h3>American Owned & Operated<\/h3><p>Discover the Convenience of Local Support and Quick Shipping for Your Hearing Aids in the United States<\/p>",
+        "text_2": "",
         "show_footer": false,
         "footer_text": "<p>Your peace of mind.<\/p>"
+      }
+    },
+    "35bf78f9-7955-48fa-b4c8-e24cef1afd36": {
+      "type": "multi_column_section",
+      "settings": {
+        "show_header": true,
+        "section_name": "Why are we so well trusted?",
+        "header_text": "<p>By offering digital hearing aids directly to you, we can dramatically discount our prices compared to other companies. You can save thousands of dollars when you purchase your hearing aids at our affordable low prices. You also get a <strong>Risk Free 30-Day Trial<\/strong><em><strong>, <\/strong><\/em>a <strong>MoneyBack Guarantee<\/strong><em><strong>, <\/strong><\/em>and <strong>Outstanding Customer Service<\/strong><em><strong>.<\/strong><\/em><\/p>",
+        "header_font_size": 10,
+        "gradient_color": "linear-gradient(180deg, rgba(5, 79, 142, 0.1), rgba(255, 255, 255, 1) 100%)",
+        "block_width": 100,
+        "width": "wide",
+        "img_width": 100,
+        "is_card": "",
+        "header_align": "center",
+        "block_align": "center",
+        "footer_align": "center",
+        "show_block_1": true,
+        "block_image_1": "shopify:\/\/shop_images\/Advanced-Affordable-Hearing_Money-Back-Guarantee.png",
+        "block_title_1": "100% Money Back Guarantee",
+        "block_content_1": "<p>Try your hearing aids Risk Free for 30 days and if you are not satisfied with your purchase, you may return them for a FULL refund. (Shipping charges are not refundable.)<\/p>",
+        "show_block_2": true,
+        "block_image_2": "shopify:\/\/shop_images\/Advanced-Affordable-Hearing_American-Badge.png",
+        "block_title_2": "American Owned & Operated",
+        "block_content_2": "<p>Discover the Convenience of Local Support and Quick Shipping for Your Hearing Aids in the United States<\/p>",
+        "show_block_3": false,
+        "block_title_3": "defualt",
+        "block_content_3": "<p>defualt<\/p>",
+        "show_block_4": false,
+        "block_title_4": "defualt",
+        "block_content_4": "<p>defualt<\/p>",
+        "show_footer": true,
+        "footer_text": ""
       }
     }
   },
@@ -102,6 +135,7 @@
     "product-tabs",
     "product_recommendation",
     "Yotpo",
-    "d776c002-de64-4cb1-afb8-7a6b07153684"
+    "d776c002-de64-4cb1-afb8-7a6b07153684",
+    "35bf78f9-7955-48fa-b4c8-e24cef1afd36"
   ]
 }
