@@ -6,9 +6,9 @@
 
 <div id="{{ section_name }}" class="{{ container_class }} multi-col">
   <!-- start section header -->
-  {% if section.show_header %}
+  {% if sec.show_header %}
     <header id="{{ section_name }}-header" class="multi-col-header">
-      <h2 header id="{{ section_name }}-header-name">{{ sec.section_name }}</h2>
+      <h2 header id="{{ section_name }}-header-name">{{ section_name }}</h2>
       <div header id="{{ section_name }}-header-text">{{ sec.header_text }}</div>
     </header>
   {% endif %}
