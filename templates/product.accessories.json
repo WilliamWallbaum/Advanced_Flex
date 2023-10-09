@@ -77,6 +77,7 @@
     },
     "d776c002-de64-4cb1-afb8-7a6b07153684": {
       "type": "trust_badges",
+      "disabled": true,
       "custom_css": [
         ".col {width: 50%;}"
       ],
