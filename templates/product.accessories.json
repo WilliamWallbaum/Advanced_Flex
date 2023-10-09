@@ -39,6 +39,8 @@
       "type": "product_description_tabs",
       "disabled": true,
       "settings": {
+        "show_product_description_tabs": true,
+        "width": "standard",
         "tab_1": "Description",
         "tab_2": "Warranty",
         "tab_3": "Size Comparison & Technical Information",
@@ -50,11 +52,12 @@
       "type": "product_recommendation",
       "settings": {
         "show_section": true,
-        "recommendation-title": "Compatible with",
+        "section_title": "Product Recommendations",
+        "header_font_size": 30,
+        "header_copy": "<p>Similar Products<\/p>",
         "width": "standard",
-        "similar-products": true,
-        "product-type": "related",
-        "similar-products-title": "These Products",
+        "show_similar_products": true,
+        "product_type": "complementary",
         "button_label": "",
         "button_class": "btn-secondary",
         "button_style": "btn--large",
@@ -63,7 +66,7 @@
         "show_title": true,
         "show_price": true,
         "show_description": true,
-        "product-limit": 4
+        "product_limit": 4
       }
     },
     "Yotpo": {
@@ -74,6 +77,9 @@
     },
     "d776c002-de64-4cb1-afb8-7a6b07153684": {
       "type": "trust_badges",
+      "custom_css": [
+        ".col {width: 50%;}"
+      ],
       "settings": {
         "show_cols": true,
         "show_header": true,
