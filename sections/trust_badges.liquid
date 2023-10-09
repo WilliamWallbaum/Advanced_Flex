@@ -9,8 +9,8 @@
   >
     {% if section.show_header %}
       <header id="{{ section.section_name }}-header" class="multi-col-header">
-        <h2>{{ section.section_name }}</h2>
-        <div>{{ section.header_text }}</div>
+        <h2>{{ section.settings.section_name }}</h2>
+        <div>{{ section.settings.header_text }}</div>
       </header>
     {% endif %}
 
