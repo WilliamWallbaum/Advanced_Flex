@@ -79,9 +79,9 @@
       "type": "multi_column_section",
       "settings": {
         "show_header": true,
-        "section_name": "Why are we so well trusted?",
+        "section_name": "Zero Risk with Unbeatable Value",
         "header_text": "<p>By offering digital hearing aids directly to you, we can dramatically discount our prices compared to other companies. You can save thousands of dollars when you purchase your hearing aids at our affordable low prices. You also get a <strong>Risk Free 30-Day Trial<\/strong><em><strong>, <\/strong><\/em>a <strong>MoneyBack Guarantee<\/strong><em><strong>, <\/strong><\/em>and <strong>Outstanding Customer Service<\/strong><em><strong>.<\/strong><\/em><\/p>",
-        "header_font_size": 30,
+        "header_font_size": 20,
         "gradient_color": "linear-gradient(180deg, rgba(5, 79, 142, 0.1), rgba(255, 255, 255, 1) 100%)",
         "block_width": 100,
         "width": "wide",
