@@ -21,11 +21,11 @@
         <div id="{{ section.section_name }}-col-1" class="col col-1">
             <!-- Use the image-element snippet here for column 1 -->
             {% capture image_alt %}
-            {{ section.image_1.alt }}
-          {% endcapture %}
+              {{ section.image_1.alt }}
+            {% endcapture %}
             {% capture image_additional_classes %}
-            col-image
-          {% endcapture %}
+            {{ col-image }}
+            {% endcapture %}
             {% include 'image-element' with image: section.image_1, alt: image_alt, additional_classes: image_additional_classes, loading: 'lazy', width: section.image_1.width, height: section.image_1.height %}
             <!-- End of image-element snippet -->
           <div>{{ section.text_1 }}</div>
@@ -37,11 +37,11 @@
         <div id="{{ section.section_name }}-col-2" class="col col-2">
             <!-- Use the image-element snippet here for column 2 -->
             {% capture image_alt %}
-            {{ section.image_2.alt }}
-          {% endcapture %}
+              {{ section.image_2.alt }}
+            {% endcapture %}
             {% capture image_additional_classes %}
-            col-image
-          {% endcapture %}
+              {{ col-image }}
+            {% endcapture %}
             {% include 'image-element' with image: section.image_2, alt: image_alt, additional_classes: image_additional_classes, loading: 'lazy', width: section.image_2.width, height: section.image_2.height %}
             <!-- End of image-element snippet -->
           <div>{{ section.text_2 }}</div>
