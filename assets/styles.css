@@ -2982,7 +2982,7 @@ table th {
 }
 /* # Typography
 ================================================== */
-section {
+section.shopify-section {
   font-family: Roboto, sans-serif;
   font-size: calc(var(--text-basic) * .9);
   font-weight: 400;
