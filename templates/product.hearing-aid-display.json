@@ -135,7 +135,7 @@
     "460dc558-0812-42ab-832f-77e2df7cd174": {
       "type": "product_diagram",
       "settings": {
-        "width": "wide",
+        "width": "standard",
         "gradient_color": "linear-gradient(0deg, rgba(5, 79, 142, 0.1), rgba(255, 255, 255, 1) 100%)",
         "show_header": true,
         "section_name": "So Simple to Use",
