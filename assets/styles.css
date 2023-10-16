@@ -2983,14 +2983,14 @@ table th {
 /* # Typography
 ================================================== */
 body {
-  font-family: Roboto, sans-serif;
-  font-size: calc(var(--text-basic) * .9);
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--color-body-text);
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: Roboto, sans-serif !important;
+  font-size: calc(var(--text-basic) * .9) !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: var(--color-body-text) !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
 }
 
 h1,
