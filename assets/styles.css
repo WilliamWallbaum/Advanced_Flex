@@ -2987,7 +2987,7 @@ body {
   font-size: calc(var(--text-basic) * .9);
   font-weight: 400;
   line-height: 1.5;
-  color: #393d47;
+  color: var(--color-body-text);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
