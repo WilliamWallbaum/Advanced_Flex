@@ -5,10 +5,10 @@
 {% assign diagram = technical_information.diagram %}
 
 {% if diagram %}
-  <div id="{{ section_name }}" class="section is-width-{{ section.width }} diagram-section">
+  <div id="{{ section_name }}" class="section diagram-section">
     <!-- start section header -->
     {% if section.show_header %}
-      <header id="{{ section_name }}-header" class="diagram-header">
+      <header id="{{ section_name }}-header" class="is-width-{{ section.width }} diagram-header">
         <h2 header id="{{ section_name }}-header-name">{{ section.section_name }}</h2>
         {% if section.divider_1 %}
           <hr>
@@ -19,7 +19,7 @@
     <!-- end section header -->
 
     <!-- start section body -->
-    <div id="{{ section_name }}-body" class="diagram-body">
+    <div id="{{ section_name }}-body" class="is-width-{{ section.width }} diagram-body">
       <!-- start column 1 -->
       {% if diagram %}
         <div id="diagram-list" class="list">
@@ -55,7 +55,7 @@
       {% if section.divider_2 %}
         <hr>
       {% endif %}
-      <footer id="{{ section_name }}-footer" class="diagram-footer">{{ section.footer_text }}</footer>
+      <footer id="{{ section_name }}-footer" class="is-width-{{ section.width }} diagram-footer">{{ section.footer_text }}</footer>
     {% endif %}
     <!-- end section footer -->
   </div>
