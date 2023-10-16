@@ -2726,11 +2726,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.shopify-section {
-  font-size: calc(var(--text-basic) * 1.2);
-  color: var(--color-body-text);
-}
-
 h1,
 .h1 {
   font-family: {{ settings.heading__font.family }}, {{ settings.heading__font.fallback_families }};
@@ -3646,6 +3641,8 @@ blockquote cite::before {
 
 .shopify-section {
   width: 100%;
+  font-size: calc(var(--text-basic) * 1.2);
+  color: var(--color-body-text);
 }
 @media only screen and (max-width: 480px) {
   .shopify-section {
