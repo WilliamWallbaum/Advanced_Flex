@@ -454,7 +454,7 @@ https://github.com/vb/lazyframe
 .lazyframe[data-vendor=youtube] .lazyframe__title, .lazyframe[data-vendor=youtube_nocookie] .lazyframe__title {
   color: #eee;
   font-family: Roboto, Arial, Helvetica, sans-serif;
-  font-size: 18px;
+  font-size: calc(var(--text-basic) * 1.2);
   text-shadow: rgba(0, 0, 0, 0.498039) 0px 0px 2px;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
@@ -526,7 +526,7 @@ https://github.com/vb/lazyframe
 .lazyframe[data-vendor=vimeo] .lazyframe__title {
   font-family: "Helvetica Neue", Helvetica, Arial;
   color: #00adef;
-  font-size: 20px;
+  font-size: calc(var(--text-basic) * 1.3);
   font-weight: bold;
   text-rendering: optimizeLegibility;
   -webkit-user-select: none;
@@ -581,7 +581,7 @@ https://github.com/vb/lazyframe
 .lazyframe[data-vendor=vine] .lazyframe__title {
   color: #fff;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: calc(var(--text-basic) * .85);
   line-height: 16px;
   white-space: nowrap;
   z-index: 3;
@@ -711,7 +711,7 @@ https://github.com/vb/lazyframe
   background: #4a5764;
   border-radius: 2px;
   color: #fff;
-  font-size: 9px;
+  font-size: calc(var(--text-basic) * .6);
   line-height: 1;
   padding: 3px 4px;
 }
@@ -725,7 +725,7 @@ https://github.com/vb/lazyframe
   bottom: 0;
   color: #fff;
   display: none;
-  font-size: 14px;
+  font-size: calc(var(--text-basic) * .85);
   left: 0;
   padding: 10px;
   position: absolute;
@@ -754,13 +754,13 @@ https://github.com/vb/lazyframe
 
 @media (min-width: 480px) {
   .plyr__captions {
-    font-size: 16px;
+    font-size: calc(var(--text-basic) * 1);
     padding: 20px;
   }
 }
 @media (min-width: 768px) {
   .plyr__captions {
-    font-size: 18px;
+    font-size: calc(var(--text-basic) * 1.2);
   }
 }
 .plyr--captions-active .plyr__captions {
@@ -968,7 +968,7 @@ a.plyr__control::after, a.plyr__control::before {
   bottom: 100%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   color: #4a5764;
-  font-size: 16px;
+  font-size: calc(var(--text-basic) * 1);
   margin-bottom: 10px;
   position: absolute;
   right: -3px;
@@ -1009,7 +1009,7 @@ a.plyr__control::after, a.plyr__control::before {
   align-items: center;
   color: #4a5764;
   display: flex;
-  font-size: 14px;
+  font-size: calc(var(--text-basic) * .85);
   padding: 4px 11px;
   -webkit-user-select: none;
   user-select: none;
@@ -1336,7 +1336,7 @@ a.plyr__control::after, a.plyr__control::before {
 }
 
 .plyr__time {
-  font-size: 14px;
+  font-size: calc(var(--text-basic) * .85);
 }
 
 .plyr__time + .plyr__time::before {
@@ -1359,7 +1359,7 @@ a.plyr__control::after, a.plyr__control::before {
   bottom: 100%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   color: #4a5764;
-  font-size: 14px;
+  font-size: calc(var(--text-basic) * .85);
   font-weight: 500;
   left: 50%;
   line-height: 1.3;
@@ -1482,7 +1482,7 @@ a.plyr__control::after, a.plyr__control::before {
 }
 
 .plyr__progress .plyr__tooltip {
-  font-size: 14px;
+  font-size: calc(var(--text-basic) * .85);
   left: 0;
 }
 
@@ -1655,11 +1655,11 @@ a.plyr__control::after, a.plyr__control::before {
 
 @media (min-width: 1024px) {
   .plyr:-webkit-full-screen .plyr__captions {
-    font-size: 21px;
+    font-size: calc(var(--text-basic) * 1.35);
   }
 
   .plyr:fullscreen .plyr__captions {
-    font-size: 21px;
+    font-size: calc(var(--text-basic) * 1.35);
   }
 }
 .plyr:-webkit-full-screen {
@@ -1700,7 +1700,7 @@ a.plyr__control::after, a.plyr__control::before {
 
 @media (min-width: 1024px) {
   .plyr:-webkit-full-screen .plyr__captions {
-    font-size: 21px;
+    font-size: calc(var(--text-basic) * 1.35);
   }
 }
 .plyr:-moz-full-screen {
@@ -1741,7 +1741,7 @@ a.plyr__control::after, a.plyr__control::before {
 
 @media (min-width: 1024px) {
   .plyr:-moz-full-screen .plyr__captions {
-    font-size: 21px;
+    font-size: calc(var(--text-basic) * 1.35);
   }
 }
 .plyr:-ms-fullscreen {
@@ -1782,7 +1782,7 @@ a.plyr__control::after, a.plyr__control::before {
 
 @media (min-width: 1024px) {
   .plyr:-ms-fullscreen .plyr__captions {
-    font-size: 21px;
+    font-size: calc(var(--text-basic) * 1.35);
   }
 }
 .plyr--fullscreen-fallback {
@@ -1829,7 +1829,7 @@ a.plyr__control::after, a.plyr__control::before {
 
 @media (min-width: 1024px) {
   .plyr--fullscreen-fallback .plyr__captions {
-    font-size: 21px;
+    font-size: calc(var(--text-basic) * 1.35);
   }
 }
 .plyr__ads {
@@ -1856,7 +1856,7 @@ a.plyr__control::after, a.plyr__control::before {
   bottom: 10px;
   color: #fff;
   content: attr(data-badge-text);
-  font-size: 11px;
+  font-size: calc(var(--text-basic) * .75);
   padding: 2px 6px;
   pointer-events: none;
   position: absolute;
@@ -1947,7 +1947,7 @@ a.plyr__control::after, a.plyr__control::before {
   background-color: rgba(0, 0, 0, 0.55);
   border-radius: 2px;
   color: #fff;
-  font-size: 14px;
+  font-size: calc(var(--text-basic) * .85);
   padding: 3px 6px;
 }
 
@@ -6160,7 +6160,7 @@ fieldset[disabled] .textarea, fieldset[disabled] .button {
   margin-right: 10px;
 }
 .button .icon.icon--cart {
-  font-size: 14px;
+  font-size: calc(var(--text-basic) * .85);
 }
 .button .icon.icon--right {
   margin-left: 10px;
@@ -8359,13 +8359,13 @@ fieldset[disabled] .radio {
   font-size: 1.25rem;
 }
 .file.is-medium .file-icon .fa {
-  font-size: 21px;
+  font-size: calc(var(--text-basic) * 1.35);
 }
 .file.is-large {
   font-size: 1.5rem;
 }
 .file.is-large .file-icon .fa {
-  font-size: 28px;
+  font-size: calc(var(--text-basic) * 1.6);
 }
 .file.has-name .file-cta {
   border-bottom-right-radius: 0;
@@ -8397,16 +8397,16 @@ fieldset[disabled] .radio {
   width: 1.5em;
 }
 .file.is-boxed .file-icon .fa {
-  font-size: 21px;
+  font-size: calc(var(--text-basic) * 1.35);
 }
 .file.is-boxed.is-small .file-icon .fa {
-  font-size: 14px;
+  font-size: calc(var(--text-basic) * .85);
 }
 .file.is-boxed.is-medium .file-icon .fa {
-  font-size: 28px;
+  font-size: calc(var(--text-basic) * 1.6);
 }
 .file.is-boxed.is-large .file-icon .fa {
-  font-size: 35px;
+  font-size: calc(var(--text-basic) * 2.25);
 }
 .file.is-boxed.has-name .file-cta {
   border-radius: 4px 4px 0 0;
@@ -8505,7 +8505,7 @@ fieldset[disabled] .radio {
   width: 1em;
 }
 .file-icon .fa {
-  font-size: 14px;
+  font-size: calc(var(--text-basic) * .85);
 }
 
 .label,
@@ -8943,7 +8943,7 @@ fieldset[disabled] .radio {
 .input,
 .textarea,
 .select select {
-    font-size: 16px !important;
+    font-size: calc(var(--text-basic) * 1) !important;
   }
 }
 
@@ -9947,7 +9947,7 @@ ul.tabs.is-toggle.is-toggle-rounded li:last-child a {
 .surface-pick-up-embed {
   --surface-pick-up-embed-theme-success-color: limegreen;
   --surface-pick-up-embed-theme-error-color: #b33a3a;
-  --surface-pick-up-embed-theme-paragraph-font-size: 16px;
+  --surface-pick-up-embed-theme-paragraph-font-size: calc(var(--text-basic) * 1);
   --surface-pick-up-embed-theme-paragraph-smaller-font-size: calc(var(--surface-pick-up-embed-theme-paragraph-font-size) - 4px);
   --surface-pick-up-embed-theme-body-font-weight-bold: 600;
   --surface-pick-up-embed-theme-body-text-color: #808080;
@@ -10029,7 +10029,7 @@ ul.tabs.is-toggle.is-toggle-rounded li:last-child a {
 .surface-pick-up-item {
   --surface-pick-up-item-theme-success-color: limegreen;
   --surface-pick-up-item-theme-error-color: #b33a3a;
-  --surface-pick-up-item-theme-paragraph-font-size: 16px;
+  --surface-pick-up-item-theme-paragraph-font-size: calc(var(--text-basic) * 1);
   --surface-pick-up-item-theme-paragraph-smaller-font-size: calc(var(--surface-pick-up-item-theme-paragraph-font-size) - 4px);
   --surface-pick-up-item-theme-body-font-weight-bold: 600;
   --surface-pick-up-item-theme-body-text-color: #808080;
@@ -10784,7 +10784,7 @@ shopify-payment-terms {
 }
 
 .product_section .has-product-sticker .sticker-holder__content {
-  font-size: 16px;
+  font-size: calc(var(--text-basic) * 1);
 }
 
 /* # Related products
@@ -11923,7 +11923,7 @@ shopify-payment-terms {
 .one-fifth .sticker-shape-square .sticker-holder__content,
 .sticker-shape-square .sticker-holder__content {
   max-width: 50%;
-  font-size: 12px;
+  font-size: calc(var(--text-basic) * .8);
 }
 @media only screen and (max-width: 480px) {
   .one-seventh .sticker-shape-square .sticker-holder__content,
@@ -11936,7 +11936,7 @@ shopify-payment-terms {
 
 .one-fourth .sticker-shape-square .sticker-holder__content {
   max-width: 40%;
-  font-size: 14px;
+  font-size: calc(var(--text-basic) * .85);
 }
 @media only screen and (max-width: 480px) {
   .one-fourth .sticker-shape-square .sticker-holder__content {
@@ -11946,7 +11946,7 @@ shopify-payment-terms {
 
 .one-third .sticker-shape-square .sticker-holder__content {
   max-width: 33.3334%;
-  font-size: 14px;
+  font-size: calc(var(--text-basic) * .85);
 }
 @media only screen and (max-width: 480px) {
   .one-third .sticker-shape-square .sticker-holder__content {
@@ -11956,7 +11956,7 @@ shopify-payment-terms {
 
 .one-half .sticker-shape-square .sticker-holder__content {
   max-width: 25%;
-  font-size: 16px;
+  font-size: calc(var(--text-basic) * 1);
 }
 @media only screen and (max-width: 480px) {
   .one-half .sticker-shape-square .sticker-holder__content {
@@ -12001,7 +12001,7 @@ shopify-payment-terms {
 .one-fifth .sticker-shape-round .sticker-holder__content,
 .sticker-shape-round .sticker-holder__content {
   width: 75%;
-  font-size: 12px;
+  font-size: calc(var(--text-basic) * .8);
 }
 @media only screen and (max-width: 1024px) {
   .one-seventh .sticker-shape-round .sticker-holder__content,
@@ -12031,7 +12031,7 @@ shopify-payment-terms {
 
 .one-fourth .sticker-shape-round .sticker-holder__content {
   width: 60%;
-  font-size: 14px;
+  font-size: calc(var(--text-basic) * .85);
 }
 @media only screen and (max-width: 1024px) {
   .one-fourth .sticker-shape-round .sticker-holder__content {
@@ -12047,7 +12047,7 @@ shopify-payment-terms {
 .one-third .sticker-shape-round .sticker-holder__content,
 .one-half .sticker-shape-round .sticker-holder__content {
   width: 50%;
-  font-size: 18px;
+  font-size: calc(var(--text-basic) * 1.2);
 }
 .one-third .sticker-shape-round .sticker-holder__content .thumbnail-sticker,
 .one-half .sticker-shape-round .sticker-holder__content .thumbnail-sticker {
@@ -12111,11 +12111,11 @@ shopify-payment-terms {
   margin: 0px auto;
   max-width: 30%;
   padding-top: 20px;
-  font-size: 16px;
+  font-size: calc(var(--text-basic) * 1);
 }
 @media only screen and (max-width: 798px) {
   .has-product-sticker .sticker-holder__content--product-center {
-    font-size: 13px;
+    font-size: calc(var(--text-basic) * .6);
   }
 }
 .has-product-sticker .sticker-holder__content--product-center .thumbnail-sticker {
@@ -12126,7 +12126,7 @@ shopify-payment-terms {
   flex-wrap: wrap;
   max-width: 45%;
   width: 100%;
-  font-size: 14px;
+  font-size: calc(var(--text-basic) * .85);
 }
 @media only screen and (max-width: 798px) {
   .has-product-sticker .sticker-shape-round .sticker-holder__content--product {
@@ -12164,7 +12164,7 @@ shopify-payment-terms {
 @media only screen and (max-width: 798px) {
   .has-product-sticker .sticker-shape-square .sticker-holder__content--product {
     max-width: 100%;
-    font-size: 13px;
+    font-size: calc(var(--text-basic) * .6);
   }
 }
 .has-product-sticker .sticker-shape-square .is-product-slideshow {
@@ -12173,7 +12173,7 @@ shopify-payment-terms {
 @media only screen and (max-width: 798px) {
   .has-product-sticker .sticker-shape-square .sticker-holder__content--product-center {
     max-width: 100%;
-    font-size: 13px;
+    font-size: calc(var(--text-basic) * .6);
   }
 }
 .has-product-sticker .sticker-shape-square .thumbnail-sticker {
@@ -12302,7 +12302,7 @@ shopify-payment-terms {
 .quick-shop__popup .sticker-shape-square .sticker-holder__content,
 .quick-shop__popup .sticker-shape-round .sticker-holder__content {
   max-width: 100%;
-  font-size: 13px;
+  font-size: calc(var(--text-basic) * .6);
 }
 
 /* # Size chart
@@ -12386,7 +12386,7 @@ shopify-payment-terms {
   min-width: 40px;
   height: 40px;
   margin: 0;
-  font-size: 13px;
+  font-size: calc(var(--text-basic) * .6);
   text-align: center;
   line-height: 40px;
   white-space: nowrap;
@@ -12500,7 +12500,7 @@ shopify-payment-terms {
   display: block;
   position: absolute;
   width: 120px;
-  font-size: 13px;
+  font-size: calc(var(--text-basic) * .6);
   left: -35px;
   margin-bottom: 15px;
   opacity: 0;
@@ -15261,7 +15261,7 @@ h1.header__logo-text > a:hover {
   width: 100%;
 }
 .mega-menu__content .has-thumbnail-sticker .sticker-holder__content {
-  font-size: 14px;
+  font-size: calc(var(--text-basic) * .85);
 }
 
 /* # Popup
@@ -15705,7 +15705,7 @@ h1.header__logo-text > a:hover {
   width: 100%;
 }
 .mobile-search input#q {
-  font-size: 16px;
+  font-size: calc(var(--text-basic) * 1);
   padding-left: 40px;
   padding-right: 20px;
   padding-bottom: 12px;
@@ -17593,7 +17593,7 @@ h1.header__logo-text > a:hover {
   right: 10px;
   top: 10px;
   border: thin solid {{ settings.border_color }};
-  font-size: 14px;
+  font-size: calc(var(--text-basic) * .85);
 }
 .password-page .overlay-data {
   opacity: 0;
