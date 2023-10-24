@@ -35,8 +35,13 @@
          "Total Harmonic Distort @ 800 Hz": "2%",
          "Total Harmonic Distort @ 1600 Hz": "2%",
          "EQ Input Noise (dB)": "28",
-         "Battery Current (mA)": null,
-         "Frequency Range": "300-6200"
+         "Frequency Range": "300-6200",
+         "Battery": {
+            "Type": "Rechargable",
+            "Battery Current (mA)": null,
+            "Long-Lasting Battery Size": null,
+            "Color": null
+         }
       }
    },
    {
@@ -74,8 +79,13 @@
          "Total Harmonic Distort @ 800 Hz": "2%",
          "Total Harmonic Distort @ 1600 Hz": "1%",
          "EQ Input Noise (dB)": "27",
-         "Battery Current (mA)": null,
-         "Frequency Range": "300-5500"
+         "Frequency Range": "300-5500",
+         "Battery": {
+            "Type": "Rechargable",
+            "Battery Current (mA)": null,
+            "Long-Lasting Battery Size": null,
+            "Color": null
+         }
       }
    },
    {
@@ -113,11 +123,16 @@
          "Total Harmonic Distort @ 800 Hz": "3%",
          "Total Harmonic Distort @ 1600 Hz": "3%",
          "EQ Input Noise (dB)": "30",
-         "Battery Current (mA)": null,
          "Frequency Range": "350-5000",
          "Latency": "<15ms",
          "Attack": "0.25ms",
-         "Release": "28.25ms"
+         "Release": "28.25ms",
+         "Battery": {
+            "Type": "Rechargable",
+            "Battery Current (mA)": null,
+            "Long-Lasting Battery Size": null,
+            "Color": null
+         }
       }
    },
    {
@@ -156,11 +171,16 @@
          "Total Harmonic Distort @ 800 Hz": "2%",
          "Total Harmonic Distort @ 1600 Hz": "2%",
          "EQ Input Noise (dB)": "28",
-         "Battery Current (mA)": null,
          "Frequency Range": "300-6200",
          "Latency": "<15ms",
          "Attack": "0.25ms",
-         "Release": "28.25ms"
+         "Release": "28.25ms",
+         "Battery": {
+            "Type": "Rechargable",
+            "Battery Current (mA)": null,
+            "Long-Lasting Battery Size": null,
+            "Color": null
+         }
       }
    },
    {
@@ -204,8 +224,12 @@
          "Latency": "<15ms",
          "Attack": "0.25ms",
          "Release": "28.25ms",
-         "Battery Current (mA)": "1.0",
-         "Long-Lasting Battery Size": "13"
+         "Battery": {
+            "Type": "Rechargable",
+            "Battery Current (mA)": "1.0",
+            "Long-Lasting Battery Size": "13",
+            "Color": "Orange"
+         }
       }
    },
    {
@@ -248,8 +272,21 @@
          "Latency": "<15ms",
          "Attack": "0.25ms",
          "Release": "28.25ms",
-         "Battery Current (mA)": "1.5",
-         "Long-Lasting Battery Size": "675"
+         "Battery": {
+            "Type": "Battery",
+            "Battery Current (mA)": "1.5",
+            "Long-Lasting Battery Size": "675",
+            "Color": "Blue"
+         }
+      },
+      "diagram": {
+         "1": "Earhook",
+         "2": "Volume Control Wheel",
+         "3": "Trimmer (H, P) Cover",
+         "4": "Program Button",
+         "5": "Battery Door",
+         "6": "Thick Tube",
+         "7": "Dome"
       }
    },
    {
@@ -292,8 +329,12 @@
          "Latency": "<15ms",
          "Attack": "0.25ms",
          "Release": "28.25ms",
-         "Battery Current (mA)": "0.9",
-         "Long-Lasting Battery Size": "312"
+         "Battery": {
+            "Type": "Rechargable",
+            "Battery Current (mA)": "0.9",
+            "Long-Lasting Battery Size": "312",
+            "Color": "Brown"
+         }
       }
    },
    {
@@ -333,12 +374,16 @@
          "Total Harmonic Distort @ 800 Hz": "1.5%",
          "Total Harmonic Distort @ 1600 Hz": "1%",
          "EQ Input Noise (dB)": "27 dB",
-         "Frequency Range": "200-5500",
-         "Battery Current (mA)": "1.0",
-         "Long-Lasting Battery Size": "13",
+         "Frequency Range": "200-5500",-
          "Latency": "<15ms",
          "Attack": "0.25ms",
-         "Release": "28.25ms"
+         "Release": "28.25ms",
+         "Battery": {
+            "Type": "Battery",
+            "Battery Current (mA)": "1.0",
+            "Long-Lasting Battery Size": "13",
+            "Color": "Orange"
+         }
       }
    },
    {
@@ -378,11 +423,16 @@
          "Total Harmonic Distort @ 800 Hz": "3%",
          "Total Harmonic Distort @ 1600 Hz": "3%",
          "EQ Input Noise (dB)": "30",
-         "Battery Current (mA)": "1.0",
          "Frequency Range": "200-5500",
          "Latency": "<15ms",
          "Attack": "0.25ms",
-         "Release": "28.25ms"
+         "Release": "28.25ms",
+         "Battery": {
+            "Type": "Battery",
+            "Battery Current (mA)": "1.0",
+            "Long-Lasting Battery Size": "13",
+            "Color": "Orange"
+         }
       }
    },
    {
@@ -422,11 +472,16 @@
          "Total Harmonic Distort @ 800 Hz": "2%",
          "Total Harmonic Distort @ 1600 Hz": "2%",
          "EQ Input Noise (dB)": "28",
-         "Battery Current (mA)": null,
          "Frequency Range": "250-5000",
          "Latency": "<15ms",
          "Attack": "0.25ms",
-         "Release": "28.25ms"
+         "Release": "28.25ms",
+         "Battery": {
+            "Type": "Rechargeable",
+            "Battery Current (mA)": null,
+            "Long-Lasting Battery Size": null,
+            "Color": null
+         }
       }
    }
 }
