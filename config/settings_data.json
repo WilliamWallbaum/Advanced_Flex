@@ -2993,7 +2993,7 @@
         "type": "index__featured-collection",
         "settings": {
           "title": "Take A Look At Our HearClear™ Hearing Aids",
-          "collection": "hearclear",
+          "collection": "digital-rechargeable-hearing-aids",
           "products_per": 5,
           "mobile_products_per_row": "1",
           "products_limit": 10,
