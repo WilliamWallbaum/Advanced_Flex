@@ -1,5 +1,5 @@
 {% if section.settings.show_section %}
-  <section id="promo-section">
+  <div id="promo-section">
     <div id="description">
       <h2 id="description-title">{{ section.settings['description-title'] }}</h2>
       <p id="description-copy">{{ section.settings['description-copy'] }}</p>
@@ -16,7 +16,7 @@
         <p>{{ section.settings['bottom-bun'] }}</p>
       {% endif %}
     </div>
-  </section>
+  </div>
   
   <style>
     #promo-section  {
@@ -145,6 +145,7 @@
 {% schema %}
 {
   "name": "Promo",
+  "tag": "section",
   "settings": [
     {
       "type": "checkbox",
