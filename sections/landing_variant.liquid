@@ -1,3 +1,6 @@
+<script src="{{ 'addPair.js' | asset_url }}" defer></script>
+{% assign section_name = section.settings.section_name | replace: ' ', '-' | downcase | default: 'variant' %}
+{% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
 {% assign product = section.settings.product %}
 
 {% if section.settings.show_variants %}
