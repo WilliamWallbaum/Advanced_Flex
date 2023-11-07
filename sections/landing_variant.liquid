@@ -172,6 +172,16 @@
 }
 {% endschema %}
 
+<style>
+    #shopify-section-{{ section.id }} {
+      display: flex;
+      justify-content: center;
+    }
+  .{{section_name}}-header h2 {
+    font-size:  calc(var(--text-basic)*({{ section.settings.header_font_size }} / 10));
+  }
+</style>
+
 {% style %}
   #variant-container {
     margin: var(--global-p2) 0;
