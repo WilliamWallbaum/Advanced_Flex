@@ -1,6 +1,6 @@
 {% assign product = section.settings.product -%}
 {% if section.settings.show_buy_bar %}
-  <section id="buy-bar">
+  <div id="buy-bar">
     <div id="buy-bar-container" class="product-container">
       {% assign leftVariant = null %}
       {% assign pairVariant = null %}
@@ -76,9 +76,9 @@
         </a>
       {% endif %}
     </div>
-  </section>
+  </div>
   <style>
-    [id$="_buy_bar"] {
+    [id="buy-bar"] {
       margin: var(--global-p3) 0;
       background-color: {{ section.settings.background }};
     }
@@ -219,6 +219,7 @@
 {% schema %}
 {
   "name": "Buy Bar",
+  "tag": "section",
   "settings": [
     {
       "type": "checkbox",
