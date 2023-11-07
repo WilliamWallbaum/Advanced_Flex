@@ -1,70 +1,86 @@
-{% assign product = section.settings.product %}
+<script src="{{ 'addPair.js' | asset_url }}" defer></script>
+{% assign section_name = section.settings.section_name | replace: ' ', '-' | downcase | default: 'variant' %}
+{% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
 
 {% if section.settings.show_variants %}
-  <section id="variant">
-    <h2>{{ section.settings.section_title }}</h2>
-    <p>{{ section.settings.instructions }}</p>
-    <div id="variant-container" class="card-container">
-      {% assign leftVariant = null %}
-      {% assign pairVariant = null %}
-      {% assign rightVariant = null %}
+  <span id="{{ section_name }}-anchor"></span>
+  {% if section.settings.show_section_header %}
+    {%
+      include 'product_header' with
+      show_product_title: section.settings.show_product_title,
+      show_reviews: section.settings.show_reviews,
+      show_header_text: section.settings.show_header_text,
+      header_title: section.settings.header_title,
+      header_copy: section.settings.header_copy,
+      section_name: section_name
+      class: container_class
+    %}
+  {% endif %}
 
-      {% for variant in product.variants %}
-        {% assign variantTitle = variant.title | downcase %}
-        {% if variantTitle contains 'left' %}
-          {% assign leftVariant = variant %}
-        {% elsif variantTitle contains 'pair' %}
-          {% assign pairVariant = variant %}
-        {% elsif variantTitle contains 'right' %}
-          {% assign rightVariant = variant %}
-        {% endif %}
-      {% endfor %}
+  <div id="{{ section_name }}-container" class="{{ container_class }} card-container">
+    {% assign leftVariant = null %}
+    {% assign pairVariant = null %}
+    {% assign rightVariant = null %}
 
-      {% if leftVariant %}
-        <div class="card">
-          <img
-            src="{{ leftVariant.featured_image.src | img_url: 'original' }}"
-            loading="lazy"
-            alt="{{ leftVariant.featured_image.alt }}"
-            width="{{ leftVariant.featured_image.width }}"
-            height="{{ leftVariant.featured_image.height }}"
-          >
-          <form action="/cart/add" method="post" id="product-form-{{ leftVariant.id }}">
-            <input type="hidden" name="id" value="{{ leftVariant.id }}">
-            <button
-              type="submit"
-              name="add"
-              class="button button--add-to-cart action_button--secondary"
-              data-label="Add to cart"
-            >
-              Add {{ leftVariant.title }} to Cart
-            </button>
-          </form>
-        </div>
+    {% for variant in product.variants %}
+      {% assign variantTitle = variant.title | downcase %}
+      {% if variantTitle contains 'left' %}
+        {% assign leftVariant = variant %}
+      {% elsif variantTitle contains 'pair' %}
+        {% assign pairVariant = variant %}
+      {% elsif variantTitle contains 'right' %}
+        {% assign rightVariant = variant %}
+      {% endif %}
+    {% endfor %}
+
+    {% if leftVariant %}
+      {% assign button_label = 'Add ' | append: leftVariant.title | append: ' to Cart' %}
+      {%
+        include 'product-card'
+        show_product_description: false,,
+        custom_product: leftVariant,
+        button_label: button_label,
+        button_class: "button--add-to-cart action_button--secondary",
+        button_style: section.settings.button_style,
+        button_type: 'submit',
+        button_attribute: 'data-label="Add to cart" name="add"',
+        button_cart: true
+      %}
+    {% endif %}
+
+    {% if pairVariant %}
+      {% assign button_label = 'Add ' | append: pairVariant.title | append: ' to Cart' %}
+      {% assign pair_type = section.settings.pair_type %}
+      {% if pair_type == 'individual' %}
+        {% assign data_right_variant = rightVariant.id %}
+        {% assign data_left_variant = leftVariant.id %}
+        {% assign button_attribute = 'data-right-variant="'
+          | append: data_right_variant
+          | append: '" data-left-variant="'
+          | append: data_left_variant
+          | append: '" name="add"'
+          | append: 'data-label="Add to cart"'
+        %}
+        {% assign button_class = 'button--add-to-cart action_button--secondary add-pair-button' %}
+      {% else %}
+        {% assign button_attribute = 'data-label="Add to cart" name="add"' %}
+        {% assign button_class = 'button--add-to-cart action_button--secondary' %}
       {% endif %}
 
-      {% if pairVariant %}
-        <div class="card">
-          <img
-            src="{{ pairVariant.featured_image.src | img_url: 'original' }}"
-            loading="lazy"
-            alt="{{ pairVariant.featured_image.alt }}"
-            width="{{ pairVariant.featured_image.width }}"
-            height="{{ pairVariant.featured_image.height }}"
-          >
-          <button
-            id="add-pair"
-            class="button button--add-to-cart action_button--secondary add-pair-button"
-            data-left-variant="{{ leftVariant.id }}"
-            data-right-variant="{{ rightVariant.id }}"
-            data-label="Add to cart"
-          >
-            Add Pair to Cart
-          </button>
-        </div>
-      {% endif %}
+      {%
+        include 'product-card'
+        show_product_description: false,,
+        custom_product: pairVariant,
+        button_label: button_label,
+        button_class: button_class,
+        button_style: section.settings.button_style,
+        button_type: 'submit',
+        button_attribute: button_attribute,
+        button_cart: true
+      %}
+    {% endif %}
 
-      {% if rightVariant %}
+    {% if rightVariant %}
       {% assign button_label = 'Add ' | append: rightVariant.title | append: ' to Cart' %}
       {%
         include 'product-card'
@@ -77,96 +93,26 @@
         button_attribute: 'data-label="Add to cart" name="add"',
         button_cart: true
       %}
-        <div class="card">
-          <img
-            src="{{ rightVariant.featured_image.src | img_url: 'original' }}"
-            loading="lazy"
-            alt="{{ rightVariant.featured_image.alt }}"
-            width="{{ rightVariant.featured_image.width }}"
-            height="{{ rightVariant.featured_image.height }}"
-          >
-          <form action="/cart/add" method="post" id="product-form-{{ rightVariant.id }}">
-            <input type="hidden" name="id" value="{{ rightVariant.id }}">
-            <button
-              type="submit"
-              name="add"
-              class="button button--add-to-cart action_button--secondary"
-              data-label="Add to cart"
-            >
-              Add {{ rightVariant.title }} to Cart
-            </button>
-          </form>
-        </div>
-      {% endif %}
-    </div>
-  </section>
+    {% endif %}
+  </div>
+  <footer class="is-width-{{ section.settings.width }} {{ section_name }}-footer">
+    {% if section.settings.show_product_description %}
+      <div class="product-description">
+        {{ product.content }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_trust_badges %}
+      {% include 'trust-badges' %}
+    {% endif %}
+  </footer>
 {% endif %}
-
-{% style %}
-  #variant-container {
-    margin: var(--global-p2) 0;
-  }
-
-  .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: {{ settings.gap_spacing }}rem;
-    padding: var(--global-p1);
-  }
-
-  .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .card img {
-    width: 100%;
-    height: auto;
-  }
-  form[id^="product-form-"] {
-    display: flex;
-    width: 100%;
-  }
-  [data-label="Add to cart"] {
-    bottom: calc(var(--global-p1) * -1);
-    margin-top: var(--global-p1);
-    padding: var(--global-p1);
-  }
-
-  @media only screen and (max-width: 767px) {
-    #variant-container {
-      grid-template-columns: 1fr;
-      gap: calc({{ settings.gap_spacing }}rem * 4);
-      padding:0;
-    }
-  }
-
-  @media only screen and (min-width: 768px) and (max-width: 1023px) {
-    .card-container {
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    }
-    [data-label="Add to cart"] {
-      font-size: calc(var(--text-basic) - 25%);
-    }
-  }
-
-  @media only screen and (min-width: 1024px) and (max-width: 1439px) {
-    #variant {}
-    .card-container {
-      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
-    }
-    [data-label="Add to cart"] {
-      font-size: calc(var(--text-basic) - 5%);
-    }
-  }
-{% endstyle %}
 
 {% schema %}
 {
-  "name": "Variants",
+  "name": "Product Variant Display",
+  "tag": "section",
+  "class": "variant-display",
   "settings": [
     {
       "type": "checkbox",
@@ -175,21 +121,88 @@
       "default": true
     },
     {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wide",
+      "options": [
+        {
+          "value": "half",
+          "label": "Half"
+        },
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section_header",
+      "label": "Show Section Header",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_title",
+      "label": "Show Product Title",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "header_font_size",
+      "label": "Header Title Size",
+      "info": "multiplies the size of base text size by the value divided by 10 [base size * (value / 10)]",
+      "default":10,
+      "min": 5,
+      "max": 50,
+      "step": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews",
+      "label": "Show Reviews",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_header_text",
+      "label": "Show Header Text",
+      "default": true
+    },
+    {
       "type": "text",
-      "id": "section_title",
-      "label": "Variant Title",
+      "id": "header_title",
+      "label": "Header Title",
       "default": "Flexible Purchase Options"
     },
     {
       "type": "richtext",
-      "id": "instructions",
-      "label": "Variant Copy",
-      "default": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!</p>"
+      "id": "header_copy",
+      "label": "Header Copy",
+      "default": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!<p>"
     },
     {
-      "type": "product",
-      "id": "product",
-      "label": "Product"
+      "type": "header",
+      "content": "Trust Badges"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_badges",
+      "label": "Show Trust Badges",
+      "default": true
     },
     {
       "type": "header",
@@ -211,10 +224,75 @@
         }
       ],
       "info": "When clicking the 'Add to Cart', the 'Individual' option adds both a Left and a Right hearing aids separately, while the 'Pair' option adds as a single item."
+    },
+    {
+      "type": "header",
+      "content": "Section Footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_description",
+      "label": "Show Product Description",
+      "default": true
     }
   ],
   "presets" : [{
-    "name": "Blue Wave Variants"
+    "name": "Product Variant Display"
   }]
 }
 {% endschema %}
+
+<style>
+  .{{section_name}}-header h2 {
+    font-size:  calc(var(--text-basic)*({{ section.settings.header_font_size }} / 10));
+  }
+</style>
+
+{% style %}
+  /* Common Styles */
+  .variant-display, #variant-container, .card-body, .card-body h3, .card-body p, .variant-footer {
+    display: grid;
+  }
+
+  #variant-container {
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+    grid-gap: var(--global-p2);
+  }
+
+  #variant-anchor::before {
+    content: '';
+    display: block;
+    position: relative;
+    top: -100px;
+    height: 1px;
+    visibility: hidden;
+  }
+
+  .card-body {
+    grid-gap: var(--global-p1);
+    grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+    align-items: baseline;
+    padding: 0 calc(var(--global-p1) * 1.5);
+    justify-content: space-around;
+  }
+
+  .card-body h3, .card-body p {
+    display: inline-grid;
+  }
+
+  .variant-footer {
+    grid-template-columns: 3fr 1fr;
+    grid-gap: var(--global-p2);
+  }
+
+  /* Responsive Styles */
+  @media only screen and (max-width: 768px) {
+    .variant-header h2 {
+      text-align: center;
+    }
+
+    #variant-container, .product-variant-footer {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstyle %}
