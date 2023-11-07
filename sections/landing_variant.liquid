@@ -173,13 +173,33 @@
 {% endschema %}
 
 <style>
-    #shopify-section-{{ section.id }} {
-      display: flex;
-      justify-content: center;
-    }
+  #shopify-section-{{ section.id }} {
+    display: flex;
+    justify-content: center;
+  }
   .{{section_name}}-header h2 {
     font-size:  calc(var(--text-basic)*({{ section.settings.header_font_size }} / 10));
   }
+    
+    @media only screen and (max-width: 767px) {
+      #variant {
+        width: 90%;
+        gap: calc({{ section.settings.gap_spacing }}rem * 3);
+      }
+    }
+
+    @media only screen and (min-width: 768px) {
+      #variant {
+        width: 85%;
+        gap: calc({{ section.settings.gap_spacing }}rem * 3);
+      }
+    }
+    
+    @media only screen and (min-width: 1024px) {
+      #variant {
+        width: 80%;
+      }
+    }
 </style>
 
 {% style %}
