@@ -24,7 +24,7 @@
       justify-content: center;
     }
     #promo-section  {
-      gap: {{ section.settings.gap_settings }};
+      gap: {{ section.settings.gap_spacing }}rem;
     }
     
     @media only screen and (max-width: 767px) {
@@ -110,7 +110,7 @@
   }
 
   @media only screen and (min-width: 768px) and (max-width: 1023px) {
-    #promo-section{
+    #promo-section {
       grid-template-columns: 1fr;
       grid-template-areas: "description" "promo";
       padding: var(--global-p1);
