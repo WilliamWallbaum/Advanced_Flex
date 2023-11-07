@@ -1,6 +1,8 @@
 {% assign product = section.settings.product %}
 
-{% if section.settings.show_variants %}<span id="{{ section_name }}-anchor"></span>
+{% if section.settings.show_variants %}
+  
+  <span id="{{ section_name }}-anchor"></span>
   {% if section.settings.show_section_header %}
     {%
       include 'product_header' with
