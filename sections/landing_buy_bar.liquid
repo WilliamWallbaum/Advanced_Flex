@@ -77,10 +77,36 @@
       {% endif %}
     </div>
   </div>
+  
   <style>
-    [id="buy-bar"] {
-      margin: var(--global-p3) 0;
+    #shopify-section-{{ section.id }} {
       background-color: {{ section.settings.background_color }};
+    }
+    
+    @media only screen and (max-width: 767px) {
+      #shopify-section-{{ section.id }} {
+      }
+      #buy-bar {
+        width: 90%;
+        gap: calc({{ section.settings.gap_spacing }}rem * 3);
+      }
+    }
+
+    @media only screen and (min-width: 768px) {
+      #shopify-section-{{ section.id }} {
+      }
+      #buy-bar {
+        width: 85%;
+        gap: calc({{ section.settings.gap_spacing }}rem * 3);
+      }
+    }
+    
+    @media only screen and (min-width: 1024px) {
+      #shopify-section-{{ section.id }} {
+      }
+      #buy-bar {
+        width: 80%;
+      }
     }
   </style>
 {% endif %}
@@ -226,6 +252,15 @@
       "id": "show_buy_bar",
       "label": "Show Buy Bar",
       "default": true
+    },
+    {
+      "type": "range",
+      "id": "gap_spacing",
+      "label": "Gap",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 2
     },
     {
       "type": "product",
