@@ -43,26 +43,37 @@
         </div>
       {% endif %}
 
-      {% if pairVariant %}
-        <div class="card">
-          <img
-            src="{{ pairVariant.featured_image.src | img_url: 'original' }}"
-            loading="lazy"
-            alt="{{ pairVariant.featured_image.alt }}"
-            width="{{ pairVariant.featured_image.width }}"
-            height="{{ pairVariant.featured_image.height }}"
-          >
-          <button
-            id="add-pair"
-            class="button button--add-to-cart action_button--secondary add-pair-button"
-            data-left-variant="{{ leftVariant.id }}"
-            data-right-variant="{{ rightVariant.id }}"
-            data-label="Add to cart"
-          >
-            Add Pair to Cart
-          </button>
-        </div>
+    {% if pairVariant %}
+      {% assign button_label = 'Add ' | append: pairVariant.title | append: ' to Cart' %}
+      {% assign pair_type = section.settings.pair_type %}
+      {% if pair_type == 'individual' %}
+        {% assign data_right_variant = rightVariant.id %}
+        {% assign data_left_variant = leftVariant.id %}
+        {% assign button_attribute = 'data-right-variant="'
+          | append: data_right_variant
+          | append: '" data-left-variant="'
+          | append: data_left_variant
+          | append: '" name="add"'
+          | append: 'data-label="Add to cart"'
+        %}
+        {% assign button_class = 'button--add-to-cart action_button--secondary add-pair-button' %}
+      {% else %}
+        {% assign button_attribute = 'data-label="Add to cart" name="add"' %}
+        {% assign button_class = 'button--add-to-cart action_button--secondary' %}
       {% endif %}
+
+      {%
+        include 'product-card'
+        show_product_description: false,,
+        custom_product: pairVariant,
+        button_label: button_label,
+        button_class: button_class,
+        button_style: section.settings.button_style,
+        button_type: 'submit',
+        button_attribute: button_attribute,
+        button_cart: true
+      %}
+    {% endif %}
 
       {% if rightVariant %}
         {% assign button_label = 'Add ' | append: rightVariant.title | append: ' to Cart' %}
