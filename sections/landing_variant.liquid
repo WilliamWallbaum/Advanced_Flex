@@ -1,6 +1,7 @@
 {% assign product = section.settings.product %}
 
 {% if section.settings.show_variants %}
+  <div id="variant">
     <h2>{{ section.settings.section_title }}</h2>
     <p>{{ section.settings.instructions }}</p>
     <div id="variant-container" class="card-container">
@@ -90,6 +91,7 @@
         {% include 'trust-badges' %}
       {% endif %}
     </footer>
+    </div>
 {% endif %}
 
 {% schema %}
