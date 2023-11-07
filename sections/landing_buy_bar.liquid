@@ -77,6 +77,12 @@
       {% endif %}
     </div>
   </section>
+  <style>
+    [id$="_buy_bar"] {
+      margin: var(--global-p3) 0;
+      background-color: {{ section.settings.background }};
+    }
+  </style>
 {% endif %}
 
 {% javascript %}
@@ -86,10 +92,6 @@
   [aria-disabled] {
     pointer-events: none;
     opacity: 0.5;
-  }
-  [id$="_buy_bar"] {
-    margin: var(--global-p3) 0;
-    background-color: {{ section.settings.background }};
   }
   #buy-bar {
       padding: 0;
@@ -231,7 +233,7 @@
     },
     {
       "type": "color",
-      "id": "background",
+      "id": "background_color",
       "label": "Background Color",
       "default": "#054f8e"
     }
