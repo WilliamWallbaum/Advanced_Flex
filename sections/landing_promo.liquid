@@ -17,6 +17,24 @@
       {% endif %}
     </div>
   </section>
+  
+  <style>
+    #promo-section  {
+      gap: {{ section.settings.gap_settings }};
+    }
+    
+    @media only screen and (max-width: 767px) {
+      #promo-section{
+        gap: calc({{ section.settings.gap_spacing }}rem * 3);
+      }
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1023px) {
+      #promo-section{
+        gap: calc({{ section.settings.gap_spacing }}rem * 3);
+      }
+    }
+  </style>
 {% endif %}
 
 {% style %}
@@ -25,7 +43,6 @@
     grid-template-columns: 2.75fr 1fr;
     grid-template-areas:
       "description promo";
-    gap: {{ settings.gap_settings }};
     margin-top: -4rem;
   }
 
@@ -65,7 +82,6 @@
     #promo-section{
       grid-template-areas: "description" "promo";
       grid-template-columns: 1fr;
-      gap: calc({{ settings.gap_spacing }}rem * 3);
     }
     #promo {
       font-size: calc(var(--text-basic) * 1.5);
