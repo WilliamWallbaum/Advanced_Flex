@@ -6,18 +6,19 @@
 {% if section.settings.show_variants %}
   <span id="{{ section_name }}-anchor"></span>
   
-  <div id="variant" class="{{ container_class }}">
   {% if section.settings.show_section_header %}
-    {%
-      include 'product_header' with
-      show_product_title: section.settings.show_product_title,
-      show_reviews: section.settings.show_reviews,
-      show_header_text: section.settings.show_header_text,
-      header_title: section.settings.header_title,
-      header_copy: section.settings.header_copy,
-      section_name: section_name
-      class: container_class
-    %}
+    <div id="{{ section_name }}-header" class="{{ container_class }}">
+      {%
+        include 'product_header' with
+        show_product_title: section.settings.show_product_title,
+        show_reviews: section.settings.show_reviews,
+        show_header_text: section.settings.show_header_text,
+        header_title: section.settings.header_title,
+        header_copy: section.settings.header_copy,
+        section_name: section_name
+        class: container_class
+      %}
+    </div>
   {% endif %}
 
   <div id="{{ section_name }}-container" class="card-container">
@@ -113,7 +114,6 @@
         {% include 'trust-badges' %}
       {% endif %}
     </footer>
-    </div>
   </div>
 {% endif %}
 
