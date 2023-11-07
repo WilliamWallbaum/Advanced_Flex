@@ -1,7 +1,6 @@
 {% assign product = section.settings.product %}
 
 {% if section.settings.show_variants %}
-  <section id="variant">
     <h2>{{ section.settings.section_title }}</h2>
     <p>{{ section.settings.instructions }}</p>
     <div id="variant-container" class="card-container">
@@ -79,8 +78,75 @@
         %}
       {% endif %}
     </div>
-  </section>
+    
+    <footer class="is-width-{{ section.settings.width }} {{ section_name }}-footer">
+      {% if section.settings.show_product_description %}
+        <div class="product-description">
+          {{ product.content }}
+        </div>
+      {% endif %}
+  
+      {% if section.settings.show_trust_badges %}
+        {% include 'trust-badges' %}
+      {% endif %}
+    </footer>
 {% endif %}
+
+{% schema %}
+{
+  "name": "Variants",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_variants",
+      "label": "Show Variants Section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Variant Title",
+      "default": "Flexible Purchase Options"
+    },
+    {
+      "type": "richtext",
+      "id": "instructions",
+      "label": "Variant Copy",
+      "default": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!</p>"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "header",
+      "content": "Product Card Options"
+    },
+    {
+      "type": "radio",
+      "id": "pair_type",
+      "label": "Pair Type",
+      "default": "individual",
+      "options": [
+        {
+          "value": "individual",
+          "label": "Individual"
+        },
+        {
+          "value": "pair",
+          "label": "Pair"
+        }
+      ],
+      "info": "When clicking the 'Add to Cart', the 'Individual' option adds both a Left and a Right hearing aids separately, while the 'Pair' option adds as a single item."
+    }
+  ],
+  "presets" : [{
+    "name": "Blue Wave Variants"
+  }]
+}
+{% endschema %}
 
 {% style %}
   #variant-container {
@@ -143,58 +209,3 @@
     }
   }
 {% endstyle %}
-
-{% schema %}
-{
-  "name": "Variants",
-  "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_variants",
-      "label": "Show Variants Section",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "section_title",
-      "label": "Variant Title",
-      "default": "Flexible Purchase Options"
-    },
-    {
-      "type": "richtext",
-      "id": "instructions",
-      "label": "Variant Copy",
-      "default": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!</p>"
-    },
-    {
-      "type": "product",
-      "id": "product",
-      "label": "Product"
-    },
-    {
-      "type": "header",
-      "content": "Product Card Options"
-    },
-    {
-      "type": "radio",
-      "id": "pair_type",
-      "label": "Pair Type",
-      "default": "individual",
-      "options": [
-        {
-          "value": "individual",
-          "label": "Individual"
-        },
-        {
-          "value": "pair",
-          "label": "Pair"
-        }
-      ],
-      "info": "When clicking the 'Add to Cart', the 'Individual' option adds both a Left and a Right hearing aids separately, while the 'Pair' option adds as a single item."
-    }
-  ],
-  "presets" : [{
-    "name": "Blue Wave Variants"
-  }]
-}
-{% endschema %}
