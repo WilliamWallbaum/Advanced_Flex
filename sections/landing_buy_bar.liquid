@@ -80,12 +80,13 @@
   
   <style>
     #shopify-section-{{ section.id }} {
+      display: flex;
+      justify-content: center;
+      margin: 3rem 0;
       background-color: {{ section.settings.background_color }};
     }
     
     @media only screen and (max-width: 767px) {
-      #shopify-section-{{ section.id }} {
-      }
       #buy-bar {
         width: 90%;
         gap: calc({{ section.settings.gap_spacing }}rem * 3);
@@ -93,8 +94,6 @@
     }
 
     @media only screen and (min-width: 768px) {
-      #shopify-section-{{ section.id }} {
-      }
       #buy-bar {
         width: 85%;
         gap: calc({{ section.settings.gap_spacing }}rem * 3);
@@ -102,8 +101,6 @@
     }
     
     @media only screen and (min-width: 1024px) {
-      #shopify-section-{{ section.id }} {
-      }
       #buy-bar {
         width: 80%;
       }
