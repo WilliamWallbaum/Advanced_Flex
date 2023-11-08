@@ -22,7 +22,7 @@
           {% render 'image-element' with
             image: leftVariant.featured_image.src
             alt: leftVariant.featured_image.alt
-            figure_classes: buy-image
+            figure_classes: "buy-image"
           %}
 
           <div class="buy-product-copy">
@@ -39,14 +39,11 @@
           data-left-variant="{{ leftVariant.id }}"
           data-right-variant="{{ rightVariant.id }}"
         >
-          <figure class="buy-image">
-            <img
-              src="{{ pairVariant.featured_image.src | img_url: 'original' }}"
-              alt="{{ pairVariant.featured_image.alt }}"
-              width="{{ pairVariant.featured_image.width }}"
-              height="{{ pairVariant.featured_image.height }}"
-            >
-          </figure>
+          {% render 'image-element' with
+            image: pairVariant.featured_image.src
+            alt: pairVariant.featured_image.alt
+            figure_classes: "buy-image"
+          %}
 
           <div class="buy-product-copy">
             <h3>{{ pairVariant.title }}</h3>
@@ -57,14 +54,11 @@
 
       {% if rightVariant %}
         <a href="/cart/add?id={{ rightVariant.id }}" id="add-right" class="buy-product">
-          <figure class="buy-image">
-            <img
-              src="{{ rightVariant.featured_image.src | img_url: 'original' }}"
-              alt="{{ rightVariant.featured_image.alt }}"
-              width="{{ rightVariant.featured_image.width }}"
-              height="{{ rightVariant.featured_image.height }}"
-            >
-          </figure>
+          {% render 'image-element' with
+            image: rightVariant.featured_image.src
+            alt: rightVariant.featured_image.alt
+            figure_classes: "buy-image"
+          %}
 
           <div class="buy-product-copy">
             <h3>{{ rightVariant.title }}</h3>
