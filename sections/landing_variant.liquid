@@ -41,7 +41,7 @@
         {% assign button_label = 'Add ' | append: leftVariant.title | append: ' to Cart' %}
         {%
           include 'product-card'
-          show_product_description: false,,
+          show_product_description: false,
           custom_product: leftVariant,
           button_label: button_label,
           button_class: "button--add-to-cart action_button--secondary",
@@ -73,7 +73,7 @@
       
         {%
           include 'product-card'
-          show_product_description: false,,
+          show_product_description: false,
           custom_product: pairVariant,
           button_label: button_label,
           button_class: button_class,
@@ -88,7 +88,7 @@
         {% assign button_label = 'Add ' | append: rightVariant.title | append: ' to Cart' %}
         {%
           include 'product-card'
-          show_product_description: false,,
+          show_product_description: false,
           custom_product: rightVariant,
           button_label: button_label,
           button_class: "button--add-to-cart action_button--secondary",
