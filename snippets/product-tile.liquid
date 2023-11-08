@@ -35,6 +35,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-areas: "buy-image buy-product-copy";
+    height: 100px;
     color: white;
     margin: 0;
     padding: 0;
@@ -68,6 +69,16 @@
 
   @media only screen and (min-width: 768px) {
     /* small devices */
+    .buy-product {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      grid-template-areas: "buy-image buy-product-copy";
+      height: 100px;
+      color: white;
+      margin: 0;
+      padding: 0;
+      gap: var(--global-p1);
+    }
   }
 
   @media only screen and (min-width: 834px) {
