@@ -22,7 +22,7 @@
           include 'product-tile'
           variant: leftVariant
           copy_description: section.settings.copy_description
-          copy_title: section.settings.copy_title
+          copy_title: section.settings.copy_title_left
         %}
       {% endif %}
 
@@ -31,7 +31,7 @@
           include 'product-tile'
           variant: pairVariant
           copy_description: section.settings.copy_description
-          copy_title: section.settings.copy_title
+          copy_title: section.settings.copy_title_pair
         %}
       {% endif %}
 
@@ -40,7 +40,7 @@
           include 'product-tile'
           variant: rightVariant
           copy_description: section.settings.copy_description
-          copy_title: section.settings.copy_title
+          copy_title: section.settings.copy_title_right
         %}
       {% endif %}
     </div>
@@ -156,8 +156,21 @@
     },
     {
       "type": "text",
-      "id": "copy_title",
-      "label": "Title"
+      "id": "copy_title_left",
+      "label": "Left Title",
+      "default": "Left Side Only"
+    },
+    {
+      "type": "text",
+      "id": "copy_title_pair",
+      "label": "Pair Title",
+      "default": "Get the Pair"
+    },
+    {
+      "type": "text",
+      "id": "copy_title_Right",
+      "label": "Right Title",
+      "default": "Right Side Only"
     },
     {
       "type": "richtext",
