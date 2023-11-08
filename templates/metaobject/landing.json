@@ -1,1 +1,98 @@
-{"sections":{"6840c59e-b200-4493-892b-113c242ff7ae":{"type":"landing_header","blocks":{"4c21600a-a01a-4dbe-a84f-26c6362aa361":{"type":"video-stored","settings":{"video":"{{ metaobject.video.value }}","controls":false,"autoplay":true,"mute":true,"download":false,"loop":true}}},"block_order":["4c21600a-a01a-4dbe-a84f-26c6362aa361"],"settings":{"show_section":true,"background_image":"{{ metaobject.landing_header_background.value }}","title":"{{ metaobject.title.value }}","qualifier":"{{ metaobject.qualifier.value }}","description":"<p>{{ metaobject.description | metafield_tag }}<\/p>","show_product":true,"product":"{{ metaobject.product.value }}","price_box_title":"{{ metaobject.price_box_title.value }}","discount_amount":"{{ metaobject.discount | metafield_text }}"}},"14be3e1d-ca6e-4493-80dd-26cf4569f861":{"type":"landing_promo","settings":{"show_section":true,"description-title":"{{ metaobject.promo_title.value }}","description-copy":"<p>{{ metaobject.promo_copy | metafield_tag }}<\/p>","show_top-bun":true,"top-bun":"{{ metaobject.promo_top_bun.value }}","show_promo":true,"promo":"{{ metaobject.promo_code.value }}","show_bottom-bun":true,"bottom-bun":"{{ metaobject.promo_bottom_bun.value }}"}},"2a13ff91-b5cc-4147-85b9-331bafa84ffa":{"type":"landing_variant","settings":{"show_variants":true,"section_title":"{{ metaobject.variant_title.value }}","instructions":"<p>{{ metaobject.variant_copy.value }}<\/p>","product":"{{ metaobject.product.value }}"}},"9b5755f3-e39a-45d6-81db-ff2ff902fa29":{"type":"landing_gallery","settings":{"show_gallery":true,"gallery_title":"{{ metaobject.gallery_title.value }}","gallery_copy":"{{ metaobject.gallery_copy.value }}","feature_image":"{{ metaobject.gallery_featured.value }}","gallery_image_1":"{{ metaobject.gallery_1.value }}","gallery_image_2":"{{ metaobject.gallery_2.value }}","gallery_image_3":"{{ metaobject.gallery_3.value }}"}},"03557106-918d-440b-abc3-a35a725fb912":{"type":"landing_buy_bar","settings":{"show_buy_bar":true,"product":"{{ metaobject.product.value }}","background":"#054f8e"}},"2f6a0653-3c09-424e-92b4-25b7e8f15169":{"type":"landing_support","settings":{"show_support":true,"section_title":"{{ metaobject.support_title.value }}","section_copy":"{{ metaobject.support_copy.value }}","image_1":"{{ metaobject.remote_image_1.value }}","image_2":"{{ metaobject.remote_image_2.value }}"}}},"order":["6840c59e-b200-4493-892b-113c242ff7ae","14be3e1d-ca6e-4493-80dd-26cf4569f861","2a13ff91-b5cc-4147-85b9-331bafa84ffa","9b5755f3-e39a-45d6-81db-ff2ff902fa29","03557106-918d-440b-abc3-a35a725fb912","2f6a0653-3c09-424e-92b4-25b7e8f15169"]}
+{
+  "sections": {
+    "6840c59e-b200-4493-892b-113c242ff7ae": {
+      "type": "landing_header",
+      "blocks": {
+        "4c21600a-a01a-4dbe-a84f-26c6362aa361": {
+          "type": "video-stored",
+          "settings": {
+            "video": "{{ metaobject.video.value }}",
+            "controls": false,
+            "autoplay": true,
+            "mute": true,
+            "download": false,
+            "loop": true
+          }
+        }
+      },
+      "block_order": [
+        "4c21600a-a01a-4dbe-a84f-26c6362aa361"
+      ],
+      "settings": {
+        "show_section": true,
+        "background_image": "{{ metaobject.landing_header_background.value }}",
+        "title": "{{ metaobject.title.value }}",
+        "qualifier": "{{ metaobject.qualifier.value }}",
+        "description": "<p>{{ metaobject.description | metafield_tag }}<\/p>",
+        "show_product": true,
+        "product": "{{ metaobject.product.value }}",
+        "price_box_title": "{{ metaobject.price_box_title.value }}",
+        "discount_amount": "{{ metaobject.discount | metafield_text }}"
+      }
+    },
+    "14be3e1d-ca6e-4493-80dd-26cf4569f861": {
+      "type": "landing_promo",
+      "settings": {
+        "show_section": true,
+        "description-title": "{{ metaobject.promo_title.value }}",
+        "description-copy": "<p>{{ metaobject.promo_copy | metafield_tag }}<\/p>",
+        "show_top-bun": true,
+        "top-bun": "{{ metaobject.promo_top_bun.value }}",
+        "show_promo": true,
+        "promo": "{{ metaobject.promo_code.value }}",
+        "show_bottom-bun": true,
+        "bottom-bun": "{{ metaobject.promo_bottom_bun.value }}",
+        "gap_spacing": 2
+      }
+    },
+    "2a13ff91-b5cc-4147-85b9-331bafa84ffa": {
+      "type": "landing_variant",
+      "settings": {
+        "show_variants": true,
+        "section_title": "{{ metaobject.variant_title.value }}",
+        "instructions": "<p>{{ metaobject.variant_copy.value }}<\/p>",
+        "product": "{{ metaobject.product.value }}",
+        "pair_type": "pair"
+      }
+    },
+    "9b5755f3-e39a-45d6-81db-ff2ff902fa29": {
+      "type": "landing_gallery",
+      "settings": {
+        "show_gallery": true,
+        "gallery_title": "{{ metaobject.gallery_title.value }}",
+        "gallery_copy": "{{ metaobject.gallery_copy.value }}",
+        "feature_image": "{{ metaobject.gallery_featured.value }}",
+        "gallery_image_1": "{{ metaobject.gallery_1.value }}",
+        "gallery_image_2": "{{ metaobject.gallery_2.value }}",
+        "gallery_image_3": "{{ metaobject.gallery_3.value }}"
+      }
+    },
+    "03557106-918d-440b-abc3-a35a725fb912": {
+      "type": "landing_buy_bar",
+      "settings": {
+        "show_buy_bar": true,
+        "gap_spacing": 2,
+        "product": "{{ metaobject.product.value }}",
+        "background_color": "#054f8e"
+      }
+    },
+    "2f6a0653-3c09-424e-92b4-25b7e8f15169": {
+      "type": "landing_support",
+      "settings": {
+        "show_support": true,
+        "section_title": "{{ metaobject.support_title.value }}",
+        "section_copy": "{{ metaobject.support_copy.value }}",
+        "image_1": "{{ metaobject.remote_image_1.value }}",
+        "image_2": "{{ metaobject.remote_image_2.value }}"
+      }
+    }
+  },
+  "order": [
+    "6840c59e-b200-4493-892b-113c242ff7ae",
+    "14be3e1d-ca6e-4493-80dd-26cf4569f861",
+    "2a13ff91-b5cc-4147-85b9-331bafa84ffa",
+    "9b5755f3-e39a-45d6-81db-ff2ff902fa29",
+    "03557106-918d-440b-abc3-a35a725fb912",
+    "2f6a0653-3c09-424e-92b4-25b7e8f15169"
+  ]
+}
