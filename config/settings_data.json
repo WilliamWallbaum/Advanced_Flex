@@ -3060,8 +3060,6 @@
         "type": "landing_variant",
         "settings": {
           "show_variants": true,
-          "section_title": "Flexible Purchase Options",
-          "instructions": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!<\/p>",
           "product": "hcra"
         }
       },

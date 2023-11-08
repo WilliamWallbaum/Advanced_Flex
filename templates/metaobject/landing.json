@@ -49,10 +49,14 @@
       "type": "landing_variant",
       "settings": {
         "show_variants": true,
-        "section_title": "{{ metaobject.variant_title.value }}",
-        "instructions": "<p>{{ metaobject.variant_copy.value }}<\/p>",
+        "width": "standard",
+        "show_section_header": true,
+        "show_header_text": true,
+        "header_title": "Flexible Purchase Options",
+        "header_copy": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!<\/p>",
         "product": "{{ metaobject.product.value }}",
-        "pair_type": "pair"
+        "pair_type": "pair",
+        "show_product_description": true
       }
     },
     "9b5755f3-e39a-45d6-81db-ff2ff902fa29": {
