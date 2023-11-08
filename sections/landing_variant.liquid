@@ -14,8 +14,8 @@
         show_product_title: section.settings.show_product_title,
         show_reviews: section.settings.show_reviews,
         show_header_text: section.settings.show_header_text,
-        header_title: section.settings.header_title,
-        header_copy: section.settings.header_copy,
+        header_title: section.settings.section_title,
+        header_copy: section.settings.instructions,
         section_name: section_name,
         class: container_class
       %}
@@ -23,8 +23,6 @@
   {% endif %}
 
   <div id="{{ section_name }}-container" class="card-container">
-    <h2>{{ section.settings.section_title }}</h2>
-    <p>{{ section.settings.instructions }}</p>
     <div id="variant-container" class="card-container">
       {% assign leftVariant = null %}
       {% assign pairVariant = null %}
