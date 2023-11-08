@@ -27,6 +27,8 @@
               height="{{ leftVariant.featured_image.height }}"
             >
           </figure>
+          {% render 'image-element' with image: leftVariant.featured_image.src
+  alt: leftVariant.featured_image.alt %}
 
           <div class="buy-product-copy">
             <h3>{{ leftVariant.title }}</h3>
