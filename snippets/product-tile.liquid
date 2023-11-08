@@ -60,40 +60,17 @@
 
   @media only screen and (max-width: 767px) {
     /* extra small devices */
-    .buy-product-copy {
-      padding-left: var(--global-p3);
-    }
-    .buy-image img {}
-    .buy-product:nth-child(2) {
-      grid-template-areas: "buy-product-copy buy-image";
-      grid-template-columns: 2fr 1fr;
-    }
-    .buy-product:nth-child(2) .buy-product-copy {}
-    .buy-product:nth-child(2) .buy-image img {}
   }
 
   @media only screen and (min-width: 768px) {
     /* small devices */
-    .buy-product:nth-child(2) {
-      grid-template-areas: "buy-product-copy buy-image";
-      grid-template-columns: 2fr 1fr;
-    }
-    .buy-product:nth-child(2) .buy-product-copy{
-      padding-left: calc(var(--global-p4) * 2);
-    }
-    .buy-image img {}
   }
 
   @media only screen and (min-width: 834px) {
     /* medium devices */
-    .buy-image img {
-      left: -40%;
-    }
   }
 
   @media only screen and (min-width: 1024px) {
     /* large devices */
-    .buy-image img {
-      width: 150%;
     }
 {% endstyle %}
