@@ -18,15 +18,30 @@
       {% endfor %}
 
       {% if leftVariant %}
-        {% include 'product-tile'  variant: leftVariant %}
+        {%
+          include 'product-tile'
+          variant: leftVariant
+          copy_description: section.settings.copy_description
+          copy_title: section.settings.copy_title
+        %}
       {% endif %}
 
       {% if pairVariant %}
-        {% include 'product-tile'  variant: pairVariant copy_description: section.settings.copy_description copy_title: section.settings.copy_title %}
+        {%
+          include 'product-tile'
+          variant: pairVariant
+          copy_description: section.settings.copy_description
+          copy_title: section.settings.copy_title
+        %}
       {% endif %}
 
       {% if rightVariant %}
-        {% include 'product-tile'  variant: rightVariant %}
+        {%
+          include 'product-tile'
+          variant: rightVariant
+          copy_description: section.settings.copy_description
+          copy_title: section.settings.copy_title
+        %}
       {% endif %}
     </div>
   </div>
