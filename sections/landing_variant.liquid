@@ -4,6 +4,7 @@
 {% assign product = section.settings.product %}
 
 {% if section.settings.show_variants %}
+  <div id="variant-section" class="{{ container_class }}">
   <span id="{{ section_name }}-anchor"></span>
   
   {% if section.settings.show_section_header %}
@@ -114,6 +115,7 @@
         {% include 'trust-badges' %}
       {% endif %}
     </footer>
+  </div>
   </div>
 {% endif %}
 
