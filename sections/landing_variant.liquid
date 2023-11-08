@@ -8,18 +8,16 @@
   <span id="{{ section_name }}-anchor"></span>
   
   {% if section.settings.show_section_header %}
-    <div id="{{ section_name }}-header" class="variant-header">
-      {%
-        include 'product_header' with
-        show_product_title: section.settings.show_product_title,
-        show_reviews: section.settings.show_reviews,
-        show_header_text: section.settings.show_header_text,
-        header_title: section.settings.section_title,
-        header_copy: section.settings.instructions,
-        section_name: section_name,
-        class: container_class
-      %}
-    </div>
+    {%
+      include 'product_header' with
+      show_product_title: section.settings.show_product_title,
+      show_reviews: section.settings.show_reviews,
+      show_header_text: section.settings.show_header_text,
+      header_title: section.settings.section_title,
+      header_copy: section.settings.instructions,
+      section_name: section_name,
+      class: container_class
+    %}
   {% endif %}
 
   <div id="{{ section_name }}-container" class="card-container">
