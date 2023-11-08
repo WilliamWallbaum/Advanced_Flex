@@ -8,6 +8,8 @@
   <span id="{{ section_name }}-anchor"></span>
   
   {% if section.settings.show_section_header %}
+    {{ section.settings.section_title }}
+    {{ section.settings.instructions }}
     {%
       include 'product_header' with
       show_product_title: section.settings.show_product_title,
