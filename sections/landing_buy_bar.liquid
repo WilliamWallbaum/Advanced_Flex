@@ -18,54 +18,15 @@
       {% endfor %}
 
       {% if leftVariant %}
-        <a href="/cart/add?id={{ leftVariant.id }}" id="add-left" class="buy-product">
-          {% render 'image-element' with
-            image: leftVariant.featured_image.src
-            alt: leftVariant.featured_image.alt
-            figure_classes: "buy-image"
-          %}
-
-          <div class="buy-product-copy">
-            <h3>{{ leftVariant.title }}</h3>
-            Add {{ leftVariant.title }} to Cart
-          </div>
-        </a>
+        {% include 'product-tile'  variant: leftVariant %}
       {% endif %}
 
       {% if pairVariant %}
-        <a
-          id="add-pair"
-          class="buy-product add-pair-button"
-          data-left-variant="{{ leftVariant.id }}"
-          data-right-variant="{{ rightVariant.id }}"
-        >
-          {% render 'image-element' with
-            image: pairVariant.featured_image.src
-            alt: pairVariant.featured_image.alt
-            figure_classes: "buy-image"
-          %}
-
-          <div class="buy-product-copy">
-            <h3>{{ pairVariant.title }}</h3>
-            Add Pair to Cart
-          </div>
-        </a>
+        {% include 'product-tile'  variant: pairVariant %}
       {% endif %}
 
       {% if rightVariant %}
-        <a href="/cart/add?id={{ rightVariant.id }}" id="add-right" class="buy-product">
-          {% render 'image-element' with
-            image: rightVariant.featured_image.src
-            alt: rightVariant.featured_image.alt
-            figure_classes: "buy-image"
-          %}
-
-          <div class="buy-product-copy">
-            <h3>{{ rightVariant.title }}</h3>
-            Add {{ rightVariant.title }} to Cart
-          </div>
-        </a>
-      {% include 'product-tile'  variant: rightVariant %}
+        {% include 'product-tile'  variant: rightVariant %}
       {% endif %}
     </div>
   </div>
