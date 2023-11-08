@@ -1,9 +1,9 @@
 {% comment %}
   Required values
-  show_product_description: <boolean>
+  variant: <string>
   ______________
   Optional values
-  button_label: <string>
+  copy_title: <string>
   button_class: <string>
   button_style: <string>
   button_type: <string>
@@ -20,41 +20,100 @@
   {% render 'image-element' with
     image: variant.featured_image.src
     alt: variant.featured_image.alt
-    figure_classes: buy-image
+    figure_classes: "buy-image"
   %}
 
   <div class="buy-product-copy">
+    {% if copy_title != blank %}
+      {{ copy_title }}
+    {% else %}
     <h3>{{ variant.title }}</h3>
-    Add {{ variant.title }} to Cart
+    {% endif %}
+    
+    {% if copy_description != blank %}
+      {{ copy_description }}
+    {% else %}
+      Add {{ variant.title }} to Cart
+    {% endif %}
   </div>
 </a>
 
 {% style %}
-  .product-grid {
+  .buy-product {
     display: grid;
-    padding: var(--global-p1) var(--global-p2);
-    grid-gap: var(--global-p2);
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    justify-items: center;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "buy-image buy-product-copy";
+    color: white;
+    margin: 0;
+    padding: 0;
   }
-  .product {
-    box-shadow: var(--global-shadow);
-    border-radius: var(--global-radius);
-    padding: var(--global-p1);
+  .buy-product form {
+    align-items: center;
+    justify-content: center;
   }
-  .product:hover {
-    transform: scale(1.05); /* increases the size slightly on hover */
-    box-shadow: var(--global-shadow-hover); /* adds a subtle shadow on hover */
+  .buy-image {
+    grid-area: buy-image;
   }
-  .product-card {
-    height: 100%;
-    display: grid;
-    grid-gap: var(--global-p1);
-    text-align: center;
-    align-content: space-evenly;
+  .buy-image img {
+    width: 150%;
+    max-width: unset;
+    margin: 0 -50% 0;
+  }
+  .buy-product-copy {
+      grid-area: buy-product-copy;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+  .buy-product-copy h3 {
+    color: inherit;
   }
 
-  .product-card-body .price {
-    font-size: calc(var(--text-basic)*1.5);
+  @media only screen and (max-width: 767px) {
+    /* extra small devices */
+    .buy-product-copy {
+      padding-left: var(--global-p3);
+    }
+    .buy-image img {
+      right: -40%;
+    }
+    .buy-product:nth-child(2) {
+      grid-template-areas: "buy-product-copy buy-image";
+      grid-template-columns: 2fr 1fr;
+    }
+    .buy-product:nth-child(2) .buy-product-copy {
+      padding-left: var(--global-p1);
+    }
+    .buy-product:nth-child(2) .buy-image img {
+      right: 40%;
+    }
   }
+
+  @media only screen and (min-width: 768px) {
+    /* small devices */
+    .buy-product:nth-child(2) {
+      grid-template-areas: "buy-product-copy buy-image";
+      grid-template-columns: 2fr 1fr;
+    }
+    .buy-product:nth-child(2) .buy-product-copy{
+      padding-left: calc(var(--global-p4) * 2);
+    }
+    .buy-image img {
+      position: relative;
+      left: -30%;
+    }
+  }
+
+  @media only screen and (min-width: 834px) {
+    /* medium devices */
+    .buy-image img {
+      left: -40%;
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    /* large devices */
+    .buy-image img {
+      width: 150%;
+    }
 {% endstyle %}
