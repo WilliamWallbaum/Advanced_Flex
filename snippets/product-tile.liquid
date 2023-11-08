@@ -1,0 +1,60 @@
+{% comment %}
+  Required values
+  show_product_description: <boolean>
+  ______________
+  Optional values
+  button_label: <string>
+  button_class: <string>
+  button_style: <string>
+  button_type: <string>
+  button_size: <string>
+  button_cart: <boolean>
+  button_attribute: <string>
+  card_width: <number>
+  variant: <object>
+  custom_image: <object>
+{% endcomment %}
+
+
+<a href="/cart/add?id={{ variant.id }}" id="add-left" class="buy-product">
+  {% render 'image-element' with
+    image: variant.featured_image.src
+    alt: variant.featured_image.alt
+    figure_classes: buy-image
+  %}
+
+  <div class="buy-product-copy">
+    <h3>{{ variant.title }}</h3>
+    Add {{ variant.title }} to Cart
+  </div>
+</a>
+
+{% style %}
+  .product-grid {
+    display: grid;
+    padding: var(--global-p1) var(--global-p2);
+    grid-gap: var(--global-p2);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-items: center;
+  }
+  .product {
+    box-shadow: var(--global-shadow);
+    border-radius: var(--global-radius);
+    padding: var(--global-p1);
+  }
+  .product:hover {
+    transform: scale(1.05); /* increases the size slightly on hover */
+    box-shadow: var(--global-shadow-hover); /* adds a subtle shadow on hover */
+  }
+  .product-card {
+    height: 100%;
+    display: grid;
+    grid-gap: var(--global-p1);
+    text-align: center;
+    align-content: space-evenly;
+  }
+
+  .product-card-body .price {
+    font-size: calc(var(--text-basic)*1.5);
+  }
+{% endstyle %}
