@@ -19,16 +19,11 @@
 
       {% if leftVariant %}
         <a href="/cart/add?id={{ leftVariant.id }}" id="add-left" class="buy-product">
-          <figure class="buy-image">
-            <img
-              src="{{ leftVariant.featured_image.src | img_url: 'original' }}"
-              alt="{{ leftVariant.featured_image.alt }}"
-              width="{{ leftVariant.featured_image.width }}"
-              height="{{ leftVariant.featured_image.height }}"
-            >
-          </figure>
-          {% render 'image-element' with image: leftVariant.featured_image.src
-  alt: leftVariant.featured_image.alt %}
+          {% render 'image-element' with
+            image: leftVariant.featured_image.src
+            alt: leftVariant.featured_image.alt
+            figure_classes: buy-image
+          %}
 
           <div class="buy-product-copy">
             <h3>{{ leftVariant.title }}</h3>
