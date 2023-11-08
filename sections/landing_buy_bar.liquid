@@ -22,7 +22,7 @@
       {% endif %}
 
       {% if pairVariant %}
-        {% include 'product-tile'  variant: pairVariant %}
+        {% include 'product-tile'  variant: pairVariant copy_description: section.settings.copy_description copy_title: section.settings.copy_title %}
       {% endif %}
 
       {% if rightVariant %}
@@ -138,6 +138,17 @@
       "id": "background_color",
       "label": "Background Color",
       "default": "#054f8e"
+    },
+    {
+      "type": "text",
+      "id": "copy_title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "copy_description",
+      "label": "Call to Action",
+      "default": "<p>add to cart</p>"
     }
   ],
   "presets" : [{
