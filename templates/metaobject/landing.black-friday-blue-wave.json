@@ -76,18 +76,10 @@
             "alignment": "left",
             "vertical_position": "center"
           }
-        },
-        "template--16468398932153__95f9b02e-b423-469f-964a-68268a71cf5a-image-1": {
-          "type": "image",
-          "settings": {
-            "image_crop": "none",
-            "image_link": ""
-          }
         }
       },
       "block_order": [
-        "template--16468398932153__95f9b02e-b423-469f-964a-68268a71cf5a-text-1",
-        "template--16468398932153__95f9b02e-b423-469f-964a-68268a71cf5a-image-1"
+        "template--16468398932153__95f9b02e-b423-469f-964a-68268a71cf5a-text-1"
       ],
       "settings": {
         "width": "standard",
