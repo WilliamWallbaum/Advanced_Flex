@@ -118,9 +118,9 @@
         "template--16468398932153__d46fcd96-e0dc-4099-9153-3cbb9984982a-text-1": {
           "type": "text",
           "settings": {
-            "title": "Heading text here{{ metaobject.features_title.value }}",
+            "title": "{{ metaobject.features_title.value }}",
             "heading_size": "regular",
-            "text": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.{{ metaobject.features_copy.value }}<\/p>",
+            "text": "<p>{{ metaobject.features_copy.value }}<\/p>",
             "button_label": "",
             "link": "",
             "button_style": "button--primary",
