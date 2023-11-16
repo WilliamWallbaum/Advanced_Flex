@@ -141,9 +141,9 @@
     const url = window.location.pathname; // Get the path of the current URL
     console.log(url)
 
-    const lastDashIndex = url.lastIndexOf('/'); // Find the last occurrence of the dash
-    console.log(lastDashIndex)
-    const promoCode = url.substr(lastDashIndex + 1); // Extract the substring after the last dash
+    const lastSlashIndex = url.lastIndexOf('/'); // Find the last occurrence of the dash
+    console.log(lastSlashIndex)
+    const promoCode = url.substr(lastSlashIndex + 1); // Extract the substring after the last dash
     console.log(promoCode)
 
       if (promoCode === "/pages/hcra") {
