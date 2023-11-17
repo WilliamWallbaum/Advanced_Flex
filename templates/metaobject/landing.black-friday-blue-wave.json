@@ -136,7 +136,7 @@
         "background_color": "#054f8e",
         "gap_spacing": 2,
         "product": "{{ metaobject.product.value }}",
-        "pair_type": "pair",
+        "pair_type": "individual",
         "copy_title_left": "Left Side Only",
         "copy_title_pair": "Get the Pair",
         "copy_title_Right": "Right Side Only",
