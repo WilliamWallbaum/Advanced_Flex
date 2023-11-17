@@ -66,10 +66,10 @@
         ".multi-col-body {align-items: flex-start;}"
       ],
       "settings": {
-        "show_header": false,
-        "section_name": "",
-        "header_text": "",
-        "header_font_size": 10,
+        "show_header": true,
+        "section_name": "An American Company with an A+ BBB Rating",
+        "header_text": "<p>We’ve been in business for <strong>over 26 years <\/strong>and have maintained a strict <strong>A+ rating <\/strong>from the Better Business Bureau. We're here to help you for the long haul, with <strong>outstanding service <\/strong>and <strong>affordable prices<\/strong>.<\/p>",
+        "header_font_size": 14,
         "gradient_color": "linear-gradient(180deg, rgba(5, 79, 142, 0.21), rgba(255, 255, 255, 1) 100%)",
         "block_width": 100,
         "width": "standard",
@@ -91,7 +91,7 @@
         "block_title_4": "defualt",
         "block_content_4": "<p>defualt<\/p>",
         "show_footer": true,
-        "footer_text": "<h3>An American Company with an A+ BBB Rating<\/h3><p>We’ve been in business for <strong>over 26 years <\/strong>and have maintained a strict <strong>A+ rating <\/strong>from the Better Business Bureau. We're here to help you for the long haul, with <strong>outstanding service <\/strong>and <strong>affordable prices<\/strong>.<\/p>"
+        "footer_text": ""
       }
     },
     "95f9b02e-b423-469f-964a-68268a71cf5a": {
