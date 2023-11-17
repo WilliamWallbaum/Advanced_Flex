@@ -114,13 +114,6 @@
   </div>
 {% endif %}
 
-<style>
-  .product-description {
-    {% assign description_float = section.settings.product_description-size | divided_by: 10.0 %}
-    font-size: calc(var(--text-basic) * {{ description_float }});
-  }
-</style>
-
 {% schema %}
 {
   "name": "Variants",
@@ -239,6 +232,10 @@
   }
   .{{section_name}}-header h2 {
     font-size:  calc(var(--text-basic)*({{ section.settings.header_font_size }} / 10));
+  }
+  .product-description {
+    {% assign description_float = section.settings.product_description-size | divided_by: 10.0 %}
+    font-size: calc(var(--text-basic) * {{ description_float }});
   }
     
     @media only screen and (max-width: 767px) {
