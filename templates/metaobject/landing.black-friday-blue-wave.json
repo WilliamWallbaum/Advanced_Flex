@@ -63,7 +63,7 @@
     "0f9957bd-9288-4af1-a92a-d55b49d689d2": {
       "type": "multi_column_section",
       "custom_css": [
-        ".multi-col-body {display: grid; grid-template-columns: 1fr 1fr; align-items: flex-start;}"
+
       ],
       "settings": {
         "show_header": false,
@@ -83,7 +83,7 @@
         "block_content_1": "<p>With lifetime professional support, you can be confident that you will always have the help you need to get the most out of your hearing aids. Our team of experts is here to help you every step of the way, from choosing the right hearing aids to ensuring that they are properly adjusted.<\/p>",
         "show_block_2": true,
         "block_title_2": "Free 6-Month Limited Warranty",
-        "block_content_2": "<p>Your HearClear™ HCRA hearing aid comes with a 6-month limited warranty and your order will include a storage case, USB Charging Cable, and a care kit: an $85 value, absolutely free to you!<\/p>",
+        "block_content_2": "<p>Your HearClear™ HCRA hearing aid comes with a 6-month limited warranty and your order will include a storage case, USB Charging Cable, and a care kit: an $85 value, absolutely free to you!<\/p><p>The HearClear™ HCRA is a perfect choice for your piece of mind.<\/p>",
         "show_block_3": false,
         "block_title_3": "defualt",
         "block_content_3": "<p>defualt<\/p>",
