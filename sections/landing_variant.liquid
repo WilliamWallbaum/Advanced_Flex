@@ -114,6 +114,12 @@
   </div>
 {% endif %}
 
+<style>
+  .product-description {
+    font-size: {{ section.settings.product_description-size }};
+  }
+</style>
+
 {% schema %}
 {
   "name": "Variants",
@@ -208,6 +214,15 @@
       "id": "show_product_description",
       "label": "Show Product Descriptions",
       "default": true
+    },
+    {
+      "type": "range",
+      "id": "product_description-size",
+      "label": "Product Description Font Size",
+      "min": 1,
+      "max": 5,
+      "default": 1,
+      "step": 1
     }
   ],
   "presets" : [{
