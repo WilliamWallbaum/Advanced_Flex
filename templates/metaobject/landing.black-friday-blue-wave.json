@@ -62,13 +62,16 @@
     },
     "0f9957bd-9288-4af1-a92a-d55b49d689d2": {
       "type": "multi_column_section",
+      "custom_css": [
+        ".multi-col-body {display: grid; grid-template-columns: 1fr 1fr; align-items: flex-start;}"
+      ],
       "settings": {
         "show_header": false,
         "section_name": "",
         "header_text": "",
         "header_font_size": 10,
         "gradient_color": "linear-gradient(180deg, rgba(5, 79, 142, 0.21), rgba(255, 255, 255, 1) 100%)",
-        "block_width": 35,
+        "block_width": 100,
         "width": "standard",
         "img_width": 100,
         "is_card": "card",
