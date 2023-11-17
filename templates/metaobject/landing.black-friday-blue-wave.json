@@ -63,7 +63,7 @@
     "0f9957bd-9288-4af1-a92a-d55b49d689d2": {
       "type": "multi_column_section",
       "custom_css": [
-
+        ".multi-col-body {align-items: flex-start;}"
       ],
       "settings": {
         "show_header": false,
@@ -74,7 +74,7 @@
         "block_width": 100,
         "width": "standard",
         "img_width": 100,
-        "is_card": "card",
+        "is_card": "",
         "header_align": "center",
         "block_align": "center",
         "footer_align": "start",
