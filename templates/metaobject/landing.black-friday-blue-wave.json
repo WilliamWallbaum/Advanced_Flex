@@ -76,8 +76,8 @@
         "block_align": "center",
         "footer_align": "start",
         "show_block_1": true,
-        "block_title_1": "Try HearClear™ HCRA Risk-Free for 30 Days",
-        "block_content_1": "<p>With lifetime professional support, you can be confident that you will always have the help you need to get the most out of your hearing aids.<\/p>",
+        "block_title_1": "Try Risk-Free for 30 Days",
+        "block_content_1": "<p>With lifetime professional support, you can be confident that you will always have the help you need to get the most out of your hearing aids. Our team of experts is here to help you every step of the way, from choosing the right hearing aids to ensuring that they are properly adjusted.<\/p>",
         "show_block_2": true,
         "block_title_2": "Free 6-Month Limited Warranty",
         "block_content_2": "<p>Your HearClear™ HCRA hearing aid comes with a 6-month limited warranty and your order will include a storage case, USB Charging Cable, and a care kit: an $85 value, absolutely free to you!<\/p>",
@@ -130,7 +130,7 @@
         "b77ebd88-3f93-4810-a506-a5d7158d8033"
       ],
       "custom_css": [
-        "ul li {list-style-type: '✔️'; padding-inline-start: 1rem; }"
+        "ul li {list-style-type: \"✔️\"; padding-inline-start: 1rem;}"
       ],
       "settings": {
         "width": "standard",
