@@ -27,28 +27,12 @@
       {% endif %}
 
       {% if pairVariant %}
-        {% assign button_label = 'Add ' | append: pairVariant.title | append: ' to Cart' %}
-        {% assign pair_type = section.settings.pair_type %}
-        {% if pair_type == 'individual' %}
-          {% assign data_right_variant = rightVariant.id %}
-          {% assign data_left_variant = leftVariant.id %}
-          {% assign button_attribute = 'data-right-variant="'
-            | append: data_right_variant
-            | append: '" data-left-variant="'
-            | append: data_left_variant
-            | append: '" name="add"'
-            | append: 'data-label="Add to cart"'
-          %}
-          {% assign button_class = 'button--add-to-cart action_button--secondary add-pair-button' %}
-        {% else %}
-          {% assign button_attribute = 'data-label="Add to cart" name="add"' %}
-          {% assign button_class = 'button--add-to-cart action_button--secondary' %}
-        {% endif %}
         {%
           include 'product-tile'
           variant: pairVariant
           copy_description: section.settings.copy_description
           copy_title: section.settings.copy_title_pair
+          pair_type: section.settings.pair_type
         %}
       {% endif %}
 
