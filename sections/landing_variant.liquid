@@ -116,7 +116,8 @@
 
 <style>
   .product-description {
-    font-size: calc(var(--text-basic)*{{ section.settings.product_description-size }});
+    {% assign description_float = section.settings.product_description-size | divided_by: 10.0 %}
+    font-size: calc(var(--text-basic) * {{ description_float }});
   }
 </style>
 
@@ -219,9 +220,9 @@
       "type": "range",
       "id": "product_description-size",
       "label": "Product Description Font Size",
-      "min": 1,
-      "max": 5,
-      "default": 1,
+      "min": 10,
+      "max": 50,
+      "default": 10,
       "step": 1
     }
   ],
