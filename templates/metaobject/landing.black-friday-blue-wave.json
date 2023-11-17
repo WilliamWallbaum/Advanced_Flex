@@ -2,28 +2,12 @@
   "sections": {
     "6840c59e-b200-4493-892b-113c242ff7ae": {
       "type": "landing_header",
-      "blocks": {
-        "4c21600a-a01a-4dbe-a84f-26c6362aa361": {
-          "type": "video-stored",
-          "settings": {
-            "video": "{{ metaobject.video.value }}",
-            "controls": false,
-            "autoplay": true,
-            "mute": true,
-            "download": false,
-            "loop": true
-          }
-        }
-      },
-      "block_order": [
-        "4c21600a-a01a-4dbe-a84f-26c6362aa361"
-      ],
       "settings": {
         "show_section": true,
         "background_image": "{{ metaobject.landing_header_background.value }}",
         "title": "{{ metaobject.title.value }}",
         "qualifier": "{{ metaobject.qualifier.value }}",
-        "description": "<p>{{ metaobject.description | metafield_tag }}<\/p>",
+        "description": "<p>{{ metaobject.description | metafield_tag }}<\/p><h1>Special Black Friday Pricing<\/h1><h2>with coupon final price is $249 per hearing aid. <\/h2>",
         "show_product": true,
         "product": "{{ metaobject.product.value }}",
         "price_box_title": "{{ metaobject.price_box_title.value }}",
@@ -149,9 +133,9 @@
       "type": "landing_buy_bar",
       "settings": {
         "show_buy_bar": true,
+        "background_color": "#054f8e",
         "gap_spacing": 2,
         "product": "{{ metaobject.product.value }}",
-        "background_color": "#054f8e",
         "copy_title_left": "Left Side Only",
         "copy_title_pair": "Get the Pair",
         "copy_title_Right": "Right Side Only",
