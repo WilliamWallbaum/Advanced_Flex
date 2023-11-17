@@ -57,7 +57,7 @@
         "product": "{{ metaobject.product.value }}",
         "pair_type": "pair",
         "show_product_description": true,
-        "product_description-size": 2
+        "product_description-size": 14
       }
     },
     "95f9b02e-b423-469f-964a-68268a71cf5a": {
