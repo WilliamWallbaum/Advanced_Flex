@@ -60,6 +60,37 @@
         "product_description-size": 14
       }
     },
+    "0f9957bd-9288-4af1-a92a-d55b49d689d2": {
+      "type": "multi_column_section",
+      "settings": {
+        "show_header": true,
+        "section_name": "",
+        "header_text": "",
+        "header_font_size": 10,
+        "gradient_color": "linear-gradient(180deg, rgba(5, 79, 142, 0.21), rgba(255, 255, 255, 1) 100%)",
+        "block_width": 100,
+        "width": "wide",
+        "img_width": 100,
+        "is_card": "",
+        "header_align": "start",
+        "block_align": "start",
+        "footer_align": "start",
+        "show_block_1": false,
+        "block_title_1": "defualt",
+        "block_content_1": "<p>defualt<\/p>",
+        "show_block_2": true,
+        "block_title_2": "defualt",
+        "block_content_2": "<p>defualt<\/p>",
+        "show_block_3": true,
+        "block_title_3": "defualt",
+        "block_content_3": "<p>defualt<\/p>",
+        "show_block_4": true,
+        "block_title_4": "defualt",
+        "block_content_4": "<p>defualt<\/p>",
+        "show_footer": true,
+        "footer_text": ""
+      }
+    },
     "95f9b02e-b423-469f-964a-68268a71cf5a": {
       "type": "index__image-with-text",
       "blocks": {
@@ -77,10 +108,26 @@
             "alignment": "left",
             "vertical_position": "center"
           }
+        },
+        "b77ebd88-3f93-4810-a506-a5d7158d8033": {
+          "type": "text",
+          "settings": {
+            "title": "",
+            "heading_size": "regular",
+            "text": "<ul><li>Frequency Shaper<\/li><li>Automatic Noise Reduction<\/li><li>Automatic Feedback Canceller<\/li><li>Low Battery Warning<\/li><li>Push Button Selects Between Programs For 4 Sound Environments<\/li><\/ul>",
+            "button_label": "",
+            "link": "",
+            "button_style": "button--primary",
+            "background": "rgba(0,0,0,0)",
+            "text_color": "rgba(0,0,0,0)",
+            "alignment": "left",
+            "vertical_position": "center"
+          }
         }
       },
       "block_order": [
-        "template--16468398932153__95f9b02e-b423-469f-964a-68268a71cf5a-text-1"
+        "template--16468398932153__95f9b02e-b423-469f-964a-68268a71cf5a-text-1",
+        "b77ebd88-3f93-4810-a506-a5d7158d8033"
       ],
       "settings": {
         "width": "standard",
@@ -183,6 +230,7 @@
     "6840c59e-b200-4493-892b-113c242ff7ae",
     "14be3e1d-ca6e-4493-80dd-26cf4569f861",
     "2a13ff91-b5cc-4147-85b9-331bafa84ffa",
+    "0f9957bd-9288-4af1-a92a-d55b49d689d2",
     "95f9b02e-b423-469f-964a-68268a71cf5a",
     "03557106-918d-440b-abc3-a35a725fb912",
     "d46fcd96-e0dc-4099-9153-3cbb9984982a",
