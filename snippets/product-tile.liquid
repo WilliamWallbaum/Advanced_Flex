@@ -22,7 +22,7 @@
   {% assign a_class = 'add-pair-button' %}
 {% endif %}
 
-<a href="/cart/add?id={{ variant.id }}" id="add-{{ vaiant.title }}" {{ a_attribute }} class="buy-product {{ a_class }}">
+<a href="/cart/add?id={{ variant.id }}" id="add-{{ vaiant.vaiant.title }}" {{ a_attribute }} class="buy-product {{ a_class }}">
   {% render 'image-element' with
     image: variant.featured_image.src
     alt: variant.featured_image.alt
