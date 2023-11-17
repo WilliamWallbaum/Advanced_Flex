@@ -129,6 +129,9 @@
         "template--16468398932153__95f9b02e-b423-469f-964a-68268a71cf5a-text-1",
         "b77ebd88-3f93-4810-a506-a5d7158d8033"
       ],
+      "custom_css": [
+        "ul li {list-style-type: '✔️'; padding-inline-start: 1rem; }"
+      ],
       "settings": {
         "width": "standard",
         "show_gutter": true,
