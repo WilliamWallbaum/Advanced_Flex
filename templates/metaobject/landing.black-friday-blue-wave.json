@@ -56,7 +56,8 @@
         "header_copy": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!<\/p>",
         "product": "{{ metaobject.product.value }}",
         "pair_type": "pair",
-        "show_product_description": true
+        "show_product_description": true,
+        "product_description-size": 2
       }
     },
     "95f9b02e-b423-469f-964a-68268a71cf5a": {
