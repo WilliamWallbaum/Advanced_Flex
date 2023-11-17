@@ -6,10 +6,27 @@
   copy_title: <string>
   copy_description: <string>
   variant: <object>
+  pair_type?: <string>
 {% endcomment %}
 
+{% if pair_type == 'individual' %}
+  {% assign data_right_variant = rightVariant.id %}
+  {% assign data_left_variant = leftVariant.id %}
+  {% assign a_attribute = 'data-right-variant="'
+    | append: data_right_variant
+    | append: '" data-left-variant="'
+    | append: data_left_variant
+    | append: '" name="add"'
+    | append: 'data-label="Add to cart"'
+  %}
+  {% assign a_class = 'button--add-to-cart action_button--secondary add-pair-button' %}
+{% else %}
+  {% assign a_attribute = 'data-label="Add to cart" name="add"' %}
+  {% assign a_class = 'button--add-to-cart action_button--secondary add-pair-button' %}
+{% endif %}
 
-<a href="/cart/add?id={{ variant.id }}" id="add-left" class="buy-product">
+
+<a href="/cart/add?id={{ variant.id }}" id="add-left" {{ a_attribute }} class="buy-product {{ a_class }}">
   {% render 'image-element' with
     image: variant.featured_image.src
     alt: variant.featured_image.alt
