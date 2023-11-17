@@ -20,6 +20,9 @@
     | append: 'data-label="Add to cart"'
   %}
   {% assign a_class = 'add-pair-button' %}
+{% else %}
+  {% assign a_attribute = 'data-label="Add to cart" name="add"' %}
+  {% assign a_class = '' %}
 {% endif %}
 
 <a href="/cart/add?id={{ variant.id }}" id="add-{{ vaiant.vaiant.title }}" {{ a_attribute }} class="buy-product {{ a_class }}">
