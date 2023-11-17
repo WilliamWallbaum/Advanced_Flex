@@ -27,6 +27,23 @@
       {% endif %}
 
       {% if pairVariant %}
+        {% assign button_label = 'Add ' | append: pairVariant.title | append: ' to Cart' %}
+        {% assign pair_type = section.settings.pair_type %}
+        {% if pair_type == 'individual' %}
+          {% assign data_right_variant = rightVariant.id %}
+          {% assign data_left_variant = leftVariant.id %}
+          {% assign button_attribute = 'data-right-variant="'
+            | append: data_right_variant
+            | append: '" data-left-variant="'
+            | append: data_left_variant
+            | append: '" name="add"'
+            | append: 'data-label="Add to cart"'
+          %}
+          {% assign button_class = 'button--add-to-cart action_button--secondary add-pair-button' %}
+        {% else %}
+          {% assign button_attribute = 'data-label="Add to cart" name="add"' %}
+          {% assign button_class = 'button--add-to-cart action_button--secondary' %}
+        {% endif %}
         {%
           include 'product-tile'
           variant: pairVariant
@@ -130,10 +147,20 @@
   "tag": "section",
   "settings": [
     {
+      "type": "header",
+      "content": "Section Options"
+    },
+    {
       "type": "checkbox",
       "id": "show_buy_bar",
       "label": "Show Buy Bar",
       "default": true
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#054f8e"
     },
     {
       "type": "range",
@@ -145,15 +172,30 @@
       "default": 2
     },
     {
+      "type": "header",
+      "content": "Product"
+    },
+    {
       "type": "product",
       "id": "product",
       "label": "Product"
     },
     {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#054f8e"
+      "type": "radio",
+      "id": "pair_type",
+      "label": "Pair Type",
+      "default": "individual",
+      "options": [
+        {
+          "value": "individual",
+          "label": "Individual"
+        },
+        {
+          "value": "pair",
+          "label": "Pair"
+        }
+      ],
+      "info": "When clicking the 'Add to Cart', the 'Individual' option adds both a Left and a Right hearing aids separately, while the 'Pair' option adds as a single item."
     },
     {
       "type": "text",
