@@ -135,7 +135,7 @@
         "padding_top": 20,
         "padding_bottom": 20,
         "animation": "none",
-        "css_class": "",
+        "css_class": "features-section",
         "custom_css": ""
       }
     },
