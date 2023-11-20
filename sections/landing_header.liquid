@@ -53,7 +53,10 @@
         </div>
       {% else %}
         <figure id="featured-image">
-          <img src="{{ section.settings.product_image | img_url: 'master' }}" alt="{{ product.title }}">
+        {% render 'image-element' with
+          image:  section.settings.product_image,
+          alt: product.title
+        %}
         </figure>
       {% endif %}
     </div>
