@@ -28,9 +28,9 @@
       {% assign product = section.settings.product %}
 
       {% if section.settings.pair_type == 'single' %}
-        {% assign product_variant = product.variants.first %}
+        {% assign product_variant = section.settings.product.variants.last %}
       {% else %}
-        {% assign product_variant = product %}
+        {% assign product_variant = section.settings.product %}
       {% endif %}
 
       <div id="product">
