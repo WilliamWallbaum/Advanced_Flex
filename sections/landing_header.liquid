@@ -42,7 +42,7 @@
               %}
             {% endif %}
           </figure>
-          {{ section.settings.custom_price | times: 1.00 }}
+
           {%
             render 'price_box' with
             product: product,
@@ -62,6 +62,7 @@
         </figure>
       {% endif %}
     </div>
+    {{ section.settings.custom_price | times: 1.00 }}
   </section>
 {% endif %}
 
