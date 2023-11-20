@@ -17,6 +17,12 @@
   {{ product.price | divided_by: 100 }} | {{ discount_amount }} | {{ discount_amount_number }} | {{ discounted_price }}
 {% endcomment %}
 
+{% if section.settings.pair_type == 'single' %}
+  {% assign discount_amount_number = discount_amount | remove: '$' | plus: 0.0 %}
+{% else %}
+  {% assign discount_amount_number = discount_amount | remove: '$' | plus: 0.0 | times: 2 %}
+{% endif %}
+
 {% assign discount_amount_number = discount_amount | remove: '$' | plus: 0.0 %}
 {% assign product_price = product.price | remove: '$' | divided_by: 100 %}
 {% assign discounted_price = product_price | minus: discount_amount_number | times: 100 | money %}
