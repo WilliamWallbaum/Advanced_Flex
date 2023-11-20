@@ -124,21 +124,21 @@
       "label": "Product"
     },
     {
-  "type": "select",
-  "id": "pair_type",
-  "label": "Pricing",
-  "options": [
-    {
-      "value": "pair",
-      "label": "Pair"
+      "type": "select",
+      "id": "pair_type",
+      "label": "Pricing",
+      "options": [
+        {
+          "value": "pair",
+          "label": "Pair"
+        },
+        {
+          "value": "single",
+          "label": "Single"
+        }
+      ],
+      "default": "single"
     },
-    {
-      "value": "single",
-      "label": "Single"
-    }
-  ],
-  "default": "single"
-},
     {
       "type": "image_picker",
       "id": "product_image",
@@ -171,7 +171,7 @@
       "info": "Enter a custom price, this will over ride discount amount."
     }
     ],
-"blocks": [
+  "blocks": [
   {
     "type": "image",
     "name": "Image",
@@ -422,7 +422,7 @@
     [id^="shopify-section-template-"] section {
       width: {{ settings.mobile_section_width }}%;
     }
-    #landing-mast {
+    .landing-mast {
       background-position: center top;
     }
     #mast-container {
@@ -459,7 +459,7 @@
     [id^="shopify-section-template-"] section {
       width: {{ settings.tablet_section_width }}%;
     }
-    #landing-mast {
+    .landing-mast {
       background-position: center bottom;
     }
     #mast-container {
@@ -477,7 +477,7 @@
 
   @media only screen and (min-width: 1024px) and (max-width: 1439px) {
     /* Large devices */
-    #landing-mast {
+    .landing-mast {
       background-position: right bottom;
     }
     #mast-container {
@@ -498,7 +498,7 @@
 
   @media only screen and (min-width: 1440px) {
     /* Extra large devices */
-    #landing-mast {
+    .landing-mast {
       background-position: right bottom;
     }
     #mast-container {
