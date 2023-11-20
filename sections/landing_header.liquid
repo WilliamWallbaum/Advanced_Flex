@@ -25,16 +25,25 @@
     </div>
 
     {% if section.settings.show_product %}
-      <div id="product">
-        {% capture product %}{{ section.settings.product }}{% endcapture %}
+      {% assign product = section.settings.product %}
+      {% if section.settings.pair_type == 'single' %}
+        {% assign product = section.settings.product.variants.first %}
+      {% else %}
         {% assign product = section.settings.product %}
+      {% endif %}
 
+      <div id="product">
         <figure id="product-image">
           {% if section.settings.product_image %}
             {%
               render 'image-element' with
               image: section.settings.product_image,
               alt: section.settings.product_image.alt
+            %}
+            {%
+              render 'image-element' with
+              image: product.product_image,
+              alt: product.product_image.alt
             %}
           {% else %}
             {%
