@@ -12,7 +12,7 @@
         "product": "{{ metaobject.product.value }}",
         "price_box_title": "{{ metaobject.price_box_title.value }}",
         "discount_amount": "{{ metaobject.discount | metafield_text }}",
-        "custom_amount": "360"
+        "custom_price": "1450"
       }
     },
     "14be3e1d-ca6e-4493-80dd-26cf4569f861": {
