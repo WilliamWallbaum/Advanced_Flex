@@ -5,67 +5,65 @@
 {% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
 
 {% if section.settings.show_section %}
-  <section id="landing-mast">
-    <div id="mast-container" class="{{ container_class }}">
-      <span id="empty"></span>
-      <div id="intro">
-        <div id="page-title">
-          <h1>{{ section.settings.title }}</h1>
-          {% if section.settings.qualifier %}
-            <p id="qualifier">{{ section.settings.qualifier }}</p>
-          {% endif %}
-        </div>
-
-        {% if section.settings.description != blank %}
-          <div id="intro-copy">
-            {{ section.settings.description }}
-          </div>
+  <div id="mast-container" class="{{ container_class }}">
+    <span id="empty"></span>
+    <div id="intro">
+      <div id="page-title">
+        <h1>{{ section.settings.title }}</h1>
+        {% if section.settings.qualifier %}
+          <p id="qualifier">{{ section.settings.qualifier }}</p>
         {% endif %}
-
-        {% render 'video' %}
       </div>
 
-      {% if section.settings.show_product %}
-        <div id="product">
-          {% capture product %}{{ section.settings.product }}{% endcapture %}
-          {% assign product = section.settings.product %}
-
-          <figure id="product-image">
-            {% if section.settings.product_image %}
-              {%
-                render 'image-element' with
-                image: section.settings.product_image,
-                alt: section.settings.product_image.alt
-              %}
-            {% else %}
-              {%
-                render 'image-element' with
-                image: product.featured_image,
-                alt: product.featured_image.alt
-              %}
-            {% endif %}
-          </figure>
-
-          {%
-            render 'price_box' with
-            product: product,
-            price_box_title: section.settings.price_box_title,
-            discount_amount: section.settings.discount_amount,
-            qualifier: section.settings.qualifier,
-            custom_price: section.settings.custom_price
-          %}
+      {% if section.settings.description != blank %}
+        <div id="intro-copy">
+          {{ section.settings.description }}
         </div>
-      {% else %}
-        <figure id="featured-image">
-          {%
-            render 'image-element' with
-            image:  section.settings.product_image,
-            alt: product.alt
-          %}
-        </figure>
       {% endif %}
+
+      {% render 'video' %}
     </div>
-  </section>
+
+    {% if section.settings.show_product %}
+      <div id="product">
+        {% capture product %}{{ section.settings.product }}{% endcapture %}
+        {% assign product = section.settings.product %}
+
+        <figure id="product-image">
+          {% if section.settings.product_image %}
+            {%
+              render 'image-element' with
+              image: section.settings.product_image,
+              alt: section.settings.product_image.alt
+            %}
+          {% else %}
+            {%
+              render 'image-element' with
+              image: product.featured_image,
+              alt: product.featured_image.alt
+            %}
+          {% endif %}
+        </figure>
+
+        {%
+          render 'price_box' with
+          product: product,
+          price_box_title: section.settings.price_box_title,
+          discount_amount: section.settings.discount_amount,
+          qualifier: section.settings.qualifier,
+          custom_price: section.settings.custom_price
+        %}
+      </div>
+    {% else %}
+      <figure id="featured-image">
+        {%
+          render 'image-element' with
+          image:  section.settings.product_image,
+          alt: product.alt
+        %}
+      </figure>
+    {% endif %}
+  </div>
 {% endif %}
 
 {% schema %}
