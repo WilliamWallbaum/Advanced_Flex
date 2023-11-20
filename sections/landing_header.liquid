@@ -47,10 +47,10 @@
           </div>
 
           {% include 'price_box' with
-            product: product
-            price_box_title: section.settings.price_box_title
-            discount_amount: section.settings.discount_amount
-          qualifier: section.settings.qualifier
+            product: product,
+            price_box_title: section.settings.price_box_title,
+            discount_amount: section.settings.discount_amount,
+            qualifier: section.settings.qualifier
           %}
         </div>
       {% else %}

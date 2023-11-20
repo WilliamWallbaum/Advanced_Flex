@@ -1,0 +1,32 @@
+{% comment %}
+  Required values
+  product: <object>
+  ______________
+  Optional values
+  price_box_title: <string>
+  discount_amount: <number>
+  qualifier: <string>
+{% endcomment %}
+
+{% assign price_box_title = price_box_title | default: "Limited" %}
+
+<div id="price-box">
+  {% if price_box_title %}
+    <p id="price-box-title">{{ price_box_title }}</p>
+  {% endif %}
+  
+  <span id="price-box-inner">
+    {% if custom_price %}
+      <h3 id="price-box-compare">{{ product.compare_at_price | money }}</h3>
+      <h2 id="price-box-price">{{ custom_price | money }}</h2>
+    {% else %}
+      <h3 id="price-box-compare">{{ product.compare_at_price | money }}</h3>
+      {% assign discountPrice = product.price | minus: discount_amount %}
+      <h2 id="price-box-price">{{ discountPrice | money }}</h2>
+    {% endif %}
+  </span>
+  
+  {% if qualifier %}
+    <p>{{ qualifier }}</p>
+  {% endif %}
+</div>
