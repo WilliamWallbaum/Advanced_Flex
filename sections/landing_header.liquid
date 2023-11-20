@@ -27,7 +27,7 @@
     {% if section.settings.show_product %}
       {% assign product = section.settings.product %}
       {% if section.settings.pair_type == 'single' %}
-        {% assign product = section.settings.product.variants.first %}
+        {% assign product = section.settings.product.variants.last %}
       {% else %}
         {% assign product = section.settings.product %}
       {% endif %}
