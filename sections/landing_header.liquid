@@ -29,19 +29,22 @@
 
           <figure id="product-image">
             {% if section.settings.product_image %}
-              {% render 'image-element' with
+              {%
+                render 'image-element' with
                 image: section.settings.product_image,
                 alt: section.settings.product_image.alt
-              %}            
+              %}
             {% else %}
-              {% render 'image-element' with
+              {%
+                render 'image-element' with
                 image: product.featured_image,
                 alt: product.featured_image.alt
               %}
             {% endif %}
           </figure>
 
-          {% render 'price_box' with
+          {%
+            render 'price_box' with
             product: product,
             price_box_title: section.settings.price_box_title,
             discount_amount: section.settings.discount_amount,
@@ -50,10 +53,11 @@
         </div>
       {% else %}
         <figure id="featured-image">
-        {% render 'image-element' with
-          image:  section.settings.product_image,
-          alt: product.title
-        %}
+          {%
+            render 'image-element' with
+            image:  section.settings.product_image,
+            alt: product.alt
+          %}
         </figure>
       {% endif %}
     </div>
