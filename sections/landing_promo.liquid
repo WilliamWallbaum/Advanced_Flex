@@ -1,5 +1,8 @@
+{% assign section_name = section.settings.section_name | replace: ' ', '-' | downcase | default: 'variant' %}
+{% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
+
 {% if section.settings.show_section %}
-  <div id="promo-section">
+  <div id="promo-section" class="{{ container_class }}">
     <div id="description">
       <h2 id="description-title">{{ section.settings['description-title'] }}</h2>
       <p id="description-copy">{{ section.settings['description-copy'] }}</p>
@@ -17,13 +20,13 @@
       {% endif %}
     </div>
   </div>
-  
+
   <style>
     #shopify-section-{{ section.id }} {
       display: flex;
       justify-content: center;
     }
-    
+
     @media only screen and (max-width: 767px) {
       #shopify-section-{{ section.id }} {
       }
@@ -41,7 +44,7 @@
         gap: calc({{ section.settings.gap_spacing }}rem * 3);
       }
     }
-    
+
     @media only screen and (min-width: 1024px) {
       #shopify-section-{{ section.id }} {
       }
