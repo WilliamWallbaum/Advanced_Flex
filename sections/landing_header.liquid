@@ -26,7 +26,6 @@
         <div id="product">
           {% capture product %}{{ section.settings.product }}{% endcapture %}
           {% assign product = section.settings.product %}
-          {% capture productData %} {{ product | json }} {% endcapture %}
           <figure id="product-image">
             {% if section.settings.product_image %}
               {% render 'image-element' with
@@ -54,6 +53,7 @@
         </figure>
       {% endif %}
     </div>
+{{ section.settings.discount_amount }}
   </section>
 {% endif %}
 
