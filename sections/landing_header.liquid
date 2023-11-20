@@ -34,7 +34,9 @@
         {% assign product = section.settings.product %}
         {% assign discount_total = section.settings.discount_amount | times: 2 %}
       {% endif %}
-      {{ discount_total }}
+
+      {{ discount_total }} | {% if section.settings.pair_type == 'pair' %} x2 {% endif %} | {{ discount_total }}
+
       <div id="product">
         <figure id="product-image">
           {% if section.settings.product_image %}
