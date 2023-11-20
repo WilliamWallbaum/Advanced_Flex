@@ -28,7 +28,7 @@
   {% endif %}
 
   <span id="price-box-inner">
-    {% if custom_price %}
+    {% if custom_price != blank %}
       <h3 id="price-box-compare">{{ product.compare_at_price | money }}</h3>
       <h2 id="price-box-price">{{ custom_price | money }}</h2>
     {% else %}
