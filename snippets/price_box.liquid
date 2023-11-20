@@ -14,6 +14,12 @@
 {% assign product_price = product.price | remove: "$" | divided_by: 100 %}
 {% assign discounted_price = product_price | minus: discount_amount_number %}
 
+
+{{ section.settings.discount_amount }} | 
+{{ product.price | divided_by: 100 }} | 
+{{ discount_amount_number }} | 
+{{ discountPrice }}
+
 <div id="price-box">
   {% if price_box_title %}
     <p id="price-box-title">{{ price_box_title }}</p>
