@@ -10,6 +10,7 @@
         "description": "<p>{{ metaobject.description | metafield_tag }}<\/p><h1>Special Black Friday Pricing<\/h1><h2>with coupon final price is $249 per hearing aid. <\/h2>",
         "show_product": true,
         "product": "{{ metaobject.product.value }}",
+        "pair_type": "pair",
         "price_box_title": "{{ metaobject.price_box_title.value }}",
         "discount_amount": "{{ metaobject.discount | metafield_text }}",
         "custom_price": ""
