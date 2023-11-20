@@ -39,7 +39,7 @@
 
       {% if leftVariant %}
         {% assign button_label = 'Add ' | append: leftVariant.title | append: ' to Cart' %}
-        {% include 'product-card',
+        {% render 'product-card',
           show_product_description: false,
           custom_product: leftVariant,
           button_label: button_label,
