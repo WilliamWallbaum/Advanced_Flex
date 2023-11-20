@@ -29,14 +29,10 @@
 
       {% if section.settings.pair_type == 'single' %}
         {% assign product = section.settings.product.variants.last %}
-        {% assign discount_total = section.settings.discount_amount %}
       {% else %}
         {% assign product = section.settings.product %}
-        {% assign discount_total = section.settings.discount_amount | times: 2 %}
       {% endif %}
-
-      {{ section.settings.discount_amount }} | {% if section.settings.pair_type == 'pair' %} x2 {% endif %} |
-      {{ discount_total }}
+      {% if section.settings.pair_type == 'pair' %} x2 {% endif %}
 
       <div id="product">
         <figure id="product-image">
@@ -61,7 +57,8 @@
           price_box_title: section.settings.price_box_title,
           discount_amount: discount_total,
           qualifier: section.settings.qualifier,
-          custom_price: section.settings.custom_price
+          custom_price: section.settings.custom_price,
+          pair_type: section.settings.pair_type
         %}
       </div>
     {% else %}
