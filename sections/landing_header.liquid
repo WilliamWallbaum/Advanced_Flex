@@ -26,6 +26,7 @@
         <div id="product">
           {% capture product %}{{ section.settings.product }}{% endcapture %}
           {% assign product = section.settings.product %}
+        {% assign discount_amount_number = section.settings.discount_amount | remove: "$" %}
           <figure id="product-image">
             {% if section.settings.product_image %}
               {% render 'image-element' with
@@ -43,7 +44,7 @@
           {% render 'price_box' with
             product: product,
             price_box_title: section.settings.price_box_title,
-            discount_amount: section.settings.discount_amount,
+            discount_amount: discount_amount_number,
             qualifier: section.settings.qualifier
           %}
         </div>
@@ -53,7 +54,7 @@
         </figure>
       {% endif %}
     </div>
-{{ section.settings.discount_amount | remove: "$"  }}
+{{ discount_amount_number }}
   </section>
 {% endif %}
 
