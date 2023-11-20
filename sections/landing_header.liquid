@@ -30,21 +30,15 @@
           <figure id="product-image">
             {% if section.settings.product_image %}
               <img src="{{ section.settings.product_image | img_url: 'master' }}" alt="{{ product.title }}">
+            {% include 'image-element' with
+              image: section.settings.product_image,
+              alt: section.settings.product_image.alt
+            %}
+            
             {% else %}
               <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}">
             {% endif %}
           </figure>
-
-          <div id="price-box">
-            <p id="price-box-title">{{ section.settings.price_box_title }}</p>
-
-            <span id="price-box-inner">
-              <h3 id="price-box-compare">{{ product.compare_at_price | money }}</h3>
-              {% assign discountPrice = product.price | minus: section.settings.discount_amount %}
-              <h2 id="price-box-price">{{ discountPrice | money }}</h2>
-            </span>
-            <p>{{ section.settings.qualifier }}</p>
-          </div>
 
           {% include 'price_box' with
             product: product,
