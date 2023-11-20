@@ -19,7 +19,7 @@
           </div>
         {% endif %}
 
-        {% include 'video' %}
+        {% render 'video' %}
       </div>
 
       {% if section.settings.show_product %}
@@ -141,7 +141,13 @@
       "label": "Discount Amount",
       "id": "discount_amount",
       "default": "50",
-      "info": "Enter the discount amount with out decimal. example: 40.00 = 4000"
+      "info": "Enter the discount amount."
+    },
+    {
+      "type": "text",
+      "label": "Custom Amount",
+      "id": "custom_amount",
+      "info": "Enter a custom price, this will over ride discount amount."
     }
     ],
 "blocks": [
