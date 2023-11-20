@@ -28,7 +28,7 @@
       {% assign product = section.settings.product %}
 
       {% if section.settings.pair_type == 'single' %}
-        {% assign product_variant = product.variants.last %}
+        {% assign product_variant = product.variants.first %}
       {% else %}
         {% assign product_variant = product %}
       {% endif %}
@@ -70,7 +70,8 @@
       </figure>
     {% endif %}
   </div>
-  {{ product_variant.price }}
+  {{ product_variant | json }}
+  {{ product | json }}
 {% endif %}
 
 {% schema %}
