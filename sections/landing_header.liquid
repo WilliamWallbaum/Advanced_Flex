@@ -26,10 +26,6 @@
         <div id="product">
           {% capture product %}{{ section.settings.product }}{% endcapture %}
           {% assign product = section.settings.product %}
-        
-          {% assign discount_amount_number = section.settings.discount_amount | remove: "$" | plus: 0.0  %}
-          {% assign product_price = product.price | remove: "$" | divided_by: 100  %}
-          {% assign discountPrice = product_price | minus: discount_amount_number %}
 
           <figure id="product-image">
             {% if section.settings.product_image %}
@@ -48,7 +44,7 @@
           {% render 'price_box' with
             product: product,
             price_box_title: section.settings.price_box_title,
-            discount_amount: discount_amount_number,
+            discount_amount: section.settings.discount_amount,
             qualifier: section.settings.qualifier
           %}
         </div>
