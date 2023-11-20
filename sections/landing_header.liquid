@@ -1,9 +1,12 @@
 {% assign bg_image = section.settings.background_image | img_url: 'master' %}
 <script src="{{ 'addPair.js' | asset_url }}" defer></script>
 
+{% assign section_name = section.settings.section_name | replace: ' ', '-' | downcase | default: 'variant' %}
+{% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
+
 {% if section.settings.show_section %}
   <section id="landing-mast">
-    <div id="mast-container">
+    <div id="mast-container" class="{{ container_class }}">
       <span id="empty"></span>
       <div id="intro">
         <div id="page-title">
@@ -62,7 +65,6 @@
         </figure>
       {% endif %}
     </div>
-    {{ section.settings.custom_price }}
   </section>
 {% endif %}
 
@@ -70,6 +72,7 @@
 {
   "name": "Landing Page Mast",
   "tag": "section",
+  "class": "landing-mast",
   "limit": 1,
   "max_blocks": 1,
   "settings": [
@@ -321,7 +324,7 @@
       font-size: calc(var(--text-basic) * 1.5);
       font-weight: 800;
     }
-  #landing-mast {
+  .landing-mast {
       width: 100%;
       background-image: url('{{ bg_image }}');
       background-repeat: no-repeat;
