@@ -12,7 +12,7 @@
         
 {% assign discount_amount_number = discount_amount | remove: "$" | plus: 0.0  %}
 {% assign product_price = product.price | remove: "$" | divided_by: 100 %}
-{% assign discounted_price = product_price | minus: discount_amount_number %}
+{% assign discounted_price = product_price | minus: discount_amount_number | times: 100 | money  %}
 
 <div id="price-box">
   {% if price_box_title %}
@@ -25,7 +25,7 @@
       <h2 id="price-box-price">{{ custom_price | money }}</h2>
     {% else %}
       <h3 id="price-box-compare">{{ product.compare_at_price | money }}</h3>
-      <h2 id="price-box-price">{{ discounted_price | money }}</h2>
+      <h2 id="price-box-price">{{ discounted_price }}</h2>
     {% endif %}
   </span>
   
