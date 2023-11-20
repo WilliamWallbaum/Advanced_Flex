@@ -28,7 +28,8 @@
           {% assign product = section.settings.product %}
         
           {% assign discount_amount_number = section.settings.discount_amount | remove: "$" | plus: 0.0  %}
-          {% assign discountPrice = product.price | minus: discount_amount_number %}
+          {% assign product_price = product.price | remove: "$" | plus: 0.0  %}
+          {% assign discountPrice = product_price | minus: discount_amount_number %}
 
           <figure id="product-image">
             {% if section.settings.product_image %}
