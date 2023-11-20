@@ -2,6 +2,17 @@
   "sections": {
     "6840c59e-b200-4493-892b-113c242ff7ae": {
       "type": "landing_header",
+      "blocks": {
+        "30ba5e92-bd0c-415c-9b97-aada5e46d740": {
+          "type": "image",
+          "settings": {
+            "header_image": "shopify:\/\/shop_images\/Advanced-Affordable-Hearing-Artboard_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "30ba5e92-bd0c-415c-9b97-aada5e46d740"
+      ],
       "settings": {
         "show_section": true,
         "background_image": "{{ metaobject.landing_header_background.value }}",
