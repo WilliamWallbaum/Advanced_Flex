@@ -48,7 +48,8 @@
             product: product,
             price_box_title: section.settings.price_box_title,
             discount_amount: section.settings.discount_amount,
-            qualifier: section.settings.qualifier
+            qualifier: section.settings.qualifier,
+            custom_price: section.settings.custom_price
           %}
         </div>
       {% else %}
@@ -146,7 +147,7 @@
     {
       "type": "text",
       "label": "Custom Amount",
-      "id": "custom_amount",
+      "id": "custom_price",
       "info": "Enter a custom price, this will over ride discount amount."
     }
     ],
