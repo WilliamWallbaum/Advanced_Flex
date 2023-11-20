@@ -9,6 +9,7 @@
 {% endcomment %}
 
 {% assign price_box_title = price_box_title | default: "Limited" %}
+{% assign discount_amount_number = discount_amount | remove: "$" %}
 
 <div id="price-box">
   {% if price_box_title %}
@@ -21,7 +22,7 @@
       <h2 id="price-box-price">{{ custom_price | money }}</h2>
     {% else %}
       <h3 id="price-box-compare">{{ product.compare_at_price | money }}</h3>
-      {% assign discountPrice = product.price | minus: discount_amount | times: 1.00 %}
+      {% assign discountPrice = product.price | minus: discount_amount_number %}
       <h2 id="price-box-price">{{ discountPrice | money }}</h2>
     {% endif %}
   </span>
