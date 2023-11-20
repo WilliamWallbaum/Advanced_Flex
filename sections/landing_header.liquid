@@ -22,7 +22,7 @@
       {% endif %}
 
       {% render 'video' %}
-      {% render 'image-element' with image: section.settings.header_image %}
+      {% render 'header_image' with image: section.settings.header_image %}
     </div>
 
     {% if section.settings.show_product %}
@@ -179,7 +179,7 @@
   "blocks": [
   {
     "type": "image",
-    "name": "Image",
+    "name": "header_image",
     "limit": 1,
     "settings": [
       {
