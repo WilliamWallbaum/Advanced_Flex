@@ -26,7 +26,10 @@
         <div id="product">
           {% capture product %}{{ section.settings.product }}{% endcapture %}
           {% assign product = section.settings.product %}
-        {% assign discount_amount_number = section.settings.discount_amount | remove: "$" | times: 1.0 %}
+        
+          {% assign discount_amount_number = section.settings.discount_amount | remove: "$" | times: 1.0 %}
+          {% assign discountPrice = product.price | minus: discount_amount_number %}
+
           <figure id="product-image">
             {% if section.settings.product_image %}
               {% render 'image-element' with
@@ -54,7 +57,6 @@
         </figure>
       {% endif %}
     </div>
-      {% assign discountPrice = product.price | minus: discount_amount_number %}
 {{ discountPrice }}
   </section>
 {% endif %}
