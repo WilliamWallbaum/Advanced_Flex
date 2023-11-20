@@ -10,8 +10,8 @@
 
 {% assign price_box_title = price_box_title | default: "Limited" %}
         
-{% assign discount_amount_number = section.settings.discount_amount | remove: "$" | plus: 0.0  %}
-{% assign product_price = product.price | remove: "$" %}
+{% assign discount_amount_number = discount_amount | remove: "$" | plus: 0.0  %}
+{% assign product_price = product.price | remove: "$" | divided_by: 100 %}
 {% assign discounted_price = product_price | minus: discount_amount_number %}
 
 <div id="price-box">
