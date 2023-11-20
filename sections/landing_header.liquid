@@ -28,10 +28,11 @@
       {% assign product = section.settings.product %}
       {% if section.settings.pair_type == 'single' %}
         {% assign product = section.settings.product.variants.last %}
+        {% assign discount_total = section.settings.discount_amount %}
       {% else %}
         {% assign product = section.settings.product %}
+        {% assign discount_total = section.settings.discount_amount | times: 2 %}
       {% endif %}
-      {{ product }}
       <div id="product">
         <figure id="product-image">
           {% if section.settings.product_image %}
@@ -53,7 +54,7 @@
           render 'price_box' with
           product: product,
           price_box_title: section.settings.price_box_title,
-          discount_amount: section.settings.discount_amount,
+          discount_amount: discount_total,
           qualifier: section.settings.qualifier,
           custom_price: section.settings.custom_price
         %}
