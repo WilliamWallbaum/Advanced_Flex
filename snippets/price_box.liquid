@@ -4,12 +4,12 @@
   ______________
   Optional values
   price_box_title: <string>
-  discount_amount: <number>
+  discount_amount: <string>
   qualifier: <string>
 {% endcomment %}
 
 {% assign price_box_title = price_box_title | default: "Limited" %}
-        
+ {% comment %} takes "discount_amount" converts from a <string> dollar value to float <number>. Then converts "product.price" to the same type so math can be preformed. Finally taking the total and converts it to a money <string> again {% endcomment %}
 {% assign discount_amount_number = discount_amount | remove: "$" | plus: 0.0  %}
 {% assign product_price = product.price | remove: "$" | divided_by: 100 %}
 {% assign discounted_price = product_price | minus: discount_amount_number | times: 100 | money  %}
