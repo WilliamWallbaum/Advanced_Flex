@@ -29,13 +29,15 @@
           {% capture productData %} {{ product | json }} {% endcapture %}
           <figure id="product-image">
             {% if section.settings.product_image %}
-            {% render 'image-element' with
-              image: section.settings.product_image,
-              alt: section.settings.product_image.alt
-            %}
-            
+              {% render 'image-element' with
+                image: section.settings.product_image,
+                alt: section.settings.product_image.alt
+              %}            
             {% else %}
-              <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}">
+              {% render 'image-element' with
+                image: product.featured_image,
+                alt: product.featured_image.alt
+              %}
             {% endif %}
           </figure>
 
