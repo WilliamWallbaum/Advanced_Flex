@@ -13,6 +13,7 @@
 
 {% comment %}
   Takes "discount_amount" and converts it from a <string> dollar value to a float <number>.
+  If "pair_type" is set to 'pair', doubles the discount_amount_number.
   Then converts "product.price" to the same type so math can be performed.
   Finally, takes the total and converts it to money <string> again.
   {{ product.price | divided_by: 100 }} | {{ discount_amount }} | {{ discount_amount_number }} | {{ discounted_price }}
