@@ -2,7 +2,6 @@
 {% assign section_name = section.settings.section_name | replace: ' ', '-' | downcase | default: 'variant' %}
 {% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
 {% assign product = section.settings.product %}
-{% assign header_class = section_name | append: '-header' %}
 
 {% if section.settings.show_variants %}
   <div id="variant-section" class="{{ container_class }}">
