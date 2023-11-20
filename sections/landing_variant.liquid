@@ -10,7 +10,7 @@
 
     {% if section.settings.show_section_header %}
       {%
-        render 'product_header' with
+        include 'product_header' with
         show_product_title: section.settings.show_product_title,
         show_reviews: section.settings.show_reviews,
         show_header_text: section.settings.show_header_text,
@@ -39,7 +39,7 @@
 
       {% if leftVariant %}
         {% assign button_label = 'Add ' | append: leftVariant.title | append: ' to Cart' %}
-        {% render 'product-card',
+        {% include 'product-card',
           show_product_description: false,
           custom_product: leftVariant,
           button_label: button_label,
@@ -70,7 +70,7 @@
           {% assign button_class = 'button--add-to-cart action_button--secondary' %}
         {% endif %}
 
-        {% render 'product-card',
+        {% include 'product-card',
           show_product_description: false,
           custom_product: pairVariant,
           button_label: button_label,
@@ -84,7 +84,7 @@
 
       {% if rightVariant %}
         {% assign button_label = 'Add ' | append: rightVariant.title | append: ' to Cart' %}
-        {% render 'product-card',
+        {% include 'product-card',
           show_product_description: false,
           custom_product: rightVariant,
           button_label: button_label,
@@ -105,7 +105,7 @@
       {% endif %}
 
       {% if section.settings.show_trust_badges %}
-        {% render 'trust-badges' %}
+        {% include 'trust-badges' %}
       {% endif %}
     </footer>
   </div>
