@@ -6,22 +6,22 @@
 
 {% if section.settings.show_variants %}
   <div id="variant-section" class="{{ container_class }}">
-  <span id="{{ section_name }}-anchor"></span>
-  
-  {% if section.settings.show_section_header %}
-    {%
-      include 'product_header' with
-      show_product_title: section.settings.show_product_title,
-      show_reviews: section.settings.show_reviews,
-      show_header_text: section.settings.show_header_text,
-      header_title: section.settings.header_title,
-      header_copy: section.settings.header_copy,
-      section_name: section_name,
-      class: header_class
-    %}
-  {% endif %}
+    <span id="{{ section_name }}-anchor"></span>
 
-  <div id="{{ section_name }}-container" class="card-container">
+    {% if section.settings.show_section_header %}
+      {%
+        render 'product_header' with
+        show_product_title: section.settings.show_product_title,
+        show_reviews: section.settings.show_reviews,
+        show_header_text: section.settings.show_header_text,
+        header_title: section.settings.header_title,
+        header_copy: section.settings.header_copy,
+        section_name: section_name,
+        class: header_class
+      %}
+    {% endif %}
+
+    <div id="{{ section_name }}-container" class="card-container">
       {% assign leftVariant = null %}
       {% assign pairVariant = null %}
       {% assign rightVariant = null %}
@@ -39,12 +39,11 @@
 
       {% if leftVariant %}
         {% assign button_label = 'Add ' | append: leftVariant.title | append: ' to Cart' %}
-        {%
-          include 'product-card'
+        {% include 'product-card',
           show_product_description: false,
           custom_product: leftVariant,
           button_label: button_label,
-          button_class: "button--add-to-cart action_button--secondary",
+          button_class: 'button--add-to-cart action_button--secondary',
           button_style: section.settings.button_style,
           button_type: 'submit',
           button_attribute: 'data-label="Add to cart" name="add"',
@@ -70,9 +69,8 @@
           {% assign button_attribute = 'data-label="Add to cart" name="add"' %}
           {% assign button_class = 'button--add-to-cart action_button--secondary' %}
         {% endif %}
-      
-        {%
-          include 'product-card'
+
+        {% render 'product-card',
           show_product_description: false,
           custom_product: pairVariant,
           button_label: button_label,
@@ -86,12 +84,11 @@
 
       {% if rightVariant %}
         {% assign button_label = 'Add ' | append: rightVariant.title | append: ' to Cart' %}
-        {%
-          include 'product-card'
+        {% render 'product-card',
           show_product_description: false,
           custom_product: rightVariant,
           button_label: button_label,
-          button_class: "button--add-to-cart action_button--secondary",
+          button_class: 'button--add-to-cart action_button--secondary',
           button_style: section.settings.button_style,
           button_type: 'submit',
           button_attribute: 'data-label="Add to cart" name="add"',
@@ -99,16 +96,16 @@
         %}
       {% endif %}
     </div>
-    
+
     <footer class="is-width-{{ section.settings.width }} {{ section_name }}-footer">
       {% if section.settings.show_product_description %}
         <div class="product-description">
           {{ product.content }}
         </div>
       {% endif %}
-  
+
       {% if section.settings.show_trust_badges %}
-        {% include 'trust-badges' %}
+        {% render 'trust-badges' %}
       {% endif %}
     </footer>
   </div>
@@ -237,7 +234,7 @@
     {% assign description_float = section.settings.product_description-size | divided_by: 10.0 %}
     font-size: calc(var(--text-basic) * {{ description_float }});
   }
-    
+
     @media only screen and (max-width: 767px) {
       #variant {
         width: 90%;
@@ -251,7 +248,7 @@
         gap: calc({{ section.settings.gap_spacing }}rem * 3);
       }
     }
-    
+
     @media only screen and (min-width: 1024px) {
       #variant {
         width: 80%;
