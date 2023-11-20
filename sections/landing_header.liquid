@@ -31,7 +31,7 @@
       {% else %}
         {% assign product = section.settings.product %}
       {% endif %}
-
+      {{ product }}
       <div id="product">
         <figure id="product-image">
           {% if section.settings.product_image %}
@@ -39,11 +39,6 @@
               render 'image-element' with
               image: section.settings.product_image,
               alt: section.settings.product_image.alt
-            %}
-            {%
-              render 'image-element' with
-              image: product.product_image,
-              alt: product.product_image.alt
             %}
           {% else %}
             {%
