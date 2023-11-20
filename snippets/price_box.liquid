@@ -30,7 +30,7 @@
   <span id="price-box-inner">
     {% if custom_price != blank %}
       <h3 id="price-box-compare">{{ product.compare_at_price | money }}</h3>
-      <h2 id="price-box-price">{{ custom_price | plus: 0.0 | money }}</h2>
+      <h2 id="price-box-price">{{ custom_price | times: 100 | money }}</h2>
     {% else %}
       <h3 id="price-box-compare">{{ product.compare_at_price | money }}</h3>
       <h2 id="price-box-price">{{ discounted_price }}</h2>
