@@ -40,5 +40,6 @@
   {% if qualifier %}
     <p>{{ qualifier }}</p>
   {% endif %}
-  {{ product.price | divided_by: 100 }} | {{ discount_amount }} | {{ discount_amount_number }} | {{ discounted_price }}
+
+  {% if pair_type == 'pair' %} x2 {% endif %}
 </div>
