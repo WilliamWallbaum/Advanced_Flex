@@ -18,7 +18,7 @@
         "background_image": "{{ metaobject.landing_header_background.value }}",
         "title": "{{ metaobject.title.value }}",
         "qualifier": "{{ metaobject.qualifier.value }}",
-        "description": "<p>{{ metaobject.description | metafield_tag }}<\/p><h1>Special Black Friday Pricing<\/h1><h2>with coupon final price is $249 per hearing aid. <\/h2>",
+        "description": "<p>{{ metaobject.description | metafield_tag }}<\/p>",
         "show_product": true,
         "product": "{{ metaobject.product.value }}",
         "pair_type": "single",
