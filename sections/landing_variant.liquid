@@ -104,7 +104,7 @@
       {% endif %}
 
       {% if section.settings.show_trust_badges %}
-        {% include 'trust-badges' %}
+        {% render 'trust-badges' %}
       {% endif %}
     </footer>
   </div>
@@ -127,10 +127,6 @@
       "label": "Width",
       "default": "wide",
       "options": [
-        {
-          "value": "half",
-          "label": "Half"
-        },
         {
           "value": "standard",
           "label": "Standard"
