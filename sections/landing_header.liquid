@@ -1,6 +1,6 @@
-{% assign bg_image = section.settings.background_image %}
+{% assign bg_image = section.settings.background_image | img_url: 'master' %}
 <script src="{{ 'addPair.js' | asset_url }}" defer></script>
-{{ bg_image | json }}
+
 {% assign section_name = section.settings.section_name | replace: ' ', '-' | downcase | default: 'variant' %}
 {% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
 
