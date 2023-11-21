@@ -33,14 +33,17 @@
     {% if section.settings.show_product %}
       {% assign product = section.settings.product %}
       {% for variant in product.variants %}
-        {{ variant | json }}
-        {{ variant.price }}
+        {% if variant.title contains 'single' %}
+          {% assign single_variant = variant %}
+        {% elsif variant.title contains 'pair' %}
+          {% assign pair_variant = variant %}
+        {% endif %}
       {% endfor %}
 
       {% if section.settings.pair_type == 'single' %}
-        {% assign product_variant = section.settings.product.variants.last %}
+        {% assign product_variant = single_variant %}
       {% else %}
-        {% assign product_variant = section.settings.product %}
+        {% assign product_variant = pair_variant %}
       {% endif %}
 
       <div id="product">
