@@ -7,9 +7,9 @@
 
 <div class="sticker-holder sticker-shape-square sticker-position-right">
   <div class="sticker-holder__content sticker-holder__content--product">
-    {{ product.tags | json }}
     {% for tag in product.tags %}
       {% assign tag = tag | downcase %} }}
+      {{ tag }}
       {% if tag == 'sale' %}
         <div class="sale-sticker thumbnail-sticker">
           <span class="sticker-text">Sale</span>
