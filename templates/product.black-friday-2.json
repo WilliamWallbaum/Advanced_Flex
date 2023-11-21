@@ -44,6 +44,30 @@
         "button_attribute": "name=\"shop-sale\""
       }
     },
+    "b267bb57-b473-4483-b186-7b175f3ea203": {
+      "type": "index__heading",
+      "settings": {
+        "preheading": "<p>Black Friday & Cyber Monday Sale<\/p>",
+        "title": "Save $260 on a pair of HCRA hearing aids",
+        "subheading": "<p>when you use coupon code 23WB<\/p>",
+        "preheading_color": "#252525",
+        "heading_color": "#252525",
+        "subheading_color": "#252525",
+        "background": "#f5b21a",
+        "gradient": "#f3ea21",
+        "gradient_rotation": 0,
+        "heading_alignment": "center",
+        "vertical_spacing": "medium",
+        "width": "wide",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_left": 0,
+        "padding_right": 0,
+        "animation": "none",
+        "css_class": "",
+        "custom_css": ""
+      }
+    },
     "cc40786d-3db4-48c1-81ec-fc853bc2478f": {
       "type": "multi_column_section",
       "settings": {
@@ -91,6 +115,7 @@
         "header_copy": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!<\/p>",
         "show_trust_badges": false,
         "pair_type": "pair",
+        "show_badges": false,
         "show_product_description": false
       }
     },
@@ -153,6 +178,7 @@
   "order": [
     "91fc1096-5959-4b9e-b400-cf10ded3ba75",
     "c123dd3d-b7bf-472f-ba40-88056193ceaf",
+    "b267bb57-b473-4483-b186-7b175f3ea203",
     "cc40786d-3db4-48c1-81ec-fc853bc2478f",
     "32332f0a-3dd1-44c5-ba4b-8f72c7cf099f",
     "product-tabs",
