@@ -1,2 +1,4 @@
 <p>{{ product | json }}</p>
-<p>{{ product.variants | json }}</p>
+{% for variant in product.variants %}
+  <p>{{ variant | json }}</p>
+{% endfor %}
