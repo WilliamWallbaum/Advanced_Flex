@@ -25,6 +25,7 @@
       {% if section.blocks.header_image %}
         {% render 'image-element' with image: section.blocks.header_image %}
       {% endif %}
+  {{ section.blocks.header_image | json }}
     </div>
 
     {% if section.settings.show_product %}
