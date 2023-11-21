@@ -9,6 +9,10 @@
         <div class="blackfriday-sticker thumbnail-sticker">
           <span class="sticker-text">Black Friday</span>
         </div>
+      {% else %}
+        <div class="debug-sticker thumbnail-sticker">
+          <span class="sticker-text">Debug: {{ tag }}</span>
+        </div>
       {% endif %}
     {% endfor %}
   </div>
