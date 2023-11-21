@@ -1,4 +1,4 @@
-{% assign bg_image = section.settings.background_image | img_url: 'master' %}
+{% assign bg_image = section.settings.background_image %}
 <script src="{{ 'addPair.js' | asset_url }}" defer></script>
 
 {% assign section_name = section.settings.section_name | replace: ' ', '-' | downcase | default: 'variant' %}
