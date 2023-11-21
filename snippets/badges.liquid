@@ -1,20 +1,15 @@
-<div class="sticker-holder sticker-shape-square sticker-position-right ">
+<div class="sticker-holder sticker-shape-square sticker-position-right">
   <div class="sticker-holder__content sticker-holder__content--product">
     {% for tag in product.tags %}
-      {% if sale %}
+      {% if tag == 'sale' %}
         <div class="sale-sticker thumbnail-sticker">
           <span class="sticker-text">Sale</span>
         </div>
-      {% endif %}
-
-      {% if blackfriday %}
-        <div class="sale-sticker thumbnail-sticker">
+      {% elsif tag == 'blackfriday' %}
+        <div class="blackfriday-sticker thumbnail-sticker">
           <span class="sticker-text">Black Friday</span>
         </div>
       {% endif %}
-      <div class="sale-sticker thumbnail-sticker">
-        <span class="sticker-text">Black Friday</span>
-      </div>
     {% endfor %}
   </div>
 </div>
