@@ -45,9 +45,9 @@
 
   {% if qualifier %}
     {% if pair_type == 'single' %}
-      <p>for a single {{ product }} hearing aid</p>
+      <p>for a single {{ product.title }} hearing aid</p>
     {% elsif pair_type == 'pair' %}
-      <p>for a pair of {{ product }} hearing aids</p>
+      <p>for a pair of {{ product.title }} hearing aids</p>
     {% else %}
       <p>{{ qualifier }}</p>
     {% endif %}
