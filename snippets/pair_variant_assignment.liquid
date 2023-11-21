@@ -1,4 +1,5 @@
 <p>{{ product | json }}</p>
 {% for variant in product.variants %}
-  <h5>Title:{{ variant.title | downcase }}</h5>
+  {% assign variant_title = variant.title | downcase %}
+  <h5>{{ variant_title }}</h5>
 {% endfor %}
