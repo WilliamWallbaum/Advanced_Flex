@@ -114,7 +114,7 @@
         "header_title": "Flexible Purchase Options",
         "header_copy": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!<\/p>",
         "show_trust_badges": false,
-        "pair_type": "pair",
+        "pair_type": "individual",
         "show_badges": false,
         "show_product_description": false
       }
