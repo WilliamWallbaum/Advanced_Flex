@@ -32,7 +32,7 @@
 
     {% if section.settings.show_product %}
       {% assign product = section.settings.product %}
-      {% render 'pair_variant_assignment' with section.settings.product %}
+      {% render 'pair_variant_assignment' with product: product %}
 
       <div id="product">
         <figure id="product-image">
