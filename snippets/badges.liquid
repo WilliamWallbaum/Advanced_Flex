@@ -2,8 +2,14 @@
   <div class="sticker-holder__content sticker-holder__content--product">
     {% for tag in product.tags %}
       {% if sale %}
-        <div class="sale-sticker thumbnail-sticker sticker-">
+        <div class="sale-sticker thumbnail-sticker">
           <span class="sticker-text">Sale</span>
+        </div>
+      {% endif %}
+
+      {% if blackfriday %}
+        <div class="sale-sticker thumbnail-sticker">
+          <span class="sticker-text">Black Friday</span>
         </div>
       {% endif %}
     {% endfor %}
