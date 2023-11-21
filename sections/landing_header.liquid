@@ -26,6 +26,7 @@
         {% assign headerImage = section.blocks[0].settings.header_image | img_url: 'master' %}
         {% if headerImage %}
           {% render 'image-element' with image:  headerImage.url %}
+          {{ headerImage.url }}
         {% endif %}
       {% endif %}
     </div>
