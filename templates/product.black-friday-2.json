@@ -1,0 +1,163 @@
+{
+  "sections": {
+    "91fc1096-5959-4b9e-b400-cf10ded3ba75": {
+      "type": "breadcrumb-section",
+      "settings": {
+        "show_breadcrumbs": true,
+        "breadcrumb_separator": "slash"
+      }
+    },
+    "c123dd3d-b7bf-472f-ba40-88056193ceaf": {
+      "type": "product_start_section",
+      "settings": {
+        "width": "standard",
+        "show_section_header": true,
+        "show_product_title": true,
+        "show_reviews": true,
+        "show_header_text": false,
+        "header_title": "",
+        "header_copy": "<p><\/p><p><\/p>",
+        "display_thumbnails": true,
+        "gallery_arrows": true,
+        "enable_zoom": true,
+        "enable_product_lightbox": true,
+        "enable_thumbnail_slider": true,
+        "show_feature_list": true,
+        "feature_list": "<ul><li>FDA-registered hearing aids<\/li><li>Background noise reduction and feedback cancellation<\/li><li>All-day comfort with HearClear™ domes<\/li><li>Simple controls for easy sound adjustments<\/li><li>6-month warranty<\/li><li>30-day risk-free trial<\/li><li>100% money-back guarantee<\/li><\/ul>",
+        "price_pretext": "New Low Price:",
+        "show_savings": true,
+        "savings_pretext": "You Save:",
+        "display_social_buttons": true,
+        "show_trust_badges": true,
+        "product_images_position": "left",
+        "set_product_height": false,
+        "product_height": 500,
+        "video_looping": false,
+        "animation": "none",
+        "show_button": true,
+        "button_label": "Shop the Sale",
+        "button_link": "#variant-anchor",
+        "button_type": "button",
+        "button_size": "is-large",
+        "button_style": "button--primary",
+        "button_class": "shop-sale",
+        "button_attribute": "name=\"shop-sale\""
+      }
+    },
+    "cc40786d-3db4-48c1-81ec-fc853bc2478f": {
+      "type": "multi_column_section",
+      "settings": {
+        "show_header": true,
+        "section_name": "Peace of Mind",
+        "header_text": "<p>Your new {{ product.title }} comes ready to use.<\/p>",
+        "header_font_size": 30,
+        "gradient_color": "linear-gradient(180deg, rgba(5, 79, 142, 0.1), rgba(255, 255, 255, 1) 100%)",
+        "block_width": 35,
+        "width": "standard",
+        "img_width": 20,
+        "is_card": "",
+        "header_align": "center",
+        "block_align": "center",
+        "footer_align": "center",
+        "show_block_1": true,
+        "block_image_1": "shopify:\/\/shop_images\/support.svg",
+        "block_title_1": "{{ product.title }} with Lifetime Professional Support",
+        "block_content_1": "<p>With lifetime professional support, you can be confident that you will always have the help you need to get the most out of your hearing aids. Our team of experts is here to help you every step of the way, from choosing the right hearing aids to ensuring that they are properly adjusted.<\/p>",
+        "show_block_2": true,
+        "block_image_2": "shopify:\/\/shop_images\/ship.svg",
+        "block_title_2": "Try {{ product.title }} Risk-Free for 30 Days",
+        "block_content_2": "<p>Get started with your 30 day risk-free trial of hearing aids today. If you're not satisfied, return them for a full refund. We're so confident you'll love our hearing aids, we offer a 100% satisfaction guarantee.<\/p>",
+        "show_block_3": false,
+        "block_title_3": "defualt",
+        "block_content_3": "<p>defualt<\/p>",
+        "show_block_4": false,
+        "block_title_4": "defualt",
+        "block_content_4": "<p>defualt<\/p>",
+        "show_footer": true,
+        "footer_text": ""
+      }
+    },
+    "32332f0a-3dd1-44c5-ba4b-8f72c7cf099f": {
+      "type": "product_variant_display",
+      "settings": {
+        "show_variants": true,
+        "width": "standard",
+        "show_section_header": true,
+        "show_product_title": false,
+        "header_font_size": 30,
+        "show_reviews": false,
+        "show_header_text": true,
+        "header_title": "Flexible Purchase Options",
+        "header_copy": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!<\/p>",
+        "show_trust_badges": false,
+        "pair_type": "pair",
+        "show_product_description": false
+      }
+    },
+    "product-tabs": {
+      "type": "product_description_tabs",
+      "settings": {
+        "show_product_description_tabs": true,
+        "width": "standard",
+        "tab_1": "Description",
+        "tab_2": "Warranty",
+        "tab_3": "Compare",
+        "tab_4": "Size Comparison & Technical Information",
+        "tab_5": "What's in the Box"
+      }
+    },
+    "Yotpo": {
+      "type": "Yotpo",
+      "settings": {
+      }
+    },
+    "product_recommendation": {
+      "type": "product_recommendation",
+      "settings": {
+        "show_section": true,
+        "section_title": "{{ product.title }} Accessories",
+        "header_font_size": 30,
+        "header_copy": "<p>These are the recommended tubes and domes that accompany your {{ product.title }}.<\/p><p>If you have questions or need help picking our Customer Care Team is just a phone call away <a href=\"tel:18003181395\" title=\"Customer Care Team\">1 (800) 318-1395<\/a><\/p>",
+        "width": "standard",
+        "show_similar_products": true,
+        "product_type": "complementary",
+        "button_label": "",
+        "button_class": "btn",
+        "button_style": "btn--small",
+        "card_width": 260,
+        "show-product-image": true,
+        "show_title": true,
+        "show_price": true,
+        "show_description": false,
+        "product_limit": 3
+      }
+    },
+    "460dc558-0812-42ab-832f-77e2df7cd174": {
+      "type": "product_diagram",
+      "settings": {
+        "width": "standard",
+        "gradient_color": "linear-gradient(0deg, rgba(5, 79, 142, 0.1), rgba(255, 255, 255, 1) 100%)",
+        "show_header": true,
+        "section_name": "So Simple to Use",
+        "header_text": "<p>Enjoy all-day comfort with our intuitive controls that allow you to easily adjust your {{ product.title }} to suit your needs.<\/p>",
+        "header_font_size": 30,
+        "divider_1": false,
+        "list_font_size": 16,
+        "diagram_width": 55,
+        "show_footer": true,
+        "divider_2": true,
+        "footer_text": ""
+      }
+    }
+  },
+  "order": [
+    "91fc1096-5959-4b9e-b400-cf10ded3ba75",
+    "c123dd3d-b7bf-472f-ba40-88056193ceaf",
+    "cc40786d-3db4-48c1-81ec-fc853bc2478f",
+    "32332f0a-3dd1-44c5-ba4b-8f72c7cf099f",
+    "product-tabs",
+    "Yotpo",
+    "product_recommendation",
+    "460dc558-0812-42ab-832f-77e2df7cd174"
+  ]
+}
