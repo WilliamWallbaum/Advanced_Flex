@@ -21,7 +21,7 @@
         "description": "<p>{{ metaobject.description | metafield_tag }}<\/p>",
         "show_product": true,
         "product": "{{ metaobject.product.value }}",
-        "pair_type": "single",
+        "pair_type": "pair",
         "price_box_title": "{{ metaobject.price_box_title.value }}",
         "discount_amount": "{{ metaobject.discount | metafield_text }}",
         "custom_price": ""
