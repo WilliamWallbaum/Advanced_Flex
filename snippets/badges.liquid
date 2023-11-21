@@ -7,7 +7,7 @@
 
 <div class="sticker-holder sticker-shape-square sticker-position-right">
   <div class="sticker-holder__content sticker-holder__content--product">
-    tag
+    {{ product.tags }}
     {% for tag in product.tags %}
       {% if tag == 'sale' %}
         <div class="sale-sticker thumbnail-sticker">
