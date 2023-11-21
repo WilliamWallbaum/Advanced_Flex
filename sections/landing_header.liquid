@@ -33,6 +33,7 @@
     {% if section.settings.show_product %}
       {% for variant in product.variants %}
         {{ variant | json }}
+        {{ variant.price }}
       {% endfor %}
       {% assign product = section.settings.product %}
 
