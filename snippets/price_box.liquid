@@ -43,8 +43,14 @@
     {% endif %}
   </span>
 
-  {% if qualifier %}
-    <p>{{ qualifier }}</p>
+  {% if qualifier == blank %}
+    {% if pair_type == 'single' %}
+      <p>for a single {{ product }} hearing aid</p>
+    {% elsif pair_type == 'pair' %}
+      <p>for a pair of {{ product }} hearing aids</p>
+    {% else %}
+      <p>{{ qualifier }}</p>
+    {% endif %}
   {% endif %}
 
   {% if pair_type == 'pair' %} x2 {% endif %}
