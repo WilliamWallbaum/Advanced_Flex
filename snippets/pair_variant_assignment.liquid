@@ -8,21 +8,19 @@
   {% endif %}
 {% endfor %}
 
-<figure id="product-image">
-  {% if section.settings.product_image %}
-    {%
-      render 'image-element' with
-      image: product_variant.product_image,
-      alt: product_variant.product_image.alt
-    %}
-  {% else %}
-    {%
-      render 'image-element' with
-      image: product_variant.featured_image,
-      alt: product_variant.featured_image.alt
-    %}
-  {% endif %}
-</figure>
+{% if section.settings.product_image %}
+  {%
+    render 'image-element' with
+    image: product_variant.product_image,
+    alt: product_variant.product_image.alt
+  %}
+{% else %}
+  {%
+    render 'image-element' with
+    image: product_variant.featured_image,
+    alt: product_variant.featured_image.alt
+  %}
+{% endif %}
 
 {%
   render 'price_box' with
@@ -33,3 +31,13 @@
   custom_price: section.settings.custom_price,
   pair_type: section.settings.pair_type
 %}
+{% style %}
+
+  #product {
+      grid-area: product;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  #product-image { width: 100%; }
+{% endstyle %}
