@@ -26,7 +26,6 @@
         {% assign headerImage = section.blocks[0].settings.header_image %}
         {% if headerImage %}
           {% render 'image-element' with image: headerImage %}
-          {{ headerImage | json }}
         {% endif %}
       {% endif %}
     </div>
