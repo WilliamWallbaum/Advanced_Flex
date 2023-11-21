@@ -32,34 +32,9 @@
 
     {% if section.settings.show_product %}
       {% assign product = section.settings.product %}
-      {% render 'pair_variant_assignment' with product: product pair_type: section.settings.pair_type %}
 
       <div id="product">
-        <figure id="product-image">
-          {% if section.settings.product_image %}
-            {%
-              render 'image-element' with
-              image: product_variant.product_image,
-              alt: product_variant.product_image.alt
-            %}
-          {% else %}
-            {%
-              render 'image-element' with
-              image: product_variant.featured_image,
-              alt: product_variant.featured_image.alt
-            %}
-          {% endif %}
-        </figure>
-
-        {%
-          render 'price_box' with
-          product: product_variant,
-          price_box_title: section.settings.price_box_title,
-          discount_amount: section.settings.discount_amount,
-          qualifier: section.settings.qualifier,
-          custom_price: section.settings.custom_price,
-          pair_type: section.settings.pair_type
-        %}
+        {% render 'pair_variant_assignment' with product: product pair_type: section.settings.pair_type %}
       </div>
     {% else %}
       <figure id="featured-image">
