@@ -40,12 +40,19 @@
       {% assign pair_variant = null %}
 
       {% for variant in product.variants %}
+        <p>Variant Title: {{ variant.title }}</p>
+        {# Add this line for debugging #}
         {% if variant.title contains 'single' %}
           {% assign single_variant = variant %}
         {% elsif variant.title contains 'pair' %}
           {% assign pair_variant = variant %}
         {% endif %}
       {% endfor %}
+
+      <p>Single Variant: {{ single_variant | json }}</p>
+      {# Add this line for debugging #}
+      <p>Pair Variant: {{ pair_variant | json }}</p>
+      {# Add this line for debugging #}
 
       {% if section.settings.pair_type == 'single' and single_variant != null %}
         {% assign product_variant = single_variant %}
