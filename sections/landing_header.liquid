@@ -22,7 +22,9 @@
       {% endif %}
 
       {% render 'video' %}
-      {% render 'header_image' with image: section.settings.header_image %}
+      {% if section.blocks.header_image %}
+        {% render 'image-element' with image: section.settings.header_image %}
+      {% endif %}
     </div>
 
     {% if section.settings.show_product %}
