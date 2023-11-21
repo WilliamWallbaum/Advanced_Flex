@@ -65,7 +65,7 @@
         "padding_right": 0,
         "animation": "none",
         "css_class": "",
-        "custom_css": ""
+        "custom_css": "h2.heading-section__heading.title, .heading-section__subheading.subtitle, .heading-section__preheading.subtitle {\n    font-size: x-large;\n}"
       }
     },
     "cc40786d-3db4-48c1-81ec-fc853bc2478f": {
