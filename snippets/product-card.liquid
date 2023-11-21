@@ -25,8 +25,9 @@
     {% assign use_product = custom_product | default: product %}
     {% assign use_image = custom_image | default: use_product.featured_image %}
 
-    {% render 'badges' with product %}
-
+    {% if badges == true %}
+      {% render 'badges' with product %}
+    {% endif %}
     {%
       include 'image-element' with
       image: use_image,
