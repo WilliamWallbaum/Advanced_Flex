@@ -1,0 +1,30 @@
+{{ product | json }}
+{{ section.settings.pair_type | json }}
+
+{% assign product_variant = null %}
+{% assign single_variant = null %}
+{% assign pair_variant = null %}
+
+{% for variant in product.variants %}
+  {% assign variant_title_lowercase = variant.title | downcase %}
+  <p>Variant Title: {{ variant.title }}</p>
+  {# Add this line for debugging #}
+  {% if variant_title_lowercase contains 'single' %}
+    {% assign single_variant = variant %}
+  {% elsif variant_title_lowercase contains 'pair' %}
+    {% assign pair_variant = variant %}
+  {% endif %}
+{% endfor %}
+
+<p>Single Variant: {{ single_variant | json }}</p>
+{# Add this line for debugging #}
+<p>Pair Variant: {{ pair_variant | json }}</p>
+{# Add this line for debugging #}
+
+{% if section.settings.pair_type == 'single' and single_variant != null %}
+  {% assign product_variant = single_variant %}
+{% elsif pair_variant != null %}
+  {% assign product_variant = pair_variant %}
+{% endif %}
+
+{{ product_variant | json }}
