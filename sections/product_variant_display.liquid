@@ -110,6 +110,7 @@
     {% endif %}
   </footer>
 {% endif %}
+{{ show_badges }}
 
 {% schema %}
 {
@@ -227,6 +228,12 @@
         }
       ],
       "info": "When clicking the 'Add to Cart', the 'Individual' option adds both a Left and a Right hearing aids separately, while the 'Pair' option adds as a single item."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badges",
+      "label": "Show Badges",
+      "default": false
     },
     {
       "type": "header",
