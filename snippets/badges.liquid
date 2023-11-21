@@ -1,15 +1,16 @@
 <div class="sticker-holder sticker-shape-square sticker-position-right">
   <div class="sticker-holder__content sticker-holder__content--product">
-    {% for tag in product.tags %}
-      {% if tag == 'sale' %}
+    {% case product.tags %}
+      {% when 'sale' %}
         <div class="sale-sticker thumbnail-sticker">
           <span class="sticker-text">Sale</span>
         </div>
-      {% elsif tag == 'blackfriday' %}
+      {% when 'blackfriday' %}
         <div class="blackfriday-sticker thumbnail-sticker">
           <span class="sticker-text">Black Friday</span>
         </div>
-      {% endif %}
-    {% endfor %}
+      {% else %}
+        {# Add additional cases as needed #}
+    {% endcase %}
   </div>
 </div>
