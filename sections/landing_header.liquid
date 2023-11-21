@@ -31,11 +31,11 @@
     </div>
 
     {% if section.settings.show_product %}
+      {% assign product = section.settings.product %}
       {% for variant in product.variants %}
         {{ variant | json }}
         {{ variant.price }}
       {% endfor %}
-      {% assign product = section.settings.product %}
 
       {% if section.settings.pair_type == 'single' %}
         {% assign product_variant = section.settings.product.variants.last %}
