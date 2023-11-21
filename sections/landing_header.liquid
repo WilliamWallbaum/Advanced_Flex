@@ -22,16 +22,12 @@
       {% endif %}
 
       {% render 'video' %}
-  {% if section.blocks.size > 0 %}
-  {% assign headerImage = section.blocks[0].settings.header_image | img_url: 'master' %}
-  {% if headerImage %}
-    <img src="{{ headerImage }}" alt="Header Image">
-  {% endif %}
-{% endif %}
-      {% if section.blocks.header_image %}
-        {% render 'image-element' with image: section.blocks.header_image %}
+      {% if section.blocks.size > 0 %}
+        {% assign headerImage = section.blocks[0].settings.header_image | img_url: 'master' %}
+        {% if headerImage %}
+          {% render 'image-element' with image:  headerImage %}
+        {% endif %}
       {% endif %}
-  {{ section.blocks.header_image | json }}
     </div>
 
     {% if section.settings.show_product %}
