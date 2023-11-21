@@ -8,12 +8,6 @@
 {% for variant in product.variants %}
   {% assign variant_title_lowercase = variant.title | downcase %}
   <p>Variant Title: {{ variant.title }}</p>
-  {# Add this line for debugging #}
-  {% if variant_title_lowercase contains 'single' %}
-    {% assign single_variant = variant %}
-  {% elsif variant_title_lowercase contains 'pair' %}
-    {% assign pair_variant = variant %}
-  {% endif %}
 {% endfor %}
 
 <p>Single Variant: {{ single_variant | json }}</p>
