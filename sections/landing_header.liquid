@@ -32,7 +32,15 @@
 
     {% if section.settings.show_product %}
       {% assign product = section.settings.product %}
-      {% render 'pair_variant_assignment' with product: product pair_type: section.settings.pair_type %}
+      {% for variant in product.variants %}
+        {% assign variant_title = variant.title | downcase %}
+        {% if variant_title contains 'single' and pair_type == 'single' %}
+          {% assign product_variant = variant %}
+          {% break %}
+        {% elsif variant_title contains 'pair' and pair_type == 'pair' %}
+          {% assign product_variant = variant %}
+        {% endif %}
+      {% endfor %}
 
       <div id="product">
         <figure id="product-image">
