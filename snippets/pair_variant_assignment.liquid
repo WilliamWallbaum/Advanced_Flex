@@ -1,10 +1,9 @@
 <p>{{ product | json }}</p>
 {% for variant in product.variants %}
   {% assign variant_title = variant.title | downcase %}
-  <h5>{{ variant_title }}</h5>
   {% if variant_title contains 'single'and pair_type = 'single' %}
-    {% assign single_variant = variant %}
+    <h5>{{ variant_title }}</h5>
   {% elsif variant_title contains 'pair'and pair_type = 'single' %}
-    {% assign pair_variant = variant %}
+    <h5>{{ variant_title }}</h5>
   {% endif %}
 {% endfor %}
