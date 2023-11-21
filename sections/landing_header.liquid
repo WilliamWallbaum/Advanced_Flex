@@ -45,7 +45,7 @@
       {% else %}
         {% assign product_variant = pair_variant %}
       {% endif %}
-      {{ product_variant | json }}
+
       <div id="product">
         <figure id="product-image">
           {% if section.settings.product_image %}
@@ -84,6 +84,7 @@
     {% endif %}
   </div>
 {% endif %}
+{{ product_variant | json }}
 
 {% schema %}
 {
