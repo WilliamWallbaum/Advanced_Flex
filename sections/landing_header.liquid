@@ -31,6 +31,9 @@
     </div>
 
     {% if section.settings.show_product %}
+      {% for variant in product.variants %}
+        {{ variant | json }}
+      {% endfor %}
       {% assign product = section.settings.product %}
 
       {% if section.settings.pair_type == 'single' %}
