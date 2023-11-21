@@ -53,6 +53,7 @@
         "header_copy": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!<\/p>",
         "product": "{{ metaobject.product.value }}",
         "pair_type": "individual",
+        "show_badges": true,
         "show_product_description": true,
         "product_description-size": 14
       }
