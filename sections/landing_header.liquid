@@ -41,9 +41,9 @@
           {% assign product_variant = variant %}
         {% endif %}
       {% endfor %}
-      {{ product_variant.title }}
 
       <div id="product">
+        <h2>Title: {{ product_variant.title }}</h2>
         <figure id="product-image">
           {% if section.settings.product_image %}
             {%
