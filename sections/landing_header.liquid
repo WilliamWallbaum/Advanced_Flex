@@ -40,12 +40,12 @@
       {% assign pair_variant = null %}
 
       {% for variant in product.variants %}
-        {% assign variant = variant | downcase %}
+        {% assign variant_title_lowercase = variant.title | downcase %}
         <p>Variant Title: {{ variant.title }}</p>
         {# Add this line for debugging #}
-        {% if variant.title contains 'single' %}
+        {% if variant_title_lowercase contains 'single' %}
           {% assign single_variant = variant %}
-        {% elsif variant.title contains 'pair' %}
+        {% elsif variant_title_lowercase contains 'pair' %}
           {% assign pair_variant = variant %}
         {% endif %}
       {% endfor %}
