@@ -25,7 +25,7 @@
       {% if section.blocks.size > 0 %}
         {% assign headerImage = section.blocks[0].settings.header_image | img_url: 'master' %}
         {% if headerImage %}
-          {% render 'image-element' with image:  headerImage.url %}
+          {% render 'image-element' with image: headerImage %}
           {{ headerImage | json }}
         {% endif %}
       {% endif %}
