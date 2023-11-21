@@ -51,8 +51,8 @@
           {% if section.settings.product_image %}
             {%
               render 'image-element' with
-              image: section.settings.product_image,
-              alt: section.settings.product_image.alt
+              image: product_variant.product_image,
+              alt: product_variant.product_image.alt
             %}
           {% else %}
             {%
