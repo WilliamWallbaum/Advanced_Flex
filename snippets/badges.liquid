@@ -1,16 +1,14 @@
-<div class="sticker-holder sticker-shape-square sticker-position-right">
-  <div class="sticker-holder__content sticker-holder__content--product">
-    {% case product.tags %}
-      {% when 'sale' %}
-        <div class="sale-sticker thumbnail-sticker">
-          <span class="sticker-text">Sale</span>
-        </div>
-      {% when 'blackfriday' %}
-        <div class="blackfriday-sticker thumbnail-sticker">
-          <span class="sticker-text">Black Friday</span>
-        </div>
-      {% else %}
-        {# Add additional cases as needed #}
-    {% endcase %}
-  </div>
+<div class="badge-container">
+  {% case product.tags %}
+    {% when 'sale' %}
+      <div class="sale-sticker thumbnail-sticker">
+        <span class="sticker-text">Sale</span>
+      </div>
+    {% when 'blackfriday' %}
+      <div class="blackfriday-sticker thumbnail-sticker">
+        <span class="sticker-text">Black Friday</span>
+      </div>
+    {% else %}
+      {# Add additional cases as needed #}
+  {% endcase %}
 </div>
