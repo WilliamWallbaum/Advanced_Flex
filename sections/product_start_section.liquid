@@ -14,6 +14,7 @@
 {% comment %} Layout {% endcomment %}
 {% assign width = section.width %}
 
+{% comment %} Review Location Logic {% endcomment %}
 {% if section.settings.show_reviews and section.settings.review_location == 'header' %}
   {% assign header_reviews = true %}
   {% assign description_reviews = false %}
@@ -24,7 +25,6 @@
   {% assign header_reviews = false %}
   {% assign description_reviews = false %}
 {% endif %}
-header_reviews: {{ header_reviews }} | description_reviews: {{ description_reviews }}
 
 {% liquid
   assign selected_variant = product.selected_variant
