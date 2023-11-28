@@ -13,6 +13,18 @@
 {% comment %} Layout {% endcomment %}
 {% assign width = section.width %}
 
+{% if section.settings.show_reviews and section.settings.review_location == 'header' %}
+  {% assign header_reviews = true %}
+  {% assign description_reviews = false %}
+{% elsif section.settings.show_reviews and section.settings.review_location == 'description' %}
+  {% assign header_reviews = false %}
+  {% assign description_reviews = true %}
+{% else %}
+  {% assign header_reviews = false %}
+  {% assign description_reviews = false %}
+{% endif %}
+
+
 {% liquid
   assign selected_variant = product.selected_variant
 
@@ -26,7 +38,7 @@
     {%
       include 'product_header' with
       show_product_title: show_product_title,
-      show_reviews: section.settings.show_reviews,
+      show_reviews: header_reviews,
       show_header_text: show_header_text,
       header_title: header_title,
       header_copy: header_copy,
@@ -98,6 +110,13 @@
       {% if section.settings.show_feature_list %}
         <div class="feature-list">
           {{ section.settings.feature_list | richtext }}
+        </div>
+      {% endif %}
+
+      {% comment %} Description Reviews {% endcomment %}
+      {% if description_reviews %}
+        <div id="review-container">
+          {% render 'yotpo-stars' with product %}
         </div>
       {% endif %}
 
@@ -218,7 +237,6 @@
   }
 {% endjavascript %}
 
-<style></style>
 {% style %}
   /* Grid Styles for Product Start Container */
   #product-start-container {
