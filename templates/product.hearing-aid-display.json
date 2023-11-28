@@ -14,6 +14,7 @@
         "show_section_header": true,
         "show_product_title": true,
         "show_reviews": true,
+        "review_location": "description",
         "show_header_text": false,
         "header_title": "",
         "header_copy": "<p><\/p><p><\/p>",
@@ -91,6 +92,7 @@
         "header_copy": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!<\/p>",
         "show_trust_badges": false,
         "pair_type": "pair",
+        "show_badges": false,
         "show_product_description": false
       }
     },
