@@ -116,7 +116,7 @@
 
       {% comment %} Description Reviews {% endcomment %}
       {% if description_reviews %}
-        <div id="review-container" style="justify-self: flex-start;">
+        <div class="review-container" style="justify-self: flex-start;">
           {% render 'yotpo-stars' with product %}
         </div>
       {% endif %}
@@ -321,6 +321,11 @@
     font-size: calc(var(--text-basic) * 1.25);
   }
 
+  /* Description Review Container */
+  .review-container {
+    justify-self: flex-start;
+  }
+
   /* Trust Badges Container */
   #trust-badges-container {
     display: flex;
@@ -362,9 +367,6 @@
       flex-direction: column;
       gap: var(--global-p1);
       margin: 0;
-    }
-    #review-container {
-      justify-self: flex-start;
     }
     #price-box {
       display: flex;
