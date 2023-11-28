@@ -92,7 +92,7 @@
         {% comment %} Price {% endcomment %}
         <div id="price-box">
           <h2 class="price">
-            {% if section.settings.price_pretext %}{{ section.settings.price_pretext }}{% endif -%}
+            {% if section.settings.price_pretext %}{{ section.settings.price_pretext }}{% endif %}
             &nbsp;{{ product.price | money_with_currency }}
           </h2>
         </div>
