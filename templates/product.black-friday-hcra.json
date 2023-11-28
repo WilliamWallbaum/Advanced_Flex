@@ -14,6 +14,7 @@
         "show_section_header": true,
         "show_product_title": true,
         "show_reviews": true,
+        "review_location": "description",
         "show_header_text": false,
         "header_title": "",
         "header_copy": "<p><\/p><p><\/p>",
