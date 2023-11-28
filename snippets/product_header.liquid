@@ -21,6 +21,7 @@
   {% if section.settings.show_reviews %}
     {% comment %} Yotpo Reviews {% endcomment %}
     <div class="yotpo bottomLine" data-product-id="{{ product.id }}"></div>
+  {% render 'yotpo-stars' %}
   {% endif %}
 
   {% if section.settings.show_header_text %}
