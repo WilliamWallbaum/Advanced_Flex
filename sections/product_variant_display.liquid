@@ -85,7 +85,7 @@
     {% if rightVariant %}
       {% assign button_label = 'Add ' | append: rightVariant.title | append: ' to Cart' %}
       {%
-        include 'product-card'
+        render 'product-card'
         show_product_description: false,,
         custom_product: rightVariant,
         button_label: button_label,
