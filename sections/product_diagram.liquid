@@ -38,7 +38,7 @@
       <!-- start column 2 -->
       {% if product.metafields.proddesc.digram_image %}
         <div id="diagram-image" class="image">
-          {% include 'image-element',
+          {% render 'image-element',
             image: product.metafields.proddesc.digram_image,
             alt: product.metafields.proddesc.digram_image.alt,
             figure_classes: diagram-figure,
@@ -55,7 +55,9 @@
       {% if section.divider_2 %}
         <hr>
       {% endif %}
-      <footer id="{{ section_name }}-footer" class="is-width-{{ section.width }} diagram-footer">{{ section.footer_text }}</footer>
+      <footer id="{{ section_name }}-footer" class="is-width-{{ section.width }} diagram-footer">
+        {{ section.footer_text }}
+      </footer>
     {% endif %}
     <!-- end section footer -->
   </div>
@@ -64,6 +66,7 @@
 <style>
   #{{ section_name }} {
     background: {{ section.gradient_color }};
+    width: 100%;
   }
   .diagram-header h2 {
     font-size: calc(var(--text-basic)*({{ section.header_font_size }} / 10));
