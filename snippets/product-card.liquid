@@ -54,7 +54,7 @@
       <footer class="product-card-footer">
         <form action="/cart/add" method="post" id="product-form-{{ use_product.id }}" class="card-footer">
           <input type="hidden" name="id" value="{{ use_product.id }}">
-          {% include 'button',
+          {% render 'button',
             label: button_label,
             class: button_class,
             style: button_style,
