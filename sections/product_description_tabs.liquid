@@ -62,7 +62,9 @@
           choice.
         </p>
         <p>Warranty Included: 6 Month Limited Warranty and 30 Day Money Back Guarantee – Risk-Free!</p>
-        {% include 'image-element', image: images.['puppy_warranty.jpg'], loading: 'lazy', alt: images.['puppy_warranty.jpg'].alt %}
+        {% if section.settings.warranty_image %}
+          {% render 'image-element', image: images.['puppy_warranty.jpg'], loading: 'lazy', alt: images.['puppy_warranty.jpg'].alt %}
+        {% endif %}
       </div>
     </div>
 
