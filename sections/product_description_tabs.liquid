@@ -63,7 +63,7 @@
         </p>
         <p>Warranty Included: 6 Month Limited Warranty and 30 Day Money Back Guarantee – Risk-Free!</p>
         {% if section.settings.warranty_image %}
-          {% render 'image-element', image: images.['puppy_warranty.jpg'], loading: 'lazy', alt: images.['puppy_warranty.jpg'].alt %}
+          {% render 'image-element', image: section.settings.warranty_image %}
         {% endif %}
       </div>
     </div>
@@ -85,7 +85,7 @@
               {% assign ha = technical_information.hearing_aid %}
               <div class="similar-product">
                 <a href="{{ product.url }}">
-                  {% include 'image-element', image: product.featured_image.src, alt: product.title, loading: 'lazy' %}
+                  {% render 'image-element', image: product.featured_image.src, alt: product.title, loading: 'lazy' %}
                   <div class="title-box">
                     <h4>{{ product.title }}</h4>
                     <h5>{{ product.price | money }}</h5>
@@ -163,7 +163,7 @@
 
         <div class="img-tbl">
           {% if size_comparison %}
-            {% include 'image-element',
+            {% render 'image-element',
               image: size_comparison,
               alt: size_comparison.alt,
               loading: 'lazy',
@@ -218,7 +218,7 @@
 
         <div class="img-tbl">
           {% if box_image %}
-            {% include 'image-element', image: box_image, alt: box_image.alt, loading: 'lazy', figure_classes: 'full' %}
+            {% render 'image-element', image: box_image, alt: box_image.alt, loading: 'lazy', figure_classes: 'full' %}
           {% endif %}
 
           {% if product_accessories %}
@@ -392,6 +392,12 @@
       "id": "tab_2",
       "label": "Tab 2 Label",
       "default": "Warranty"
+    },
+    {
+
+  "type": "image_picker",
+  "id": "warranty_image",
+  "label": "Warranty Image"
     },
     {
       "type": "text",
