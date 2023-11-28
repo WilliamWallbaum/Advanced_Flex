@@ -31,7 +31,7 @@
     {% endif %}
 
     {%
-      include 'image-element' with
+      render 'image-element' with
       image: use_image,
       alt: use_image.alt,
       loading: 'lazy',
@@ -67,7 +67,7 @@
       </footer>
     {% else %}
       <footer class="product-card-footer">
-        {% include 'button',
+        {% render 'button',
           label: button_label,
           class: button_class,
           style: button_style,
