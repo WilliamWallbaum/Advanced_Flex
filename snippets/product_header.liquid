@@ -14,7 +14,7 @@
 {% endcomment %}
 
 <header class="{{ class }} {{ section_name | default: 'product' }}-header">
-  {% if section.settings.show_product_title %}
+  {% if show_product_title %}
     <h1>The {{ product.title }}</h1>
   {% endif %}
 
@@ -23,7 +23,7 @@
     {% render 'yotpo-stars' with product %}
   {% endif %}
 
-  {% if section.settings.show_header_text %}
+  {% if show_header_text %}
     {% if section.settings.header_title %}
       <h2>{{ header_title }}</h2>
     {% endif %}
