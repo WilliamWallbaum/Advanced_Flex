@@ -18,7 +18,7 @@
     <h1>The {{ product.title }}</h1>
   {% endif %}
 
-  {% if section.settings.show_reviews %}
+  {% if show_reviews %}
     {% comment %} Yotpo Reviews {% endcomment %}
     {% render 'yotpo-stars' with product %}
   {% endif %}
