@@ -116,14 +116,14 @@
 
       {% comment %} Description Reviews {% endcomment %}
       {% if description_reviews %}
-        <div id="review-container">
+        <div id="review-container" style="justify-self: flex-start;">
           {% render 'yotpo-stars' with product %}
         </div>
       {% endif %}
 
       {% comment %} Trust Badges {% endcomment %}
       {% if section.settings.show_trust_badges %}
-        <div id="trust-badges-container" style="justify-self: flex-start;">
+        <div id="trust-badges-container">
           {% render 'trust-badges' %}
         </div>
       {% endif %}
