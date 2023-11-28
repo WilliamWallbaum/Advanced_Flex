@@ -7,7 +7,8 @@
 {% assign show_header_text = section.settings.show_header_text %}
 {% assign header_title = section.settings.header_title %}
 {% assign header_copy = section.settings.header_copy %}
-{% assign section_name = header_titl | replace: ' ', '-' | downcase | default: 'product-start' %}
+{% assign section_name = header_title | replace: ' ', '-' | downcase | default: 'product-start' %}
+
 {% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
 
 {% comment %} Layout {% endcomment %}
@@ -91,7 +92,7 @@
         {% comment %} Price {% endcomment %}
         <div id="price-box">
           <h2 class="price">
-            {% if section.settings.price_pretext %}{{ section.settings.price_pretext | richtext }}{% endif -%}
+            {% if section.settings.price_pretext %}{{ section.settings.price_pretext }}{% endif -%}
             &nbsp;{{ product.price | money_with_currency }}
           </h2>
         </div>
@@ -99,7 +100,7 @@
         {% if section.settings.show_savings %}
           {% if product.compare_at_price > product.price %}
             <h3 class="savings">
-              {{ section.settings.savings_pretext | richtext }}&nbsp;
+              {{ section.settings.savings_pretext }}&nbsp;
               {{ product.compare_at_price | minus: product.price | money_with_currency }}
             </h3>
           {% endif %}
@@ -109,7 +110,7 @@
       {% comment %} Feature List {% endcomment %}
       {% if section.settings.show_feature_list %}
         <div class="feature-list">
-          {{ section.settings.feature_list | richtext }}
+          {{ section.settings.feature_list }}
         </div>
       {% endif %}
 
