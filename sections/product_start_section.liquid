@@ -24,7 +24,7 @@
   {% assign header_reviews = false %}
   {% assign description_reviews = false %}
 {% endif %}
-
+header_reviews: {{ header_reviews }} | description_reviews: {{ description_reviews }}
 
 {% liquid
   assign selected_variant = product.selected_variant
