@@ -9,7 +9,7 @@
 
     {% if section.settings.show_section_header %}
       {%
-        include 'product_header' with
+        render 'product_header' with
         show_product_title: section.settings.show_product_title,
         show_reviews: section.settings.show_reviews,
         show_header_text: section.settings.show_header_text,
@@ -38,7 +38,7 @@
 
       {% if leftVariant %}
         {% assign button_label = 'Add ' | append: leftVariant.title | append: ' to Cart' %}
-        {% include 'product-card',
+        {% render 'product-card',
           show_product_description: false,
           custom_product: leftVariant,
           button_label: button_label,
@@ -70,7 +70,7 @@
           {% assign button_class = 'button--add-to-cart action_button--secondary' %}
         {% endif %}
 
-        {% include 'product-card',
+        {% render 'product-card',
           show_product_description: false,
           custom_product: pairVariant,
           button_label: button_label,
@@ -85,7 +85,7 @@
 
       {% if rightVariant %}
         {% assign button_label = 'Add ' | append: rightVariant.title | append: ' to Cart' %}
-        {% include 'product-card',
+        {% render 'product-card',
           show_product_description: false,
           custom_product: rightVariant,
           button_label: button_label,
