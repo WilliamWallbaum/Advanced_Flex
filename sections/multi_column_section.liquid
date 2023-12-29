@@ -4,10 +4,10 @@
 {% assign section_name = sec.section_name | replace: ' ', '-' | downcase | default: 'multi-col' %}
 {% assign container_class = 'section' | append: ' is-width-' | append: sec.width %}
 
-<div id="{{ section_name }}" class="{{ container_class }} multi-col">
+<div id="{{ section_name }}-section" class="multi-col">
   <!-- start section header -->
-  {% if section.show_header %}
-    <header id="{{ section_name }}-header" class="multi-col-header">
+  {% if sec.show_header %}
+    <header id="{{ section_name }}-header" class="{{ container_class }} multi-col-header">
       <h2 header id="{{ section_name }}-header-name">{{ sec.section_name }}</h2>
       <div header id="{{ section_name }}-header-text">{{ sec.header_text }}</div>
     </header>
@@ -15,7 +15,7 @@
   <!-- end section header -->
 
   <!-- start section body -->
-  <div id="{{ section_name }}-body" class="multi-col-body">
+  <div id="{{ section_name }}-body" class="{{ container_class }} multi-col-body">
     <!-- start columns -->
 
     <!-- start block 1 -->
@@ -72,7 +72,7 @@
 
   <!-- start section footer -->
   {% if sec.show_footer %}
-    <footer id="{{ section_name }}-footer" class="multi-col-footer">{{ sec.footer_text }}</footer>
+    <footer id="{{ section_name }}-footer" class="{{ container_class }} multi-col-footer">{{ sec.footer_text }}</footer>
   {% endif %}
   <!-- end section footer -->
 </div>
