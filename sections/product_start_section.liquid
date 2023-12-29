@@ -7,11 +7,24 @@
 {% assign show_header_text = section.settings.show_header_text %}
 {% assign header_title = section.settings.header_title %}
 {% assign header_copy = section.settings.header_copy %}
-{% assign section_name = header_titl | replace: ' ', '-' | downcase | default: 'product-start' %}
+{% assign section_name = header_title | replace: ' ', '-' | downcase | default: 'product-start' %}
+
 {% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
 
 {% comment %} Layout {% endcomment %}
 {% assign width = section.width %}
+
+{% comment %} Review Location Logic {% endcomment %}
+{% if section.settings.show_reviews and section.settings.review_location == 'header' %}
+  {% assign header_reviews = true %}
+  {% assign description_reviews = false %}
+{% elsif section.settings.show_reviews and section.settings.review_location == 'description' %}
+  {% assign header_reviews = false %}
+  {% assign description_reviews = true %}
+{% else %}
+  {% assign header_reviews = false %}
+  {% assign description_reviews = false %}
+{% endif %}
 
 {% liquid
   assign selected_variant = product.selected_variant
@@ -24,9 +37,9 @@
 <div id="{{ section_name }}-container" class="{{ container_class }} product-{{ product.id }}">
   {% if section.settings.show_section_header %}
     {%
-      include 'product_header' with
+      render 'product_header' with
       show_product_title: show_product_title,
-      show_reviews: section.settings.show_reviews,
+      show_reviews: header_reviews,
       show_header_text: show_header_text,
       header_title: header_title,
       header_copy: header_copy,
@@ -62,9 +75,12 @@
         {% render 'product-thumbnail__sticker', context: 'product', collection_handles: collection_handles %}
       {% endif %}
 
-      <div class="description content">
-        {{ product.description }}
-      </div>
+      {% comment %} Description - top {% endcomment %}
+      {% if product_description_position == 'top' and product.description != blank %}
+        <div class="description content">
+          {{ product.description | split: '<!-- split -->' | first }}
+        </div>
+      {% endif %}
 
       {% comment %} Hearing Levels {% endcomment %}
       {% if ha %}
@@ -76,15 +92,21 @@
         {% comment %} Price {% endcomment %}
         <div id="price-box">
           <h2 class="price">
-            {% if section.settings.price_pretext %}{{ section.settings.price_pretext | richtext }}{% endif -%}
+            {% if section.settings.price_prefix -%}
+              {{- section.settings.price_prefix -}}
+              <br>
+            {% endif %}
             &nbsp;{{ product.price | money_with_currency }}
+            {% if section.settings.price_suffix -%}
+              <small>{{ section.settings.price_suffix }}</small>
+            {%- endif %}
           </h2>
         </div>
         {% comment %} Savings {% endcomment %}
         {% if section.settings.show_savings %}
           {% if product.compare_at_price > product.price %}
             <h3 class="savings">
-              {{ section.settings.savings_pretext | richtext }}&nbsp;
+              {{ section.settings.savings_prefix }}&nbsp;
               {{ product.compare_at_price | minus: product.price | money_with_currency }}
             </h3>
           {% endif %}
@@ -94,21 +116,21 @@
       {% comment %} Feature List {% endcomment %}
       {% if section.settings.show_feature_list %}
         <div class="feature-list">
-          {{ section.settings.feature_list | richtext }}
+          {{ section.settings.feature_list }}
+        </div>
+      {% endif %}
+
+      {% comment %} Description Reviews {% endcomment %}
+      {% if description_reviews %}
+        <div class="review-container">
+          {% render 'yotpo-stars' with product %}
         </div>
       {% endif %}
 
       {% comment %} Trust Badges {% endcomment %}
       {% if section.settings.show_trust_badges %}
         <div id="trust-badges-container">
-          {% include 'trust-badges' %}
-        </div>
-      {% endif %}
-
-      {% comment %} Description - top {% endcomment %}
-      {% if product_description_position == 'top' and product.description != blank %}
-        <div class="description content">
-          {{ product.description | split: '<!-- split -->' | first }}
+          {% render 'trust-badges' %}
         </div>
       {% endif %}
 
@@ -305,6 +327,28 @@
     font-size: calc(var(--text-basic) * 1.25);
   }
 
+  /* Description Review Container */
+  .review-container {
+    justify-self: flex-start;
+    margin-top: var(--global-p1);
+  }
+  .review-container .yotpo-icon.yotpo-icon-star.rating-star,
+  .review-container .yotpo-icon.sr-only,
+  .review-container .yotpo.bottomLine .yotpo-bottomline .yotpo-icon-star,
+  .review-container .yotpo.bottomLine .yotpo-bottomline .yotpo-icon-half-star,
+  .review-container .yotpo.bottomLine .yotpo-bottomline .yotpo-icon-empty-star,
+  .review-container .yotpo.bottomline .yotpo-bottomline .yotpo-icon-star,
+  .review-container .yotpo.bottomline .yotpo-bottomline .yotpo-icon-half-star,
+  .review-container .yotpo.bottomline .yotpo-bottomline .yotpo-icon-empty-star,
+  .review-container .yotpo .yotpo-modal-bottom-line .yotpo-bottomline .yotpo-icon-star,
+  .review-container .yotpo .yotpo-modal-bottom-line .yotpo-bottomline .yotpo-icon-half-star,
+  .review-container .yotpo .yotpo-modal-bottom-line .yotpo-bottomline .yotpo-icon-empty-star {
+    font-size: calc(var(--text-basic) * 1.2);
+  }
+  .review-container .yotpo .sr-only {
+    font-size: var(--text-basic);
+    margin-left: var(--global-p1);
+  }
   /* Trust Badges Container */
   #trust-badges-container {
     display: flex;
@@ -347,7 +391,6 @@
       gap: var(--global-p1);
       margin: 0;
     }
-
     #price-box {
       display: flex;
       flex-direction: column;
@@ -409,6 +452,23 @@
       "id": "show_reviews",
       "label": "Show Reviews",
       "default": true
+    },
+    {
+      "type": "select",
+      "id": "review_location",
+      "label": "Review Location",
+      "default": "header",
+      "options": [
+        {
+          "value": "header",
+          "label": "Header"
+        },
+        {
+          "value": "description",
+          "label": "Description"
+        }
+      ],
+      "info": "May require you to reload the page. (Hold down Ctrl and press F5)"
     },
     {
       "type": "checkbox",
@@ -480,8 +540,17 @@
     },
     {
       "type": "text",
-      "id": "price_pretext",
-      "label": "Price Pretext"
+      "id": "price_prefix",
+      "label": "Price Prefix",
+      "default": "Low Price",
+      "info": "Optional: Leave blank to remove."
+    },
+    {
+      "type": "text",
+      "id": "price_suffix",
+      "label": "Price Suffix",
+      "default": "per ear",
+      "info": "Optional: Leave blank to remove."
     },
     {
       "type": "checkbox",
@@ -491,8 +560,8 @@
     },
     {
       "type": "text",
-      "id": "savings_pretext",
-      "label": "Savings Pretext",
+      "id": "savings_prefix",
+      "label": "Savings Prefix",
       "default": "You Save:"
     },
     {
