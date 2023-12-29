@@ -1,5 +1,8 @@
+{% assign section_name = section.settings.section_name | replace: ' ', '-' | downcase | default: 'variant' %}
+{% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
+
 {% if section.settings.show_section %}
-  <section id="promo-section">
+  <div id="promo-section" class="{{ container_class }}">
     <div id="description">
       <h2 id="description-title">{{ section.settings['description-title'] }}</h2>
       <p id="description-copy">{{ section.settings['description-copy'] }}</p>
@@ -16,7 +19,40 @@
         <p>{{ section.settings['bottom-bun'] }}</p>
       {% endif %}
     </div>
-  </section>
+  </div>
+
+  <style>
+    #shopify-section-{{ section.id }} {
+      display: flex;
+      justify-content: center;
+    }
+
+    @media only screen and (max-width: 767px) {
+      #shopify-section-{{ section.id }} {
+      }
+      #promo-section {
+        width: 90%;
+        gap: calc({{ section.settings.gap_spacing }}rem * 3);
+      }
+    }
+
+    @media only screen and (min-width: 768px) {
+      #shopify-section-{{ section.id }} {
+      }
+      #promo-section{
+        width: 85%;
+        gap: calc({{ section.settings.gap_spacing }}rem * 3);
+      }
+    }
+
+    @media only screen and (min-width: 1024px) {
+      #shopify-section-{{ section.id }} {
+      }
+      #promo-section {
+        width: 80%;
+      }
+    }
+  </style>
 {% endif %}
 
 {% style %}
@@ -25,8 +61,7 @@
     grid-template-columns: 2.75fr 1fr;
     grid-template-areas:
       "description promo";
-    gap: {{ settings.gap_settings }};
-    margin-top: -4rem;
+    margin-top: -2rem;
   }
 
   #description {
@@ -47,6 +82,7 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+    text-align: center;
   }
 
   #promo p {
@@ -65,23 +101,20 @@
     #promo-section{
       grid-template-areas: "description" "promo";
       grid-template-columns: 1fr;
-      gap: calc({{ settings.gap_spacing }}rem * 3);
     }
     #promo {
       font-size: calc(var(--text-basic) * 1.5);
     }
     #description {
       display: grid;
-      gap: {{ settings.gap_spacing }}rem;
     }
   }
 
   @media only screen and (min-width: 768px) and (max-width: 1023px) {
-    #promo-section{
+    #promo-section {
       grid-template-columns: 1fr;
       grid-template-areas: "description" "promo";
       padding: var(--global-p1);
-      gap: calc({{ settings.gap_spacing }}rem * 3);
       margin-top: 0;
     }
     #promo {
@@ -89,7 +122,6 @@
     }
     #description {
       display: grid;
-      gap: {{ settings.gap_spacing }}rem;
     }
     #description-title {
       font-size: calc(var(--text-basic) * 1.5);
@@ -113,9 +145,9 @@
     const url = window.location.pathname; // Get the path of the current URL
     console.log(url)
 
-    const lastDashIndex = url.lastIndexOf('-'); // Find the last occurrence of the dash
-    console.log(lastDashIndex)
-    const promoCode = url.substr(lastDashIndex + 1); // Extract the substring after the last dash
+    const lastSlashIndex = url.lastIndexOf('/'); // Find the last occurrence of the dash
+    console.log(lastSlashIndex)
+    const promoCode = url.substr(lastSlashIndex + 1); // Extract the substring after the last dash
     console.log(promoCode)
 
       if (promoCode === "/pages/hcra") {
@@ -129,6 +161,7 @@
 {% schema %}
 {
   "name": "Promo",
+  "tag": "section",
   "settings": [
     {
       "type": "checkbox",
@@ -180,6 +213,15 @@
       "id": "bottom-bun",
       "label": "Bottom Bun Title",
       "default": "At Checkout to Recieve Your Discount"
+    },
+    {
+      "type": "range",
+      "id": "gap_spacing",
+      "label": "Gap",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 2
     }
   ],
   "presets" : [{
