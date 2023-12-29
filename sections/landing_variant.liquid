@@ -1,10 +1,26 @@
+<script src="{{ 'addPair.js' | asset_url }}" defer></script>
+{% assign section_name = section.settings.section_name | replace: ' ', '-' | downcase | default: 'variant' %}
+{% assign container_class = 'section' | append: ' is-width-' | append: section.settings.width %}
 {% assign product = section.settings.product %}
 
 {% if section.settings.show_variants %}
-  <section id="variant">
-    <h2>{{ section.settings.section_title }}</h2>
-    <p>{{ section.settings.instructions }}</p>
-    <div id="variant-container" class="card-container">
+  <div id="variant-section" class="{{ container_class }}">
+    <span id="{{ section_name }}-anchor"></span>
+
+    {% if section.settings.show_section_header %}
+      {%
+        render 'product_header' with
+        show_product_title: section.settings.show_product_title,
+        show_reviews: section.settings.show_reviews,
+        show_header_text: section.settings.show_header_text,
+        header_title: section.settings.header_title,
+        header_copy: section.settings.header_copy,
+        section_name: section_name,
+        class: header_class
+      %}
+    {% endif %}
+
+    <div id="{{ section_name }}-container" class="card-container">
       {% assign leftVariant = null %}
       {% assign pairVariant = null %}
       {% assign rightVariant = null %}
@@ -21,74 +37,228 @@
       {% endfor %}
 
       {% if leftVariant %}
-        <div class="card">
-          <img
-            src="{{ leftVariant.featured_image.src | img_url: 'original' }}"
-            loading="lazy"
-            alt="{{ leftVariant.featured_image.alt }}"
-            width="{{ leftVariant.featured_image.width }}"
-            height="{{ leftVariant.featured_image.height }}"
-          >
-          <form action="/cart/add" method="post" id="product-form-{{ leftVariant.id }}">
-            <input type="hidden" name="id" value="{{ leftVariant.id }}">
-            <button
-              type="submit"
-              name="add"
-              class="button button--add-to-cart action_button--secondary"
-              data-label="Add to cart"
-            >
-              Add {{ leftVariant.title }} to Cart
-            </button>
-          </form>
-        </div>
+        {% assign button_label = 'Add ' | append: leftVariant.title | append: ' to Cart' %}
+        {% render 'product-card',
+          show_product_description: false,
+          custom_product: leftVariant,
+          button_label: button_label,
+          button_class: 'button--add-to-cart action_button--secondary',
+          button_style: section.settings.button_style,
+          button_type: 'submit',
+          button_attribute: 'data-label="Add to cart" name="add"',
+          button_cart: true,
+          badges: section.settings.show_badges
+        %}
       {% endif %}
 
       {% if pairVariant %}
-        <div class="card">
-          <img
-            src="{{ pairVariant.featured_image.src | img_url: 'original' }}"
-            loading="lazy"
-            alt="{{ pairVariant.featured_image.alt }}"
-            width="{{ pairVariant.featured_image.width }}"
-            height="{{ pairVariant.featured_image.height }}"
-          >
-          <button
-            id="add-pair"
-            class="button button--add-to-cart action_button--secondary add-pair-button"
-            data-left-variant="{{ leftVariant.id }}"
-            data-right-variant="{{ rightVariant.id }}"
-            data-label="Add to cart"
-          >
-            Add Pair to Cart
-          </button>
-        </div>
+        {% assign button_label = 'Add ' | append: pairVariant.title | append: ' to Cart' %}
+        {% assign pair_type = section.settings.pair_type %}
+        {% if pair_type == 'individual' %}
+          {% assign data_right_variant = rightVariant.id %}
+          {% assign data_left_variant = leftVariant.id %}
+          {% assign button_attribute = 'data-right-variant="'
+            | append: data_right_variant
+            | append: '" data-left-variant="'
+            | append: data_left_variant
+            | append: '" name="add"'
+            | append: 'data-label="Add to cart"'
+          %}
+          {% assign button_class = 'button--add-to-cart action_button--secondary add-pair-button' %}
+        {% else %}
+          {% assign button_attribute = 'data-label="Add to cart" name="add"' %}
+          {% assign button_class = 'button--add-to-cart action_button--secondary' %}
+        {% endif %}
+
+        {% render 'product-card',
+          show_product_description: false,
+          custom_product: pairVariant,
+          button_label: button_label,
+          button_class: button_class,
+          button_style: section.settings.button_style,
+          button_type: 'submit',
+          button_attribute: button_attribute,
+          button_cart: true,
+          badges: section.settings.show_badges
+        %}
       {% endif %}
 
       {% if rightVariant %}
-        <div class="card">
-          <img
-            src="{{ rightVariant.featured_image.src | img_url: 'original' }}"
-            loading="lazy"
-            alt="{{ rightVariant.featured_image.alt }}"
-            width="{{ rightVariant.featured_image.width }}"
-            height="{{ rightVariant.featured_image.height }}"
-          >
-          <form action="/cart/add" method="post" id="product-form-{{ rightVariant.id }}">
-            <input type="hidden" name="id" value="{{ rightVariant.id }}">
-            <button
-              type="submit"
-              name="add"
-              class="button button--add-to-cart action_button--secondary"
-              data-label="Add to cart"
-            >
-              Add {{ rightVariant.title }} to Cart
-            </button>
-          </form>
-        </div>
+        {% assign button_label = 'Add ' | append: rightVariant.title | append: ' to Cart' %}
+        {% render 'product-card',
+          show_product_description: false,
+          custom_product: rightVariant,
+          button_label: button_label,
+          button_class: 'button--add-to-cart action_button--secondary',
+          button_style: section.settings.button_style,
+          button_type: 'submit',
+          button_attribute: 'data-label="Add to cart" name="add"',
+          button_cart: true,
+          badges: section.settings.show_badges
+        %}
       {% endif %}
     </div>
-  </section>
+
+    <footer class="is-width-{{ section.settings.width }} {{ section_name }}-footer">
+      {% if section.settings.show_product_description %}
+        <div class="product-description">
+          {{ product.content }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_trust_badges %}
+        {% render 'trust-badges' %}
+      {% endif %}
+    </footer>
+  </div>
 {% endif %}
+
+{% schema %}
+{
+  "name": "Landing Page Variants",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_variants",
+      "label": "Show Variants Section",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Section Width",
+      "default": "standard",
+      "options": [
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Section Header"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section_header",
+      "label": "Show Section Header",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_header_text",
+      "label": "Show Header Copy",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Variant Title",
+      "default": "Flexible Purchase Options"
+    },
+    {
+      "type": "richtext",
+      "id": "header_copy",
+      "label": "Variant Copy",
+      "default": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!</p>"
+    },
+    {
+      "type": "header",
+      "content": "Product Card Options"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "select",
+      "id": "pair_type",
+      "label": "Pair Type",
+      "default": "individual",
+      "options": [
+        {
+          "value": "individual",
+          "label": "Individual"
+        },
+        {
+          "value": "pair",
+          "label": "Pair"
+        }
+      ],
+      "info": "When clicking the 'Add to Cart', the 'Individual' option adds both a Left and a Right hearing aids separately, while the 'Pair' option adds as a single item."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badges",
+      "label": "Show Badges",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Section Footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_description",
+      "label": "Show Product Descriptions",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "product_description-size",
+      "label": "Product Description Font Size",
+      "min": 10,
+      "max": 50,
+      "default": 10,
+      "step": 1
+    }
+  ],
+  "presets" : [{
+    "name": "Landing Page Variants"
+  }]
+}
+{% endschema %}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    display: flex;
+    justify-content: center;
+  }
+  .{{section_name}}-header h2 {
+    font-size:  calc(var(--text-basic)*({{ section.settings.header_font_size }} / 10));
+  }
+  .product-description {
+    {% assign description_float = section.settings.product_description-size | divided_by: 10.0 %}
+    font-size: calc(var(--text-basic) * {{ description_float }});
+  }
+
+    @media only screen and (max-width: 767px) {
+      #variant {
+        width: 90%;
+        gap: calc({{ section.settings.gap_spacing }}rem * 3);
+      }
+    }
+
+    @media only screen and (min-width: 768px) {
+      #variant {
+        width: 85%;
+        gap: calc({{ section.settings.gap_spacing }}rem * 3);
+      }
+    }
+
+    @media only screen and (min-width: 1024px) {
+      #variant {
+        width: 80%;
+      }
+    }
+</style>
 
 {% style %}
   #variant-container {
@@ -132,7 +302,7 @@
     }
   }
 
-  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+  @media only screen and (min-width: 768px) {
     .card-container {
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     }
@@ -141,7 +311,7 @@
     }
   }
 
-  @media only screen and (min-width: 1024px) and (max-width: 1439px) {
+  @media only screen and (min-width: 1024px) {
     #variant {}
     .card-container {
       grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
@@ -151,37 +321,3 @@
     }
   }
 {% endstyle %}
-
-{% schema %}
-{
-  "name": "Variants",
-  "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_variants",
-      "label": "Show Variants Section",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "section_title",
-      "label": "Variant Title",
-      "default": "Flexible Purchase Options"
-    },
-    {
-      "type": "richtext",
-      "id": "instructions",
-      "label": "Variant Copy",
-      "default": "<p>Just click the option that works for you and you will be taken directly to checkout so you can apply your coupon code and get the hearing aid(s) you need!</p>"
-    },
-    {
-      "type": "product",
-      "id": "product",
-      "label": "Product"
-    }
-  ],
-  "presets" : [{
-    "name": "Blue Wave Variants"
-  }]
-}
-{% endschema %}
