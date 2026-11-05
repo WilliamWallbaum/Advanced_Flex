@@ -25,7 +25,7 @@
       {% if section.blocks.size > 0 %}
         {% assign headerImage = section.blocks[0].settings.header_image %}
         {% if headerImage %}
-          {% render 'image-element' with image: headerImage %}
+          {% render 'image-element' with image, image: headerImage %}
         {% endif %}
       {% endif %}
     </div>
@@ -34,15 +34,11 @@
       {% assign product = section.settings.product %}
 
       <div id="product">
-        {% render 'pair_variant_assignment' with product: product pair_type: section.settings.pair_type %}
+        {% render 'pair_variant_assignment' with product, product: product, pair_type: section.settings.pair_type %}
       </div>
     {% else %}
       <figure id="featured-image">
-        {%
-          render 'image-element' with
-          image:  section.settings.product_image,
-          alt: product.alt
-        %}
+        {% render 'image-element' with image, image: section.settings.product_image, alt: product.alt %}
       </figure>
     {% endif %}
   </div>
@@ -430,3 +426,27 @@
     }
   }
 {% endstyle %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'image-element' with image: headerImage %}"
+  to: "{% render 'image-element' with image, image: headerImage %}"
+  position: 1054..1113
+- from: "{% render 'pair_variant_assignment' with product: product pair_type: section.settings.pair_type
+    %}"
+  to: "{% render 'pair_variant_assignment' with product, product: product, pair_type:
+    section.settings.pair_type %}"
+  position: 1295..1403
+- from: |-
+    {%
+              render 'image-element' with
+              image:  section.settings.product_image,
+              alt: product.alt
+            %}
+  to: "{% render 'image-element' with image, image: section.settings.product_image,
+    alt: product.alt %}"
+  position: 1475..1571
+{% endcomment %}

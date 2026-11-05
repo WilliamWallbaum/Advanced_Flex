@@ -36,15 +36,7 @@
 
 <div id="{{ section_name }}-container" class="{{ container_class }} product-{{ product.id }}">
   {% if section.settings.show_section_header %}
-    {%
-      render 'product_header' with
-      show_product_title: show_product_title,
-      show_reviews: header_reviews,
-      show_header_text: show_header_text,
-      header_title: header_title,
-      header_copy: header_copy,
-      section_name: section_name
-    %}
+    {% render 'product_header' with show_product_title, show_product_title: show_product_title, show_reviews: header_reviews, show_header_text: show_header_text, header_title: header_title, header_copy: header_copy, section_name: section_name %}
   {% endif %}
 
   <div id="{{ section_name }}-body">
@@ -164,16 +156,7 @@
           {% assign button_class = section.settings.button_class %}
           {% assign button_attribute = section.settings.button_attribute %}
 
-          {%
-            include 'button' with
-            label: button_label,
-            href: button_link,
-            type: button_type,
-            style: button_style,
-            size: button_size,
-            class: button_class,
-            attribute: button_attribute
-          %}
+          {% include 'button' with label, label: button_label, href: button_link, type: button_type, style: button_style, size: button_size, class: button_class, attribute: button_attribute %}
         </div>
       {% endif %}
     </div>
@@ -755,3 +738,39 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {%
+          render 'product_header' with
+          show_product_title: show_product_title,
+          show_reviews: header_reviews,
+          show_header_text: show_header_text,
+          header_title: header_title,
+          header_copy: header_copy,
+          section_name: section_name
+        %}
+  to: "{% render 'product_header' with show_product_title, show_product_title: show_product_title,
+    show_reviews: header_reviews, show_header_text: show_header_text, header_title:
+    header_title, header_copy: header_copy, section_name: section_name %}"
+  position: 1485..1726
+- from: |-
+    {%
+                include 'button' with
+                label: button_label,
+                href: button_link,
+                type: button_type,
+                style: button_style,
+                size: button_size,
+                class: button_class,
+                attribute: button_attribute
+              %}
+  to: "{% include 'button' with label, label: button_label, href: button_link, type:
+    button_type, style: button_style, size: button_size, class: button_class, attribute:
+    button_attribute %}"
+  position: 6396..6578
+{% endcomment %}

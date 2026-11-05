@@ -22,7 +22,7 @@
     {% if sec.show_block_1 %}
       <div id="block-1" class="{{ sec.is_card }}">
         {% if sec.block_image_1 %}
-          {% include 'image-element' with image: sec.block_image_1, figure_classes: "block-img" %}
+          {% include 'image-element' with image, image: sec.block_image_1, figure_classes: "block-img" %}
         {% endif %}
         <h3>{{ sec.block_title_1 }}</h3>
         <p>{{ sec.block_content_1 }}</p>
@@ -34,7 +34,7 @@
     {% if sec.show_block_2 %}
       <div id="block-2" class="{{ sec.is_card }}">
         {% if sec.block_image_2 %}
-          {% include 'image-element' with image: sec.block_image_2, figure_classes: "block-img" %}
+          {% include 'image-element' with image, image: sec.block_image_2, figure_classes: "block-img" %}
         {% endif %}
         <h3>{{ sec.block_title_2 }}</h3>
         <p>{{ sec.block_content_2 }}</p>
@@ -46,7 +46,7 @@
     {% if sec.show_block_3 %}
       <div id="block-3" class="{{ sec.is_card }}">
         {% if sec.block_image_3 %}
-          {% include 'image-element' with image: sec.block_image_3, figure_classes: "block-img" %}
+          {% include 'image-element' with image, image: sec.block_image_3, figure_classes: "block-img" %}
         {% endif %}
         <h3>{{ sec.block_title_3 }}</h3>
         <p>{{ sec.block_content_3 }}</p>
@@ -58,7 +58,7 @@
     {% if sec.show_block_4 %}
       <div id="block-4" class="{{ sec.is_card }}">
         {% if sec.block_image_4 %}
-          {% include 'image-element' with image: sec.block_image_4, figure_classes: "block-img" %}
+          {% include 'image-element' with image, image: sec.block_image_4, figure_classes: "block-img" %}
         {% endif %}
         <h3>{{ sec.block_title_4 }}</h3>
         <p>{{ sec.block_content_4 }}</p>
@@ -388,3 +388,30 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: '{% include ''image-element'' with image: sec.block_image_1, figure_classes:
+    "block-img" %}'
+  to: '{% include ''image-element'' with image, image: sec.block_image_1, figure_classes:
+    "block-img" %}'
+  position: 1004..1099
+- from: '{% include ''image-element'' with image: sec.block_image_2, figure_classes:
+    "block-img" %}'
+  to: '{% include ''image-element'' with image, image: sec.block_image_2, figure_classes:
+    "block-img" %}'
+  position: 1410..1505
+- from: '{% include ''image-element'' with image: sec.block_image_3, figure_classes:
+    "block-img" %}'
+  to: '{% include ''image-element'' with image, image: sec.block_image_3, figure_classes:
+    "block-img" %}'
+  position: 1816..1911
+- from: '{% include ''image-element'' with image: sec.block_image_4, figure_classes:
+    "block-img" %}'
+  to: '{% include ''image-element'' with image, image: sec.block_image_4, figure_classes:
+    "block-img" %}'
+  position: 2222..2317
+{% endcomment %}

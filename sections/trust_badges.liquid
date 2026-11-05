@@ -26,7 +26,7 @@
             {% capture image_additional_classes %}
             {{ col-image }}
             {% endcapture %}
-            {% include 'image-element' with image: section.image_1, alt: image_alt, additional_classes: image_additional_classes, loading: 'lazy', width: section.image_1.width, height: section.image_1.height %}
+            {% include 'image-element' with image, image: section.image_1, alt: image_alt, additional_classes: image_additional_classes, loading: 'lazy', width: section.image_1.width, height: section.image_1.height %}
             <!-- End of image-element snippet -->
           <div>{{ section.text_1 }}</div>
         </div>
@@ -42,7 +42,7 @@
             {% capture image_additional_classes %}
               {{ col-image }}
             {% endcapture %}
-            {% include 'image-element' with image: section.image_2, alt: image_alt, additional_classes: image_additional_classes, loading: 'lazy', width: section.image_2.width, height: section.image_2.height %}
+            {% include 'image-element' with image, image: section.image_2, alt: image_alt, additional_classes: image_additional_classes, loading: 'lazy', width: section.image_2.width, height: section.image_2.height %}
             <!-- End of image-element snippet -->
           <div>{{ section.text_2 }}</div>
         </div>
@@ -178,3 +178,24 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% include 'image-element' with image: section.image_1, alt: image_alt, additional_classes:
+    image_additional_classes, loading: 'lazy', width: section.image_1.width, height:
+    section.image_1.height %}"
+  to: "{% include 'image-element' with image, image: section.image_1, alt: image_alt,
+    additional_classes: image_additional_classes, loading: 'lazy', width: section.image_1.width,
+    height: section.image_1.height %}"
+  position: 1091..1296
+- from: "{% include 'image-element' with image: section.image_2, alt: image_alt, additional_classes:
+    image_additional_classes, loading: 'lazy', width: section.image_2.width, height:
+    section.image_2.height %}"
+  to: "{% include 'image-element' with image, image: section.image_2, alt: image_alt,
+    additional_classes: image_additional_classes, loading: 'lazy', width: section.image_2.width,
+    height: section.image_2.height %}"
+  position: 1847..2052
+{% endcomment %}

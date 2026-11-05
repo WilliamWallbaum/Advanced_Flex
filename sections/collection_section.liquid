@@ -15,23 +15,9 @@
         {{ section.settings.banner_text }}
       </div>
       {% if section.settings.banner_image %}
-        {%
-          include 'image-element' with image: section.settings.banner_image,
-          alt: section.settings.banner_image.alt,
-          loading: 'lazy',
-          width: section.settings.banner_image.width,
-          height: section.settings.banner_image.height,
-          figure_classes:'collection-image'
-        %}
+        {% include 'image-element' with image, image: section.settings.banner_image, alt: section.settings.banner_image.alt, loading: 'lazy', width: section.settings.banner_image.width, height: section.settings.banner_image.height, figure_classes: 'collection-image' %}
       {% else %}
-        {%
-          include 'image-element' with image: selected_collection.featured_image,
-          alt: selected_collection.featured_image.alt,
-          loading: 'lazy',
-          width: selected_collection.featured_image.width,
-          height: selected_collection.featured_image.height,
-          figure_classes:'collection-image'
-        %}
+        {% include 'image-element' with image, image: selected_collection.featured_image, alt: selected_collection.featured_image.alt, loading: 'lazy', width: selected_collection.featured_image.width, height: selected_collection.featured_image.height, figure_classes: 'collection-image' %}
       {% endif %}
       <hr>
     </header>
@@ -196,3 +182,38 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {%
+              include 'image-element' with image: section.settings.banner_image,
+              alt: section.settings.banner_image.alt,
+              loading: 'lazy',
+              width: section.settings.banner_image.width,
+              height: section.settings.banner_image.height,
+              figure_classes:'collection-image'
+            %}
+  to: "{% include 'image-element' with image, image: section.settings.banner_image,
+    alt: section.settings.banner_image.alt, loading: 'lazy', width: section.settings.banner_image.width,
+    height: section.settings.banner_image.height, figure_classes: 'collection-image'
+    %}"
+  position: 771..1032
+- from: |-
+    {%
+              include 'image-element' with image: selected_collection.featured_image,
+              alt: selected_collection.featured_image.alt,
+              loading: 'lazy',
+              width: selected_collection.featured_image.width,
+              height: selected_collection.featured_image.height,
+              figure_classes:'collection-image'
+            %}
+  to: "{% include 'image-element' with image, image: selected_collection.featured_image,
+    alt: selected_collection.featured_image.alt, loading: 'lazy', width: selected_collection.featured_image.width,
+    height: selected_collection.featured_image.height, figure_classes: 'collection-image'
+    %}"
+  position: 1058..1339
+{% endcomment %}

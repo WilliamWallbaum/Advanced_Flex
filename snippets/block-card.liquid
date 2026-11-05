@@ -5,7 +5,7 @@
 
 <div class="card col-{{ col_num }}" {{ block.shopify_attributes }}>
   {% if block.block_image %}
-    {% include 'image-element' with image: block.block_image %}
+    {% include 'image-element' with image, image: block.block_image %}
   {% endif %}
   <h3>This is a block {{ block.block_title }}</h3>
   {{ block.block_content }}
@@ -14,3 +14,13 @@
     {{ col }}
   </p>
 </div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% include 'image-element' with image: block.block_image %}"
+  to: "{% include 'image-element' with image, image: block.block_image %}"
+  position: 185..251
+{% endcomment %}

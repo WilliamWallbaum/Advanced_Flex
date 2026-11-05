@@ -163,7 +163,7 @@
       data-pf-type="Image"
       style="display: flex; padding: 1em; align-content: center; flex-direction: column; flex-wrap: wrap;"
     >
-      {% include 'image-element', image: images.['puppy_warranty.jpg'], alt: images.['puppy_warranty.jpg'].alt %}
+      {% include 'image-element', image: images['puppy_warranty.jpg'], alt: images['puppy_warranty.jpg'].alt %}
     </figure>
   </div>
 
@@ -237,13 +237,7 @@
 
     <div style="display: flex; flex-direction: row;">
       {% if box_image -%}
-        {%-
-          include 'image-element' with {
-          image: box_image,
-          alt: box_image.alt,
-          object_fit: true
-          }
-        %}
+        {%- include 'image-element', image: box_image, alt: box_image.alt, object_fit: true %}
       {% endif %}
 
       {% if product_accessories %}
@@ -350,3 +344,26 @@
     event.preventDefault();
   });
 </script>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% include 'image-element', image: images.['puppy_warranty.jpg'], alt: images.['puppy_warranty.jpg'].alt
+    %}"
+  to: "{% include 'image-element', image: images['puppy_warranty.jpg'], alt: images['puppy_warranty.jpg'].alt
+    %}"
+  position: 4334..4439
+- from: |-
+    {%-
+              include 'image-element' with {
+              image: box_image,
+              alt: box_image.alt,
+              object_fit: true
+              }
+            %}
+  to: "{%- include 'image-element', image: box_image, alt: box_image.alt, object_fit:
+    true %}"
+  position: 7093..7179
+{% endcomment %}

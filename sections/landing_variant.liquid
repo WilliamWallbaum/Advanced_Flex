@@ -8,16 +8,7 @@
     <span id="{{ section_name }}-anchor"></span>
 
     {% if section.settings.show_section_header %}
-      {%
-        render 'product_header' with
-        show_product_title: section.settings.show_product_title,
-        show_reviews: section.settings.show_reviews,
-        show_header_text: section.settings.show_header_text,
-        header_title: section.settings.header_title,
-        header_copy: section.settings.header_copy,
-        section_name: section_name,
-        class: header_class
-      %}
+      {% render 'product_header' with show_product_title, show_product_title: section.settings.show_product_title, show_reviews: section.settings.show_reviews, show_header_text: section.settings.show_header_text, header_title: section.settings.header_title, header_copy: section.settings.header_copy, section_name: section_name, class: header_class %}
     {% endif %}
 
     <div id="{{ section_name }}-container" class="card-container">
@@ -321,3 +312,26 @@
     }
   }
 {% endstyle %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {%
+            render 'product_header' with
+            show_product_title: section.settings.show_product_title,
+            show_reviews: section.settings.show_reviews,
+            show_header_text: section.settings.show_header_text,
+            header_title: section.settings.header_title,
+            header_copy: section.settings.header_copy,
+            section_name: section_name,
+            class: header_class
+          %}
+  to: "{% render 'product_header' with show_product_title, show_product_title: section.settings.show_product_title,
+    show_reviews: section.settings.show_reviews, show_header_text: section.settings.show_header_text,
+    header_title: section.settings.header_title, header_copy: section.settings.header_copy,
+    section_name: section_name, class: header_class %}"
+  position: 522..867
+{% endcomment %}
